@@ -45,3 +45,17 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+bin
+/Finances.DataLayer/bin
+/Finances.Contract/obj/Debug
+/Finances.DataLayer/obj/Debug
+/Finances.Domain/obj/Debug
+/Finances.BankingManagement/obj/Debug
+/Finances.Client/obj/Debug
+/Finances.Endpoint.WebApi/obj/Debug
+/Finances.Migrations/obj/Debug
+/packages/EntityFramework.6.1.3/*.nupkg
+/packages/EntityFramework.6.1.3/content
+/packages
+/Finances.BankingManagement/obj
+/Finances.Client/obj
