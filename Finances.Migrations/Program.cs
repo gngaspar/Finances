@@ -15,15 +15,39 @@
 
         private static void Main(string[] args)
         {
+            Console.WriteLine($"{DateTime.Now} Starting");
+
+            Console.WriteLine($"{DateTime.Now} Configuration started");
             var configuration = new Configuration();
+            Console.WriteLine($"{DateTime.Now} Configuration loaded");
+
+            Console.WriteLine($"{DateTime.Now} DbMigrator started");
             var migrator = new DbMigrator(configuration);
+            Console.WriteLine($"{DateTime.Now} DbMigrator loaded");
+
+            Console.WriteLine($"{DateTime.Now} Scripting Decorator started");
             var scriptor = new MigratorScriptingDecorator(migrator);
+            Console.WriteLine($"{DateTime.Now} Scripting Decorator loaded");
 
             var script = "USE " + ModuleName + " " + Environment.NewLine + Environment.NewLine;
             script = script + scriptor.ScriptUpdate(InitialDatabase, null);
-            Console.Write( "Starting :" );
-            File.WriteAllText(@"C:/BankingScript.sql", script);
-            Console.Write("Ended");
+
+            Console.WriteLine($"{DateTime.Now} Starting File Writing");
+            try
+            {
+                File.WriteAllText(@"C:\\BankingScript.sql", script);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{DateTime.Now} Error File Writing");
+                Console.WriteLine(ex.Message);
+                if (ex.Message.Contains("denied") || ex.Message.Contains("access"))
+                {
+                    Console.WriteLine("Try running application as administrator.");
+                }
+
+                Console.ReadKey();
+            }
         }
     }
 }
