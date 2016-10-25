@@ -52,9 +52,16 @@
   <ItemGroup>
     <Compile Include="BankingDbContext.cs" />
     <Compile Include="Configurations\BankEntityConfiguration.cs" />
+    <Compile Include="Configurations\CurrencyEntityConfiguration.cs" />
+    <Compile Include="Configurations\PersonEntityConfiguration.cs" />
+    <Compile Include="Configurations\UserEntityConfiguration.cs" />
     <Compile Include="Migrations\201610241950549_AddedBankEntity.cs" />
     <Compile Include="Migrations\201610241950549_AddedBankEntity.Designer.cs">
       <DependentUpon>201610241950549_AddedBankEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610252254315_AddedHumanItems.cs" />
+    <Compile Include="Migrations\201610252254315_AddedHumanItems.Designer.cs">
+      <DependentUpon>201610252254315_AddedHumanItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610241950549_AddedBankEntity.resx">
       <DependentUpon>201610241950549_AddedBankEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610252254315_AddedHumanItems.resx">
+      <DependentUpon>201610252254315_AddedHumanItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

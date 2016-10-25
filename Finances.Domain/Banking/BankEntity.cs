@@ -23,10 +23,5 @@ namespace Finances.Domain.Banking
 
             set { createdAt = value; }
         }
-
-        /// <summary>
-        /// Gets or sets the Change At.
-        /// </summary>
-        public DateTime? ChangeAt { get; set; }
     }
 }

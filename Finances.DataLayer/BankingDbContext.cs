@@ -3,11 +3,13 @@
     using System.Data.Entity;
     using System.Data.Entity.SqlServer;
     using System.IO;
-
+    using Finances.Domain;
     using Finances.Domain.Banking;
+    using Finances.Domain.Human;
+
     public class BankingDbContext : DbContext
     {
-        static readonly object _lock = new object();
+        private static readonly object _lock = new object();
 
         public BankingDbContext()
             : base("BankingConnection")
@@ -35,6 +37,24 @@
             set;
         }
 
+        public DbSet<CurrencyEntity> Currencies
+        {
+            get;
+            set;
+        }
+
+        public DbSet<PersonEntity> Persons
+        {
+            get;
+            set;
+        }
+
+        public DbSet<UserEntity> Users
+        {
+            get;
+            set;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Configurations.Add(new BankEntityConfiguration());
@@ -43,6 +63,4 @@
             base.OnModelCreating(modelBuilder);
         }
     }
-
-
 }
