@@ -1,18 +1,15 @@
 namespace Finances.DataLayer.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Finances.DataLayer.BankingDbContext>
+    
+    public sealed class Configuration : DbMigrationsConfiguration<BankingDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Finances.DataLayer.BankingDbContext context)
+        protected override void Seed(BankingDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
