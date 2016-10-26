@@ -1,27 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Finances.Contract.Banking;
-
-namespace Finances.Domain.Banking
+﻿namespace Finances.Domain.Banking
 {
-    public class BankEntity : Bank
-    {
-        private DateTime? createdAt;
-        public DateTime CreatedAt
-        {
-            get
-            {
-                if (createdAt == null)
-                {
-                    createdAt = DateTime.Now;
-                }
-                return createdAt.Value;
-            }
+    using System;
 
-            set { createdAt = value; }
-        }
+    public class BankEntity : EntityDateTimeBase
+    {
+        /// <summary>
+        /// Gets or sets the Code.
+        /// </summary>
+        public Guid Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Url.
+        /// </summary>
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Country.
+        /// </summary>
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Swift.
+        /// </summary>
+        public string Swift { get; set; }
     }
 }
