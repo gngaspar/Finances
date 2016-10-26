@@ -2,17 +2,12 @@
 {
     using System;
 
-    public class PersonEntity
+    public class PersonEntity : EntityDateTimeBase
     {
         /// <summary>
         /// Gets or sets the Code.
         /// </summary>
         public Guid Code { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Code.
-        /// </summary>
-        public UserEntity Owner { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -33,29 +28,5 @@
         /// Gets or sets a value indicating whether is archived.
         /// </summary>
         public bool IsArchived { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Created At.
-        /// </summary>
-        private DateTime? createdAt;
-
-        public DateTime CreatedAt
-        {
-            get
-            {
-                if (createdAt == null)
-                {
-                    createdAt = DateTime.Now;
-                }
-                return createdAt.Value;
-            }
-
-            set { createdAt = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the change at.
-        /// </summary>
-        public DateTime ChangeAt { get; set; }
     }
 }
