@@ -52,7 +52,11 @@
   <ItemGroup>
     <Compile Include="Banking\AccountEntity.cs" />
     <Compile Include="Banking\BankEntity.cs" />
+    <Compile Include="Banking\CurrentAccountEntity.cs" />
+    <Compile Include="Banking\LoanAccountEntity.cs" />
     <Compile Include="CurrencyEntity.cs" />
+    <Compile Include="EntityDateTimeBase.cs" />
+    <Compile Include="EntityOwnerBase.cs" />
     <Compile Include="Human\PersonEntity.cs" />
     <Compile Include="Human\UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,12 +64,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
-      <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
-      <Name>Finances.Contract</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
