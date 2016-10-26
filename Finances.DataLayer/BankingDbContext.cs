@@ -3,6 +3,7 @@
     using System.Data.Entity;
     using System.Data.Entity.SqlServer;
     using System.IO;
+
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
@@ -57,10 +58,11 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add(new BankEntityConfiguration());
-
+            // modelBuilder.Configurations.Add(new BankEntityConfiguration());
             modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
         }
     }
 }
