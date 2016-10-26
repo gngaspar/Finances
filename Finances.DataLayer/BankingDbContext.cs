@@ -1,9 +1,10 @@
 ﻿namespace Finances.DataLayer
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.SqlServer;
     using System.IO;
-
+    using System.Linq;
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
@@ -32,6 +33,26 @@
 #endif
         }
 
+        public override int SaveChanges()
+        {
+            var addedEntities = ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Added).ToList();
+
+            addedEntities.ForEach(e =>
+            {
+                e.Entity.CreatedAt = DateTime.Now;
+                e.Entity.ChangeAt = DateTime.Now;
+            });
+
+            var modifiedEntities = ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Modified).ToList();
+
+            modifiedEntities.ForEach(e =>
+            {
+                e.Entity.ChangeAt = DateTime.Now;
+            });
+
+            return base.SaveChanges();
+        }
+
         public DbSet<BankEntity> Banks
         {
             get;
@@ -58,11 +79,9 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // modelBuilder.Configurations.Add(new BankEntityConfiguration());
+            modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
             modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
         }
     }
 }

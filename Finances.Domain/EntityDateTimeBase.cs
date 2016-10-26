@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finances.Domain
+﻿namespace Finances.Domain
 {
+    using System;
+
     public abstract class EntityDateTimeBase
     {
         /// <summary>
-        /// Gets or sets the Created At.
+        /// Gets or sets the last change.
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime? ChangeAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the Change At.
+        /// Gets or sets the date of creation.
         /// </summary>
-        public DateTime ChangeAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
     }
 }

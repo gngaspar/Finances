@@ -6,33 +6,33 @@
 
     internal class CustomSqlServerMigrationSqlGenerator : SqlServerMigrationSqlGenerator
     {
-        protected override void Generate( AddColumnOperation addColumnOperation )
+        protected override void Generate(AddColumnOperation addColumnOperation)
         {
-            SetCreatedUtcColumn( addColumnOperation.Column );
+            SetCreatedUtcColumn(addColumnOperation.Column);
 
-            base.Generate( addColumnOperation );
+            base.Generate(addColumnOperation);
         }
 
-        protected override void Generate( CreateTableOperation createTableOperation )
+        protected override void Generate(CreateTableOperation createTableOperation)
         {
-            SetCreatedUtcColumn( createTableOperation.Columns );
+            SetCreatedUtcColumn(createTableOperation.Columns);
 
-            base.Generate( createTableOperation );
+            base.Generate(createTableOperation);
         }
 
-        private static void SetCreatedUtcColumn( IEnumerable<ColumnModel> columns )
+        private static void SetCreatedUtcColumn(IEnumerable<ColumnModel> columns)
         {
-            foreach ( var columnModel in columns )
+            foreach (var columnModel in columns)
             {
-                SetCreatedUtcColumn( columnModel );
+                SetCreatedUtcColumn(columnModel);
             }
         }
 
-        private static void SetCreatedUtcColumn( PropertyModel column )
+        private static void SetCreatedUtcColumn(PropertyModel column)
         {
-            if ( column.Name == "CreatedAt" || column.Name == "ChangeAt" )
+            if (column.Name == "CreatedAt" || column.Name == "ChangeAt")
             {
-                column.DefaultValueSql = "GETUTCDATE()";
+                column.DefaultValueSql = "GETDATE()";
             }
         }
     }

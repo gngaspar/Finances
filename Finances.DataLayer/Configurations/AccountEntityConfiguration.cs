@@ -1,8 +1,7 @@
-﻿using System.Data.Entity.ModelConfiguration;
-
-namespace Finances.DataLayer.Configurations
+﻿namespace Finances.DataLayer.Configurations
 {
-    using Domain.Banking;
+    using System.Data.Entity.ModelConfiguration;
+    using Finances.Domain.Banking;
 
     public class AccountEntityConfiguration : EntityTypeConfiguration<AccountEntity>
     {
@@ -11,6 +10,7 @@ namespace Finances.DataLayer.Configurations
             this.HasKey(p => p.Code).ToTable("Accounts");
             this.Property(p => p.Description).IsRequired().HasMaxLength(100);
             this.Property(p => p.Amount).IsRequired().HasPrecision(18, 2);
+            this.Ignore(p => p.IsMine);
         }
     }
 }

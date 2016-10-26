@@ -1,5 +1,7 @@
 ﻿namespace Finances.Domain.Banking
 {
+    using Finances.Domain.Human;
+
     public abstract class AccountEntity : EntityOwnerBase
     {
         /// <summary>
@@ -20,11 +22,11 @@
         /// <summary>
         /// Gets or sets the Holder name.
         /// </summary>
-        public string Holder { get; set; }
+        public UserEntity Holder { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether is mine.
         /// </summary>
-        public bool IsMine { get; set; }
+        public bool IsMine => Holder == Owner;
     }
 }
