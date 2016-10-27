@@ -5,7 +5,7 @@
     public class PersonEntity : EntityDateTimeBase
     {
         /// <summary>
-        /// Gets or sets the Code.
+        /// Gets or sets the CodeName.
         /// </summary>
         public Guid Code { get; set; }
 
@@ -28,5 +28,10 @@
         /// Gets or sets a value indicating whether is archived.
         /// </summary>
         public bool IsArchived { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is the user it self.
+        /// </summary>
+        public bool IsMe { get; set; }
     }
 }

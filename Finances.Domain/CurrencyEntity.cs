@@ -5,7 +5,7 @@
         /// <summary>
         /// Gets or sets the code of the currency.
         /// </summary>
-        public string Code { get; set; }
+        public string CodeName { get; set; }
 
         /// <summary>
         /// Gets or sets the reason to one euro.

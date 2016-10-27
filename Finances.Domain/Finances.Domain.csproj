@@ -54,6 +54,7 @@
     <Compile Include="Banking\BankEntity.cs" />
     <Compile Include="Banking\CurrentAccountEntity.cs" />
     <Compile Include="Banking\LoanAccountEntity.cs" />
+    <Compile Include="Banking\SavingAccountEntity.cs" />
     <Compile Include="CurrencyEntity.cs" />
     <Compile Include="EntityDateTimeBase.cs" />
     <Compile Include="EntityOwnerBase.cs" />

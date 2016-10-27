@@ -8,7 +8,7 @@
     public abstract class EntityOwnerBase : EntityDateTimeBase
     {
         /// <summary>
-        /// Gets or sets the Code.
+        /// Gets or sets the CodeName.
         /// </summary>
         public Guid Code { get; set; }
 
