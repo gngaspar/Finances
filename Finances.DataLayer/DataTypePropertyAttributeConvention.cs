@@ -4,7 +4,7 @@
     using System.Data.Entity.ModelConfiguration.Configuration;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    public class DataTypePropertyAttributeConvention : PrimitivePropertyAttributeConfigurationConvention<DataTypeAttribute>
+    internal class DataTypePropertyAttributeConvention : PrimitivePropertyAttributeConfigurationConvention<DataTypeAttribute>
     {
         public override void Apply(ConventionPrimitivePropertyConfiguration configuration, DataTypeAttribute attribute)
         {

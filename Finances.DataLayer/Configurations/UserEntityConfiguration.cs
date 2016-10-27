@@ -21,9 +21,10 @@
             this.Property(p => p.PassportExpirationDate).HasColumnType("Date").HasColumnOrder(7);
             this.Property(p => p.Nif).HasMaxLength(25).HasColumnOrder(8);
             this.Property(p => p.HealthCare).HasMaxLength(25).HasColumnOrder(9);
-            this.Property(p => p.SocialSecurity).HasMaxLength(25).HasColumnOrder(10);
-            this.Property(p => p.ChangeAt).HasColumnOrder(11);
-            this.Property(p => p.CreatedAt).HasColumnOrder(12);
+            this.Property(p => p.HealthCareExpirationDate).HasColumnOrder(10);
+            this.Property(p => p.SocialSecurity).HasMaxLength(25).HasColumnOrder(11);
+            this.Property(p => p.ChangeAt).HasColumnOrder(12);
+            this.Property(p => p.CreatedAt).HasColumnOrder(13);
         }
     }
 }
