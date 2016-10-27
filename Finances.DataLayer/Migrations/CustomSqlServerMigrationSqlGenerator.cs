@@ -1,6 +1,7 @@
 ﻿namespace Finances.DataLayer.Migrations
 {
     using System.Collections.Generic;
+    using System.Data.Entity.Core.Metadata.Edm;
     using System.Data.Entity.Migrations.Model;
     using System.Data.Entity.SqlServer;
 
@@ -30,9 +31,14 @@
 
         private static void SetCreatedUtcColumn(PropertyModel column)
         {
-            if (column.Name == "CreatedAt" || column.Name == "ChangeAt")
+            if ((column.Name == "CreatedAt" || column.Name == "ChangeAt") && column.Type == PrimitiveTypeKind.DateTime)
             {
                 column.DefaultValueSql = "GETDATE()";
+            }
+
+            if (column.Name == "Code" && column.Type == PrimitiveTypeKind.Guid)
+            {
+                column.DefaultValueSql = "NEWID()";
             }
         }
     }
