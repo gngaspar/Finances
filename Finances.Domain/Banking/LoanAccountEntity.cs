@@ -5,13 +5,21 @@
 
     public class LoanAccountEntity : AccountEntity
     {
-        [DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        [Required]
+        public decimal InicialAmount { get; set; }
 
         [Required]
-        public decimal InterestRate { get; set; }
+        public decimal InterestNetRate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime LoanEndDate { get; set; }
+
+        [Required]
+        public decimal LoanInterestRate { get; set; }
+
+        public virtual CurrentAccountEntity LoanRelatedAccount { get; set; }
+
+        [Required]
+        public decimal PremiumPercentage { get; set; }
     }
 }

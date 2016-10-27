@@ -57,6 +57,7 @@
     <Compile Include="Banking\SavingAccountEntity.cs" />
     <Compile Include="CurrencyEntity.cs" />
     <Compile Include="EntityDateTimeBase.cs" />
+    <Compile Include="EntityOwnerBankBase.cs" />
     <Compile Include="EntityOwnerBase.cs" />
     <Compile Include="Human\PersonEntity.cs" />
     <Compile Include="Human\UserEntity.cs" />
@@ -66,7 +67,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
+      <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
+      <Name>Finances.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -59,3 +59,4 @@ bin
 /packages
 /Finances.BankingManagement/obj
 /Finances.Client/obj
+/Finances.Common/obj/Debug

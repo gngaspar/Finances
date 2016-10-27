@@ -51,24 +51,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankingDbContext.cs" />
+    <Compile Include="Configurations\AccountEntityConfiguration.cs" />
     <Compile Include="Configurations\BankEntityConfiguration.cs" />
     <Compile Include="Configurations\CurrencyEntityConfiguration.cs" />
     <Compile Include="Configurations\PersonEntityConfiguration.cs" />
     <Compile Include="Configurations\UserEntityConfiguration.cs" />
     <Compile Include="DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201610271227184_Initial.cs" />
-    <Compile Include="Migrations\201610271227184_Initial.Designer.cs">
-      <DependentUpon>201610271227184_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201610271746319_Initial.cs" />
+    <Compile Include="Migrations\201610271746319_Initial.Designer.cs">
+      <DependentUpon>201610271746319_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610271956457_AddedAccounts.cs" />
+    <Compile Include="Migrations\201610271956457_AddedAccounts.Designer.cs">
+      <DependentUpon>201610271956457_AddedAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610272001302_ChangedRequired.cs" />
+    <Compile Include="Migrations\201610272001302_ChangedRequired.Designer.cs">
+      <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
-      <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
-      <Name>Finances.Contract</Name>
+    <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
+      <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
+      <Name>Finances.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Finances.Domain\Finances.Domain.csproj">
       <Project>{27c511f1-af79-4367-9ac1-e2628dbad00a}</Project>
@@ -76,8 +85,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610271227184_Initial.resx">
-      <DependentUpon>201610271227184_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610271746319_Initial.resx">
+      <DependentUpon>201610271746319_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271956457_AddedAccounts.resx">
+      <DependentUpon>201610271956457_AddedAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610272001302_ChangedRequired.resx">
+      <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

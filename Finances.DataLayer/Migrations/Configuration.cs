@@ -2,12 +2,10 @@ namespace Finances.DataLayer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-
+    using Finances.DataLayer.Extension;
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
-
-    using Finances.DataLayer.Extension;
 
     public sealed class Configuration : DbMigrationsConfiguration<BankingDbContext>
     {
@@ -36,23 +34,27 @@ namespace Finances.DataLayer.Migrations
             );
 
             var goncaloGuid = Guid.Parse("9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B");
+            var guiGuid = Guid.Parse("AF47E41B-344A-42AA-AEFF-07FE41E5D53C");
+
+            var goncaloUser = new UserEntity
+            {
+                Code = goncaloGuid,
+                Name = "Goncalo",
+                Surname = "Gaspar",
+                Email = "ggaspar@mail.com",
+                IdNumber = "xxxxx",
+                IdNumberExpirationDate = DateTime.Today.AddYears(2),
+                Nif = "xxxYYyyyx",
+                HealthCare = "xxxxx",
+                HealthCareExpirationDate = DateTime.Today.AddMonths(-5).AddDays(5),
+                SocialSecurity = "xxxxxx",
+            };
+
             context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Surname, p.Email, p.IdNumber, p.IdNumberExpirationDate, p.Passport, p.PassportExpirationDate, p.Nif, p.HealthCare, p.HealthCareExpirationDate, p.SocialSecurity, p.ChangeAt },
-                new UserEntity
-                {
-                    Code = goncaloGuid,
-                    Name = "Goncalo",
-                    Surname = "Gaspar",
-                    Email = "ggaspar@mail.com",
-                    IdNumber = "xxxxx",
-                    IdNumberExpirationDate = DateTime.Today.AddYears(2),
-                    Nif = "xxxYYyyyx",
-                    HealthCare = "xxxxx",
-                    HealthCareExpirationDate = DateTime.Today.AddMonths(-5).AddDays(5),
-                    SocialSecurity = "xxxxxx",
-                }
+                goncaloUser
             );
 
-            context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Surname, p.Email, p.IsArchived, p.IsMe, p.ChangeAt},
+            context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Surname, p.Email, p.IsArchived, p.IsMe, p.ChangeAt },
                 new PersonEntity
                 {
                     Code = goncaloGuid,
@@ -60,8 +62,18 @@ namespace Finances.DataLayer.Migrations
                     Surname = "Gaspar",
                     Email = "ggaspar@mail.com",
                     IsArchived = false,
-                    IsMe = true
+                    OwnerCode = goncaloGuid
+                },
+                new PersonEntity
+                {
+                    Code = guiGuid,
+                    Name = "Guilherme",
+                    Surname = "Gaspar",
+                    Email = "guigaspar@mail.com",
+                    IsArchived = false,
+                    OwnerCode = goncaloGuid
                 }
+
             );
         }
     }

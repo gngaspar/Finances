@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
@@ -17,9 +16,9 @@
         private static readonly object _lock = new object();
 
         public BankingDbContext()
-            : base( "BankingConnection" )
+            : base("BankingConnection")
         {
-            Database.SetInitializer<BankingDbContext>( null );
+            Database.SetInitializer<BankingDbContext>(null);
             this.Configuration.AutoDetectChangesEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
 
@@ -28,9 +27,9 @@
 #if DEBUG
             this.Database.Log = s =>
                 {
-                    lock ( _lock )
+                    lock (_lock)
                     {
-                        File.AppendAllText( @"C:/DBLog.txt", s );
+                        File.AppendAllText(@"C:/DBLog.txt", s);
                     }
                 };
 #endif
@@ -42,7 +41,7 @@
 
             return base.SaveChanges();
         }
-        
+
         public override Task<int> SaveChangesAsync()
         {
             this.SetCreatedDate();
@@ -50,11 +49,11 @@
             return base.SaveChangesAsync();
         }
 
-        public override Task<int> SaveChangesAsync( CancellationToken cancellationToken )
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             this.SetCreatedDate();
 
-            return base.SaveChangesAsync( cancellationToken );
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         public DbSet<BankEntity> Banks { get; set; }
@@ -65,11 +64,13 @@
 
         public DbSet<UserEntity> Users { get; set; }
 
-        protected override void OnModelCreating( DbModelBuilder modelBuilder )
+        public DbSet<AccountEntity> Accounts { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Add( new DataTypePropertyAttributeConvention() );
-            modelBuilder.Configurations.AddFromAssembly( this.GetType().Assembly );
-            base.OnModelCreating( modelBuilder );
+            modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
+            modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
+            base.OnModelCreating(modelBuilder);
         }
 
         private void SetCreatedDate()
