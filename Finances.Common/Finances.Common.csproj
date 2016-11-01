@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Banking\AccountType.cs" />
     <Compile Include="Banking\AutomaticRenovation.cs" />
+    <Compile Include="Banking\CardProvider.cs" />
     <Compile Include="Banking\InterestPayment.cs" />
     <Compile Include="Banking\Deadline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

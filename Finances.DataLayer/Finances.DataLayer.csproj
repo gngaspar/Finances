@@ -53,6 +53,7 @@
     <Compile Include="BankingDbContext.cs" />
     <Compile Include="Configurations\AccountEntityConfiguration.cs" />
     <Compile Include="Configurations\BankEntityConfiguration.cs" />
+    <Compile Include="Configurations\CardEntityConfiguration.cs" />
     <Compile Include="Configurations\CurrencyEntityConfiguration.cs" />
     <Compile Include="Configurations\PersonEntityConfiguration.cs" />
     <Compile Include="Configurations\UserEntityConfiguration.cs" />
@@ -69,6 +70,10 @@
     <Compile Include="Migrations\201610272001302_ChangedRequired.cs" />
     <Compile Include="Migrations\201610272001302_ChangedRequired.Designer.cs">
       <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611012009539_AddCards.cs" />
+    <Compile Include="Migrations\201611012009539_AddCards.Designer.cs">
+      <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610272001302_ChangedRequired.resx">
       <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611012009539_AddCards.resx">
+      <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -56,6 +56,8 @@
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        public DbSet<CardEntity> Cards { get; set; }
+
         public DbSet<BankEntity> Banks { get; set; }
 
         public DbSet<CurrencyEntity> Currencies { get; set; }

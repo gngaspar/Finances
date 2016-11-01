@@ -9,6 +9,7 @@
         /// <summary>
         /// Gets or sets the CodeName.
         /// </summary>
+        [Required]
         public Guid Code { get; set; }
 
         /// <summary>

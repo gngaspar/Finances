@@ -52,8 +52,12 @@
   <ItemGroup>
     <Compile Include="Banking\AccountEntity.cs" />
     <Compile Include="Banking\BankEntity.cs" />
+    <Compile Include="Banking\CardEntity.cs" />
+    <Compile Include="Banking\CreditCardEntity.cs" />
     <Compile Include="Banking\CurrentAccountEntity.cs" />
+    <Compile Include="Banking\DebitCardEntity.cs" />
     <Compile Include="Banking\LoanAccountEntity.cs" />
+    <Compile Include="Banking\PrePaidCardEntity.cs" />
     <Compile Include="Banking\SavingAccountEntity.cs" />
     <Compile Include="CurrencyEntity.cs" />
     <Compile Include="EntityDateTimeBase.cs" />
