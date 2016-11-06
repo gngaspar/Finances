@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Finances.Common.Banking;
+    using Finances.Domain.Extensions;
 
     public class SavingAccountEntity : AccountEntity
     {
@@ -31,6 +32,7 @@
         public DateTime SavingEndDate { get; set; }
 
         [Required]
+        [DecimalPrecision(18, 3)]
         public decimal SavingInterestRate { get; set; }
 
         public virtual CurrentAccountEntity SavingRelatedAccount { get; set; }

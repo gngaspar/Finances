@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Finances.DataLayer.Conventions;
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
@@ -71,6 +72,7 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
             modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
             base.OnModelCreating(modelBuilder);
         }
@@ -82,6 +84,13 @@
             addedEntities.ForEach(e =>
             {
                 e.Entity.CreatedAt = DateTime.Now;
+                e.Entity.ChangeAt = DateTime.Now;
+            });
+
+            var modifiefEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Modified).ToList();
+
+            modifiefEntities.ForEach(e =>
+            {
                 e.Entity.ChangeAt = DateTime.Now;
             });
         }

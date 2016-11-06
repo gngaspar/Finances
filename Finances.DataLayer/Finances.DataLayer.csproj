@@ -57,7 +57,8 @@
     <Compile Include="Configurations\CurrencyEntityConfiguration.cs" />
     <Compile Include="Configurations\PersonEntityConfiguration.cs" />
     <Compile Include="Configurations\UserEntityConfiguration.cs" />
-    <Compile Include="DataTypePropertyAttributeConvention.cs" />
+    <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
+    <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
     <Compile Include="Migrations\201610271746319_Initial.cs" />
     <Compile Include="Migrations\201610271746319_Initial.Designer.cs">
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\201611012009539_AddCards.cs" />
     <Compile Include="Migrations\201611012009539_AddCards.Designer.cs">
       <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611061101217_DecimalInAccounts.cs" />
+    <Compile Include="Migrations\201611061101217_DecimalInAccounts.Designer.cs">
+      <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -101,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611012009539_AddCards.resx">
       <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611061101217_DecimalInAccounts.resx">
+      <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
