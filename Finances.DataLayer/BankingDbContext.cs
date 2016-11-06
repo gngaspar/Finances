@@ -11,6 +11,7 @@
     using Finances.Domain;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
+    using Finances.Domain.Projection;
 
     public class BankingDbContext : DbContext
     {
@@ -68,6 +69,8 @@
         public DbSet<UserEntity> Users { get; set; }
 
         public DbSet<AccountEntity> Accounts { get; set; }
+
+        public DbSet<ParameterizationEntity> Parameterizations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

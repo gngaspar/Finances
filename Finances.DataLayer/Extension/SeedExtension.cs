@@ -2,18 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using System.Diagnostics;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
 
     internal static class SeedExtension
     {
         /// <summary>
-        /// Add or Updates and Object according to the updating expression. Prevents that Seed wil set the CreatedAt to Now to old objects. 
-        /// USE ONLY at Seed Method
+        /// Add or Updates and Object according to the updating expression. Prevents that Seed wil
+        /// set the CreatedAt to Now to old objects. USE ONLY at Seed Method
         /// </summary>
         /// <typeparam name="T">The type</typeparam>
         /// <param name="db">The database.</param>
@@ -61,7 +61,7 @@
 
                     var oldValue = prop.GetValue(existing, null);
                     var newValue = prop.GetValue(entity, null);
-                    if ( Equals( oldValue, newValue ) )
+                    if (Equals(oldValue, newValue))
                     {
                         continue;
                     }
@@ -70,11 +70,6 @@
                     prop.SetValue(existing, newValue);
                 }
             }
-        }
-
-        private static bool IsModifiedable(Type type)
-        {
-            return type.IsPrimitive || type.IsValueType || type == typeof(string);
         }
 
         private static IEnumerable<PropertyInfo> GetProperties<T>(Expression<Func<T, object>> exp) where T : class
@@ -107,6 +102,11 @@
             }
 
             return properties.OfType<PropertyInfo>();
+        }
+
+        private static bool IsModifiedable(Type type)
+        {
+            return type.IsPrimitive || type.IsValueType || type == typeof(string);
         }
     }
 }

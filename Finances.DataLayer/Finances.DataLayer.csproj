@@ -55,6 +55,7 @@
     <Compile Include="Configurations\BankEntityConfiguration.cs" />
     <Compile Include="Configurations\CardEntityConfiguration.cs" />
     <Compile Include="Configurations\CurrencyEntityConfiguration.cs" />
+    <Compile Include="Configurations\ParameterizationEntityConfiguration.cs" />
     <Compile Include="Configurations\PersonEntityConfiguration.cs" />
     <Compile Include="Configurations\UserEntityConfiguration.cs" />
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
@@ -83,6 +84,10 @@
     <Compile Include="Migrations\201611061157201_PrePaidHasCard.cs" />
     <Compile Include="Migrations\201611061157201_PrePaidHasCard.Designer.cs">
       <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611061447294_AddedParameterizationEntity.cs" />
+    <Compile Include="Migrations\201611061447294_AddedParameterizationEntity.Designer.cs">
+      <DependentUpon>201611061447294_AddedParameterizationEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -116,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611061157201_PrePaidHasCard.resx">
       <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611061447294_AddedParameterizationEntity.resx">
+      <DependentUpon>201611061447294_AddedParameterizationEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -66,6 +66,7 @@
     <Compile Include="Extensions\DecimalPrecisionAttribute.cs" />
     <Compile Include="Human\PersonEntity.cs" />
     <Compile Include="Human\UserEntity.cs" />
+    <Compile Include="Projection\ParameterizationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
