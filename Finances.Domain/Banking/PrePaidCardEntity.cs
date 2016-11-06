@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class PrePaidCardEntity
+    public class PrePaidCardEntity : CardEntity
     {
         /// <summary>
         /// Gets or sets the Available Amount.

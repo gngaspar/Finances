@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201611061101217_DecimalInAccounts.Designer.cs">
       <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611061157201_PrePaidHasCard.cs" />
+    <Compile Include="Migrations\201611061157201_PrePaidHasCard.Designer.cs">
+      <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611061101217_DecimalInAccounts.resx">
       <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611061157201_PrePaidHasCard.resx">
+      <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

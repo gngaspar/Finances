@@ -290,14 +290,107 @@ namespace Finances.DataLayer.Migrations
             context.SaveChanges();
 
             context.SeedAddOrUpdate(p => p.Code, p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InicialAmount, p.InterestNetRate, p.LoanEndDate, p.LoanInterestRate, p.PremiumPercentage, p.LoanRelatedAccount },
-              loanGoncalo,
+               loanGoncalo,
                loan2Goncalo
             );
 
             context.SeedAddOrUpdate(p => p.Code, p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InterestCapitalization, p.SavingEndDate, p.SavingInterestRate, p.SavingRelatedAccount },
-              savingGoncalo,
+               savingGoncalo,
                savingGui,
                saving2Gui
+            );
+
+            context.SaveChanges();
+
+            var visa = new CreditCardEntity
+            {
+                Code = Guid.Parse("951C4C66-EA1C-4285-B122-308CDF0243D5"),
+                CardNumber = "5731",
+                CardProvider = CardProvider.Visa,
+                Description = "Visa Cinza",
+                PaymentDay = 7,
+                Limit = 1000,
+                UsedLimit = 300,
+                Expire = DateTime.ParseExact("31/01/2020", format, provider),
+                Account = currentGoncalo,
+                Bank = bankMontepio,
+                Currency = euro,
+                Holder = goncaloPerson,
+                Owner = goncaloPerson
+            };
+
+            context.SeedAddOrUpdate(p => p.Code, p => new { p.Description, p.Code, p.CardNumber, p.PaymentDay, p.Limit, p.UsedLimit, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt },
+               visa
+            );
+
+            var currentMontepio = new DebitCardEntity
+            {
+                Code = Guid.Parse("B22056AC-91FD-4769-9056-E235F2757A43"),
+                CardNumber = "5594",
+                CardProvider = CardProvider.VisaElectron,
+                Description = "Debito Amarelo",
+                Expire = DateTime.ParseExact("30/09/2019", format, provider),
+                Account = currentGoncalo,
+                Bank = bankMontepio,
+                Currency = euro,
+                Holder = goncaloPerson,
+                Owner = goncaloPerson
+            };
+
+            var currentMille = new DebitCardEntity
+            {
+                Code = Guid.Parse("1C3E3692-1AD9-401D-B4AA-C06A31967A95"),
+                CardNumber = "5505",
+                CardProvider = CardProvider.Visa,
+                Description = "Debito Cinza",
+                Expire = DateTime.ParseExact("30/09/2019", format, provider),
+                Account = currentPlGoncalo,
+                Bank = bankMillenium,
+                Currency = pln,
+                Holder = goncaloPerson,
+                Owner = goncaloPerson
+            };
+
+            context.SeedAddOrUpdate(p => p.Code, p => new { p.Description, p.Code, p.CardNumber, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt },
+               currentMontepio,
+               currentMille
+            );
+
+            var preMille = new PrePaidCardEntity
+            {
+                Code = Guid.Parse("283FBB3A-B988-42A7-95F6-8A377D0C9CC1"),
+                CardNumber = "9102",
+                CardProvider = CardProvider.Maestro,
+                Description = "PrePago Preto",
+                Expire = DateTime.ParseExact("31/05/2019", format, provider),
+                Account = currentPlGoncalo,
+                Bank = bankMillenium,
+                Currency = pln,
+                Holder = goncaloPerson,
+                Owner = goncaloPerson,
+                AvailableAmount = 500,
+                MaximumAmount = 500
+            };
+
+            var preMontepio = new PrePaidCardEntity
+            {
+                Code = Guid.Parse("905FADBF-F44D-4DFC-850D-0368DA41CF58"),
+                CardNumber = "5555",
+                CardProvider = CardProvider.VisaElectron,
+                Description = "PrePago Mae",
+                Expire = DateTime.ParseExact("31/05/2019", format, provider),
+                Account = currentGoncalo,
+                Bank = bankMontepio,
+                Currency = euro,
+                Holder = isildaPerson,
+                Owner = goncaloPerson,
+                AvailableAmount = 50,
+                MaximumAmount = 1500
+            };
+
+            context.SeedAddOrUpdate(p => p.Code, p => new { p.Description, p.Code, p.CardNumber, p.AvailableAmount, p.MaximumAmount, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt },
+               preMontepio,
+               preMille
             );
 
             context.SaveChanges();
