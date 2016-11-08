@@ -66,8 +66,10 @@
     <Compile Include="Extensions\DecimalPrecisionAttribute.cs" />
     <Compile Include="Human\PersonEntity.cs" />
     <Compile Include="Human\UserEntity.cs" />
+    <Compile Include="IBankService.cs" />
     <Compile Include="Projection\ParameterizationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IBankRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -77,6 +79,10 @@
     <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
       <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
       <Name>Finances.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
+      <Project>{044D3449-FEE1-4BB0-8644-265C6E837046}</Project>
+      <Name>Finances.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

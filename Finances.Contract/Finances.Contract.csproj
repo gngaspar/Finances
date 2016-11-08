@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Banking\Account.cs" />
     <Compile Include="Banking\Bank.cs" />
+    <Compile Include="Banking\BankListRequest.cs" />
+    <Compile Include="Banking\BankListResponse.cs" />
+    <Compile Include="Banking\IBank.cs" />
     <Compile Include="Beneficiary.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Currency.cs" />

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Diagnostics;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
@@ -29,10 +28,8 @@
             }
 
             var identifyingProperties = GetProperties<T>(identifierExpression).ToList();
-            Debug.Assert(identifyingProperties.Count != 0);
 
             var updatingProperties = GetProperties<T>(updatingExpression).Where(pi => IsModifiedable(pi.PropertyType)).ToList();
-            Debug.Assert(updatingProperties.Count != 0);
 
             var parameter = Expression.Parameter(typeof(T));
             foreach (var entity in entities)
@@ -74,10 +71,6 @@
 
         private static IEnumerable<PropertyInfo> GetProperties<T>(Expression<Func<T, object>> exp) where T : class
         {
-            Debug.Assert(exp != null);
-            Debug.Assert(exp.Body != null);
-            Debug.Assert(exp.Parameters.Count == 1);
-
             var type = typeof(T);
             var properties = new List<PropertyInfo>();
 
