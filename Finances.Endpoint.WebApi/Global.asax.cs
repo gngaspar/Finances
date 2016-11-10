@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
-using System.Web.Http;
-
-namespace Finances.Endpoint.WebApi
+﻿namespace Finances.Endpoint.WebApi
 {
-    public class Global : HttpApplication
+    using System;
+    using System.Web.Http;
+
+    public class WebApiApplication : System.Web.HttpApplication
     {
-        void Application_Start(object sender, EventArgs e)
+        private void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.UseXmlSerializer = true;
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

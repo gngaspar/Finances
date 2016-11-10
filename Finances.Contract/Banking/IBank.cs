@@ -4,6 +4,10 @@
 
     public interface IBank
     {
-        Task<BankListResponse> BankList(BankListRequest request);
+        Task<ActionResponse> Add(BankIn request);
+
+        Task<ActionResponse> Edit(BankIn request);
+
+        Task<BankListResponse> List(BankListRequest request);
     }
 }

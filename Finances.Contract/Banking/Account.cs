@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finances.Contract.Banking
+﻿namespace Finances.Contract.Banking
 {
+    using System;
     using Finances.Common.Banking;
 
     public class Account
@@ -23,17 +18,12 @@ namespace Finances.Contract.Banking
         /// <summary>
         /// Gets or sets the the bank.
         /// </summary>
-        public Bank Bank { get; set; }
+        public BankOut BankOut { get; set; }
 
         /// <summary>
         /// Gets or sets the Code.
         /// </summary>
         public Guid Code { get; set; }
-
-        /// <summary>
-        /// Gets or sets the currency.
-        /// </summary>
-        public Currency Currency { get; set; }
 
         /// <summary>
         /// Gets or sets the currency.
