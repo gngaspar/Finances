@@ -1,6 +1,6 @@
 ﻿namespace Finances.Contract.Banking
 {
-    public class BankOrder
+    public class BankOrder : IListOrder<BankField>
     {
         public BankField Field { get; set; }
 

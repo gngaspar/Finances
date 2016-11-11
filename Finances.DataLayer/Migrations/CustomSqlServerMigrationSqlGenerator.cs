@@ -9,27 +9,27 @@
     {
         protected override void Generate(AddColumnOperation addColumnOperation)
         {
-            SetCreatedUtcColumn(addColumnOperation.Column);
+            SetCreatedColumn(addColumnOperation.Column);
 
             base.Generate(addColumnOperation);
         }
 
         protected override void Generate(CreateTableOperation createTableOperation)
         {
-            SetCreatedUtcColumn(createTableOperation.Columns);
+            SetCreatedColumn(createTableOperation.Columns);
 
             base.Generate(createTableOperation);
         }
 
-        private static void SetCreatedUtcColumn(IEnumerable<ColumnModel> columns)
+        private static void SetCreatedColumn(IEnumerable<ColumnModel> columns)
         {
             foreach (var columnModel in columns)
             {
-                SetCreatedUtcColumn(columnModel);
+                SetCreatedColumn(columnModel);
             }
         }
 
-        private static void SetCreatedUtcColumn(PropertyModel column)
+        private static void SetCreatedColumn(PropertyModel column)
         {
             if ((column.Name == "CreatedAt" || column.Name == "ChangeAt") && column.Type == PrimitiveTypeKind.DateTime)
             {

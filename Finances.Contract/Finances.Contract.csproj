@@ -57,6 +57,7 @@
     <Compile Include="Common\InterestPayment.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ErrorInformation.cs" />
+    <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />
     <Compile Include="Person.cs" />
