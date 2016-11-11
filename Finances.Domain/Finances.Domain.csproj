@@ -50,16 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banking\AccountEntity.cs" />
+    <Compile Include="Accounting\AccountEntity.cs" />
     <Compile Include="Banking\BankEntity.cs" />
-    <Compile Include="Banking\CardEntity.cs" />
-    <Compile Include="Banking\CreditCardEntity.cs" />
-    <Compile Include="Banking\CurrentAccountEntity.cs" />
-    <Compile Include="Banking\DebitCardEntity.cs" />
-    <Compile Include="Banking\LoanAccountEntity.cs" />
-    <Compile Include="Banking\PrePaidCardEntity.cs" />
-    <Compile Include="Banking\SavingAccountEntity.cs" />
-    <Compile Include="CurrencyEntity.cs" />
+    <Compile Include="Plastic\CardEntity.cs" />
+    <Compile Include="Plastic\CreditCardEntity.cs" />
+    <Compile Include="Accounting\CurrentAccountEntity.cs" />
+    <Compile Include="Plastic\DebitCardEntity.cs" />
+    <Compile Include="Accounting\LoanAccountEntity.cs" />
+    <Compile Include="Plastic\PrePaidCardEntity.cs" />
+    <Compile Include="Accounting\SavingAccountEntity.cs" />
+    <Compile Include="Banking\CurrencyEntity.cs" />
     <Compile Include="EntityDateTimeBase.cs" />
     <Compile Include="EntityOwnerBankBase.cs" />
     <Compile Include="EntityOwnerBase.cs" />
@@ -76,10 +76,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
-      <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
-      <Name>Finances.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044D3449-FEE1-4BB0-8644-265C6E837046}</Project>
       <Name>Finances.Contract</Name>

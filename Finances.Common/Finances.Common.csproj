@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banking\AccountType.cs" />
-    <Compile Include="Banking\AutomaticRenovation.cs" />
-    <Compile Include="Banking\CardProvider.cs" />
-    <Compile Include="Banking\InterestPayment.cs" />
-    <Compile Include="Banking\Deadline.cs" />
+    <Compile Include="Common\AccountType.cs" />
+    <Compile Include="Common\AutomaticRenovation.cs" />
+    <Compile Include="Common\CardProvider.cs" />
+    <Compile Include="Common\InterestPayment.cs" />
+    <Compile Include="Common\Deadline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

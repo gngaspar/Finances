@@ -4,9 +4,9 @@
 
     public interface IBank
     {
-        Task<ActionResponse> Add(BankIn request);
+        Task<ActionResponse> Add(BankIn bank);
 
-        Task<ActionResponse> Edit(BankIn request);
+        Task<ActionResponse> Edit(BankIn bank);
 
         Task<BankListResponse> List(BankListRequest request);
     }

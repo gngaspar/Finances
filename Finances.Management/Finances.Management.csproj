@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
-      <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
-      <Name>Finances.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
       <Name>Finances.Contract</Name>

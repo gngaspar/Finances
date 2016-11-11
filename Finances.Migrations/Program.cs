@@ -4,7 +4,6 @@
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Infrastructure;
     using System.IO;
-
     using Finances.DataLayer.Migrations;
 
     internal class Program
@@ -35,7 +34,13 @@
             Console.WriteLine($"{DateTime.Now} Starting File Writing");
             try
             {
-                File.WriteAllText(@"C:\\BankingScript.sql", script);
+                string path = @"C:\Git\Logs";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                File.WriteAllText(@"C:\Git\Logs\BankingScript.sql", script);
             }
             catch (Exception ex)
             {

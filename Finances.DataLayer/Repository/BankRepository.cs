@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
+    using Finances.Domain.Banking;
     using Finances.Domain.Repository;
 
     public class BankRepository : IBankRepository
@@ -44,23 +45,43 @@
 
         public async Task<BankListResponse> List(BankListRequest parameters)
         {
-            var listQuery = this.context.Banks;
+            IQueryable<BankEntity> listQuery = this.context.Banks;
+
+            if (!string.IsNullOrEmpty(parameters.Filter.Name))
+            {
+                listQuery = parameters.Filter.NameExact ?
+                        listQuery.Where(x => x.Name == parameters.Filter.Name) :
+                        listQuery.Where(x => x.Name.Contains(parameters.Filter.Name));
+            }
+
+            if (!string.IsNullOrEmpty(parameters.Filter.Swift))
+            {
+                listQuery = parameters.Filter.SwiftExact ?
+                        listQuery.Where(x => x.Name == parameters.Filter.Swift) :
+                        listQuery.Where(x => x.Swift.Contains(parameters.Filter.Swift));
+            }
+
+            var queryResult = await listQuery.CountAsync();
 
             var list = await listQuery
                 .OrderBy(x => x.Name)
                 .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
-                .Take(parameters.ItemsPerPage + 1)
-                .Select(order => new BankOut()
+                .Take(parameters.ItemsPerPage)
+                .Select(order => new BankOut
                 {
                     Code = order.Code,
-                    Name = order.Name
-                })
-                .ToListAsync();
+                    Name = order.Name,
+                    Country = order.Country,
+                    Url = order.Url,
+                    Swift = order.Swift,
+                    ChangeAt = order.ChangeAt,
+                    CreatedAt = order.CreatedAt
+                }).ToListAsync();
 
             var result = new BankListResponse
             {
-                NumberOfItems = list.Count,
-                Data = list.ToArray()
+                NumberOfItems = queryResult,
+                Data = list
             };
 
             return result;

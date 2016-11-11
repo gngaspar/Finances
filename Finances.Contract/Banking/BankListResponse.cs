@@ -1,8 +1,10 @@
 ﻿namespace Finances.Contract.Banking
 {
+    using System.Collections.Generic;
+
     public class BankListResponse : IListResponse<BankOut>
     {
-        public BankOut[] Data { get; set; }
+        public List<BankOut> Data { get; set; }
 
         public int NumberOfItems { get; set; }
     }

@@ -95,10 +95,6 @@
     <Compile Include="Repository\BankRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Finances.Common\Finances.Common.csproj">
-      <Project>{bc0eea52-d955-406e-b1ae-05ba14211a45}</Project>
-      <Name>Finances.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044D3449-FEE1-4BB0-8644-265C6E837046}</Project>
       <Name>Finances.Contract</Name>

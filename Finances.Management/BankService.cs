@@ -1,5 +1,6 @@
 ﻿namespace Finances.Management
 {
+    using System;
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
@@ -27,6 +28,21 @@
 
         public async Task<BankListResponse> List(BankListRequest request)
         {
+            if (request.Page == 0)
+            {
+                throw new Exception("Page must be bigger then 0.");
+            }
+
+            if (request.ItemsPerPage == 0)
+            {
+                throw new Exception("ItemsPerPage must be bigger then 0.");
+            }
+
+            if (request.Filter == null)
+            {
+                throw new Exception("Filter cant be null.");
+            }
+
             return await this.bankRepository.List(request);
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace Finances.DataLayer.Configurations
 {
     using System.Data.Entity.ModelConfiguration;
-    using Finances.Domain.Banking;
+    using Finances.Domain.Plastic;
 
     public class CardEntityConfiguration : EntityTypeConfiguration<CardEntity>
     {

@@ -61,3 +61,4 @@ bin
 /Finances.Client/obj
 /Finances.Common/obj/Debug
 /Finances.Management/obj/Debug
+/Logs

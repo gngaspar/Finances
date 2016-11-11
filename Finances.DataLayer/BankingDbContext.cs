@@ -9,8 +9,10 @@
     using System.Threading.Tasks;
     using Finances.DataLayer.Conventions;
     using Finances.Domain;
+    using Finances.Domain.Accounting;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
+    using Finances.Domain.Plastic;
     using Finances.Domain.Projection;
 
     public class BankingDbContext : DbContext
@@ -31,7 +33,20 @@
                 {
                     lock (_lock)
                     {
-                        File.AppendAllText(@"C:/DBLog.txt", s);
+                        try
+                        {
+                            string path = @"C:\Git\Logs";
+                            if (!Directory.Exists(path))
+                            {
+                                Directory.CreateDirectory(path);
+                            }
+
+                            File.AppendAllText(@"C:\Git\Logs\DBLog.txt", s);
+                        }
+                        catch (Exception)
+                        {
+                            // ignored
+                        }
                     }
                 };
 #endif

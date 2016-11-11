@@ -1,7 +1,8 @@
-﻿namespace Finances.Contract.Banking
+﻿namespace Finances.Contract.Accounting
 {
     using System;
-    using Finances.Common.Banking;
+    using Finances.Contract.Banking;
+    using Finances.Contract.Common;
 
     public class Account
     {

@@ -1,30 +1,79 @@
 ﻿namespace Finances.Domain.Projection
 {
     using System;
-    using Finances.Domain.Banking;
+    using Finances.Domain.Accounting;
+    using Finances.Domain.Plastic;
 
+    /// <summary>
+    /// The Parameterization representantion on the database.
+    /// </summary>
+    /// <seealso cref="Finances.Domain.EntityOwnerBase"/>
     public class ParameterizationEntity : EntityOwnerBase
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="ParameterizationEntity"/> is active.
+        /// </summary>
+        /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Active { get; set; }
 
+        /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
+        /// <value>The amount.</value>
         public decimal Amount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        /// <value>The currency.</value>
         public virtual CurrencyEntity Currency { get; set; }
 
+        /// <summary>
+        /// Gets or sets the day.
+        /// </summary>
+        /// <value>The day.</value>
         public int? Day { get; set; }
 
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>The description.</value>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets from account.
+        /// </summary>
+        /// <value>From account.</value>
         public virtual CurrentAccountEntity FromAccount { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is main.
+        /// </summary>
+        /// <value><c>true</c> if this instance is main; otherwise, <c>false</c>.</value>
         public bool IsMain => Parent == null;
 
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        /// <value>The parent.</value>
         public ParameterizationEntity Parent { get; set; }
 
+        /// <summary>
+        /// Gets or sets the specific day.
+        /// </summary>
+        /// <value>The specific day.</value>
         public DateTime? SpecificDay { get; set; }
 
+        /// <summary>
+        /// Gets or sets to account.
+        /// </summary>
+        /// <value>To account.</value>
         public virtual AccountEntity ToAccount { get; set; }
 
+        /// <summary>
+        /// Gets or sets to card.
+        /// </summary>
+        /// <value>To card.</value>
         public virtual CardEntity ToCard { get; set; }
     }
 }
