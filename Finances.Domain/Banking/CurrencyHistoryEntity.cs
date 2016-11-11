@@ -1,12 +1,19 @@
 ﻿namespace Finances.Domain.Banking
 {
+    using System;
+
     /// <summary>
     /// The Currency representantion on the database.
     /// </summary>
-    /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
-    public class CurrencyEntity : EntityDateTimeBase
+    public class CurrencyHistoryEntity
     {
         private string _currency;
+
+        /// <summary>
+        /// Gets or sets the created at day.
+        /// </summary>
+        /// <value>The created at day.</value>
+        public DateTime CreatedAtDay { get; set; }
 
         /// <summary>
         /// Gets or sets the code of the currency.
@@ -17,12 +24,6 @@
             get { return _currency.ToUpper(); }
             set { _currency = value.ToUpper(); }
         }
-
-        /// <summary>
-        /// Gets or sets the name of the currency.
-        /// </summary>
-        /// <value>The code.</value>
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the reason to one euro.

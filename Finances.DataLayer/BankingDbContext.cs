@@ -79,6 +79,8 @@
 
         public DbSet<CurrencyEntity> Currencies { get; set; }
 
+        public DbSet<CurrencyHistoryEntity> CurrencyHistory { get; set; }
+
         public DbSet<PersonEntity> Persons { get; set; }
 
         public DbSet<UserEntity> Users { get; set; }
