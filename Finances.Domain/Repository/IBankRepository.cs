@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="bank">The bank.</param>
         /// <returns>The action response.</returns>
-        Task<ActionResponse> Add(BankIn bank);
+        Task<int> Add(BankIn bank);
 
         /// <summary>
         /// Edits the specified bank.
@@ -26,18 +26,18 @@
         Task<ActionResponse> Edit(BankIn bank);
 
         /// <summary>
+        /// Gets if exists the by swift.
+        /// </summary>
+        /// <param name="swift">The swift.</param>
+        /// <returns>The Bank if found</returns>
+        Task<bool> ExistsBySwift(string swift);
+
+        /// <summary>
         /// Gets the specified code.
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns>The Bank if found</returns>
         Task<BankOut> Get(Guid code);
-
-        /// <summary>
-        /// Gets the by swift.
-        /// </summary>
-        /// <param name="swift">The swift.</param>
-        /// <returns>The Bank if found</returns>
-        Task<BankOut> GetBySwift(string swift);
 
         /// <summary>
         /// Gets the lists the of banks.

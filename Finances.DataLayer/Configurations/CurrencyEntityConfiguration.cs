@@ -2,6 +2,7 @@
 {
     using System.Data.Entity.ModelConfiguration;
     using Finances.Domain;
+    using Finances.Domain.Banking;
 
     public class CurrencyEntityConfiguration : EntityTypeConfiguration<CurrencyEntity>
     {

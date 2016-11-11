@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        Task<ActionResponse> Edit(BankIn bank);
+        Task<ActionResponse> Edit(BankOut bank);
 
         /// <summary>
         /// Lists the specified request.

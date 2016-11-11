@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using Finances.Contract.Common;
     using Finances.Domain.Accounting;
+    using Finances.Domain.Banking;
     using Finances.Domain.Human;
 
     /// <summary>

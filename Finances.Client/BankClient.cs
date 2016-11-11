@@ -27,7 +27,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<ActionResponse> Edit(BankIn request)
+        public Task<ActionResponse> Edit(BankOut bank)
         {
             throw new NotImplementedException();
         }

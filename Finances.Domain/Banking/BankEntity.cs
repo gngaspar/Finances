@@ -9,7 +9,7 @@
     public class BankEntity : EntityDateTimeBase
     {
         /// <summary>
-        /// Gets or sets the CodeName.
+        /// Gets or sets the Code.
         /// </summary>
         /// <value>The code.</value>
         public Guid Code { get; set; }

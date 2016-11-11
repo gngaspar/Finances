@@ -23,9 +23,23 @@
             this.context = bankingDbContext;
         }
 
-        public async Task<ActionResponse> Add(BankIn parameters)
+        public async Task<int> Add(BankIn bank)
         {
-            throw new NotImplementedException();
+            var newBank = new BankEntity
+            {
+                Code = Guid.NewGuid(),
+                ChangeAt = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                Swift = bank.Swift,
+                Country = bank.Country,
+                Name = bank.Name,
+                Url = bank.Url
+            };
+
+            this.context.Entry(newBank).State = EntityState.Added;
+            var myint = await this.context.SaveChangesAsync();
+
+            return 1;
         }
 
         public void Dispose()
@@ -38,9 +52,15 @@
             throw new NotImplementedException();
         }
 
-        public async Task<BankOut> Get(Guid parameters)
+        public async Task<bool> ExistsBySwift(string swift)
         {
-            throw new NotImplementedException();
+            var exist = await this.context.Banks.CountAsync(b => b.Swift == swift);
+            return exist != 0;
+        }
+
+        public async Task<BankOut> Get(Guid guid)
+        {
+            return GetBankOut(await this.context.Banks.SingleOrDefaultAsync(i => i.Code == guid));
         }
 
         public async Task<BankListResponse> List(BankListRequest parameters)
@@ -67,16 +87,7 @@
                 .OrderBy(x => x.Name)
                 .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
                 .Take(parameters.ItemsPerPage)
-                .Select(order => new BankOut
-                {
-                    Code = order.Code,
-                    Name = order.Name,
-                    Country = order.Country,
-                    Url = order.Url,
-                    Swift = order.Swift,
-                    ChangeAt = order.ChangeAt,
-                    CreatedAt = order.CreatedAt
-                }).ToListAsync();
+                .Select(order => GetBankOut(order)).ToListAsync();
 
             var result = new BankListResponse
             {
@@ -85,6 +96,20 @@
             };
 
             return result;
+        }
+
+        private static BankOut GetBankOut(BankEntity order)
+        {
+            return new BankOut
+            {
+                Code = order.Code,
+                Name = order.Name,
+                Country = order.Country,
+                Url = order.Url,
+                Swift = order.Swift,
+                ChangeAt = order.ChangeAt,
+                CreatedAt = order.CreatedAt
+            };
         }
     }
 }

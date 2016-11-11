@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Finances.Domain.Banking;
     using Finances.Domain.Human;
 
     /// <summary>

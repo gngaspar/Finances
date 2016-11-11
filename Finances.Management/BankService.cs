@@ -16,18 +16,38 @@
             this.bankRepository = bankRepository;
         }
 
-        public Task<ActionResponse> Add(BankIn request)
+        public async Task<ActionResponse> Add(BankIn bank)
         {
-            throw new System.NotImplementedException();
+            if (bank == null)
+            {
+                throw new NullReferenceException("Bank must not be null.");
+            }
+
+            var response = new ActionResponse();
+            response.Type = ActionType.Creation;
+
+            var result = await this.bankRepository.Add(bank);
+
+            return response;
         }
 
-        public Task<ActionResponse> Edit(BankIn request)
+        public async Task<ActionResponse> Edit(BankOut bank)
         {
+            if (bank == null)
+            {
+                throw new NullReferenceException("Bank must not be null.");
+            }
+
             throw new System.NotImplementedException();
         }
 
         public async Task<BankListResponse> List(BankListRequest request)
         {
+            if (request == null)
+            {
+                throw new NullReferenceException("Request must not be null.");
+            }
+
             if (request.Page == 0)
             {
                 throw new Exception("Page must be bigger then 0.");

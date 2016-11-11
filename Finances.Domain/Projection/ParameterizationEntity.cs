@@ -2,6 +2,7 @@
 {
     using System;
     using Finances.Domain.Accounting;
+    using Finances.Domain.Banking;
     using Finances.Domain.Plastic;
 
     /// <summary>

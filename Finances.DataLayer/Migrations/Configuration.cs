@@ -6,7 +6,6 @@ namespace Finances.DataLayer.Migrations
     using System.Linq;
     using Finances.Contract.Common;
     using Finances.DataLayer.Extension;
-    using Finances.Domain;
     using Finances.Domain.Accounting;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;

@@ -22,26 +22,12 @@
         [Route("Add")]
         public async Task<ActionResponse> Add(BankIn bank)
         {
-            var response = new ActionResponse
-            {
-                Code = Guid.NewGuid(),
-                Type = ActionType.Creation
-            };
-            var errorList = new List<ErrorInformation>
-            {
-                new ErrorInformation
-                {
-                    Description = bank.Name
-                }
-            };
-
-            response.Errors = errorList.ToArray();
-            return response;
+            return await _bankervice.Add(bank);
         }
 
         [HttpPost]
         [Route("Edit")]
-        public async Task<ActionResponse> Edit(BankIn bank)
+        public async Task<ActionResponse> Edit(BankOut bank)
         {
             var response = new ActionResponse
             {

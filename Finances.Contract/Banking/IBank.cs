@@ -6,7 +6,7 @@
     {
         Task<ActionResponse> Add(BankIn bank);
 
-        Task<ActionResponse> Edit(BankIn bank);
+        Task<ActionResponse> Edit(BankOut bank);
 
         Task<BankListResponse> List(BankListRequest request);
     }
