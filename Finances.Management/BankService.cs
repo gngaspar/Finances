@@ -47,7 +47,9 @@
             var response = new ActionResponse();
             response.Type = ActionType.Modification;
 
-            throw new System.NotImplementedException();
+            var result = await this.bankRepository.Edit(code, bank);
+
+            return response;
         }
 
         public async Task<BankListResponse> List(BankListRequest request)

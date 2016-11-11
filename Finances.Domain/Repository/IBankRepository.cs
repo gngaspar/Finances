@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Finances.Contract;
     using Finances.Contract.Banking;
 
     /// <summary>
@@ -24,21 +23,21 @@
         /// <param name="code">The code</param>
         /// <param name="bank">The bank.</param>
         /// <returns>The action response.</returns>
-        Task<ActionResponse> Edit(Guid code, BankIn bank);
+        Task<int> Edit(Guid code, BankIn bank);
 
         /// <summary>
-        /// Gets if exists the by swift.
+        /// Gets if exists the bank by code.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <returns>The Bank if found</returns>
+        Task<bool> ExistsByCode(Guid code);
+
+        /// <summary>
+        /// Gets if exists the bank by swift.
         /// </summary>
         /// <param name="swift">The swift.</param>
         /// <returns>The Bank if found</returns>
         Task<bool> ExistsBySwift(string swift);
-
-        /// <summary>
-        /// Gets the specified code.
-        /// </summary>
-        /// <param name="code">The code.</param>
-        /// <returns>The Bank if found</returns>
-        Task<BankOut> Get(Guid code);
 
         /// <summary>
         /// Gets the lists the of banks.

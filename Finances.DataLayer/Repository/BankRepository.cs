@@ -5,8 +5,8 @@
     using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
-    using Finances.Contract;
     using Finances.Contract.Banking;
+    using Finances.DataLayer.Extension;
     using Finances.Domain.Banking;
     using Finances.Domain.Extensions;
     using Finances.Domain.Repository;
@@ -47,20 +47,35 @@
             this.context.Dispose();
         }
 
-        public async Task<ActionResponse> Edit(Guid code, BankIn parameters)
+        public async Task<int> Edit(Guid code, BankIn bank)
         {
-            throw new NotImplementedException();
+            var newBank = new BankEntity
+            {
+                Code = code,
+                Swift = bank.Swift,
+                Country = bank.Country,
+                Name = bank.Name,
+                Url = bank.Url
+            };
+
+            context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Swift, p.Country, p.Url, p.ChangeAt },
+               newBank
+           );
+
+            var myint = await this.context.SaveChangesAsync();
+            return myint;
+        }
+
+        public async Task<bool> ExistsByCode(Guid guid)
+        {
+            var exist = await this.context.Banks.CountAsync(b => b.Code == guid);
+            return exist != 0;
         }
 
         public async Task<bool> ExistsBySwift(string swift)
         {
             var exist = await this.context.Banks.CountAsync(b => b.Swift == swift);
             return exist != 0;
-        }
-
-        public async Task<BankOut> Get(Guid guid)
-        {
-            return GetBankOut(await this.context.Banks.SingleOrDefaultAsync(i => i.Code == guid));
         }
 
         public async Task<BankListResponse> List(BankListRequest parameters)
