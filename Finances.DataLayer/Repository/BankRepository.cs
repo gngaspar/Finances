@@ -2,11 +2,13 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain.Banking;
+    using Finances.Domain.Extensions;
     using Finances.Domain.Repository;
 
     public class BankRepository : IBankRepository
@@ -28,8 +30,6 @@
             var newBank = new BankEntity
             {
                 Code = Guid.NewGuid(),
-                ChangeAt = DateTime.Now,
-                CreatedAt = DateTime.Now,
                 Swift = bank.Swift,
                 Country = bank.Country,
                 Name = bank.Name,
@@ -39,7 +39,7 @@
             this.context.Entry(newBank).State = EntityState.Added;
             var myint = await this.context.SaveChangesAsync();
 
-            return 1;
+            return myint;
         }
 
         public void Dispose()
@@ -47,7 +47,7 @@
             this.context.Dispose();
         }
 
-        public async Task<ActionResponse> Edit(BankIn parameters)
+        public async Task<ActionResponse> Edit(Guid code, BankIn parameters)
         {
             throw new NotImplementedException();
         }
@@ -83,11 +83,13 @@
 
             var queryResult = await listQuery.CountAsync();
 
+            var orderType = parameters.Order.IsDesc ? SortOrder.Descending : SortOrder.Ascending;
+
             var list = await listQuery
-                .OrderBy(x => x.Name)
-                .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
-                .Take(parameters.ItemsPerPage)
-                .Select(order => GetBankOut(order)).ToListAsync();
+                    .OrderByFieldBank(orderType, parameters.Order.Field)
+                  .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
+                  .Take(parameters.ItemsPerPage)
+                  .Select(order => GetBankOut(order)).ToListAsync();
 
             var result = new BankListResponse
             {

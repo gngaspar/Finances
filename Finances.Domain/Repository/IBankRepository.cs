@@ -21,9 +21,10 @@
         /// <summary>
         /// Edits the specified bank.
         /// </summary>
+        /// <param name="code">The code</param>
         /// <param name="bank">The bank.</param>
         /// <returns>The action response.</returns>
-        Task<ActionResponse> Edit(BankIn bank);
+        Task<ActionResponse> Edit(Guid code, BankIn bank);
 
         /// <summary>
         /// Gets if exists the by swift.

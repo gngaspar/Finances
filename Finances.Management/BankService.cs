@@ -23,6 +23,12 @@
                 throw new NullReferenceException("Bank must not be null.");
             }
 
+            var existBySwift = await this.bankRepository.ExistsBySwift(bank.Swift);
+            if (existBySwift)
+            {
+                throw new Exception($"Swift {bank.Swift} already exists.");
+            }
+
             var response = new ActionResponse();
             response.Type = ActionType.Creation;
 
@@ -31,12 +37,15 @@
             return response;
         }
 
-        public async Task<ActionResponse> Edit(BankOut bank)
+        public async Task<ActionResponse> Edit(Guid code, BankIn bank)
         {
             if (bank == null)
             {
                 throw new NullReferenceException("Bank must not be null.");
             }
+
+            var response = new ActionResponse();
+            response.Type = ActionType.Modification;
 
             throw new System.NotImplementedException();
         }

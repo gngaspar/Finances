@@ -1,5 +1,6 @@
 ﻿namespace Finances.Domain
 {
+    using System;
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
@@ -19,9 +20,10 @@
         /// <summary>
         /// Edits the specified bank.
         /// </summary>
+        /// <param name="code">The code.</param>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        Task<ActionResponse> Edit(BankOut bank);
+        Task<ActionResponse> Edit(Guid code, BankIn bank);
 
         /// <summary>
         /// Lists the specified request.

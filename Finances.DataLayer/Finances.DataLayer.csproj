@@ -61,33 +61,9 @@
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201610271746319_Initial.cs" />
-    <Compile Include="Migrations\201610271746319_Initial.Designer.cs">
-      <DependentUpon>201610271746319_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610271956457_AddedAccounts.cs" />
-    <Compile Include="Migrations\201610271956457_AddedAccounts.Designer.cs">
-      <DependentUpon>201610271956457_AddedAccounts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610272001302_ChangedRequired.cs" />
-    <Compile Include="Migrations\201610272001302_ChangedRequired.Designer.cs">
-      <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611012009539_AddCards.cs" />
-    <Compile Include="Migrations\201611012009539_AddCards.Designer.cs">
-      <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611061101217_DecimalInAccounts.cs" />
-    <Compile Include="Migrations\201611061101217_DecimalInAccounts.Designer.cs">
-      <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611061157201_PrePaidHasCard.cs" />
-    <Compile Include="Migrations\201611061157201_PrePaidHasCard.Designer.cs">
-      <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611061447294_AddedParameterizationEntity.cs" />
-    <Compile Include="Migrations\201611061447294_AddedParameterizationEntity.Designer.cs">
-      <DependentUpon>201611061447294_AddedParameterizationEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201611111231194_Inicial.cs" />
+    <Compile Include="Migrations\201611111231194_Inicial.Designer.cs">
+      <DependentUpon>201611111231194_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -105,26 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610271746319_Initial.resx">
-      <DependentUpon>201610271746319_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610271956457_AddedAccounts.resx">
-      <DependentUpon>201610271956457_AddedAccounts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610272001302_ChangedRequired.resx">
-      <DependentUpon>201610272001302_ChangedRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611012009539_AddCards.resx">
-      <DependentUpon>201611012009539_AddCards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611061101217_DecimalInAccounts.resx">
-      <DependentUpon>201611061101217_DecimalInAccounts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611061157201_PrePaidHasCard.resx">
-      <DependentUpon>201611061157201_PrePaidHasCard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611061447294_AddedParameterizationEntity.resx">
-      <DependentUpon>201611061447294_AddedParameterizationEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611111231194_Inicial.resx">
+      <DependentUpon>201611111231194_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

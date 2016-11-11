@@ -8,6 +8,8 @@
     /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
     public class BankEntity : EntityDateTimeBase
     {
+        private string _country;
+
         /// <summary>
         /// Gets or sets the Code.
         /// </summary>
@@ -18,7 +20,11 @@
         /// Gets or sets the Country.
         /// </summary>
         /// <value>The country.</value>
-        public string Country { get; set; }
+        public string Country
+        {
+            get { return _country.ToUpper(); }
+            set { _country = value.ToUpper(); }
+        }
 
         /// <summary>
         /// Gets or sets the name.

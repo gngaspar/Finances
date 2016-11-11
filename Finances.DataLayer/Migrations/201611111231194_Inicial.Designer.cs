@@ -7,13 +7,13 @@ namespace Finances.DataLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedParameterizationEntity : IMigrationMetadata
+    public sealed partial class Inicial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedParameterizationEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Inicial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611061447294_AddedParameterizationEntity"; }
+            get { return "201611111231194_Inicial"; }
         }
         
         string IMigrationMetadata.Source

@@ -34,8 +34,8 @@ namespace Finances.DataLayer.Migrations
             var bankMontepio = new BankEntity { Code = bankMontepioGuid, Name = "Montepio Geral", Country = "Pt", Swift = "MPIOPTPL", Url = "http://www.montepio.pt" };
             var bankCaixa = new BankEntity { Code = bankCaixaGuid, Name = "Caixa Geral de Depositos", Country = "Pt", Swift = "caixa", Url = "http://www.cgd.pt" };
 
-            var euro = new CurrencyEntity { CodeName = "Euro", ReasonToOneEuro = 0 };
-            var pln = new CurrencyEntity { CodeName = "Pln", ReasonToOneEuro = 4.20m };
+            var euro = new CurrencyEntity { Currency = "Eur", Name = "Euro", ReasonToOneEuro = 0 };
+            var pln = new CurrencyEntity { Currency = "Pln", Name = "Zloty", ReasonToOneEuro = 4.20m };
 
             context.SeedAddOrUpdate(p => p.Code, p => new { p.Country, p.Name, p.Swift, p.Url, p.ChangeAt },
                     bankMillenium,
@@ -46,10 +46,10 @@ namespace Finances.DataLayer.Migrations
 
             context.SaveChanges();
 
-            context.SeedAddOrUpdate(p => p.CodeName, p => new { p.ReasonToOneEuro },
+            context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro },
                 euro,
                 pln,
-                new CurrencyEntity { CodeName = "Dolar", ReasonToOneEuro = 1.20m }
+                new CurrencyEntity { Currency = "USD", Name = "Dollar", ReasonToOneEuro = 1.20m }
             );
 
             context.SaveChanges();
@@ -104,7 +104,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta ordenado",
                 Number = "029.10.012311-5",
                 Iban = "PT50.0036.0029.99100123115.13",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 462.52m,
                 StartDate = DateTime.ParseExact("01/02/2008", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -118,7 +118,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Polonia",
                 Number = "0247914561",
                 Iban = "PL92.1160.2202.00000002479145.61",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Pln"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "PLN"),
                 Amount = 1000.55m,
                 StartDate = DateTime.ParseExact("04/10/2013", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -132,7 +132,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Polonia Euros",
                 Number = "0248923401",
                 Iban = "PL79.1160.2202.00000002489234.01",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 0m,
                 StartDate = DateTime.ParseExact("21/10/2013", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -148,7 +148,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta fun",
                 Number = "029.10.013309-8",
                 Iban = "PT50.0036.0029.99100133098.37",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 707.93m,
                 StartDate = DateTime.ParseExact("01/01/2015", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == guiGuid),
@@ -162,7 +162,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Corrente",
                 Number = "63566423095",
                 Iban = "PT50.0035.0995.00635664230.95",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 0,
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == vascoGuid),
@@ -176,7 +176,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Corrente",
                 Number = "4956598449",
                 Iban = "PT50.0033.0000.00049565984.49",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 0m,
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == filipaGuid),
@@ -189,7 +189,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("f03f8057-e33e-4ebd-8b50-7005d8bd2188"),
                 Description = "Conta Casa",
                 Number = "029.21.100472-5",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 47580.38m,
                 StartDate = DateTime.ParseExact("23/07/2008", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -208,7 +208,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("5e919e86-0d5a-4eca-b805-0a22471443cb"),
                 Description = "Conta Carro",
                 Number = "029.27.100168-6",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 23618.64m,
                 StartDate = DateTime.ParseExact("16/07/2010", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -227,7 +227,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("ec7bdd2c-a3fe-42f0-9e91-b2e4333b9ae9"),
                 Description = "Poupanca Activa",
                 Number = "732.15.420299-6",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 1058.38m,
                 StartDate = DateTime.ParseExact("03/08/2016", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == goncaloGuid),
@@ -246,7 +246,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("AA111116-70F2-47CC-9C21-01A161D10D92"),
                 Description = "Poupanca Bue",
                 Number = "732.15.417187-8",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 400.00m,
                 StartDate = DateTime.ParseExact("08/07/2015", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == guiGuid),
@@ -265,7 +265,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("7D2E570A-BBC3-41D6-B2E3-B47BB491D60C"),
                 Description = "Poupanca Bue",
                 Number = "732.15.430705-0",
-                Currency = context.Currencies.SingleOrDefault(i => i.CodeName == "Euro"),
+                Currency = context.Currencies.SingleOrDefault(i => i.Currency == "EUR"),
                 Amount = 250.00m,
                 StartDate = DateTime.ParseExact("13/11/2015", format, provider),
                 Holder = context.Persons.SingleOrDefault(i => i.Code == guiGuid),

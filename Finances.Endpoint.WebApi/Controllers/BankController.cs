@@ -1,7 +1,6 @@
 ﻿namespace Finances.Endpoint.WebApi.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
     using Finances.Contract;
@@ -26,24 +25,10 @@
         }
 
         [HttpPost]
-        [Route("Edit")]
-        public async Task<ActionResponse> Edit(BankOut bank)
+        [Route("{code:guid}/Edit")]
+        public async Task<ActionResponse> Edit(Guid code, BankIn bank)
         {
-            var response = new ActionResponse
-            {
-                Code = Guid.NewGuid(),
-                Type = ActionType.Creation
-            };
-            var errorList = new List<ErrorInformation>
-            {
-                new ErrorInformation
-                {
-                    Description = bank.Name
-                }
-            };
-
-            response.Errors = errorList.ToArray();
-            return response;
+            return await _bankervice.Edit(code, bank);
         }
 
         [HttpPost]
