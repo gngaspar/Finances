@@ -49,6 +49,8 @@
     <Compile Include="Banking\BankOut.cs" />
     <Compile Include="Banking\BankListRequest.cs" />
     <Compile Include="Banking\BankListResponse.cs" />
+    <Compile Include="Banking\Currency.cs" />
+    <Compile Include="Banking\CurrencyListResponse.cs" />
     <Compile Include="Banking\IBank.cs" />
     <Compile Include="Common\AccountType.cs" />
     <Compile Include="Common\AutomaticRenovation.cs" />

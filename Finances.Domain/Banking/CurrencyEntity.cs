@@ -25,6 +25,12 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the default order.
+        /// </summary>
+        /// <value>The Order.</value>
+        public int Order { get; set; }
+
+        /// <summary>
         /// Gets or sets the reason to one euro.
         /// </summary>
         /// <value>The reason to one euro.</value>
