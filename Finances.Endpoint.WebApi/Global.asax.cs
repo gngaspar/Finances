@@ -3,8 +3,17 @@
     using System;
     using System.Web.Http;
 
+    /// <summary>
+    /// The Web Api Application Section
+    /// </summary>
+    /// <seealso cref="System.Web.HttpApplication"/>
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Handles the Start event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup

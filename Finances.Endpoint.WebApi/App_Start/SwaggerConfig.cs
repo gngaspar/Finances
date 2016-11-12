@@ -8,8 +8,14 @@ namespace Finances.Endpoint.WebApi
     using System.Web.Http;
     using Swashbuckle.Application;
 
+    /// <summary>
+    /// The Swagger Config section
+    /// </summary>
     public class SwaggerConfig
     {
+        /// <summary>
+        /// Registers this instance.
+        /// </summary>
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;

@@ -7,20 +7,36 @@
     using Finances.Domain;
     using Finances.Domain.Repository;
 
+    /// <summary>
+    /// The implementation of IBankService
+    /// </summary>
+    /// <seealso cref="Finances.Domain.IBankService"/>
     public class BankService : IBankService
     {
-        private readonly IBankRepository bankRepository;
+        /// <summary>
+        /// The bank repository
+        /// </summary>
+        private readonly IBankRepository _bankRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankService"/> class.
+        /// </summary>
+        /// <param name="bankRepository">The bank repository.</param>
         public BankService(IBankRepository bankRepository)
         {
-            this.bankRepository = bankRepository;
+            this._bankRepository = bankRepository;
         }
 
+        /// <summary>
+        /// Adds the specified bank.
+        /// </summary>
+        /// <param name="bank">The bank.</param>
+        /// <returns></returns>
         public async Task<ActionResponse> Add(BankIn bank)
         {
             ValidateBankIn(bank);
 
-            var existBySwift = await this.bankRepository.ExistsBySwift(bank.Swift);
+            var existBySwift = await this._bankRepository.ExistsBySwift(bank.Swift);
             if (existBySwift)
             {
                 throw new Exception($"Swift {bank.Swift} already exists.");
@@ -29,22 +45,28 @@
             var response = new ActionResponse();
             response.Type = ActionType.Creation;
 
-            var result = await this.bankRepository.Add(bank);
+            var result = await this._bankRepository.Add(bank);
 
             return response;
         }
 
+        /// <summary>
+        /// Edits the specified bank.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <param name="bank">The bank.</param>
+        /// <returns></returns>
         public async Task<ActionResponse> Edit(Guid code, BankIn bank)
         {
             ValidateBankIn(bank);
 
-            var existCode = await this.bankRepository.ExistsByCode(code);
+            var existCode = await this._bankRepository.ExistsByCode(code);
             if (!existCode)
             {
                 throw new Exception($"Bank with {code} doesnt exists.");
             }
 
-            var existInOther = await this.bankRepository.ThisSwiftExistsInOther(code, bank.Swift);
+            var existInOther = await this._bankRepository.ThisSwiftExistsInOther(code, bank.Swift);
             if (!existInOther)
             {
                 throw new Exception($"The Swift {bank.Swift} exists in a bank with a diferent then {code} .");
@@ -53,11 +75,16 @@
             var response = new ActionResponse();
             response.Type = ActionType.Modification;
 
-            var result = await this.bankRepository.Edit(code, bank);
+            var result = await this._bankRepository.Edit(code, bank);
 
             return response;
         }
 
+        /// <summary>
+        /// Lists the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         public async Task<BankListResponse> List(BankListRequest request)
         {
             if (request == null)
@@ -85,9 +112,13 @@
                 throw new ArgumentNullException(nameof(request.Order));
             }
 
-            return await this.bankRepository.List(request);
+            return await this._bankRepository.List(request);
         }
 
+        /// <summary>
+        /// Validates the bank in.
+        /// </summary>
+        /// <param name="bank">The bank.</param>
         private static void ValidateBankIn(BankIn bank)
         {
             if (bank == null)

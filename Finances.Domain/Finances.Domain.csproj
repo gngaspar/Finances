@@ -54,6 +54,7 @@
     <Compile Include="Banking\BankEntity.cs" />
     <Compile Include="Banking\CurrencyHistoryEntity.cs" />
     <Compile Include="Extensions\OrderByField.cs" />
+    <Compile Include="ICurrencyService.cs" />
     <Compile Include="Plastic\CardEntity.cs" />
     <Compile Include="Plastic\CreditCardEntity.cs" />
     <Compile Include="Accounting\CurrentAccountEntity.cs" />

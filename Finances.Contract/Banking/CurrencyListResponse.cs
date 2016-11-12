@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class CurrencyListResponse : IListResponse<Currency>
+    public class CurrencyListResponse : IListResponse<CurrencyOut>
     {
-        public List<Currency> Data { get; set; }
+        public List<CurrencyOut> Data { get; set; }
 
         public int NumberOfItems { get; set; }
     }

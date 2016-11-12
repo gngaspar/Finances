@@ -1,5 +1,7 @@
 ﻿namespace Finances.DataLayer.Repository
 {
+    using System.Data.Entity;
+    using System.Linq;
     using System.Threading.Tasks;
     using Finances.Contract.Banking;
     using Finances.Domain.Repository;
@@ -23,9 +25,26 @@
             this.context.Dispose();
         }
 
-        public Task<CurrencyListResponse> List()
+        public async Task<CurrencyListResponse> List()
         {
-            throw new System.NotImplementedException();
+            var queryResult = await this.context.Currencies.CountAsync();
+
+            var list = await this.context.Currencies.OrderBy(o => o.Order)
+                        .Select(currency => new CurrencyOut
+                        {
+                            Name = currency.Name,
+                            CurrencyCode = currency.Currency,
+                            ReasonToOneEuro = currency.ReasonToOneEuro,
+                            ChangeAt = currency.ChangeAt,
+                        }).ToListAsync();
+
+            var result = new CurrencyListResponse
+            {
+                NumberOfItems = queryResult,
+                Data = list
+            };
+
+            return result;
         }
     }
 }

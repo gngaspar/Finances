@@ -7,14 +7,21 @@
     using Finances.Contract.Banking;
     using Finances.Domain;
 
+    /// <summary>
+    /// The Controller for banking
+    /// </summary>
     [RoutePrefix("Bank")]
     public class BankController : ApiController, IBankService
     {
-        private readonly IBankService _bankervice;
+        private readonly IBankService _bankService;
 
-        public BankController(IBankService bankervice)
+        /// <summary>
+        /// The contructor for Ninject
+        /// </summary>
+        /// <param name="bankService">The Banking Service interface</param>
+        public BankController(IBankService bankService)
         {
-            _bankervice = bankervice;
+            _bankService = bankService;
         }
 
         /// <summary>
@@ -26,7 +33,7 @@
         [Route("Add")]
         public async Task<ActionResponse> Add(BankIn bank)
         {
-            return await _bankervice.Add(bank);
+            return await _bankService.Add(bank);
         }
 
         /// <summary>
@@ -39,7 +46,7 @@
         [Route("{code:guid}/Edit")]
         public async Task<ActionResponse> Edit(Guid code, BankIn bank)
         {
-            return await _bankervice.Edit(code, bank);
+            return await _bankService.Edit(code, bank);
         }
 
         /// <summary>
@@ -51,7 +58,7 @@
         [Route("List")]
         public async Task<BankListResponse> List(BankListRequest request)
         {
-            return await _bankervice.List(request);
+            return await _bankService.List(request);
         }
     }
 }

@@ -1,7 +1,9 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Finances.Endpoint.WebApi.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Finances.Endpoint.WebApi.App_Start.NinjectWebCommon), "Stop")]
+using Finances.Endpoint.WebApi;
 
-namespace Finances.Endpoint.WebApi.App_Start
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
+namespace Finances.Endpoint.WebApi
 {
     using System;
     using System.Web;
@@ -9,14 +11,18 @@ namespace Finances.Endpoint.WebApi.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
+    /// <summary>
+    /// The Default
+    /// </summary>
     public static class NinjectWebCommon
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
-        public static IKernel Kernel
-        {
-            get { return bootstrapper.Kernel; }
-        }
+        /// <summary>
+        /// Gets the kernel.
+        /// </summary>
+        /// <value>The kernel.</value>
+        public static IKernel Kernel => Bootstrapper.Kernel;
 
         /// <summary>
         /// Starts the application
@@ -25,7 +31,7 @@ namespace Finances.Endpoint.WebApi.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace Finances.Endpoint.WebApi.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
 
         /// <summary>

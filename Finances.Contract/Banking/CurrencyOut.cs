@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Currency
+    public class CurrencyOut
     {
         /// <summary>
         /// Gets or sets the last change.

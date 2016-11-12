@@ -34,8 +34,8 @@ namespace Finances.DataLayer.Migrations
             var bankMontepio = new BankEntity { Code = bankMontepioGuid, Name = "Montepio Geral", Country = "Pt", Swift = "MPIOPTPL", Url = "http://www.montepio.pt" };
             var bankCaixa = new BankEntity { Code = bankCaixaGuid, Name = "Caixa Geral de Depositos", Country = "Pt", Swift = "caixa", Url = "http://www.cgd.pt" };
 
-            var euro = new CurrencyEntity { Currency = "Eur", Name = "Euro", ReasonToOneEuro = 0 };
-            var pln = new CurrencyEntity { Currency = "Pln", Name = "Zloty", ReasonToOneEuro = 4.20m };
+            var euro = new CurrencyEntity { Currency = "Eur", Order = 1, Name = "Euro", ReasonToOneEuro = 0 };
+            var pln = new CurrencyEntity { Currency = "Pln", Order = 2, Name = "Zloty", ReasonToOneEuro = 4.20m };
 
             context.SeedAddOrUpdate(p => p.Code, p => new { p.Country, p.Name, p.Swift, p.Url, p.ChangeAt },
                     bankMillenium,
@@ -46,10 +46,10 @@ namespace Finances.DataLayer.Migrations
 
             context.SaveChanges();
 
-            context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro },
+            context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro, p.Order, p.ChangeAt },
                 euro,
                 pln,
-                new CurrencyEntity { Currency = "USD", Name = "Dollar", ReasonToOneEuro = 1.20m }
+                new CurrencyEntity { Currency = "USD", Name = "Dollar", Order = 3, ReasonToOneEuro = 1.20m }
             );
 
             context.SaveChanges();

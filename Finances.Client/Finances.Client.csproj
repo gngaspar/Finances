@@ -49,6 +49,7 @@
     <Compile Include="Common\RestMessageContext.cs" />
     <Compile Include="Common\RestResult.cs" />
     <Compile Include="Common\ServiceMethod.cs" />
+    <Compile Include="CurrencyClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

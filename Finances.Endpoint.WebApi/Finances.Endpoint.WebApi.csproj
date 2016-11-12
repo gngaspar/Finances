@@ -136,8 +136,8 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BankController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="DependencyInjection\BankDependencyInjection.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="DependencyInjection\BankingDependencyInjection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

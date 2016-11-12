@@ -1,16 +1,20 @@
 ﻿namespace Finances.Endpoint.WebApi.DependencyInjection
 {
-    using System;
-    using System.Reflection;
     using Finances.DataLayer.Repository;
     using Finances.Domain;
     using Finances.Domain.Repository;
     using Finances.Management;
-    using Ninject;
     using Ninject.Modules;
 
-    public class BankDependencyInjection : NinjectModule
+    /// <summary>
+    /// The configuration of Ninject for banking
+    /// </summary>
+    /// <seealso cref="Ninject.Modules.NinjectModule"/>
+    public class BankingDependencyInjection : NinjectModule
     {
+        /// <summary>
+        /// Loads the module into the kernel.
+        /// </summary>
         public override void Load()
         {
             //this.Bind(typeof(Lazy<>)).ToMethod(ctx =>
@@ -21,6 +25,9 @@
 
             this.Bind<IBankService>().To<BankService>();
             this.Bind<IBankRepository>().To<BankRepository>();
+
+            this.Bind<ICurrencyService>().To<CurrencyService>();
+            this.Bind<ICurrencyRepository>().To<CurrencyRepository>();
         }
 
         //protected Lazy<T> GetLazyProvider<T>(IKernel kernel)
