@@ -101,10 +101,19 @@
             var orderType = parameters.Order.IsDesc ? SortOrder.Descending : SortOrder.Ascending;
 
             var list = await listQuery
-                    .OrderByFieldBank(orderType, parameters.Order.Field)
-                  .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
-                  .Take(parameters.ItemsPerPage)
-                  .Select(order => GetBankOut(order)).ToListAsync();
+                        .OrderByFieldBank(orderType, parameters.Order.Field)
+                        .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
+                        .Take(parameters.ItemsPerPage)
+                        .Select(order => new BankOut
+                        {
+                            Code = order.Code,
+                            Name = order.Name,
+                            Country = order.Country,
+                            Url = order.Url,
+                            Swift = order.Swift,
+                            ChangeAt = order.ChangeAt,
+                            CreatedAt = order.CreatedAt
+                        }).ToListAsync();
 
             var result = new BankListResponse
             {
@@ -115,18 +124,24 @@
             return result;
         }
 
-        private static BankOut GetBankOut(BankEntity order)
+        public async Task<bool> ThisSwiftExistsInOther(Guid code, string swift)
         {
-            return new BankOut
-            {
-                Code = order.Code,
-                Name = order.Name,
-                Country = order.Country,
-                Url = order.Url,
-                Swift = order.Swift,
-                ChangeAt = order.ChangeAt,
-                CreatedAt = order.CreatedAt
-            };
+            var exist = await this.context.Banks.CountAsync(b => b.Swift == swift && b.Code != code);
+            return exist != 0;
         }
+
+        //private static BankOut GetBankOut(BankEntity order)
+        //{
+        //    return new BankOut
+        //    {
+        //        Code = order.Code,
+        //        Name = order.Name,
+        //        Country = order.Country,
+        //        Url = order.Url,
+        //        Swift = order.Swift,
+        //        ChangeAt = order.ChangeAt,
+        //        CreatedAt = order.CreatedAt
+        //    };
+        //}
     }
 }

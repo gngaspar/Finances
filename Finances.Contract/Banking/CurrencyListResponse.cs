@@ -1,0 +1,11 @@
+﻿namespace Finances.Contract.Banking
+{
+    using System.Collections.Generic;
+
+    public class CurrencyListResponse : IListResponse<CurrencyListRequest>
+    {
+        public List<CurrencyListRequest> Data { get; set; }
+
+        public int NumberOfItems { get; set; }
+    }
+}

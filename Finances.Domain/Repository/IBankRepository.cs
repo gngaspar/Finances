@@ -45,5 +45,13 @@
         /// <param name="parameters">The parameters.</param>
         /// <returns>The list of Banks</returns>
         Task<BankListResponse> List(BankListRequest parameters);
+
+        /// <summary>
+        /// Thises the swift exists in other bank.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <param name="swift">The swift.</param>
+        /// <returns></returns>
+        Task<bool> ThisSwiftExistsInOther(Guid code, string swift);
     }
 }
