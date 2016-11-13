@@ -48,9 +48,13 @@
             return await _currencyService.List();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Update")]
-        public async Task<bool> Update(List<CurrencyIn> input)
+        public async Task<ActionResult> Update(List<CurrencyIn> input)
         {
             return await _currencyService.Update(input);
         }

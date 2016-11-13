@@ -22,6 +22,6 @@
         /// <returns></returns>
         Task<CurrencyListResponse> List();
 
-        Task<bool> Update(List<CurrencyIn> input);
+        Task<ActionResult> Update(List<CurrencyIn> input);
     }
 }

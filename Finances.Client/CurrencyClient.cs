@@ -1,12 +1,15 @@
 ﻿namespace Finances.Client
 {
     using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using Finances.Client.Common;
     using Finances.Contract.Banking;
 
     public class CurrencyClient : ClientBase, ICurrency
     {
+        private const string UrlPrefix = "/Currency/";
+
         public CurrencyClient(IRestSender sender) : base(sender)
         {
         }
@@ -21,9 +24,15 @@
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> Update(List<CurrencyIn> input)
+        public async Task<ActionResult> Update(List<CurrencyIn> input)
         {
-            throw new System.NotImplementedException();
+            var context = CreateContextXml();
+
+            context.HttpMethod = HttpMethod.Post;
+            context.ServiceMethod = ServiceMethod.Update;
+            context.UrlPath = UrlPrefix + "Update";
+
+            return await this.ExecuteSender<List<CurrencyIn>, ActionResult>(input, context);
         }
     }
 }

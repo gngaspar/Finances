@@ -66,13 +66,13 @@
                 throw new Exception("Cant get currencies.");
             }
 
-            var from = listOfCurrencies.Data.FirstOrDefault(i => i.CurrencyCode == convert.FromCurrency.ToUpper());
+            var from = listOfCurrencies.Data.FirstOrDefault(i => i.Code == convert.FromCurrency.ToUpper());
             if (from == null)
             {
                 throw new Exception($"Cant find { convert.FromCurrency} currency.");
             }
 
-            var to = listOfCurrencies.Data.FirstOrDefault(i => i.CurrencyCode == convert.ToCurrency.ToUpper());
+            var to = listOfCurrencies.Data.FirstOrDefault(i => i.Code == convert.ToCurrency.ToUpper());
             if (to == null)
             {
                 throw new Exception($"Cant find { convert.ToCurrency} currency.");
@@ -105,9 +105,50 @@
             return await this._currencyRepository.List();
         }
 
-        public async Task<bool> Update(List<CurrencyIn> input)
+        public async Task<ActionResult> Update(List<CurrencyIn> input)
         {
-            return await this._currencyRepository.CopyToHistory();
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
+            var date = await _currencyRepository.GetTheHistoryLastDay();
+            if (date.Date != DateTime.Now.AddDays(-1).Date)
+            {
+                await this._currencyRepository.CopyToHistory();
+            }
+
+            foreach (var currencyIn in input)
+            {
+                ValidateCurrency(currencyIn);
+            }
+
+            await this._currencyRepository.Update(input);
+
+            return new ActionResult { HasSucess = true };
+        }
+
+        private void ValidateCurrency(CurrencyIn currencyIn)
+        {
+            if (currencyIn == null)
+            {
+                throw new ArgumentNullException(nameof(currencyIn));
+            }
+
+            if (string.IsNullOrEmpty(currencyIn.Code) || string.IsNullOrEmpty(currencyIn.Code.Trim()))
+            {
+                throw new Exception("The currency code cant be empty.");
+            }
+
+            if (currencyIn.Code.Length != 3)
+            {
+                throw new Exception($"The currency code { currencyIn.Code} must be 3 chars.");
+            }
+
+            if (currencyIn.ReasonToOneEuro < 0)
+            {
+                throw new Exception($"In the currency code { currencyIn.Code}, ReasonToOneEuro cant be smaller than zero.");
+            }
         }
     }
 }
