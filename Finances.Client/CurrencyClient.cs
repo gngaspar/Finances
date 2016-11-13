@@ -1,5 +1,6 @@
 ﻿namespace Finances.Client
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Finances.Client.Common;
     using Finances.Contract.Banking;
@@ -16,6 +17,11 @@
         }
 
         public Task<CurrencyListResponse> List()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<bool> Update(List<CurrencyIn> input)
         {
             throw new System.NotImplementedException();
         }

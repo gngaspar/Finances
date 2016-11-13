@@ -1,6 +1,7 @@
 ﻿namespace Finances.Management
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Finances.Contract.Banking;
@@ -102,6 +103,11 @@
         public async Task<CurrencyListResponse> List()
         {
             return await this._currencyRepository.List();
+        }
+
+        public async Task<bool> Update(List<CurrencyIn> input)
+        {
+            return await this._currencyRepository.CopyToHistory();
         }
     }
 }

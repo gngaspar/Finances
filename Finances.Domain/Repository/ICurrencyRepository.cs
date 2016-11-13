@@ -6,6 +6,8 @@
 
     public interface ICurrencyRepository : IDisposable
     {
+        Task<bool> CopyToHistory();
+
         Task<CurrencyListResponse> List();
     }
 }

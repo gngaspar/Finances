@@ -1,5 +1,6 @@
 ﻿namespace Finances.Contract.Banking
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -19,5 +20,11 @@
         /// </summary>
         /// <returns>The list of Currencies</returns>
         Task<CurrencyListResponse> List();
+
+        /// <summary>
+        /// Lists this currencies.
+        /// </summary>
+        /// <returns>The list of Currencies</returns>
+        Task<bool> Update(List<CurrencyIn> input);
     }
 }

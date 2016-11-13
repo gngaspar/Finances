@@ -62,3 +62,4 @@ bin
 /Finances.Common/obj/Debug
 /Finances.Management/obj/Debug
 /Logs
+/Finances.Currency.Updater/obj/Debug

@@ -1,5 +1,6 @@
 ﻿namespace Finances.Endpoint.WebApi.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
     using Finances.Contract.Banking;
@@ -45,6 +46,13 @@
         public async Task<CurrencyListResponse> List()
         {
             return await _currencyService.List();
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public async Task<bool> Update(List<CurrencyIn> input)
+        {
+            return await _currencyService.Update(input);
         }
     }
 }

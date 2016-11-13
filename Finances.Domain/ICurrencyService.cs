@@ -1,5 +1,6 @@
 ﻿namespace Finances.Domain
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Finances.Contract.Banking;
 
@@ -20,5 +21,7 @@
         /// </summary>
         /// <returns></returns>
         Task<CurrencyListResponse> List();
+
+        Task<bool> Update(List<CurrencyIn> input);
     }
 }
