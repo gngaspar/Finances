@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
 
@@ -54,7 +55,7 @@
         /// <returns></returns>
         [HttpPost]
         [Route("Update")]
-        public async Task<ActionResult> Update(List<CurrencyIn> input)
+        public async Task<ActionResponse> Update(List<CurrencyIn> input)
         {
             return await _currencyService.Update(input);
         }

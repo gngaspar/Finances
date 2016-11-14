@@ -1,6 +1,7 @@
 ﻿namespace Finances.Management
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
@@ -43,10 +44,15 @@
             }
 
             var response = new ActionResponse();
-            response.Type = ActionType.Creation;
 
-            var result = await this._bankRepository.Add(bank);
+            var objAction = new ActionResult
+            {
+                Action = "AddBank",
+                HasDatabaseOutput = await this._bankRepository.Add(bank),
+                Type = ActionType.Creation
+            };
 
+            response.Results = new List<ActionResult> { objAction };
             return response;
         }
 
@@ -73,10 +79,15 @@
             }
 
             var response = new ActionResponse();
-            response.Type = ActionType.Modification;
 
-            var result = await this._bankRepository.Edit(code, bank);
+            var objAction = new ActionResult
+            {
+                Action = "EditBank",
+                HasDatabaseOutput = await this._bankRepository.Edit(code, bank),
+                Type = ActionType.Modification
+            };
 
+            response.Results = new List<ActionResult> { objAction };
             return response;
         }
 

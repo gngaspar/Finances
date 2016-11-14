@@ -4,6 +4,7 @@
     using System.Net.Http;
     using System.Threading.Tasks;
     using Finances.Client.Common;
+    using Finances.Contract;
     using Finances.Contract.Banking;
 
     public class CurrencyClient : ClientBase, ICurrency
@@ -24,7 +25,7 @@
             throw new System.NotImplementedException();
         }
 
-        public async Task<ActionResult> Update(List<CurrencyIn> input)
+        public async Task<ActionResponse> Update(List<CurrencyIn> input)
         {
             var context = CreateContextXml();
 
@@ -32,7 +33,7 @@
             context.ServiceMethod = ServiceMethod.Update;
             context.UrlPath = UrlPrefix + "Update";
 
-            return await this.ExecuteSender<List<CurrencyIn>, ActionResult>(input, context);
+            return await this.ExecuteSender<List<CurrencyIn>, ActionResponse>(input, context);
         }
     }
 }

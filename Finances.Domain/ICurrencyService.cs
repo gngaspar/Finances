@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Finances.Contract;
     using Finances.Contract.Banking;
 
     /// <summary>
@@ -22,6 +23,6 @@
         /// <returns></returns>
         Task<CurrencyListResponse> List();
 
-        Task<ActionResult> Update(List<CurrencyIn> input);
+        Task<ActionResponse> Update(List<CurrencyIn> input);
     }
 }

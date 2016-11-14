@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
     using Finances.Domain.Repository;
@@ -105,7 +106,7 @@
             return await this._currencyRepository.List();
         }
 
-        public async Task<ActionResult> Update(List<CurrencyIn> input)
+        public async Task<ActionResponse> Update(List<CurrencyIn> input)
         {
             if (input == null)
             {
@@ -125,7 +126,7 @@
 
             await this._currencyRepository.Update(input);
 
-            return new ActionResult { HasSucess = true };
+            return new ActionResponse();
         }
 
         private void ValidateCurrency(CurrencyIn currencyIn)

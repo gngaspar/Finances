@@ -25,6 +25,6 @@
         /// Lists this currencies.
         /// </summary>
         /// <returns>The list of Currencies</returns>
-        Task<ActionResult> Update(List<CurrencyIn> input);
+        Task<ActionResponse> Update(List<CurrencyIn> input);
     }
 }
