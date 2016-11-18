@@ -3,10 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Finances.Contract.Common;
     using Finances.Domain.Accounting;
-    using Finances.Domain.Banking;
-    using Finances.Domain.Human;
 
     /// <summary>
     /// The Card representantion on the database.
@@ -14,6 +13,8 @@
     /// <seealso cref="Finances.Domain.EntityOwnerBankBase"/>
     public abstract class CardEntity : EntityOwnerBankBase
     {
+        private string _currency;
+
         [Required]
         public virtual CurrentAccountEntity Account { get; set; }
 
@@ -40,11 +41,14 @@
         public string CardProviderString => CardProvider.ToString();
 
         /// <summary>
-        /// Gets or sets the currency.
+        /// Gets or sets the code of the currency.
         /// </summary>
-        /// <value>The currency.</value>
-        [Required]
-        public virtual CurrencyEntity Currency { get; set; }
+        /// <value>The code.</value>
+        public string Currency
+        {
+            get { return _currency.ToUpper(); }
+            set { _currency = value.ToUpper(); }
+        }
 
         /// <summary>
         /// Gets or sets the description.
@@ -63,12 +67,12 @@
         /// </summary>
         /// <value>The holder.</value>
         [Required]
-        public virtual PersonEntity Holder { get; set; }
+        public Guid Holder { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether is mine.
         /// </summary>
         /// <value><c>true</c> if this instance is mine; otherwise, <c>false</c>.</value>
-        public bool IsMine => this.Holder.Code == this.Owner.Code;
+        public bool IsMine => this.Holder == this.Owner;
     }
 }

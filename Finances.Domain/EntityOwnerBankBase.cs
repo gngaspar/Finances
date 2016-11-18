@@ -1,7 +1,7 @@
 ﻿namespace Finances.Domain
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
-    using Finances.Domain.Banking;
 
     /// <summary>
     /// The Entity even more expanded, to have information about each bank its related
@@ -14,6 +14,6 @@
         /// </summary>
         /// <value>The bank.</value>
         [Required]
-        public virtual BankEntity Bank { get; set; }
+        public Guid Bank { get; set; }
     }
 }

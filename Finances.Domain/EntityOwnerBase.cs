@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using Finances.Domain.Human;
 
     /// <summary>
     /// The base that allows you to have a unique code and a entity owner.
@@ -22,6 +21,6 @@
         /// </summary>
         /// <value>The owner.</value>
         [Required]
-        public virtual PersonEntity Owner { get; set; }
+        public Guid Owner { get; set; }
     }
 }

@@ -62,17 +62,9 @@
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201611111231194_Inicial.cs" />
-    <Compile Include="Migrations\201611111231194_Inicial.Designer.cs">
-      <DependentUpon>201611111231194_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611111417495_AddCurrencyHistory.cs" />
-    <Compile Include="Migrations\201611111417495_AddCurrencyHistory.Designer.cs">
-      <DependentUpon>201611111417495_AddCurrencyHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611121133592_AddedCurrencyOrder.cs" />
-    <Compile Include="Migrations\201611121133592_AddedCurrencyOrder.Designer.cs">
-      <DependentUpon>201611121133592_AddedCurrencyOrder.cs</DependentUpon>
+    <Compile Include="Migrations\201611182209132_Initial.cs" />
+    <Compile Include="Migrations\201611182209132_Initial.Designer.cs">
+      <DependentUpon>201611182209132_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -91,14 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611111231194_Inicial.resx">
-      <DependentUpon>201611111231194_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611111417495_AddCurrencyHistory.resx">
-      <DependentUpon>201611111417495_AddCurrencyHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611121133592_AddedCurrencyOrder.resx">
-      <DependentUpon>201611121133592_AddedCurrencyOrder.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611182209132_Initial.resx">
+      <DependentUpon>201611182209132_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

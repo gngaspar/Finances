@@ -63,3 +63,10 @@ bin
 /Finances.Management/obj/Debug
 /Logs
 /Finances.Currency.Updater/obj/Debug
+/Finances.Contract/obj/Release
+/Finances.Currency.Updater/obj/Release
+/Finances.DataLayer/obj/Release
+/Finances.Domain/obj/Release
+/Finances.Endpoint.WebApi/obj/Release
+/Finances.Management/obj/Release
+/Finances.Migrations/obj/Release

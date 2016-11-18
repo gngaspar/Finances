@@ -12,13 +12,7 @@
 
         public int HasDatabaseOutput { get; set; }
 
-        public bool IsValid
-        {
-            get
-            {
-                return this.Errors == null || this.Errors.Length == 0;
-            }
-        }
+        public bool IsValid => this.Errors == null || this.Errors.Length == 0;
 
         public ActionType Type { get; set; }
     }

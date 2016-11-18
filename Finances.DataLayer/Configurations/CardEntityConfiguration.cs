@@ -1,6 +1,7 @@
 ﻿namespace Finances.DataLayer.Configurations
 {
     using System.Data.Entity.ModelConfiguration;
+
     using Finances.Domain.Plastic;
 
     public class CardEntityConfiguration : EntityTypeConfiguration<CardEntity>
@@ -12,8 +13,9 @@
             this.Property(p => p.CardNumber).IsRequired().HasMaxLength(4).HasColumnOrder(1);
             this.Property(p => p.Description).IsRequired().HasMaxLength(100).HasColumnOrder(2);
             this.Property(p => p.Expire).HasColumnType("Date").HasColumnOrder(3);
-            this.Property(p => p.ChangeAt).HasColumnOrder(4);
-            this.Property(p => p.CreatedAt).HasColumnOrder(5);
+            this.Property(p => p.Currency).IsRequired().HasMaxLength(3).HasColumnOrder(4);
+            this.Property(p => p.ChangeAt).HasColumnOrder(5);
+            this.Property(p => p.CreatedAt).HasColumnOrder(6);
             this.Ignore(p => p.IsMine);
         }
     }

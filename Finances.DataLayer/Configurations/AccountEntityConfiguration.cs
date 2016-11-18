@@ -13,6 +13,7 @@
             this.Property(p => p.Description).IsRequired().HasMaxLength(100).HasColumnOrder(2);
             this.Property(p => p.Amount).IsRequired().HasPrecision(18, 2).HasColumnOrder(3);
             this.Property(p => p.StartDate).IsRequired().HasColumnType("Date").HasColumnOrder(4);
+            this.Property(p => p.Currency).IsRequired().HasMaxLength(3).HasColumnOrder(5);
             this.Ignore(p => p.IsMine);
         }
     }

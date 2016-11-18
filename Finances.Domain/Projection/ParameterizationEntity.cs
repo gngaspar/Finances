@@ -1,8 +1,8 @@
 ﻿namespace Finances.Domain.Projection
 {
     using System;
+
     using Finances.Domain.Accounting;
-    using Finances.Domain.Banking;
     using Finances.Domain.Plastic;
 
     /// <summary>
@@ -11,6 +11,8 @@
     /// <seealso cref="Finances.Domain.EntityOwnerBase"/>
     public class ParameterizationEntity : EntityOwnerBase
     {
+        private string _currency;
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="ParameterizationEntity"/> is active.
         /// </summary>
@@ -24,10 +26,14 @@
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets the currency.
+        /// Gets or sets the code of the currency.
         /// </summary>
-        /// <value>The currency.</value>
-        public virtual CurrencyEntity Currency { get; set; }
+        /// <value>The code.</value>
+        public string Currency
+        {
+            get { return _currency.ToUpper(); }
+            set { _currency = value.ToUpper(); }
+        }
 
         /// <summary>
         /// Gets or sets the day.
