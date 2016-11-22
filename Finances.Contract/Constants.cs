@@ -1,12 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Constants.cs" company="">
-//   
 // </copyright>
 // <summary>
-//   The constants.
+// The constants.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Finances.Contract
 {
     /// <summary>
@@ -14,10 +12,14 @@ namespace Finances.Contract
     /// </summary>
     public class Constants
     {
+        public const string DayFormat = "dd/MM/yyyy";
+
         /// <summary>
         /// The default list select.
         /// </summary>
         public const int DefaultListSelect = 10;
+
+        public const string Eur = "EUR";
 
         /// <summary>
         /// The default list items.

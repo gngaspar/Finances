@@ -4,6 +4,7 @@ namespace Finances.DataLayer.Migrations
     using System.Data.Entity.Migrations;
     using System.Globalization;
 
+    using Finances.Contract;
     using Finances.Contract.Common;
     using Finances.DataLayer.Extension;
     using Finances.Domain.Accounting;
@@ -21,7 +22,7 @@ namespace Finances.DataLayer.Migrations
 
         protected override void Seed(BankingDbContext context)
         {
-            var format = "dd/MM/yyyy";
+            var format = Constants.DayFormat;
             var provider = CultureInfo.InvariantCulture;
 
             var bankMilleniumGuid = Guid.Parse("{1496DD29-14BF-4753-AACC-35203E3947B7}");
@@ -34,7 +35,7 @@ namespace Finances.DataLayer.Migrations
             var bankMontepio = new BankEntity { Code = bankMontepioGuid, Name = "Montepio Geral", Country = "Pt", Swift = "MPIOPTPL", Url = "http://www.montepio.pt" };
             var bankCaixa = new BankEntity { Code = bankCaixaGuid, Name = "Caixa Geral de Depositos", Country = "Pt", Swift = "caixa", Url = "http://www.cgd.pt" };
 
-            var euro = new CurrencyEntity { Currency = "Eur", Order = 1, Name = "Euro", ReasonToOneEuro = 0 };
+            var euro = new CurrencyEntity { Currency = Constants.Eur, Order = 1, Name = "Euro", ReasonToOneEuro = 0 };
             var pln = new CurrencyEntity { Currency = "Pln", Order = 2, Name = "Zloty", ReasonToOneEuro = 4.20m };
 
             context.SeedAddOrUpdate(
@@ -42,7 +43,7 @@ namespace Finances.DataLayer.Migrations
                 p => new { p.Country, p.Name, p.Swift, p.Url, p.ChangeAt },
                 bankMillenium,
                 bankBcp,
-                    bankMontepio,
+                bankMontepio,
                 bankCaixa);
 
             context.SeedAddOrUpdate(
@@ -115,7 +116,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta ordenado",
                 Number = "029.10.012311-5",
                 Iban = "PT50.0036.0029.99100123115.13",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 462.52m,
                 StartDate = DateTime.ParseExact("01/02/2008", format, provider),
                 Holder = goncaloGuid,
@@ -145,7 +146,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Polonia Euros",
                 Number = "0248923401",
                 Iban = "PL79.1160.2202.00000002489234.01",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 0m,
                 StartDate = DateTime.ParseExact("21/10/2013", format, provider),
                 Holder = goncaloGuid,
@@ -161,7 +162,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta fun",
                 Number = "029.10.013309-8",
                 Iban = "PT50.0036.0029.99100133098.37",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 707.93m,
                 StartDate = DateTime.ParseExact("01/01/2015", format, provider),
                 Holder = guiGuid,
@@ -175,7 +176,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Corrente",
                 Number = "63566423095",
                 Iban = "PT50.0035.0995.00635664230.95",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 0,
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = vascoGuid,
@@ -189,7 +190,7 @@ namespace Finances.DataLayer.Migrations
                 Description = "Conta Corrente",
                 Number = "4956598449",
                 Iban = "PT50.0033.0000.00049565984.49",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 0m,
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = filipaGuid,
@@ -202,7 +203,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("f03f8057-e33e-4ebd-8b50-7005d8bd2188"),
                 Description = "Conta Casa",
                 Number = "029.21.100472-5",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 47580.38m,
                 StartDate = DateTime.ParseExact("23/07/2008", format, provider),
                 Holder = goncaloGuid,
@@ -221,7 +222,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("5e919e86-0d5a-4eca-b805-0a22471443cb"),
                 Description = "Conta Carro",
                 Number = "029.27.100168-6",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 23618.64m,
                 StartDate = DateTime.ParseExact("16/07/2010", format, provider),
                 Holder = goncaloGuid,
@@ -240,7 +241,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("ec7bdd2c-a3fe-42f0-9e91-b2e4333b9ae9"),
                 Description = "Poupanca Activa",
                 Number = "732.15.420299-6",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 1058.38m,
                 StartDate = DateTime.ParseExact("03/08/2016", format, provider),
                 Holder = goncaloGuid,
@@ -259,7 +260,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("AA111116-70F2-47CC-9C21-01A161D10D92"),
                 Description = "Poupanca Bue",
                 Number = "732.15.417187-8",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 400.00m,
                 StartDate = DateTime.ParseExact("08/07/2015", format, provider),
                 Holder = guiGuid,
@@ -278,7 +279,7 @@ namespace Finances.DataLayer.Migrations
                 Code = Guid.Parse("7D2E570A-BBC3-41D6-B2E3-B47BB491D60C"),
                 Description = "Poupanca Bue",
                 Number = "732.15.430705-0",
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Amount = 250.00m,
                 StartDate = DateTime.ParseExact("13/11/2015", format, provider),
                 Holder = guiGuid,
@@ -327,7 +328,7 @@ namespace Finances.DataLayer.Migrations
                 Expire = DateTime.ParseExact("31/01/2020", format, provider),
                 Account = currentGoncaloGuid,
                 Bank = bankMontepioGuid,
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Holder = goncaloGuid,
                 Owner = goncaloGuid
             };
@@ -346,7 +347,7 @@ namespace Finances.DataLayer.Migrations
                 Expire = DateTime.ParseExact("30/09/2019", format, provider),
                 Account = currentGoncaloGuid,
                 Bank = bankMontepioGuid,
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Holder = goncaloGuid,
                 Owner = goncaloGuid
             };
@@ -396,7 +397,7 @@ namespace Finances.DataLayer.Migrations
                 Expire = DateTime.ParseExact("31/05/2019", format, provider),
                 Account = currentGoncaloGuid,
                 Bank = bankMilleniumGuid,
-                Currency = "EUR",
+                Currency = Constants.Eur,
                 Holder = isildaGuid,
                 Owner = goncaloGuid,
                 AvailableAmount = 50,

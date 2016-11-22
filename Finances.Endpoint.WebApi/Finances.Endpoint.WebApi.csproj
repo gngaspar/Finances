@@ -135,8 +135,8 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BankController.cs" />
-    <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="ApiControllers\BankController.cs" />
+    <Compile Include="ApiControllers\CurrencyController.cs" />
     <Compile Include="DependencyInjection\BankingDependencyInjection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,9 +152,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044D3449-FEE1-4BB0-8644-265C6E837046}</Project>
