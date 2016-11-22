@@ -1,8 +1,9 @@
-﻿namespace Finances.Endpoint.WebApi.Controllers
+﻿namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
+
     using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
@@ -23,7 +24,7 @@
         /// <param name="currencyService">The currency service.</param>
         public CurrencyController(ICurrencyService currencyService)
         {
-            _currencyService = currencyService;
+            this._currencyService = currencyService;
         }
 
         /// <summary>
@@ -35,7 +36,7 @@
         [Route("Convert")]
         public async Task<decimal> Convert(ConvertRequest convert)
         {
-            return await _currencyService.Convert(convert);
+            return await this._currencyService.Convert(convert);
         }
 
         /// <summary>
@@ -46,7 +47,7 @@
         [Route("List")]
         public async Task<CurrencyListResponse> List()
         {
-            return await _currencyService.List();
+            return await this._currencyService.List();
         }
 
         /// <summary>
@@ -57,7 +58,7 @@
         [Route("Update")]
         public async Task<ActionResponse> Update(List<CurrencyIn> input)
         {
-            return await _currencyService.Update(input);
+            return await this._currencyService.Update(input);
         }
     }
 }

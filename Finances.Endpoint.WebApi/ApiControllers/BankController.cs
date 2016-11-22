@@ -1,8 +1,9 @@
-﻿namespace Finances.Endpoint.WebApi.Controllers
+﻿namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
     using System.Threading.Tasks;
     using System.Web.Http;
+
     using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
@@ -21,7 +22,7 @@
         /// <param name="bankService">The Banking Service interface</param>
         public BankController(IBankService bankService)
         {
-            _bankService = bankService;
+            this._bankService = bankService;
         }
 
         /// <summary>
@@ -33,7 +34,7 @@
         [Route("Add")]
         public async Task<ActionResponse> Add(BankIn bank)
         {
-            return await _bankService.Add(bank);
+            return await this._bankService.Add(bank);
         }
 
         /// <summary>
@@ -46,7 +47,7 @@
         [Route("{code:guid}/Edit")]
         public async Task<ActionResponse> Edit(Guid code, BankIn bank)
         {
-            return await _bankService.Edit(code, bank);
+            return await this._bankService.Edit(code, bank);
         }
 
         /// <summary>
@@ -58,7 +59,7 @@
         [Route("List")]
         public async Task<BankListResponse> List(BankListRequest request)
         {
-            return await _bankService.List(request);
+            return await this._bankService.List(request);
         }
     }
 }
