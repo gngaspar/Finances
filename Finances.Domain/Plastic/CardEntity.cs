@@ -5,7 +5,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Finances.Contract.Common;
-    using Finances.Domain.Accounting;
 
     /// <summary>
     /// The Card representantion on the database.
@@ -16,7 +15,7 @@
         private string _currency;
 
         [Required]
-        public virtual CurrentAccountEntity Account { get; set; }
+        public Guid Account { get; set; }
 
         /// <summary>
         /// Gets or sets the card number.
@@ -38,7 +37,7 @@
         [Required]
         [MaxLength(100)]
         [Column("CardProvider")]
-        public string CardProviderString => CardProvider.ToString();
+        public string CardProviderString => this.CardProvider.ToString();
 
         /// <summary>
         /// Gets or sets the code of the currency.
@@ -46,8 +45,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return _currency.ToUpper(); }
-            set { _currency = value.ToUpper(); }
+            get { return this._currency.ToUpper(); }
+            set { this._currency = value.ToUpper(); }
         }
 
         /// <summary>

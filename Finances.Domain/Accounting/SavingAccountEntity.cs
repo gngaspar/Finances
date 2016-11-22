@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Finances.Contract.Common;
     using Finances.Domain.Extensions;
 
@@ -71,6 +72,6 @@
         /// Gets or sets the saving related account.
         /// </summary>
         /// <value>The saving related account.</value>
-        public virtual CurrentAccountEntity SavingRelatedAccount { get; set; }
+        public Guid SavingRelatedAccount { get; set; }
     }
 }

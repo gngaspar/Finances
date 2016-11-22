@@ -62,9 +62,9 @@
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201611182209132_Initial.cs" />
-    <Compile Include="Migrations\201611182209132_Initial.Designer.cs">
-      <DependentUpon>201611182209132_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201611222208322_Initial.cs" />
+    <Compile Include="Migrations\201611222208322_Initial.Designer.cs">
+      <DependentUpon>201611222208322_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -83,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611182209132_Initial.resx">
-      <DependentUpon>201611182209132_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611222208322_Initial.resx">
+      <DependentUpon>201611222208322_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

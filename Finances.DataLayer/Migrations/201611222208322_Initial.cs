@@ -17,9 +17,9 @@ namespace Finances.DataLayer.Migrations
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         StartDate = c.DateTime(nullable: false, storeType: "date"),
                         Currency = c.String(nullable: false, maxLength: 3),
-                        Holder = c.Guid(nullable: false),
                         Bank = c.Guid(nullable: false),
                         Owner = c.Guid(nullable: false),
+                        Holder = c.Guid(nullable: false),
                         ChangeAt = c.DateTime(),
                         CreatedAt = c.DateTime(),
                         Iban = c.String(maxLength: 100),
@@ -27,19 +27,15 @@ namespace Finances.DataLayer.Migrations
                         InterestNetRate = c.Decimal(precision: 18, scale: 3),
                         LoanEndDate = c.DateTime(storeType: "date"),
                         LoanInterestRate = c.Decimal(precision: 18, scale: 3),
+                        LoanRelatedAccount = c.Guid(),
                         PremiumPercentage = c.Decimal(precision: 18, scale: 3),
                         InterestCapitalization = c.Boolean(),
                         SavingEndDate = c.DateTime(storeType: "date"),
                         SavingInterestRate = c.Decimal(precision: 18, scale: 3),
+                        SavingRelatedAccount = c.Guid(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        LoanRelatedAccount_Code = c.Guid(),
-                        SavingRelatedAccount_Code = c.Guid(),
                     })
-                .PrimaryKey(t => t.Code)
-                .ForeignKey("dbo.Accounts", t => t.LoanRelatedAccount_Code)
-                .ForeignKey("dbo.Accounts", t => t.SavingRelatedAccount_Code)
-                .Index(t => t.LoanRelatedAccount_Code)
-                .Index(t => t.SavingRelatedAccount_Code);
+                .PrimaryKey(t => new { t.Code, t.Bank, t.Owner });
             
             CreateTable(
                 "dbo.Banks",
@@ -67,20 +63,18 @@ namespace Finances.DataLayer.Migrations
                         Currency = c.String(nullable: false, maxLength: 3),
                         ChangeAt = c.DateTime(),
                         CreatedAt = c.DateTime(),
-                        Holder = c.Guid(nullable: false),
                         Bank = c.Guid(nullable: false),
+                        Account = c.Guid(nullable: false),
                         Owner = c.Guid(nullable: false),
+                        Holder = c.Guid(nullable: false),
                         Limit = c.Decimal(precision: 18, scale: 2),
                         PaymentDay = c.Int(),
                         UsedLimit = c.Decimal(precision: 18, scale: 2),
                         AvailableAmount = c.Decimal(precision: 18, scale: 2),
                         MaximumAmount = c.Decimal(precision: 18, scale: 2),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        Account_Code = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.Code)
-                .ForeignKey("dbo.Accounts", t => t.Account_Code, cascadeDelete: true)
-                .Index(t => t.Account_Code);
+                .PrimaryKey(t => new { t.Code, t.Bank, t.Account, t.Owner });
             
             CreateTable(
                 "dbo.Currencies",
@@ -118,21 +112,13 @@ namespace Finances.DataLayer.Migrations
                         Day = c.Int(),
                         ChangeAt = c.DateTime(),
                         CreatedAt = c.DateTime(),
+                        FromAccount = c.Guid(),
+                        Parent = c.Guid(),
+                        ToAccount = c.Guid(),
+                        ToCard = c.Guid(),
                         Owner = c.Guid(nullable: false),
-                        FromAccount_Code = c.Guid(),
-                        Parent_Code = c.Guid(),
-                        ToAccount_Code = c.Guid(),
-                        ToCard_Code = c.Guid(),
                     })
-                .PrimaryKey(t => t.Code)
-                .ForeignKey("dbo.Accounts", t => t.FromAccount_Code)
-                .ForeignKey("dbo.Parameterizations", t => t.Parent_Code)
-                .ForeignKey("dbo.Accounts", t => t.ToAccount_Code)
-                .ForeignKey("dbo.Cards", t => t.ToCard_Code)
-                .Index(t => t.FromAccount_Code)
-                .Index(t => t.Parent_Code)
-                .Index(t => t.ToAccount_Code)
-                .Index(t => t.ToCard_Code);
+                .PrimaryKey(t => t.Code);
             
             CreateTable(
                 "dbo.Persons",
@@ -175,22 +161,8 @@ namespace Finances.DataLayer.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Parameterizations", "ToCard_Code", "dbo.Cards");
-            DropForeignKey("dbo.Parameterizations", "ToAccount_Code", "dbo.Accounts");
-            DropForeignKey("dbo.Parameterizations", "Parent_Code", "dbo.Parameterizations");
-            DropForeignKey("dbo.Parameterizations", "FromAccount_Code", "dbo.Accounts");
-            DropForeignKey("dbo.Cards", "Account_Code", "dbo.Accounts");
-            DropForeignKey("dbo.Accounts", "SavingRelatedAccount_Code", "dbo.Accounts");
-            DropForeignKey("dbo.Accounts", "LoanRelatedAccount_Code", "dbo.Accounts");
             DropIndex("dbo.Users", new[] { "Email" });
-            DropIndex("dbo.Parameterizations", new[] { "ToCard_Code" });
-            DropIndex("dbo.Parameterizations", new[] { "ToAccount_Code" });
-            DropIndex("dbo.Parameterizations", new[] { "Parent_Code" });
-            DropIndex("dbo.Parameterizations", new[] { "FromAccount_Code" });
-            DropIndex("dbo.Cards", new[] { "Account_Code" });
             DropIndex("dbo.Banks", new[] { "Swift" });
-            DropIndex("dbo.Accounts", new[] { "SavingRelatedAccount_Code" });
-            DropIndex("dbo.Accounts", new[] { "LoanRelatedAccount_Code" });
             DropTable("dbo.Users");
             DropTable("dbo.Persons");
             DropTable("dbo.Parameterizations");

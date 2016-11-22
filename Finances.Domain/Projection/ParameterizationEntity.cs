@@ -2,9 +2,6 @@
 {
     using System;
 
-    using Finances.Domain.Accounting;
-    using Finances.Domain.Plastic;
-
     /// <summary>
     /// The Parameterization representantion on the database.
     /// </summary>
@@ -31,8 +28,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return _currency.ToUpper(); }
-            set { _currency = value.ToUpper(); }
+            get { return this._currency.ToUpper(); }
+            set { this._currency = value.ToUpper(); }
         }
 
         /// <summary>
@@ -51,19 +48,19 @@
         /// Gets or sets from account.
         /// </summary>
         /// <value>From account.</value>
-        public virtual CurrentAccountEntity FromAccount { get; set; }
+        public Guid? FromAccount { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is main.
         /// </summary>
         /// <value><c>true</c> if this instance is main; otherwise, <c>false</c>.</value>
-        public bool IsMain => Parent == null;
+        public bool IsMain => this.Parent == null;
 
         /// <summary>
         /// Gets or sets the parent.
         /// </summary>
         /// <value>The parent.</value>
-        public ParameterizationEntity Parent { get; set; }
+        public Guid? Parent { get; set; }
 
         /// <summary>
         /// Gets or sets the specific day.
@@ -75,12 +72,12 @@
         /// Gets or sets to account.
         /// </summary>
         /// <value>To account.</value>
-        public virtual AccountEntity ToAccount { get; set; }
+        public Guid? ToAccount { get; set; }
 
         /// <summary>
         /// Gets or sets to card.
         /// </summary>
         /// <value>To card.</value>
-        public virtual CardEntity ToCard { get; set; }
+        public Guid? ToCard { get; set; }
     }
 }

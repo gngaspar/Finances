@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using Finances.Domain.Extensions;
 
     /// <summary>
@@ -44,7 +45,7 @@
         /// Gets or sets the Loan related Account.
         /// </summary>
         /// <value>The loan related account.</value>
-        public virtual CurrentAccountEntity LoanRelatedAccount { get; set; }
+        public Guid LoanRelatedAccount { get; set; }
 
         /// <summary>
         /// Gets or sets the Premium Percentage.

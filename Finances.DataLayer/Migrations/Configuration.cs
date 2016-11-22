@@ -123,9 +123,11 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid
             };
 
+            var currentPlGoncaloGuid = Guid.Parse("28244669-e675-4f28-bfeb-3074eb556c40");
+
             var currentPlGoncalo = new CurrentAccountEntity
             {
-                Code = Guid.Parse("28244669-e675-4f28-bfeb-3074eb556c40"),
+                Code = currentPlGoncaloGuid,
                 Description = "Conta Polonia",
                 Number = "0247914561",
                 Iban = "PL92.1160.2202.00000002479145.61",
@@ -211,7 +213,7 @@ namespace Finances.DataLayer.Migrations
                 InterestNetRate = 0.189m,
                 LoanEndDate = DateTime.ParseExact("28/07/2033", format, provider),
                 LoanInterestRate = 5.441m,
-                LoanRelatedAccount = currentGoncalo
+                LoanRelatedAccount = currentGoncaloGuid
             };
 
             var loan2Goncalo = new LoanAccountEntity
@@ -230,7 +232,7 @@ namespace Finances.DataLayer.Migrations
                 InterestNetRate = 3.298m,
                 LoanEndDate = DateTime.ParseExact("16/07/2033", format, provider),
                 LoanInterestRate = 4.328m,
-                LoanRelatedAccount = currentGoncalo
+                LoanRelatedAccount = currentGoncaloGuid
             };
 
             var savingGoncalo = new SavingAccountEntity
@@ -249,7 +251,7 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Anual,
                 SavingEndDate = DateTime.ParseExact("03/08/2017", format, provider),
                 SavingInterestRate = 0.8m,
-                SavingRelatedAccount = currentGoncalo
+                SavingRelatedAccount = currentGoncaloGuid
             };
 
             var savingGui = new SavingAccountEntity
@@ -268,7 +270,7 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Anual,
                 SavingEndDate = DateTime.ParseExact("08/07/2016", format, provider),
                 SavingInterestRate = 1.0m,
-                SavingRelatedAccount = currentGuilherme
+                SavingRelatedAccount = currentGuiGuid
             };
 
             var saving2Gui = new SavingAccountEntity
@@ -287,7 +289,7 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Anual,
                 SavingEndDate = DateTime.ParseExact("13/11/2017", format, provider),
                 SavingInterestRate = 1.0m,
-                SavingRelatedAccount = currentGuilherme
+                SavingRelatedAccount = currentGuiGuid
             };
 
             context.SeedAddOrUpdate(
@@ -323,7 +325,7 @@ namespace Finances.DataLayer.Migrations
                 Limit = 1000,
                 UsedLimit = 300,
                 Expire = DateTime.ParseExact("31/01/2020", format, provider),
-                Account = currentGoncalo,
+                Account = currentGoncaloGuid,
                 Bank = bankMontepioGuid,
                 Currency = "EUR",
                 Holder = goncaloGuid,
@@ -342,7 +344,7 @@ namespace Finances.DataLayer.Migrations
                 CardProvider = CardProvider.VisaElectron,
                 Description = "Debito Amarelo",
                 Expire = DateTime.ParseExact("30/09/2019", format, provider),
-                Account = currentGoncalo,
+                Account = currentGoncaloGuid,
                 Bank = bankMontepioGuid,
                 Currency = "EUR",
                 Holder = goncaloGuid,
@@ -356,7 +358,7 @@ namespace Finances.DataLayer.Migrations
                 CardProvider = CardProvider.Visa,
                 Description = "Debito Cinza",
                 Expire = DateTime.ParseExact("30/09/2019", format, provider),
-                Account = currentPlGoncalo,
+                Account = currentPlGoncaloGuid,
                 Bank = bankMilleniumGuid,
                 Currency = "PLN",
                 Holder = goncaloGuid,
@@ -376,7 +378,7 @@ namespace Finances.DataLayer.Migrations
                 CardProvider = CardProvider.Maestro,
                 Description = "PrePago Preto",
                 Expire = DateTime.ParseExact("31/05/2019", format, provider),
-                Account = currentPlGoncalo,
+                Account = currentPlGoncaloGuid,
                 Bank = bankMilleniumGuid,
                 Currency = "PLN",
                 Holder = goncaloGuid,
@@ -392,7 +394,7 @@ namespace Finances.DataLayer.Migrations
                 CardProvider = CardProvider.VisaElectron,
                 Description = "PrePago Mae",
                 Expire = DateTime.ParseExact("31/05/2019", format, provider),
-                Account = currentGoncalo,
+                Account = currentGoncaloGuid,
                 Bank = bankMilleniumGuid,
                 Currency = "EUR",
                 Holder = isildaGuid,
