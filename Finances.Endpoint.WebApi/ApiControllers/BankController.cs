@@ -12,7 +12,7 @@
     /// The Controller for banking
     /// </summary>
     [RoutePrefix("Bank")]
-    public class BankController : ApiController, IBankService
+    public class BankController : ApiController, IBank
     {
         private readonly IBankService _bankService;
 

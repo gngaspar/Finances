@@ -14,7 +14,7 @@
     /// <seealso cref="System.Web.Http.ApiController"/>
     /// <seealso cref="Finances.Domain.ICurrencyService"/>
     [RoutePrefix("Currency")]
-    public class CurrencyController : ApiController, ICurrencyService
+    public class CurrencyController : ApiController, ICurrency
     {
         private readonly ICurrencyService _currencyService;
 
