@@ -3,8 +3,14 @@
     using System.Data.Entity.ModelConfiguration;
     using Finances.Domain.Banking;
 
+    /// <summary>
+    /// The currency entity configuration.
+    /// </summary>
     public class CurrencyEntityConfiguration : EntityTypeConfiguration<CurrencyEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrencyEntityConfiguration"/> class.
+        /// </summary>
         public CurrencyEntityConfiguration()
         {
             this.HasKey(p => p.Currency).ToTable("Currencies");

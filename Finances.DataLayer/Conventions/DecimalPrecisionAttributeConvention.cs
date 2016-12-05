@@ -5,8 +5,23 @@
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Finances.Domain.Extensions;
 
+    /// <summary>
+    /// The decimal precision attribute convention.
+    /// </summary>
     public class DecimalPrecisionAttributeConvention : PrimitivePropertyAttributeConfigurationConvention<DecimalPrecisionAttribute>
     {
+        /// <summary>
+        /// The apply.
+        /// </summary>
+        /// <param name="configuration">
+        /// The configuration.
+        /// </param>
+        /// <param name="attribute">
+        /// The attribute.
+        /// </param>
+        /// <exception cref="InvalidOperationException">
+        /// The invalid operation exception.
+        /// </exception>
         public override void Apply(ConventionPrimitivePropertyConfiguration configuration, DecimalPrecisionAttribute attribute)
         {
             if (attribute.Precision < 1 || attribute.Precision > 38)

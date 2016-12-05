@@ -5,14 +5,25 @@
     using System.Data.Entity.ModelConfiguration;
     using Finances.Domain.Human;
 
+    /// <summary>
+    /// The user entity configuration.
+    /// </summary>
     public class UserEntityConfiguration : EntityTypeConfiguration<UserEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserEntityConfiguration"/> class.
+        /// </summary>
         public UserEntityConfiguration()
         {
             this.HasKey(p => p.Code).ToTable("Users");
             this.Property(p => p.Code).IsRequired().HasColumnOrder(0);
-            this.Property(p => p.Email).IsRequired().HasMaxLength(200).HasColumnAnnotation(IndexAnnotation.AnnotationName,
-                new IndexAnnotation(new IndexAttribute("IX_Email", 1) { IsUnique = true })).HasColumnOrder(1);
+            this.Property(p => p.Email)
+                .IsRequired()
+                .HasMaxLength(200)
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(new IndexAttribute("IX_Email", 1) { IsUnique = true }))
+                .HasColumnOrder(1);
             this.Property(p => p.Name).IsRequired().HasMaxLength(200).HasColumnOrder(2);
             this.Property(p => p.Surname).IsRequired().HasMaxLength(200).HasColumnOrder(3);
             this.Property(p => p.IdNumber).HasMaxLength(25).HasColumnOrder(4);

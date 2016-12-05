@@ -4,8 +4,14 @@
 
     using Finances.Domain.Plastic;
 
+    /// <summary>
+    /// The card entity configuration.
+    /// </summary>
     public class CardEntityConfiguration : EntityTypeConfiguration<CardEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CardEntityConfiguration"/> class.
+        /// </summary>
         public CardEntityConfiguration()
         {
             this.HasKey(p => new { p.Code, p.Bank, p.Account, p.Owner }).ToTable("Cards");

@@ -15,12 +15,20 @@
     using Finances.Domain.Plastic;
     using Finances.Domain.Projection;
 
+    /// <summary>
+    /// The banking database context.
+    /// </summary>
     public class BankingDbContext : DbContext
     {
-        private static readonly object _lock = new object();
+        /// <summary>
+        /// The Lock.
+        /// </summary>
+        private static readonly object Lock = new object();
 
-        public BankingDbContext()
-            : base("BankingConnection")
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankingDbContext"/> class.
+        /// </summary>
+        public BankingDbContext() : base("BankingConnection")
         {
             Database.SetInitializer<BankingDbContext>(null);
             this.Configuration.AutoDetectChangesEnabled = false;
@@ -31,7 +39,7 @@
 #if DEBUG
             this.Database.Log = s =>
                 {
-                    lock (_lock)
+                    lock (Lock)
                     {
                         try
                         {
@@ -41,7 +49,7 @@
                                 Directory.CreateDirectory(path);
                             }
 
-                            File.AppendAllText(@"C:\Git\Logs\DBLog.txt", s);
+                            File.AppendAllText($"{path}\\DBLog.txt", s);
                         }
                         catch (Exception)
                         {
@@ -52,6 +60,12 @@
 #endif
         }
 
+        /// <summary>
+        /// The save changes.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public override int SaveChanges()
         {
             this.SetCreatedDate();
@@ -59,6 +73,12 @@
             return base.SaveChanges();
         }
 
+        /// <summary>
+        /// The save changes async.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public override Task<int> SaveChangesAsync()
         {
             this.SetCreatedDate();
@@ -66,6 +86,15 @@
             return base.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// The save changes async.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// The cancellation token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             this.SetCreatedDate();
@@ -73,22 +102,52 @@
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        /// <summary>
+        /// Gets or sets the cards.
+        /// </summary>
         public DbSet<CardEntity> Cards { get; set; }
 
+        /// <summary>
+        /// Gets or sets the banks.
+        /// </summary>
         public DbSet<BankEntity> Banks { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currencies.
+        /// </summary>
         public DbSet<CurrencyEntity> Currencies { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currency history.
+        /// </summary>
         public DbSet<CurrencyHistoryEntity> CurrencyHistory { get; set; }
 
+        /// <summary>
+        /// Gets or sets the persons.
+        /// </summary>
         public DbSet<PersonEntity> Persons { get; set; }
 
+        /// <summary>
+        /// Gets or sets the users.
+        /// </summary>
         public DbSet<UserEntity> Users { get; set; }
 
+        /// <summary>
+        /// Gets or sets the accounts.
+        /// </summary>
         public DbSet<AccountEntity> Accounts { get; set; }
 
+        /// <summary>
+        /// Gets or sets the parameterizations.
+        /// </summary>
         public DbSet<ParameterizationEntity> Parameterizations { get; set; }
 
+        /// <summary>
+        /// The on model creating.
+        /// </summary>
+        /// <param name="modelBuilder">
+        /// The model builder.
+        /// </param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
@@ -97,6 +156,9 @@
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <summary>
+        /// The set created date.
+        /// </summary>
         private void SetCreatedDate()
         {
             var addedEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Added).ToList();

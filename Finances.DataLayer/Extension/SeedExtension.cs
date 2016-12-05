@@ -8,11 +8,14 @@
     using System.Linq.Expressions;
     using System.Reflection;
 
+    /// <summary>
+    /// The seed extension.
+    /// </summary>
     internal static class SeedExtension
     {
         /// <summary>
-        /// Add or Updates and Object according to the updating expression. Prevents that Seed wil
-        /// set the CreatedAt to Now to old objects. USE ONLY at Seed Method
+        /// Add or Updates and Object according to the updating expression. Prevents that Seed will
+        /// set the CreatedAt to Now to old objects. USE ONLY at Seed Method.
         /// </summary>
         /// <typeparam name="T">The type</typeparam>
         /// <param name="db">The database.</param>
@@ -69,6 +72,18 @@
             }
         }
 
+        /// <summary>
+        /// The get properties.
+        /// </summary>
+        /// <param name="exp">
+        /// The expression.
+        /// </param>
+        /// <typeparam name="T">
+        /// The type.
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
         private static IEnumerable<PropertyInfo> GetProperties<T>(Expression<Func<T, object>> exp) where T : class
         {
             var type = typeof(T);
@@ -77,7 +92,10 @@
             if (exp.Body.NodeType == ExpressionType.MemberAccess)
             {
                 var memExp = exp.Body as MemberExpression;
-                if (memExp != null && memExp.Member != null) properties.Add(type.GetProperty(memExp.Member.Name));
+                if (memExp != null && memExp.Member != null)
+                {
+                    properties.Add(type.GetProperty(memExp.Member.Name));
+                }
             }
             else if (exp.Body.NodeType == ExpressionType.Convert)
             {
@@ -85,18 +103,33 @@
                 if (unaryExp != null)
                 {
                     var propExp = unaryExp.Operand as MemberExpression;
-                    if (propExp != null && propExp.Member != null) properties.Add(type.GetProperty(propExp.Member.Name));
+                    if (propExp != null && propExp.Member != null)
+                    {
+                        properties.Add(type.GetProperty(propExp.Member.Name));
+                    }
                 }
             }
             else if (exp.Body.NodeType == ExpressionType.New)
             {
                 var newExp = exp.Body as NewExpression;
-                if (newExp != null) properties.AddRange(newExp.Members.Select(x => type.GetProperty(x.Name)));
+                if (newExp != null)
+                {
+                    properties.AddRange(newExp.Members.Select(x => type.GetProperty(x.Name)));
+                }
             }
 
             return properties.OfType<PropertyInfo>();
         }
 
+        /// <summary>
+        /// Can be modified.
+        /// </summary>
+        /// <param name="type">
+        /// The type.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         private static bool IsModifiedable(Type type)
         {
             return type.IsPrimitive || type.IsValueType || type == typeof(string);

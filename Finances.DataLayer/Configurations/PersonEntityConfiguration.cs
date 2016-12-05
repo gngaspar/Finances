@@ -3,8 +3,14 @@
     using System.Data.Entity.ModelConfiguration;
     using Finances.Domain.Human;
 
+    /// <summary>
+    /// The person entity configuration.
+    /// </summary>
     public class PersonEntityConfiguration : EntityTypeConfiguration<PersonEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonEntityConfiguration"/> class.
+        /// </summary>
         public PersonEntityConfiguration()
         {
             this.HasKey(p => p.Code).ToTable("Persons");

@@ -12,14 +12,26 @@ namespace Finances.DataLayer.Migrations
     using Finances.Domain.Human;
     using Finances.Domain.Plastic;
 
+    /// <summary>
+    /// The configuration.
+    /// </summary>
     public sealed class Configuration : DbMigrationsConfiguration<BankingDbContext>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration"/> class.
+        /// </summary>
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = false;
             this.SetSqlGenerator("System.Data.SqlClient", new CustomSqlServerMigrationSqlGenerator());
         }
 
+        /// <summary>
+        /// The seed.
+        /// </summary>
+        /// <param name="context">
+        /// The context.
+        /// </param>
         protected override void Seed(BankingDbContext context)
         {
             var format = Constants.DayFormat;
@@ -249,7 +261,7 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid,
                 AutomaticRenovation = AutomaticRenovation.No,
                 InterestCapitalization = true,
-                InterestPayment = InterestPayment.Anual,
+                InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("03/08/2017", format, provider),
                 SavingInterestRate = 0.8m,
                 SavingRelatedAccount = currentGoncaloGuid
@@ -268,7 +280,7 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid,
                 AutomaticRenovation = AutomaticRenovation.YesSamePeriod,
                 InterestCapitalization = false,
-                InterestPayment = InterestPayment.Anual,
+                InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("08/07/2016", format, provider),
                 SavingInterestRate = 1.0m,
                 SavingRelatedAccount = currentGuiGuid
@@ -287,7 +299,7 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid,
                 AutomaticRenovation = AutomaticRenovation.YesSamePeriod,
                 InterestCapitalization = false,
-                InterestPayment = InterestPayment.Anual,
+                InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("13/11/2017", format, provider),
                 SavingInterestRate = 1.0m,
                 SavingRelatedAccount = currentGuiGuid

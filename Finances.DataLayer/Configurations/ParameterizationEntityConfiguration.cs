@@ -4,8 +4,14 @@
 
     using Finances.Domain.Projection;
 
+    /// <summary>
+    /// The parameterization entity configuration.
+    /// </summary>
     public class ParameterizationEntityConfiguration : EntityTypeConfiguration<ParameterizationEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParameterizationEntityConfiguration"/> class.
+        /// </summary>
         public ParameterizationEntityConfiguration()
         {
             this.HasKey(p => p.Code).ToTable("Parameterizations");

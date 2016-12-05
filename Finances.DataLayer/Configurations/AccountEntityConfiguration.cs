@@ -4,8 +4,14 @@
 
     using Finances.Domain.Accounting;
 
+    /// <summary>
+    /// The account entity configuration.
+    /// </summary>
     public class AccountEntityConfiguration : EntityTypeConfiguration<AccountEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountEntityConfiguration"/> class.
+        /// </summary>
         public AccountEntityConfiguration()
         {
             this.HasKey(p => new { p.Code, p.Bank, p.Owner }).ToTable("Accounts");
