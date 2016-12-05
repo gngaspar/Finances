@@ -22,12 +22,12 @@
         //    //return await this.ExecuteSender<ListRequest, ListResponse>(request, context);
         //    return new Task<BankListResponse>(new Func<BankListResponse> {Method = { }});
         //}
-        public Task<ActionResponse<int>> Add(BankIn bank)
+        public Task<ActionResponse<Guid>> Add(BankIn bank)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResponse<int>> Edit(Guid code, BankIn bank)
+        public Task<ActionResponse<bool>> Edit(Guid code, BankIn bank)
         {
             throw new NotImplementedException();
         }

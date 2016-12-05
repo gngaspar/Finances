@@ -48,7 +48,7 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<int> Add(BankIn bank)
+        public async Task<Guid> Add(BankIn bank)
         {
             ValidateBankIn(bank);
 
@@ -58,7 +58,11 @@ namespace Finances.Management
                 throw new Exception($"Swift {bank.Swift} already exists.");
             }
 
-            return await this.bankRepository.Add(bank);
+            var code = Guid.NewGuid();
+
+            var result = await this.bankRepository.Add(code, bank);
+
+            return result != 0 ? code : Guid.Empty ;
         }
 
         /// <summary>
@@ -76,7 +80,7 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<int> Edit(Guid code, BankIn bank)
+        public async Task<bool> Edit(Guid code, BankIn bank)
         {
             ValidateBankIn(bank);
 
@@ -91,8 +95,10 @@ namespace Finances.Management
             {
                 throw new Exception($"The Swift {bank.Swift} exists in a bank with a diferent then {code} .");
             }
-            
-            return await this.bankRepository.Edit(code, bank);
+
+            var result = await this.bankRepository.Edit(code, bank);
+
+            return result != 0;
         }
 
         /// <summary>

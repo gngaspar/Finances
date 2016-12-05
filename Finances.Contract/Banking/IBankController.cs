@@ -27,7 +27,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<int>> Add(BankIn bank);
+        Task<ActionResponse<Guid>> Add(BankIn bank);
 
         /// <summary>
         /// The edit.
@@ -41,7 +41,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<int>> Edit(Guid code, BankIn bank);
+        Task<ActionResponse<bool>> Edit(Guid code, BankIn bank);
 
         /// <summary>
         /// The list.

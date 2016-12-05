@@ -32,9 +32,9 @@
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<ActionResponse<int>> Add(BankIn bank)
+        public async Task<ActionResponse<Guid>> Add(BankIn bank)
         {
-            var response = new ActionResponse<int> { HasError = false };
+            var response = new ActionResponse<Guid> { HasError = false };
             try
             {
                 response.Results = await this._bankService.Add(bank);
@@ -56,9 +56,9 @@
         /// <returns></returns>
         [HttpPost]
         [Route("{code:guid}/Edit")]
-        public async Task<ActionResponse<int>> Edit(Guid code, BankIn bank)
+        public async Task<ActionResponse<bool>> Edit(Guid code, BankIn bank)
         {
-            var response = new ActionResponse<int> { HasError = false };
+            var response = new ActionResponse<bool> { HasError = false, Results = false };
             try
             {
                 response.Results = await this._bankService.Edit(code, bank);

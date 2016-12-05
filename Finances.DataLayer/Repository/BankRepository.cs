@@ -25,11 +25,11 @@
             this.context = bankingDbContext;
         }
 
-        public async Task<int> Add(BankIn bank)
+        public async Task<int> Add(Guid code, BankIn bank)
         {
             var newBank = new BankEntity
             {
-                Code = Guid.NewGuid(),
+                Code = code,
                 Swift = bank.Swift,
                 Country = bank.Country,
                 Name = bank.Name,

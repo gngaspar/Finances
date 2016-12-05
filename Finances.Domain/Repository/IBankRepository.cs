@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="bank">The bank.</param>
         /// <returns>The action response.</returns>
-        Task<int> Add(BankIn bank);
+        Task<int> Add(Guid code, BankIn bank);
 
         /// <summary>
         /// Edits the specified bank.
