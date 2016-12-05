@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounting\Account.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />
     <Compile Include="Banking\BankIn.cs" />
@@ -54,17 +53,25 @@
     <Compile Include="Banking\CurrencyListResponse.cs" />
     <Compile Include="Banking\IBankController.cs" />
     <Compile Include="Banking\ICurrencyController.cs" />
-    <Compile Include="Common\AccountType.cs" />
     <Compile Include="Common\AutomaticRenovation.cs" />
     <Compile Include="Common\CardProvider.cs" />
-    <Compile Include="Common\Deadline.cs" />
     <Compile Include="Common\InterestPayment.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Humans\HumanField.cs" />
+    <Compile Include="Humans\HumanIn.cs" />
+    <Compile Include="Humans\HumanListRequest.cs" />
+    <Compile Include="Humans\HumanListResponse.cs" />
+    <Compile Include="Humans\HumanOrder.cs" />
+    <Compile Include="Humans\HumanOut.cs" />
+    <Compile Include="Humans\IHumanController.cs" />
     <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Accounting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
