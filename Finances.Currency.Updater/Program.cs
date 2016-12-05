@@ -1,4 +1,13 @@
-﻿namespace Finances.Currency.Updater
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The task to update currency values.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Currency.Updater
 {
     using System;
     using System.Collections.Generic;
@@ -10,8 +19,17 @@
     using Finances.Contract;
     using Finances.Contract.Banking;
 
+    /// <summary>
+    /// The program.
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// The main.
+        /// </summary>
+        /// <param name="args">
+        /// The args.
+        /// </param>
         private static void Main(string[] args)
         {
             Console.WriteLine($"{DateTime.Now} Starting");
@@ -42,18 +60,23 @@
 
             Console.WriteLine($"{DateTime.Now} Sent to service");
             var doneOk = SendCurrenciesToUpdate(currencies);
-            if (doneOk.Result.HasError)
-            {
-                Console.WriteLine($"{DateTime.Now} response from service {doneOk.Result.ErrorMessage}");
-            }
-            else
-            {
-                Console.WriteLine($"{DateTime.Now} response from service {doneOk.Result.Results}");
-            }
-            
+            Console.WriteLine(
+                doneOk.Result.HasError
+                    ? $"{DateTime.Now} response from service {doneOk.Result.ErrorMessage}"
+                    : $"{DateTime.Now} response from service {doneOk.Result.Results}");
+
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// The send currencies to update.
+        /// </summary>
+        /// <param name="currencies">
+        /// The currencies.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         private static async Task<ActionResponse<int>> SendCurrenciesToUpdate(List<CurrencyIn> currencies)
         {
             var result = new ActionResponse<int>();
@@ -64,16 +87,14 @@
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.PostAsJsonAsync("Currency/Update", currencies);
+                var response = await client.PostAsJsonAsync("Currency/Update", currencies);
                 response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"{DateTime.Now} IsSuccessStatusCode");
-                    result = await response.Content.ReadAsAsync<ActionResponse<int>>();
-
-                    Console.WriteLine($"{DateTime.Now} {result.Results}");
+                    return result;
                 }
 
+                result = await response.Content.ReadAsAsync<ActionResponse<int>>();
                 return result;
             }
         }

@@ -1,4 +1,13 @@
-﻿namespace Finances.Management
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyService.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The currency service implementation.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Management
 {
     using System;
     using System.Collections.Generic;
@@ -10,14 +19,14 @@
     using Finances.Domain.Repository;
 
     /// <summary>
+    /// The currency service implementation.
     /// </summary>
-    /// <seealso cref="Finances.Domain.ICurrencyService"/>
     public class CurrencyService : ICurrencyService
     {
         /// <summary>
         /// The currency repository
         /// </summary>
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly ICurrencyRepository currencyRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyService"/> class.
@@ -25,14 +34,24 @@
         /// <param name="currencyRepository">The currency repository.</param>
         public CurrencyService(ICurrencyRepository currencyRepository)
         {
-            this._currencyRepository = currencyRepository;
+            this.currencyRepository = currencyRepository;
         }
 
         /// <summary>
         /// Converts the specified amount.
         /// </summary>
-        /// <param name="convert">The convert.</param>
-        /// <returns></returns>
+        /// <param name="convert">
+        /// The convert.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<decimal> Convert(ConvertRequest convert)
         {
             if (convert == null)
@@ -60,7 +79,7 @@
                 throw new Exception("Amount must be different of Zero (0).");
             }
 
-            var listOfCurrencies = await this._currencyRepository.List();
+            var listOfCurrencies = await this.currencyRepository.List();
 
             if (listOfCurrencies?.Data == null)
             {
@@ -98,14 +117,28 @@
         }
 
         /// <summary>
-        /// Lists the specified request.
+        /// The list.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public async Task<CurrencyListResponse> List()
         {
-            return await this._currencyRepository.List();
+            return await this.currencyRepository.List();
         }
 
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The exception.
+        /// </exception>
         public async Task<int> Update(List<CurrencyIn> input)
         {
             if (input == null)
@@ -113,20 +146,32 @@
                 throw new ArgumentNullException(nameof(input));
             }
 
-            var date = await _currencyRepository.GetTheHistoryLastDay();
+            var date = await this.currencyRepository.GetTheHistoryLastDay();
             if (date.Date != DateTime.Now.AddDays(-1).Date)
             {
-                await this._currencyRepository.CopyToHistory();
+                await this.currencyRepository.CopyToHistory();
             }
 
             foreach (var currencyIn in input)
             {
-                ValidateCurrency(currencyIn);
+                this.ValidateCurrency(currencyIn);
             }
 
-            return await this._currencyRepository.Update(input);
+            return await this.currencyRepository.Update(input);
         }
 
+        /// <summary>
+        /// The validate currency.
+        /// </summary>
+        /// <param name="currencyIn">
+        /// The currency in.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         private void ValidateCurrency(CurrencyIn currencyIn)
         {
             if (currencyIn == null)

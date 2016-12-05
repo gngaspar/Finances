@@ -1,15 +1,23 @@
-﻿namespace Finances.Management
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankService.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The bank service implementation.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Management
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Finances.Contract;
+
     using Finances.Contract.Banking;
     using Finances.Domain;
     using Finances.Domain.Repository;
 
     /// <summary>
-    /// The implementation of IBankService
+    /// The bank service implementation.
     /// </summary>
     /// <seealso cref="Finances.Domain.IBankService"/>
     public class BankService : IBankService
@@ -17,7 +25,7 @@
         /// <summary>
         /// The bank repository
         /// </summary>
-        private readonly IBankRepository _bankRepository;
+        private readonly IBankRepository bankRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BankService"/> class.
@@ -25,57 +33,83 @@
         /// <param name="bankRepository">The bank repository.</param>
         public BankService(IBankRepository bankRepository)
         {
-            this._bankRepository = bankRepository;
+            this.bankRepository = bankRepository;
         }
 
         /// <summary>
-        /// Adds the specified bank.
+        /// The add.
         /// </summary>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<int> Add(BankIn bank)
         {
             ValidateBankIn(bank);
 
-            var existBySwift = await this._bankRepository.ExistsBySwift(bank.Swift);
+            var existBySwift = await this.bankRepository.ExistsBySwift(bank.Swift);
             if (existBySwift)
             {
                 throw new Exception($"Swift {bank.Swift} already exists.");
             }
 
-            return await this._bankRepository.Add(bank);
+            return await this.bankRepository.Add(bank);
         }
 
         /// <summary>
-        /// Edits the specified bank.
+        /// The edit of an Bank.
         /// </summary>
-        /// <param name="code">The code.</param>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<int> Edit(Guid code, BankIn bank)
         {
             ValidateBankIn(bank);
 
-            var existCode = await this._bankRepository.ExistsByCode(code);
+            var existCode = await this.bankRepository.ExistsByCode(code);
             if (!existCode)
             {
                 throw new Exception($"Bank with {code} doesnt exists.");
             }
 
-            var existInOther = await this._bankRepository.ThisSwiftExistsInOther(code, bank.Swift);
+            var existInOther = await this.bankRepository.ThisSwiftExistsInOther(code, bank.Swift);
             if (!existInOther)
             {
                 throw new Exception($"The Swift {bank.Swift} exists in a bank with a diferent then {code} .");
             }
             
-            return await this._bankRepository.Edit(code, bank);
+            return await this.bankRepository.Edit(code, bank);
         }
 
         /// <summary>
-        /// Lists the specified request.
+        /// The list.
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<BankListResponse> List(BankListRequest request)
         {
             if (request == null)
@@ -104,7 +138,7 @@
             }
 
 
-            return await this._bankRepository.List(request);
+            return await this.bankRepository.List(request);
         }
 
         /// <summary>
