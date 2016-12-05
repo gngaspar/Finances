@@ -106,7 +106,7 @@
             return await this._currencyRepository.List();
         }
 
-        public async Task<ActionResponse> Update(List<CurrencyIn> input)
+        public async Task<int> Update(List<CurrencyIn> input)
         {
             if (input == null)
             {
@@ -124,9 +124,7 @@
                 ValidateCurrency(currencyIn);
             }
 
-            await this._currencyRepository.Update(input);
-
-            return new ActionResponse();
+            return await this._currencyRepository.Update(input);
         }
 
         private void ValidateCurrency(CurrencyIn currencyIn)

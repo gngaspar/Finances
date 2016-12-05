@@ -1,5 +1,6 @@
 ﻿namespace Finances.Client
 {
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -7,7 +8,7 @@
     using Finances.Contract;
     using Finances.Contract.Banking;
 
-    public class CurrencyClient : ClientBase, ICurrency
+    public class CurrencyClient : ClientBase, ICurrencyController
     {
         private const string UrlPrefix = "/Currency/";
 
@@ -15,25 +16,40 @@
         {
         }
 
-        public Task<decimal> Convert(ConvertRequest convert)
+        ////public Task<decimal> Convert(ConvertRequest convert)
+        ////{
+        ////    throw new System.NotImplementedException();
+        ////}
+
+        ////public Task<CurrencyListResponse> List()
+        ////{
+        ////    throw new System.NotImplementedException();
+        ////}
+
+        ////public async Task<ActionResponse> Update(List<CurrencyIn> input)
+        ////{
+        ////    var context = CreateContextXml();
+
+        ////    context.HttpMethod = HttpMethod.Post;
+        ////    context.ServiceMethod = ServiceMethod.Update;
+        ////    context.UrlPath = UrlPrefix + "Update";
+
+        ////    return await this.ExecuteSender<List<CurrencyIn>, ActionResponse>(input, context);
+        ////}
+
+        Task<ActionResponse<decimal>> ICurrencyController.Convert(ConvertRequest convert)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task<CurrencyListResponse> List()
+        Task<ActionResponse<CurrencyListResponse>> ICurrencyController.List()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public async Task<ActionResponse> Update(List<CurrencyIn> input)
+        Task<ActionResponse<int>> ICurrencyController.Update(List<CurrencyIn> input)
         {
-            var context = CreateContextXml();
-
-            context.HttpMethod = HttpMethod.Post;
-            context.ServiceMethod = ServiceMethod.Update;
-            context.UrlPath = UrlPrefix + "Update";
-
-            return await this.ExecuteSender<List<CurrencyIn>, ActionResponse>(input, context);
+            throw new NotImplementedException();
         }
     }
 }

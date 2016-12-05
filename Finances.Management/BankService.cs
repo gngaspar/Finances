@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        public async Task<ActionResponse> Add(BankIn bank)
+        public async Task<int> Add(BankIn bank)
         {
             ValidateBankIn(bank);
 
@@ -43,17 +43,7 @@
                 throw new Exception($"Swift {bank.Swift} already exists.");
             }
 
-            var response = new ActionResponse();
-
-            var objAction = new ActionResult
-            {
-                Action = "AddBank",
-                HasDatabaseOutput = await this._bankRepository.Add(bank),
-                Type = ActionType.Creation
-            };
-
-            response.Results = new List<ActionResult> { objAction };
-            return response;
+            return await this._bankRepository.Add(bank);
         }
 
         /// <summary>
@@ -62,7 +52,7 @@
         /// <param name="code">The code.</param>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        public async Task<ActionResponse> Edit(Guid code, BankIn bank)
+        public async Task<int> Edit(Guid code, BankIn bank)
         {
             ValidateBankIn(bank);
 
@@ -77,18 +67,8 @@
             {
                 throw new Exception($"The Swift {bank.Swift} exists in a bank with a diferent then {code} .");
             }
-
-            var response = new ActionResponse();
-
-            var objAction = new ActionResult
-            {
-                Action = "EditBank",
-                HasDatabaseOutput = await this._bankRepository.Edit(code, bank),
-                Type = ActionType.Modification
-            };
-
-            response.Results = new List<ActionResult> { objAction };
-            return response;
+            
+            return await this._bankRepository.Edit(code, bank);
         }
 
         /// <summary>
@@ -122,6 +102,7 @@
             {
                 throw new ArgumentNullException(nameof(request.Order));
             }
+
 
             return await this._bankRepository.List(request);
         }

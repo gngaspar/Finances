@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        Task<ActionResponse> Add(BankIn bank);
+        Task<int> Add(BankIn bank);
 
         /// <summary>
         /// Edits the specified bank.
@@ -23,7 +23,7 @@
         /// <param name="code">The code.</param>
         /// <param name="bank">The bank.</param>
         /// <returns></returns>
-        Task<ActionResponse> Edit(Guid code, BankIn bank);
+        Task<int> Edit(Guid code, BankIn bank);
 
         /// <summary>
         /// Lists the specified request.

@@ -12,7 +12,7 @@
     /// The Controller for banking
     /// </summary>
     [RoutePrefix("Bank")]
-    public class BankController : ApiController, IBank
+    public class BankController : ApiController, IBankController
     {
         private readonly IBankService _bankService;
 
@@ -32,9 +32,20 @@
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<ActionResponse> Add(BankIn bank)
+        public async Task<ActionResponse<int>> Add(BankIn bank)
         {
-            return await this._bankService.Add(bank);
+            var response = new ActionResponse<int> { HasError = false };
+            try
+            {
+                response.Results = await this._bankService.Add(bank);
+            }
+            catch (Exception ex)
+            {
+                response.HasError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -45,9 +56,20 @@
         /// <returns></returns>
         [HttpPost]
         [Route("{code:guid}/Edit")]
-        public async Task<ActionResponse> Edit(Guid code, BankIn bank)
+        public async Task<ActionResponse<int>> Edit(Guid code, BankIn bank)
         {
-            return await this._bankService.Edit(code, bank);
+            var response = new ActionResponse<int> { HasError = false };
+            try
+            {
+                response.Results = await this._bankService.Edit(code, bank);
+            }
+            catch (Exception ex)
+            {
+                response.HasError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -57,9 +79,20 @@
         /// <returns></returns>
         [HttpPost]
         [Route("List")]
-        public async Task<BankListResponse> List(BankListRequest request)
+        public async Task<ActionResponse<BankListResponse>> List(BankListRequest request)
         {
-            return await this._bankService.List(request);
+            var response = new ActionResponse<BankListResponse> { HasError = false };
+            try
+            {
+                response.Results = await this._bankService.List(request);
+            }
+            catch (Exception ex)
+            {
+                response.HasError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return response;
         }
     }
 }

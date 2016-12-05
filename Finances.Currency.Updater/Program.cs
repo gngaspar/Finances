@@ -46,8 +46,10 @@
             Console.WriteLine($"{DateTime.Now} response from service {doneOk}");
         }
 
-        private static async Task<ActionResponse> SendCurrenciesToUpdate(List<CurrencyIn> currencies)
+        private static async Task<ActionResponse<int>> SendCurrenciesToUpdate(List<CurrencyIn> currencies)
         {
+            var result = new ActionResponse<int>();
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:3001/");
@@ -59,12 +61,12 @@
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine($"{DateTime.Now} IsSuccessStatusCode");
-                    var result = await response.Content.ReadAsAsync<ActionResponse>();
+                    result = await response.Content.ReadAsAsync<ActionResponse<int>>();
 
                     Console.WriteLine($"{DateTime.Now} {result.Results}");
                 }
 
-                return new ActionResponse();
+                return result;
             }
         }
     }

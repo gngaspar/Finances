@@ -6,25 +6,25 @@
     /// <summary>
     /// The Currency interface
     /// </summary>
-    public interface ICurrency
+    public interface ICurrencyController
     {
         /// <summary>
         /// Converts the specified amount.
         /// </summary>
         /// <param name="convert">The convert.</param>
         /// <returns>the converted amount</returns>
-        Task<decimal> Convert(ConvertRequest convert);
+        Task<ActionResponse<decimal>> Convert(ConvertRequest convert);
 
         /// <summary>
         /// Lists this currencies.
         /// </summary>
         /// <returns>The list of Currencies</returns>
-        Task<CurrencyListResponse> List();
+        Task<ActionResponse<CurrencyListResponse>> List();
 
         /// <summary>
         /// Lists this currencies.
         /// </summary>
         /// <returns>The list of Currencies</returns>
-        Task<ActionResponse> Update(List<CurrencyIn> input);
+        Task<ActionResponse<int>> Update(List<CurrencyIn> input);
     }
 }

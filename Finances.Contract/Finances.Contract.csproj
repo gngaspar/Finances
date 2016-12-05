@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionType.cs" />
     <Compile Include="Accounting\Account.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />
@@ -53,16 +52,14 @@
     <Compile Include="Banking\CurrencyIn.cs" />
     <Compile Include="Banking\CurrencyOut.cs" />
     <Compile Include="Banking\CurrencyListResponse.cs" />
-    <Compile Include="ActionResult.cs" />
-    <Compile Include="Banking\IBank.cs" />
-    <Compile Include="Banking\ICurrency.cs" />
+    <Compile Include="Banking\IBankController.cs" />
+    <Compile Include="Banking\ICurrencyController.cs" />
     <Compile Include="Common\AccountType.cs" />
     <Compile Include="Common\AutomaticRenovation.cs" />
     <Compile Include="Common\CardProvider.cs" />
     <Compile Include="Common\Deadline.cs" />
     <Compile Include="Common\InterestPayment.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="ErrorInformation.cs" />
     <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />

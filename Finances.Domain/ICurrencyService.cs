@@ -23,6 +23,6 @@
         /// <returns></returns>
         Task<CurrencyListResponse> List();
 
-        Task<ActionResponse> Update(List<CurrencyIn> input);
+        Task<int> Update(List<CurrencyIn> input);
     }
 }
