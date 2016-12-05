@@ -17,7 +17,10 @@
     [RoutePrefix("Currency")]
     public class CurrencyController : ApiController, ICurrencyController
     {
-        private readonly ICurrencyService _currencyService;
+        /// <summary>
+        /// The currency service.
+        /// </summary>
+        private readonly ICurrencyService currencyService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyController"/> class.
@@ -25,14 +28,18 @@
         /// <param name="currencyService">The currency service.</param>
         public CurrencyController(ICurrencyService currencyService)
         {
-            this._currencyService = currencyService;
+            this.currencyService = currencyService;
         }
 
         /// <summary>
         /// Converts the specified amount.
         /// </summary>
-        /// <param name="convert">The convert.</param>
-        /// <returns></returns>
+        /// <param name="convert">
+        /// The convert.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("Convert")]
         public async Task<ActionResponse<decimal>> Convert(ConvertRequest convert)
@@ -40,7 +47,7 @@
             var result = new ActionResponse<decimal> { HasError = false };
             try
             {
-                result.Results = await this._currencyService.Convert(convert);
+                result.Results = await this.currencyService.Convert(convert);
             }
             catch (Exception ex)
             {
@@ -54,7 +61,9 @@
         /// <summary>
         /// Lists the specified request.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("List")]
         public async Task<ActionResponse<CurrencyListResponse>> List()
@@ -62,7 +71,7 @@
             var result = new ActionResponse<CurrencyListResponse> { HasError = false };
             try
             {
-                result.Results = await this._currencyService.List();
+                result.Results = await this.currencyService.List();
             }
             catch (Exception ex)
             {
@@ -74,9 +83,14 @@
         }
 
         /// <summary>
+        /// The update.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("Update")]
         public async Task<ActionResponse<int>> Update(List<CurrencyIn> input)
@@ -84,7 +98,7 @@
             var result = new ActionResponse<int> { HasError = false };
             try
             {
-                result.Results = await this._currencyService.Update(input);
+                result.Results = await this.currencyService.Update(input);
             }
             catch (Exception ex)
             {

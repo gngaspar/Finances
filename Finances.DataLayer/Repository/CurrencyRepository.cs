@@ -12,58 +12,58 @@
 
     public class CurrencyRepository : ICurrencyRepository
     {
-        private readonly BankingDbContext _context;
+        private readonly BankingDbContext context;
 
         public CurrencyRepository()
         {
-            this._context = new BankingDbContext();
+            this.context = new BankingDbContext();
         }
 
         internal CurrencyRepository(BankingDbContext bankingDbContext)
         {
-            this._context = bankingDbContext;
+            this.context = bankingDbContext;
         }
 
         public async Task<int> CopyToHistory()
         {
-            var queryResult = await this._context.Currencies.Where(i => i.ReasonToOneEuro != 0).Select(c => new
+            var queryResult = await this.context.Currencies.Where(i => i.ReasonToOneEuro != 0).Select(c => new
             {
                 c.ReasonToOneEuro,
                 c.Currency
             }).ToListAsync();
 
-            this._context.CurrencyHistory.AddRange(queryResult.Select(c => new CurrencyHistoryEntity
+            this.context.CurrencyHistory.AddRange(queryResult.Select(c => new CurrencyHistoryEntity
             {
                 ReasonToOneEuro = c.ReasonToOneEuro,
                 Currency = c.Currency,
                 CreatedAtDay = DateTime.Now.AddDays(-1)
             }));
 
-            return await this._context.SaveChangesAsync();
+            return await this.context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            this._context.Dispose();
+            this.context.Dispose();
         }
 
         public async Task<DateTime> GetTheHistoryLastDay()
         {
-            var hasAny = await _context.CurrencyHistory.AnyAsync();
+            var hasAny = await this.context.CurrencyHistory.AnyAsync();
 
             if (!hasAny)
             {
                 return DateTime.Now.AddYears(-1);
             }
 
-            return await this._context.CurrencyHistory.MaxAsync(i => i.CreatedAtDay);
+            return await this.context.CurrencyHistory.MaxAsync(i => i.CreatedAtDay);
         }
 
         public async Task<CurrencyListResponse> List()
         {
-            var queryResult = await this._context.Currencies.CountAsync();
+            var queryResult = await this.context.Currencies.CountAsync();
 
-            var list = await this._context.Currencies.OrderBy(o => o.Order)
+            var list = await this.context.Currencies.OrderBy(o => o.Order)
                         .Select(currency => new CurrencyOut
                         {
                             Name = currency.Name,
@@ -83,7 +83,7 @@
 
         public async Task<int> Update(List<CurrencyIn> input)
         {
-            var myList = await this._context.Currencies.ToListAsync();
+            var myList = await this.context.Currencies.ToListAsync();
             var myCounter = myList.Count + 1;
 
             var listEntities = new List<CurrencyEntity>();
@@ -104,14 +104,14 @@
                 currencyEntity.Name = (oldCurreny != null) ? oldCurreny.Name : currency.Code;
                 currencyEntity.ChangeAt = DateTime.Now;
 
-                _context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro, p.ChangeAt },
+                this.context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro, p.ChangeAt },
                     currencyEntity
                 );
 
                 myCounter = myCounter + 1;
             }
 
-            return await this._context.SaveChangesAsync();
+            return await this.context.SaveChangesAsync();
         }
     }
 }

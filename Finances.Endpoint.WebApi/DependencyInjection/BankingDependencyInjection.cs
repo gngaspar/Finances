@@ -28,6 +28,10 @@
 
             this.Bind<ICurrencyService>().To<CurrencyService>();
             this.Bind<ICurrencyRepository>().To<CurrencyRepository>();
+
+            this.Bind<IHumanService>().To<HumanService>();
+            this.Bind<IHumanRepository>().To<HumanRepository>();
+
         }
 
         //protected Lazy<T> GetLazyProvider<T>(IKernel kernel)

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BankService.cs" />
     <Compile Include="CurrencyService.cs" />
+    <Compile Include="HumanService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
