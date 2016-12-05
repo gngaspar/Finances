@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDataList.cs" company="Gng">
-// The Request interface.
+// <copyright file="IListRequest.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
 // </copyright>
 // <summary>
-// The Request interface.
+// The List Request interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

@@ -1,19 +1,28 @@
-﻿namespace Finances.Contract.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyOut.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// Defines the CurrencyOut type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace Finances.Contract.Banking
 {
     using System;
 
+    /// <summary>
+    /// The currency out.
+    /// </summary>
     public class CurrencyOut : CurrencyIn
     {
         /// <summary>
-        /// Gets or sets the last change.
+        /// Gets or sets the change at.
         /// </summary>
-        /// <value>The change at.</value>
         public DateTime? ChangeAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the currency.
+        /// Gets or sets the name.
         /// </summary>
-        /// <value>The code.</value>
         public string Name { get; set; }
     }
 }

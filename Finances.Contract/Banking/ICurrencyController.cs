@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ICurrencyController.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The Currency interface
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Banking
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -9,22 +18,33 @@
     public interface ICurrencyController
     {
         /// <summary>
-        /// Converts the specified amount.
+        /// The convert action.
         /// </summary>
-        /// <param name="convert">The convert.</param>
-        /// <returns>the converted amount</returns>
-        Task<ActionResponse<decimal>> Convert(ConvertRequest convert);
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<ActionResponse<decimal>> Convert(ConvertRequest input);
 
         /// <summary>
-        /// Lists this currencies.
+        /// The list.
         /// </summary>
-        /// <returns>The list of Currencies</returns>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<ActionResponse<CurrencyListResponse>> List();
 
         /// <summary>
-        /// Lists this currencies.
+        /// The update.
         /// </summary>
-        /// <returns>The list of Currencies</returns>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<ActionResponse<int>> Update(List<CurrencyIn> input);
     }
 }

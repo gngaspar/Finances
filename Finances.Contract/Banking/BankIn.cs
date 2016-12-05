@@ -1,9 +1,21 @@
-﻿namespace Finances.Contract.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankIn.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The bank in.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Banking
 {
+    /// <summary>
+    /// The bank in.
+    /// </summary>
     public class BankIn
     {
         /// <summary>
-        /// Gets or sets the Country.
+        /// Gets or sets the country.
         /// </summary>
         public string Country { get; set; }
 
@@ -13,12 +25,12 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Swift.
+        /// Gets or sets the swift.
         /// </summary>
         public string Swift { get; set; }
 
         /// <summary>
-        /// Gets or sets the Url.
+        /// Gets or sets the url.
         /// </summary>
         public string Url { get; set; }
     }

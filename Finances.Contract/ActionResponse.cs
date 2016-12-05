@@ -1,8 +1,14 @@
-﻿namespace Finances.Contract
-{
-    using System.Collections.Generic;
-    using Finances.Contract.Banking;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ActionResponse.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+// The action response.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
+namespace Finances.Contract
+{
     /// <summary>
     /// The action response.
     /// </summary>

@@ -1,10 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Constants.cs" company="">
+// <copyright file="Constants.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
 // </copyright>
 // <summary>
 // The constants.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Finances.Contract
 {
     /// <summary>
@@ -12,6 +14,9 @@ namespace Finances.Contract
     /// </summary>
     public class Constants
     {
+        /// <summary>
+        /// The day format.
+        /// </summary>
         public const string DayFormat = "dd/MM/yyyy";
 
         /// <summary>
@@ -19,6 +24,9 @@ namespace Finances.Contract
         /// </summary>
         public const int DefaultListSelect = 10;
 
+        /// <summary>
+        /// The euro.
+        /// </summary>
         public const string Eur = "EUR";
 
         /// <summary>

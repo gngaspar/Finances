@@ -1,10 +1,20 @@
-﻿namespace Finances.Contract.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IBankController.cs" company="Gng">
+// Gng ggaspar@netcabo.pt
+// </copyright>
+// <summary>
+//   The BankController interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Banking
 {
     using System;
     using System.Threading.Tasks;
 
     /// <summary>
     /// The BankController interface.
+    /// Basic interface that exposes actions to be done in the Bank elements.
     /// </summary>
     public interface IBankController
     {
@@ -36,12 +46,12 @@
         /// <summary>
         /// The list.
         /// </summary>
-        /// <param name="request">
-        /// The request.
+        /// <param name="input">
+        /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<BankListResponse>> List(BankListRequest request);
+        Task<ActionResponse<BankListResponse>> List(BankListRequest input);
     }
 }

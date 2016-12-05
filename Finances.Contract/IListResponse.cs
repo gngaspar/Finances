@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IResponse.cs" company="GNG">
-//     The Response interface.
+// <copyright file="IListResponse.cs" company="GNG">
+// Gng ggaspar@netcabo.pt
 // </copyright>
 // <summary>
 // The Response interface.

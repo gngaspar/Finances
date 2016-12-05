@@ -63,7 +63,6 @@
     <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />
-    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResponse.cs" />
   </ItemGroup>
