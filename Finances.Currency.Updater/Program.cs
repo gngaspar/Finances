@@ -42,8 +42,16 @@
 
             Console.WriteLine($"{DateTime.Now} Sent to service");
             var doneOk = SendCurrenciesToUpdate(currencies);
+            if (doneOk.Result.HasError)
+            {
+                Console.WriteLine($"{DateTime.Now} response from service {doneOk.Result.ErrorMessage}");
+            }
+            else
+            {
+                Console.WriteLine($"{DateTime.Now} response from service {doneOk.Result.Results}");
+            }
+            
             Console.ReadKey();
-            Console.WriteLine($"{DateTime.Now} response from service {doneOk}");
         }
 
         private static async Task<ActionResponse<int>> SendCurrenciesToUpdate(List<CurrencyIn> currencies)
