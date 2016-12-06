@@ -12,5 +12,15 @@
         /// </summary>
         /// <value>The code.</value>
         public Guid Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the change at.
+        /// </summary>
+        public DateTime? ChangeAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created at.
+        /// </summary>
+        public DateTime? CreatedAt { get; set; }
     }
 }

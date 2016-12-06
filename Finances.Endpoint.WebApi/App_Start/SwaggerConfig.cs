@@ -183,13 +183,13 @@ namespace Finances.Endpoint.WebApi
                     {
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
-                        // "Logical Name" is passed to the method as shown below.
+                        // "Logical AnyName" is passed to the method as shown below.
                         //
                         //c.InjectStylesheet(containingAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testStyles1.css");
 
                         // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
                         // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
-                        // "Logical Name" is passed to the method as shown above.
+                        // "Logical AnyName" is passed to the method as shown above.
                         //
                         //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
 
@@ -219,7 +219,7 @@ namespace Finances.Endpoint.WebApi
                         // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
                         // It's typically used to instruct Swashbuckle to return your version instead of the default
                         // when a request is made for "index.html". As with all custom content, the file must be included
-                        // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
+                        // in your project as an "Embedded Resource", and then the resource's "Logical AnyName" is passed to
                         // the method as shown below.
                         //
                         //c.CustomAsset("index", containingAssembly, "YourWebApiProject.SwaggerExtensions.index.html");

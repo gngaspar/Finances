@@ -7,6 +7,9 @@
     using Finances.Domain;
     using Finances.Domain.Repository;
 
+    /// <summary>
+    /// The human service.
+    /// </summary>
     public class HumanService : IHumanService
     {
         /// <summary>
@@ -25,6 +28,24 @@
             this.humanRepository = humanRepository;
         }
 
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<Guid> Add(Guid code, HumanIn input)
         {
             if (code == null)
@@ -45,12 +66,6 @@
                 throw new Exception("User doesnt exist.");
             }
 
-            var exits = await this.humanRepository.Exist(code);
-            if (!exits)
-            {
-                throw new Exception("User person doesnt exist.");
-            }
-
             var newCode = Guid.NewGuid();
 
             var created = await this.humanRepository.Add(code, newCode, input);
@@ -58,16 +73,37 @@
             return created != 0 ? newCode : Guid.Empty;
         }
 
-        public async Task<bool> Edit(Guid code, Guid human, HumanIn input)
+        /// <summary>
+        /// The edit.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
+        public async Task<bool> Edit(Guid owner, Guid code, HumanIn input)
         {
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
             if (code == null)
             {
                 throw new ArgumentNullException(nameof(code));
-            }
-
-            if (human == null)
-            {
-                throw new ArgumentNullException(nameof(human));
             }
 
             if (input == null)
@@ -77,32 +113,47 @@
 
             //TODO: Add validations
 
-            var ownerExits = await this.humanRepository.ExistOwner(code);
+            var ownerExits = await this.humanRepository.ExistOwner(owner);
             if (!ownerExits)
             {
                 throw new Exception("User doesnt exist.");
             }
-
-
-            var exits = await this.humanRepository.Exist(code);
-            if (!exits)
-            {
-                throw new Exception("User person doesnt exist.");
-            }
-
-
-            var exitsHuman = await this.humanRepository.Exist(human);
-            if (!exits)
+           
+            var exitsHuman = await this.humanRepository.Exist(code);
+            if (!exitsHuman)
             {
                 throw new Exception("User to change doesnt exist.");
             }
 
+            var isOwner = await this.humanRepository.IsHeOwner(owner, code);
+            if (!isOwner)
+            {
+                throw new Exception("User is not owner.");
+            }
 
-            var changed = await this.humanRepository.Edit(code, human, input);
+            var changed = await this.humanRepository.Edit(code, input);
 
             return changed != 0;
         }
 
+        /// <summary>
+        /// The list.
+        /// </summary>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The argument null exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The exception.
+        /// </exception>
         public async Task<HumanListResponse> List(Guid code, HumanListRequest input)
         {
             if (code == null)
@@ -122,13 +173,7 @@
             {
                 throw new Exception("User doesnt exist.");
             }
-            
-            var exits = await this.humanRepository.Exist(code);
-            if (!exits)
-            {
-                throw new Exception("User person doesnt exist.");
-            }
-
+           
             return await this.humanRepository.List(code, input);
         }
     }

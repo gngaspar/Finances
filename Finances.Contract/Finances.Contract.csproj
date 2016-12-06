@@ -58,6 +58,7 @@
     <Compile Include="Common\InterestPayment.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Humans\HumanField.cs" />
+    <Compile Include="Humans\HumanFilter.cs" />
     <Compile Include="Humans\HumanIn.cs" />
     <Compile Include="Humans\HumanListRequest.cs" />
     <Compile Include="Humans\HumanListResponse.cs" />
