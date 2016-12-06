@@ -24,5 +24,10 @@
         /// </summary>
         /// <value>The surname.</value>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is archived.
+        /// </summary>
+        public bool IsArchived { get; set; }
     }
 }

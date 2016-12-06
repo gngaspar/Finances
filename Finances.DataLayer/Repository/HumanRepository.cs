@@ -150,10 +150,11 @@
                 Code = code,
                 Name = input.Name,
                 Surname = input.Surname,
-                Email = input.Email
+                Email = input.Email,
+                IsArchived = input.IsArchived
             };
 
-            this.context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Surname, p.Email, p.ChangeAt }, person);
+            this.context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Surname, p.Email, p.ChangeAt, p.IsArchived }, person);
 
             var myint = await this.context.SaveChangesAsync();
             return myint;
@@ -173,7 +174,7 @@
         /// </returns>
         public async Task<HumanListResponse> List(Guid owner, HumanListRequest input)
         {
-            IQueryable<PersonEntity> listQuery = this.context.Persons.Where(i => !i.IsMe && i.OwnerCode == owner);
+            IQueryable<PersonEntity> listQuery = this.context.Persons.Where(i => i.Code != owner && i.OwnerCode == owner && i.IsArchived == input.Filter.BringArchived);
 
             if (!string.IsNullOrEmpty(input.Filter.AnyName))
             {
@@ -197,14 +198,15 @@
                         .OrderByFieldPerson(orderType, input.Order.Field)
                         .Skip((input.Page - 1) * input.ItemsPerPage)
                         .Take(input.ItemsPerPage)
-                        .Select(order => new HumanOut
+                        .Select(personEntity => new HumanOut
                         {
-                            Code = order.Code,
-                            Name = order.Name,
-                            Email = order.Email,
-                            Surname = order.Surname,
-                            ChangeAt = order.ChangeAt,
-                            CreatedAt = order.CreatedAt
+                            Code = personEntity.Code,
+                            Name = personEntity.Name,
+                            Email = personEntity.Email,
+                            Surname = personEntity.Surname,
+                            ChangeAt = personEntity.ChangeAt,
+                            CreatedAt = personEntity.CreatedAt,
+                            IsArchived = personEntity.IsArchived
                         }).ToListAsync();
 
             var result = new HumanListResponse

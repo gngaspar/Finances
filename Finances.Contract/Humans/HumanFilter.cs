@@ -24,5 +24,10 @@
         /// Gets or sets a value indicating whether any name exact.
         /// </summary>
         public bool AnyNameExact { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether bring archived.
+        /// </summary>
+        public bool BringArchived { get; set; }
     }
 }
