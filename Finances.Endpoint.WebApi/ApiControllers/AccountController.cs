@@ -41,7 +41,7 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("{code:guid}/List")]
+        [Route("{owner:guid}/List")]
         public async Task<ActionResponse<AccountListResponse>> List(Guid owner, AccountListRequest input)
         {
             var result = new ActionResponse<AccountListResponse> { HasError = false };
