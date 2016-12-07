@@ -32,6 +32,10 @@
             this.Bind<IHumanService>().To<HumanService>();
             this.Bind<IHumanRepository>().To<HumanRepository>();
 
+
+            this.Bind<IAccountService>().To<AccountService>();
+            this.Bind<IAccountRepository>().To<AccountRepository>();
+
         }
 
         //protected Lazy<T> GetLazyProvider<T>(IKernel kernel)
