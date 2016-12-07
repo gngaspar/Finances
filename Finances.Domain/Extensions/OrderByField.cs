@@ -2,8 +2,11 @@
 {
     using System.Data.SqlClient;
     using System.Linq;
+
+    using Finances.Contract.Accounting;
     using Finances.Contract.Banking;
     using Finances.Contract.Humans;
+    using Finances.Domain.Accounting;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
 
@@ -110,6 +113,44 @@
                             break;
                     }
 
+                    break;
+            }
+
+            return entity;
+        }
+
+
+        public static IQueryable<AccountEntity> OrderByFieldAccount(this IQueryable<AccountEntity> entity, SortOrder order, AccountField orderByProperty)
+        {
+            switch (order)
+            {
+                case SortOrder.Ascending:
+
+                    switch (orderByProperty)
+                    {
+                        case AccountField.Description:
+                            entity = entity.OrderBy(x => x.Description);
+                            break;
+
+                        default:
+                            entity = entity.OrderBy(x => x.CreatedAt);
+                            break;
+                    }
+
+                    break;
+
+                case SortOrder.Descending:
+
+                    switch (orderByProperty)
+                    {
+                        case AccountField.Description:
+                            entity = entity.OrderByDescending(x => x.Description);
+                            break;
+
+                        default:
+                            entity = entity.OrderByDescending(x => x.CreatedAt);
+                            break;
+                    }
                     break;
             }
 
