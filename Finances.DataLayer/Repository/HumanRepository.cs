@@ -174,7 +174,7 @@
         /// </returns>
         public async Task<HumanListResponse> List(Guid owner, HumanListRequest input)
         {
-            IQueryable<PersonEntity> listQuery = this.context.Persons.Where(i => i.Code != owner && i.OwnerCode == owner && i.IsArchived == input.Filter.BringArchived);
+            IQueryable<PersonEntity> listQuery = this.context.Persons.Where(i => i.Code != owner && i.OwnerCode == owner && ((!input.Filter.BringArchived && !i.IsArchived) || input.Filter.BringArchived));
 
             if (!string.IsNullOrEmpty(input.Filter.AnyName))
             {

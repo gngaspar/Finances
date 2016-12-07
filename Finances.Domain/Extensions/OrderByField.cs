@@ -28,7 +28,12 @@
                         case BankField.Swift:
                             entity = entity.OrderBy(x => x.Swift);
                             break;
+
+                        default:
+                            entity = entity.OrderBy(x => x.CreatedAt);
+                            break;
                     }
+
                     break;
 
                 case SortOrder.Descending:
@@ -45,6 +50,10 @@
 
                         case BankField.Swift:
                             entity = entity.OrderByDescending(x => x.Swift);
+                            break;
+
+                        default:
+                            entity = entity.OrderByDescending(x => x.CreatedAt);
                             break;
                     }
                     break;
@@ -73,6 +82,10 @@
                         case HumanField.Surname:
                             entity = entity.OrderBy(x => x.Surname);
                             break;
+
+                        default:
+                            entity = entity.OrderBy(x => x.CreatedAt);
+                            break;
                     }
                     break;
 
@@ -91,7 +104,12 @@
                         case HumanField.Surname:
                             entity = entity.OrderByDescending(x => x.Surname);
                             break;
+
+                        default:
+                            entity = entity.OrderByDescending(x => x.CreatedAt);
+                            break;
                     }
+
                     break;
             }
 

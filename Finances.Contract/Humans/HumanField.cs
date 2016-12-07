@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finances.Contract.Humans
+﻿namespace Finances.Contract.Humans
 {
+    /// <summary>
+    /// The human field.
+    /// </summary>
     public enum HumanField
     {
+        /// <summary>
+        /// The None.
+        /// </summary>
+        None = 0,
+
         /// <summary>
         /// The name.
         /// </summary>

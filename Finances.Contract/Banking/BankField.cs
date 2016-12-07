@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BankField.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+//     Gng ggaspar@netcabo.pt
 // </copyright>
 // <summary>
 // The bank field.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Finances.Contract.Banking
 {
     /// <summary>
@@ -14,6 +13,11 @@ namespace Finances.Contract.Banking
     /// </summary>
     public enum BankField
     {
+        /// <summary>
+        /// The None.
+        /// </summary>
+        None = 0,
+
         /// <summary>
         /// The name.
         /// </summary>
