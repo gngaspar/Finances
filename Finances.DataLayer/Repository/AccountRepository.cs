@@ -52,19 +52,15 @@
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="holder">
-        /// The holder.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<AccountListResponse> List(Guid owner, Guid holder, AccountListRequest input)
+        public async Task<AccountListResponse> List(Guid owner, AccountListRequest input)
         {
             IQueryable<AccountEntity> listQuery = this.context.Accounts.Where(o => o.Owner == owner
-                        && o.Holder == holder
                         && o is CurrentAccountEntity 
                         && ((!input.Filter.BringArchived && !o.IsArchived) || input.Filter.BringArchived));
 

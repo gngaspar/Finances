@@ -57,7 +57,7 @@
 
             //TODO: Add validations
 
-            return await this.accountRepository.List(owner, owner, input);
+            return await this.accountRepository.List(owner, input);
         }
     }
 }

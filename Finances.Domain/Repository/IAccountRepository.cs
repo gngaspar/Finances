@@ -16,15 +16,12 @@
         /// <param name="owner">
         /// The owner of the portofolio.
         /// </param>
-        /// <param name="holder">
-        /// The holder of the account.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<AccountListResponse> List(Guid owner, Guid holder, AccountListRequest input);
+        Task<AccountListResponse> List(Guid owner, AccountListRequest input);
     }
 }
