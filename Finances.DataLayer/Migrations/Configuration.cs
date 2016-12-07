@@ -133,7 +133,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.ParseExact("01/02/2008", format, provider),
                 Holder = goncaloGuid,
                 Owner = goncaloGuid,
-                Bank = bankMontepioGuid
+                Bank = bankMontepioGuid,
+                IsArchived = false
             };
 
             var currentPlGoncaloGuid = Guid.Parse("28244669-e675-4f28-bfeb-3074eb556c40");
@@ -149,7 +150,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.ParseExact("04/10/2013", format, provider),
                 Holder = goncaloGuid,
                 Owner = goncaloGuid,
-                Bank = bankMilleniumGuid
+                Bank = bankMilleniumGuid,
+                IsArchived = false
             };
 
             var currentPlEuroGoncalo = new CurrentAccountEntity
@@ -163,7 +165,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.ParseExact("21/10/2013", format, provider),
                 Holder = goncaloGuid,
                 Owner = goncaloGuid,
-                Bank = bankMilleniumGuid
+                Bank = bankMilleniumGuid,
+                IsArchived = false
             };
 
             var currentGuiGuid = Guid.Parse("9D73C73A-7E1F-40A9-A52E-460010566B4F");
@@ -179,7 +182,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.ParseExact("01/01/2015", format, provider),
                 Holder = guiGuid,
                 Owner = goncaloGuid,
-                Bank = bankMontepioGuid
+                Bank = bankMontepioGuid,
+                IsArchived = false
             };
 
             var currentVasco = new CurrentAccountEntity
@@ -193,7 +197,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = vascoGuid,
                 Owner = goncaloGuid,
-                Bank = bankCaixaGuid
+                Bank = bankCaixaGuid,
+                IsArchived = false
             };
 
             var currentFilipa = new CurrentAccountEntity
@@ -207,7 +212,8 @@ namespace Finances.DataLayer.Migrations
                 StartDate = DateTime.Today.AddYears(-2),
                 Holder = filipaGuid,
                 Owner = goncaloGuid,
-                Bank = bankBcpGuid
+                Bank = bankBcpGuid,
+                IsArchived = false
             };
 
             var loanGoncalo = new LoanAccountEntity
@@ -226,7 +232,8 @@ namespace Finances.DataLayer.Migrations
                 InterestNetRate = 0.189m,
                 LoanEndDate = DateTime.ParseExact("28/07/2033", format, provider),
                 LoanInterestRate = 5.441m,
-                LoanRelatedAccount = currentGoncaloGuid
+                LoanRelatedAccount = currentGoncaloGuid,
+                IsArchived = false
             };
 
             var loan2Goncalo = new LoanAccountEntity
@@ -245,7 +252,8 @@ namespace Finances.DataLayer.Migrations
                 InterestNetRate = 3.298m,
                 LoanEndDate = DateTime.ParseExact("16/07/2033", format, provider),
                 LoanInterestRate = 4.328m,
-                LoanRelatedAccount = currentGoncaloGuid
+                LoanRelatedAccount = currentGoncaloGuid,
+                IsArchived = false
             };
 
             var savingGoncalo = new SavingAccountEntity
@@ -264,7 +272,8 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("03/08/2017", format, provider),
                 SavingInterestRate = 0.8m,
-                SavingRelatedAccount = currentGoncaloGuid
+                SavingRelatedAccount = currentGoncaloGuid,
+                IsArchived = false
             };
 
             var savingGui = new SavingAccountEntity
@@ -283,7 +292,8 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("08/07/2016", format, provider),
                 SavingInterestRate = 1.0m,
-                SavingRelatedAccount = currentGuiGuid
+                SavingRelatedAccount = currentGuiGuid,
+                IsArchived = false
             };
 
             var saving2Gui = new SavingAccountEntity
@@ -302,12 +312,13 @@ namespace Finances.DataLayer.Migrations
                 InterestPayment = InterestPayment.Yearly,
                 SavingEndDate = DateTime.ParseExact("13/11/2017", format, provider),
                 SavingInterestRate = 1.0m,
-                SavingRelatedAccount = currentGuiGuid
+                SavingRelatedAccount = currentGuiGuid,
+                IsArchived = false
             };
 
             context.SeedAddOrUpdate(
                 p => p.Code,
-                p => new { p.Description, p.Number, p.Iban, p.Amount, p.ChangeAt },
+                p => new { p.Description, p.Number, p.Iban, p.Amount, p.ChangeAt, p.IsArchived },
                currentGoncalo,
                currentGuilherme,
                currentVasco,
@@ -317,13 +328,13 @@ namespace Finances.DataLayer.Migrations
 
             context.SeedAddOrUpdate(
                 p => p.Code,
-                p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InicialAmount, p.InterestNetRate, p.LoanEndDate, p.LoanInterestRate, p.PremiumPercentage, p.LoanRelatedAccount },
+                p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InicialAmount, p.InterestNetRate, p.LoanEndDate, p.LoanInterestRate, p.PremiumPercentage, p.LoanRelatedAccount, p.IsArchived },
                loanGoncalo,
                loan2Goncalo);
 
             context.SeedAddOrUpdate(
                 p => p.Code,
-                p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InterestCapitalization, p.SavingEndDate, p.SavingInterestRate, p.SavingRelatedAccount },
+                p => new { p.Description, p.Number, p.Amount, p.ChangeAt, p.InterestCapitalization, p.SavingEndDate, p.SavingInterestRate, p.SavingRelatedAccount, p.IsArchived },
                savingGoncalo,
                savingGui,
                saving2Gui);
@@ -342,7 +353,8 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid,
                 Currency = Constants.Eur,
                 Holder = goncaloGuid,
-                Owner = goncaloGuid
+                Owner = goncaloGuid,
+                IsArchived = false
             };
 
             context.SeedAddOrUpdate(
@@ -361,7 +373,8 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMontepioGuid,
                 Currency = Constants.Eur,
                 Holder = goncaloGuid,
-                Owner = goncaloGuid
+                Owner = goncaloGuid,
+                IsArchived = false
             };
 
             var currentMille = new DebitCardEntity
@@ -375,12 +388,13 @@ namespace Finances.DataLayer.Migrations
                 Bank = bankMilleniumGuid,
                 Currency = "PLN",
                 Holder = goncaloGuid,
-                Owner = goncaloGuid
+                Owner = goncaloGuid,
+                IsArchived = false
             };
 
             context.SeedAddOrUpdate(
                 p => p.Code,
-                p => new { p.Description, p.Code, p.CardNumber, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt },
+                p => new { p.Description, p.Code, p.CardNumber, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt, p.IsArchived },
                currentMontepio,
                currentMille);
 
@@ -397,7 +411,8 @@ namespace Finances.DataLayer.Migrations
                 Holder = goncaloGuid,
                 Owner = goncaloGuid,
                 AvailableAmount = 500,
-                MaximumAmount = 500
+                MaximumAmount = 500,
+                IsArchived = false
             };
 
             var preMontepio = new PrePaidCardEntity
@@ -413,12 +428,13 @@ namespace Finances.DataLayer.Migrations
                 Holder = isildaGuid,
                 Owner = goncaloGuid,
                 AvailableAmount = 50,
-                MaximumAmount = 1500
+                MaximumAmount = 1500,
+                IsArchived = false
             };
 
             context.SeedAddOrUpdate(
                 p => p.Code,
-                p => new { p.Description, p.Code, p.CardNumber, p.AvailableAmount, p.MaximumAmount, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt },
+                p => new { p.Description, p.Code, p.CardNumber, p.AvailableAmount, p.MaximumAmount, p.Expire, p.Account, p.Bank, p.Currency, p.Holder, p.Owner, p.ChangeAt, p.IsArchived },
                preMontepio,
                preMille);
 

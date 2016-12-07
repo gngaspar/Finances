@@ -73,5 +73,11 @@
         /// </summary>
         /// <value><c>true</c> if this instance is mine; otherwise, <c>false</c>.</value>
         public bool IsMine => this.Holder == this.Owner;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is archived.
+        /// </summary>
+        /// <value><c>true</c> if this instance is archived; otherwise, <c>false</c>.</value>
+        public bool IsArchived { get; set; }
     }
 }

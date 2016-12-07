@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\IAccountController.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />
     <Compile Include="Banking\BankIn.cs" />
@@ -71,9 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResponse.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Accounting\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

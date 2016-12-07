@@ -23,6 +23,15 @@
         /// <returns></returns>
         Task<CurrencyListResponse> List();
 
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<int> Update(List<CurrencyIn> input);
     }
 }

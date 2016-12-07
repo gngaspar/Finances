@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountClient.cs" />
     <Compile Include="BankClient.cs" />
     <Compile Include="Common\ClientBase.cs" />
     <Compile Include="Common\IRestMessageContext.cs" />
