@@ -41,11 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounting\AccountField.cs" />
-    <Compile Include="Accounting\AccountItem.cs" />
+    <Compile Include="Accounting\Account.cs" />
     <Compile Include="Accounting\AccountListFilter.cs" />
     <Compile Include="Accounting\AccountListOrder.cs" />
     <Compile Include="Accounting\AccountListRequest.cs" />
     <Compile Include="Accounting\AccountListResponse.cs" />
+    <Compile Include="Accounting\AccountType.cs" />
     <Compile Include="Accounting\IAccountController.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />

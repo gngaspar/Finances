@@ -5,12 +5,12 @@
     /// <summary>
     /// The account list response.
     /// </summary>
-    public class AccountListResponse : IListResponse<AccountItem>
+    public class AccountListResponse : IListResponse<Account>
     {
         /// <summary>
         /// Gets or sets the data.
         /// </summary>
-        public List<AccountItem> Data { get; set; }
+        public List<Account> Data { get; set; }
 
         /// <summary>
         /// Gets or sets the number of items.

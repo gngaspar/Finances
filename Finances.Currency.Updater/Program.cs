@@ -56,15 +56,9 @@ namespace Finances.Currency.Updater
                 Console.WriteLine(ex.Message);
             }
 
-            Console.WriteLine($"{DateTime.Now} Got Currencies {currencies.Count}");
-
-            Console.WriteLine($"{DateTime.Now} Sent to service");
+            Console.WriteLine($"{DateTime.Now} Got Currencies {currencies.Count} Sent to service");
             var doneOk = SendCurrenciesToUpdate(currencies);
-            Console.WriteLine(
-                doneOk.Result.HasError
-                    ? $"{DateTime.Now} response from service {doneOk.Result.ErrorMessage}"
-                    : $"{DateTime.Now} response from service {doneOk.Result.Results}");
-
+            Console.WriteLine($"{DateTime.Now} response from service {(doneOk.Result.HasError ? doneOk.Result.ErrorMessage : doneOk.Result.Results.ToString())} ");
             Console.ReadKey();
         }
 
