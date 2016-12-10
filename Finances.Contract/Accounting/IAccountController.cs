@@ -21,5 +21,11 @@
         /// The <see cref="Task"/>.
         /// </returns>
         Task<ActionResponse<AccountListResponse>> List(Guid owner, AccountListRequest input);
+
+        Task<ActionResponse<Guid>> AddCurrentAccount(Guid owner, CurrentAccountIn input);
+
+        Task<ActionResponse<Guid>> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input);
+
+        Task<ActionResponse<Guid>> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input);
     }
 }

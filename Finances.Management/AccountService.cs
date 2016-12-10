@@ -59,5 +59,38 @@
 
             return await this.accountRepository.List(owner, input);
         }
+
+        public async Task<Guid> AddCurrentAccount(Guid owner, CurrentAccountIn input)
+        {
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
+            //TODO: Add validations
+
+
+            var currentGuid = Guid.NewGuid();
+
+            var result = await this.accountRepository.Add(owner, currentGuid, input);
+
+            return result != 0 ? currentGuid : Guid.Empty;
+
+        }
+
+        public Task<Guid> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Guid> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

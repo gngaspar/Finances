@@ -42,12 +42,19 @@
   <ItemGroup>
     <Compile Include="Accounting\AccountField.cs" />
     <Compile Include="Accounting\Account.cs" />
+    <Compile Include="Accounting\AccountInBase.cs" />
     <Compile Include="Accounting\AccountListFilter.cs" />
     <Compile Include="Accounting\AccountListOrder.cs" />
     <Compile Include="Accounting\AccountListRequest.cs" />
     <Compile Include="Accounting\AccountListResponse.cs" />
     <Compile Include="Accounting\AccountType.cs" />
+    <Compile Include="Accounting\CurrentAccountIn.cs" />
+    <Compile Include="Accounting\CurrentAccountOut.cs" />
     <Compile Include="Accounting\IAccountController.cs" />
+    <Compile Include="Accounting\LoanAccountIn.cs" />
+    <Compile Include="Accounting\LoanAccountOut.cs" />
+    <Compile Include="Accounting\SavingAccountIn.cs" />
+    <Compile Include="Accounting\SavingAccountOut.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />
     <Compile Include="Banking\BankIn.cs" />

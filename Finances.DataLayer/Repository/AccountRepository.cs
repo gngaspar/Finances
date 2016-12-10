@@ -38,6 +38,61 @@
             this.context = bankingDbContext;
         }
 
+        public async Task<int> Add(Guid owner, Guid code, CurrentAccountIn input)
+        {
+            var account = new CurrentAccountEntity
+            {
+                Code = code,
+                Owner = owner,
+                Holder = input.Holder,
+                IsArchived = input.IsArchived,
+                Bank = input.Bank,
+                Description = input.Description,
+                Amount = input.Amount,
+                Currency = input.Currency,
+                Iban = input.Iban,
+                Number = input.Number,
+                StartDate = input.StartDate
+            };
+
+            this.context.Accounts.Add(account);
+
+            foreach (var loan in input.Loans)
+            {
+                this.context.Accounts.Add(GetLoans(owner, code, Guid.NewGuid(), loan));
+            }
+
+            foreach (var saving in input.Savings)
+            {
+                this.context.Accounts.Add(GetSavings(owner, code, Guid.NewGuid(), saving));
+            }
+
+            var myint = await this.context.SaveChangesAsync();
+            return myint;
+        }
+
+        public async Task<int> Add(Guid owner, Guid currentAccount, Guid code, LoanAccountIn input)
+        {
+            var account = GetLoans(owner, currentAccount, code, input);
+
+            this.context.Accounts.Add(account);
+
+            var myint = await this.context.SaveChangesAsync();
+
+            return myint;
+        }
+
+        public async Task<int> Add(Guid owner, Guid currentAccount, Guid code, SavingAccountIn input)
+        {
+            var account = GetSavings(owner, currentAccount, code, input);
+
+            this.context.Accounts.Add(account);
+
+            var myint = await this.context.SaveChangesAsync();
+
+            return myint;
+        }
+
         /// <summary>
         /// The dispose.
         /// </summary>
@@ -49,15 +104,9 @@
         /// <summary>
         /// The list.
         /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="input">
-        /// The input.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
+        /// <param name="owner">The owner.</param>
+        /// <param name="input">The input.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
         public async Task<AccountListResponse> List(Guid owner, AccountListRequest input)
         {
             IQueryable<AccountEntity> listQuery = this.context.Accounts.Where(o => o.Owner == owner
@@ -94,8 +143,8 @@
             {
                 listQuery = listQuery.Where(x => x.Number.Contains(input.Filter.Number));
             }
-            
-            listQuery = listQuery.Where(x => 
+
+            listQuery = listQuery.Where(x =>
                 (input.Filter.Types.Contains(AccountType.CurrentAccount) && x is CurrentAccountEntity)
                 || (input.Filter.Types.Contains(AccountType.LoanAccount) && x is LoanAccountEntity)
                 || (input.Filter.Types.Contains(AccountType.SavingAccount) && x is SavingAccountEntity));
@@ -131,6 +180,52 @@
             };
 
             return result;
+        }
+
+        private static LoanAccountEntity GetLoans(Guid owner, Guid currentAccount, Guid code, LoanAccountIn input)
+        {
+            return new LoanAccountEntity
+            {
+                Code = code,
+                Owner = owner,
+                Holder = input.Holder,
+                IsArchived = input.IsArchived,
+                Bank = input.Bank,
+                Description = input.Description,
+                Amount = input.Amount,
+                Currency = input.Currency,
+                Number = input.Number,
+                StartDate = input.StartDate,
+                InicialAmount = input.InicialAmount,
+                InterestNetRate = input.InterestNetRate,
+                LoanInterestRate = input.LoanInterestRate,
+                LoanRelatedAccount = currentAccount,
+                PremiumPercentage = input.PremiumPercentage,
+                LoanEndDate = input.LoanEndDate
+            };
+        }
+
+        private static SavingAccountEntity GetSavings(Guid owner, Guid currentAccount, Guid code, SavingAccountIn input)
+        {
+            return new SavingAccountEntity
+            {
+                Code = code,
+                Owner = owner,
+                Holder = input.Holder,
+                IsArchived = input.IsArchived,
+                Bank = input.Bank,
+                Description = input.Description,
+                Amount = input.Amount,
+                Currency = input.Currency,
+                Number = input.Number,
+                StartDate = input.StartDate,
+                SavingRelatedAccount = currentAccount,
+                AutomaticRenovation = input.AutomaticRenovation,
+                InterestCapitalization = input.InterestCapitalization,
+                InterestPayment = input.InterestPayment,
+                SavingEndDate = input.SavingEndDate,
+                SavingInterestRate = input.SavingInterestRate
+            };
         }
     }
 }

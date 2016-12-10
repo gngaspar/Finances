@@ -57,5 +57,60 @@
 
             return result;
         }
+
+        [HttpPost]
+        [Route("{owner:guid}/AddCurrent")]
+        public async Task<ActionResponse<Guid>> AddCurrentAccount(Guid owner, CurrentAccountIn input)
+        {
+            var result = new ActionResponse<Guid> { HasError = false };
+            try
+            {
+                result.Results = await this.service.AddCurrentAccount(owner, input);
+            }
+            catch (Exception ex)
+            {
+                result.HasError = true;
+                result.ErrorMessage = ex.Message;
+            }
+
+            return result;
+        }
+
+        [HttpPost]
+        [Route("{owner:guid}/AddSaving/{currentAccount:guid}")]
+        public async Task<ActionResponse<Guid>> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
+        {
+            var result = new ActionResponse<Guid> { HasError = false };
+            try
+            {
+                result.Results = await this.service.AddSavingAccount(owner, currentAccount, input);
+            }
+            catch (Exception ex)
+            {
+                result.HasError = true;
+                result.ErrorMessage = ex.Message;
+            }
+
+            return result;
+        }
+
+
+        [HttpPost]
+        [Route("{owner:guid}/AddLoan/{currentAccount:guid}")]
+        public async Task<ActionResponse<Guid>> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
+        {
+            var result = new ActionResponse<Guid> { HasError = false };
+            try
+            {
+                result.Results = await this.service.AddLoanAccount(owner, currentAccount, input);
+            }
+            catch (Exception ex)
+            {
+                result.HasError = true;
+                result.ErrorMessage = ex.Message;
+            }
+
+            return result;
+        }
     }
 }
