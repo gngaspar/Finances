@@ -30,5 +30,15 @@
         Task<int> Add(Guid owner, Guid currentAccount, Guid code, LoanAccountIn input);
 
         Task<int> Add(Guid owner, Guid currentAccount, Guid code, SavingAccountIn input);
+
+        Task<CurrentAccountOut> GetCurrent(Guid account);
+
+        Task<LoanAccountOut> GetLoan(Guid account);
+
+        Task<SavingAccountOut> GetSaving(Guid account);
+
+        Task<bool> IsOwner(Guid owner, Guid account);
+
+
     }
 }

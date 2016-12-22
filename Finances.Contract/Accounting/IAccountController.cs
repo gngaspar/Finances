@@ -22,6 +22,12 @@
         /// </returns>
         Task<ActionResponse<AccountListResponse>> List(Guid owner, AccountListRequest input);
 
+        Task<ActionResponse<CurrentAccountOut>> GetCurrentAccount(Guid owner, Guid account);
+
+        Task<ActionResponse<LoanAccountOut>> GetLoanAccount(Guid owner, Guid account);
+
+        Task<ActionResponse<SavingAccountOut>> GetSavingAccount(Guid owner, Guid account);
+
         Task<ActionResponse<Guid>> AddCurrentAccount(Guid owner, CurrentAccountIn input);
 
         Task<ActionResponse<Guid>> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input);

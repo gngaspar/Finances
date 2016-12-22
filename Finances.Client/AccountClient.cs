@@ -19,6 +19,21 @@
             throw new NotImplementedException();
         }
 
+        public Task<ActionResponse<CurrentAccountOut>> GetCurrentAccount(Guid owner, Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResponse<LoanAccountOut>> GetLoanAccount(Guid owner, Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResponse<SavingAccountOut>> GetSavingAccount(Guid owner, Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ActionResponse<Guid>> AddCurrentAccount(Guid owner, CurrentAccountIn input)
         {
             throw new NotImplementedException();

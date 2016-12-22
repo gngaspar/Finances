@@ -83,14 +83,40 @@
 
         }
 
-        public Task<Guid> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
+        public async Task<Guid> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Guid> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
+        public async Task<Guid> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<LoanAccountOut> GetLoanDetails(Guid owner, Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SavingAccountOut> GetSavingDetails(Guid owner, Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<CurrentAccountOut> GetCurrentDetails(Guid owner, Guid account)
+        {
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
+            //TODO: Add validations
+
+            var current  = await this.accountRepository.GetCurrent(account);
+
+
+
+            return current;
         }
     }
 }

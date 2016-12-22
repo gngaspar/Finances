@@ -16,5 +16,11 @@
         Task<Guid> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input);
 
         Task<Guid> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input);
+
+        Task<LoanAccountOut> GetLoanDetails(Guid owner, Guid account);
+
+        Task<SavingAccountOut> GetSavingDetails(Guid owner, Guid account);
+
+        Task<CurrentAccountOut> GetCurrentDetails(Guid owner, Guid account);
     }
 }

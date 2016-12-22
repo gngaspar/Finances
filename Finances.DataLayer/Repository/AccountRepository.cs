@@ -93,6 +93,27 @@
             return myint;
         }
 
+        public Task<CurrentAccountOut> GetCurrent(Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<LoanAccountOut> GetLoan(Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SavingAccountOut> GetSaving(Guid account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> IsOwner(Guid owner, Guid account)
+        {
+            var exist = await this.context.Accounts.CountAsync(b => b.Code == account && b.Owner == owner);
+            return exist == 1;
+        }
+
         /// <summary>
         /// The dispose.
         /// </summary>
