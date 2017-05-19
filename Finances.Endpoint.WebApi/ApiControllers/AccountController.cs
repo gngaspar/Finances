@@ -1,8 +1,11 @@
 ﻿namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using System.Web.Http.Description;
 
     using Finances.Contract;
     using Finances.Contract.Accounting;
@@ -41,124 +44,18 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
+        [ResponseType( typeof( AccountListResponse ) )]
         [Route("{owner:guid}/List")]
-        public async Task<ActionResponse<AccountListResponse>> List(Guid owner, AccountListRequest input)
+        public async Task<HttpResponseMessage> List(Guid owner, AccountListRequest input)
         {
-            var result = new ActionResponse<AccountListResponse> { HasError = false };
             try
             {
-                result.Results = await this.service.List(owner, input);
+                return this.Request.CreateResponse( HttpStatusCode.OK, await this.service.List( owner, input ) );
             }
             catch (Exception ex)
             {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
+                return this.Request.CreateResponse( HttpStatusCode.InternalServerError, ex );
             }
-
-            return result;
-        }
-
-        public async Task<ActionResponse<CurrentAccountOut>> GetCurrentAccount(Guid owner, Guid account)
-        {
-            var result = new ActionResponse<CurrentAccountOut> { HasError = false };
-            try
-            {
-                result.Results = await this.service.GetCurrentDetails(owner, account);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
-        }
-
-        public async Task<ActionResponse<LoanAccountOut>> GetLoanAccount(Guid owner, Guid account)
-        {
-            var result = new ActionResponse<LoanAccountOut> { HasError = false };
-            try
-            {
-                result.Results = await this.service.GetLoanDetails(owner, account);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
-        }
-
-        public async Task<ActionResponse<SavingAccountOut>> GetSavingAccount(Guid owner, Guid account)
-        {
-            var result = new ActionResponse<SavingAccountOut> { HasError = false };
-            try
-            {
-                result.Results = await this.service.GetSavingDetails(owner, account);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
-        }
-
-        [HttpPost]
-        [Route("{owner:guid}/AddCurrent")]
-        public async Task<ActionResponse<Guid>> AddCurrentAccount(Guid owner, CurrentAccountIn input)
-        {
-            var result = new ActionResponse<Guid> { HasError = false };
-            try
-            {
-                result.Results = await this.service.AddCurrentAccount(owner, input);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
-        }
-
-        [HttpPost]
-        [Route("{owner:guid}/AddSaving/{currentAccount:guid}")]
-        public async Task<ActionResponse<Guid>> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
-        {
-            var result = new ActionResponse<Guid> { HasError = false };
-            try
-            {
-                result.Results = await this.service.AddSavingAccount(owner, currentAccount, input);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
-        }
-
-
-        [HttpPost]
-        [Route("{owner:guid}/AddLoan/{currentAccount:guid}")]
-        public async Task<ActionResponse<Guid>> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
-        {
-            var result = new ActionResponse<Guid> { HasError = false };
-            try
-            {
-                result.Results = await this.service.AddLoanAccount(owner, currentAccount, input);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
         }
     }
 }
