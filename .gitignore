@@ -70,3 +70,5 @@ bin
 /Finances.Endpoint.WebApi/obj/Release
 /Finances.Management/obj/Release
 /Finances.Migrations/obj/Release
+/Finances.NUnit.Regt/obj/Debug
+/Finances.NUnit.Tests/obj/Debug
