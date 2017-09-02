@@ -43,13 +43,13 @@
                     {
                         try
                         {
-                            string path = @"C:\Git\Logs";
+                            string path = @"C:\Logs";
                             if (!Directory.Exists(path))
                             {
                                 Directory.CreateDirectory(path);
                             }
 
-                            File.AppendAllText($"{path}\\DBLog.txt", s);
+                            File.AppendAllText($"{path}\\BankingLog.txt", s);
                         }
                         catch (Exception)
                         {

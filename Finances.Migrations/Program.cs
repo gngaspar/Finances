@@ -34,13 +34,13 @@
             Console.WriteLine($"{DateTime.Now} Starting File Writing");
             try
             {
-                string path = @"C:\Git\Logs";
+                string path = @"C:\Logs";
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
                 }
 
-                File.WriteAllText(@"C:\Git\Logs\BankingScript.sql", script);
+                File.WriteAllText(@"C:\Logs\BankingScript.sql", script);
             }
             catch (Exception ex)
             {

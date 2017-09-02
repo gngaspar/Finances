@@ -1,6 +1,7 @@
 ﻿namespace Finances.Client
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     using Finances.Client.Common;
@@ -14,10 +15,6 @@
         {
         }
 
-        public Task<ActionResponse<AccountListResponse>> List(Guid owner, AccountListRequest input)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<ActionResponse<CurrentAccountOut>> GetCurrentAccount(Guid owner, Guid account)
         {
@@ -45,6 +42,11 @@
         }
 
         public Task<ActionResponse<Guid>> AddLoanAccount(Guid owner, Guid currentAccount, LoanAccountIn input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HttpResponseMessage> List(Guid owner, AccountListRequest input)
         {
             throw new NotImplementedException();
         }
