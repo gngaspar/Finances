@@ -72,3 +72,4 @@ bin
 /Finances.Migrations/obj/Release
 /Finances.NUnit.Regt/obj/Debug
 /Finances.NUnit.Tests/obj/Debug
+/Finances.NUnit.Regression/obj/Debug

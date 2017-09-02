@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BFFDB773
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.NUnit.Tests", "Finances.NUnit.Tests\Finances.NUnit.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.NUnit.Regression", "Finances.NUnit.Regt\Finances.NUnit.Regression.csproj", "{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.NUnit.Regression", "Finances.NUnit.Regression\Finances.NUnit.Regression.csproj", "{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
