@@ -1,62 +1,42 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Product App</title>
+    <title>Banking App</title>
 </head>
 <body>
-
     <div>
-        <h2>All Products</h2>
-        <ul id="products" />
+        <h2>Search by Name</h2>
+        <input type="text" id="bankInput" size="5" />
+        <input type="button" id="bankSearch" name="Search" value="Search" onclick="find();" />
+        <p id="banks" />
     </div>
-    <div>
-        <h2>Search by ID</h2>
-        <input type="text" id="prodId" size="5" />
-        <input type="button" value="Search" onclick="find();" />
-        <p id="product" />
-    </div>
-
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/jquery-3.1.1.js"></script>
     <script>
         var uri = 'bank/list';
-
-        $(document).ready(function () {
-            $(document).ready(function () {
-
-                $.ajax({
-                    type: "POST",
-                    url: uri,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: successFunc,
-                    error: errorFunc
-                });
-
-                function successFunc(data, status) {
-                    $.each(data.Data, function (key, item) {
-                        // Add a list item for the product.
-                        $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-                    });
-                }
-
-                function errorFunc() {
-                    alert('error');
-                }
-            });
-        });
-
-        function formatItem(item) {
-            return item.Name + ': code' + item.Code;
-        }
-
         function find() {
-            var id = $('#prodId').val();
-            $.getJSON(uri + '/' + id)
+            var id = $('#bankInput').val();
+
+            var obj = {
+                ItemsPerPage: 10,
+                Page: 1,
+                Filter: {
+                    Name: id,
+                    NameExact: false,
+                },
+                Order: {
+                    Field: 0,
+                    IsDesc: true
+                }
+            };
+
+            $.post(uri, obj)
                 .done(function (data) {
-                    $('#product').text(formatItem(data));
+                    $.each(data.Results.Data, function (index, order) {
+                        $('#banks').append('<span>' + order.Name + '</span>');
+                    });
                 })
                 .fail(function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#banks').text('Error: ' + err);
                 });
         }
     </script>
