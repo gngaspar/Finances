@@ -7,24 +7,27 @@
     <div>
         <h2>Search by Name</h2>
         <input type="text" id="bankInput" size="5" />
+        <input type="checkbox" id="bankExact" />
         <input type="button" id="bankSearch" name="Search" value="Search" onclick="find();" />
-        <p id="banks" />
+        <ul id="banks"></ul>
     </div>
     <script src="Scripts/jquery-3.1.1.js"></script>
     <script>
         var uri = 'bank/list';
+        
         function find() {
-            var id = $('#bankInput').val();
+            var text = $('#bankInput').val();
+            var checked = $('#bankExact').is(":checked");
 
             var obj = {
                 ItemsPerPage: 10,
                 Page: 1,
                 Filter: {
-                    Name: id,
-                    NameExact: false,
+                    Name: text,
+                    NameExact: checked,
                 },
                 Order: {
-                    Field: 0,
+                    Field: "None",
                     IsDesc: true
                 }
             };
@@ -32,7 +35,7 @@
             $.post(uri, obj)
                 .done(function (data) {
                     $.each(data.Results.Data, function (index, order) {
-                        $('#banks').append('<span>' + order.Name + '</span>');
+                        $('#banks').append('<li>' + order.Name + '</li>');
                     });
                 })
                 .fail(function (jqXHR, textStatus, err) {
