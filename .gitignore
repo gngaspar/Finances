@@ -74,3 +74,4 @@ bin
 /Finances.NUnit.Tests/obj/Debug
 /Finances.NUnit.Regression/obj/Debug
 /.vs
+/Finances.sln.DotSettings.user
