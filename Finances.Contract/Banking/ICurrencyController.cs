@@ -32,11 +32,11 @@ namespace Finances.Contract.Banking
         /// <summary>
         /// The convert.
         /// </summary>
-        /// <param name="toCurrency">
-        /// The to currency.
-        /// </param>
         /// <param name="fromCurrency">
         /// The from currency.
+        /// </param>
+        /// <param name="toCurrency">
+        /// The to currency.
         /// </param>
         /// <param name="amount">
         /// The amount.
@@ -44,7 +44,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount);
+        Task<HttpResponseMessage> ConvertString(string fromCurrency, string toCurrency, decimal amount);
 
         /// <summary>
         /// The list.
@@ -63,6 +63,6 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<int>> Update(List<CurrencyIn> input);
+        Task<HttpResponseMessage> Update(List<CurrencyIn> input);
     }
 }

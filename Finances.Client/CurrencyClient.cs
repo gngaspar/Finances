@@ -42,7 +42,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount)
+        public Task<HttpResponseMessage> ConvertString(string fromCurrency, string toCurrency, decimal amount)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +52,7 @@
             throw new NotImplementedException();
         }
 
-        Task<ActionResponse<int>> ICurrencyController.Update(List<CurrencyIn> input)
+        Task<HttpResponseMessage> ICurrencyController.Update(List<CurrencyIn> input)
         {
             throw new NotImplementedException();
         }

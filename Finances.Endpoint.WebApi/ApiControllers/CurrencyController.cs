@@ -66,12 +66,12 @@
 
         /// <summary>
         /// The convert.
-        /// </summary>
-        /// <param name="toCurrency">
-        /// The to currency.
-        /// </param>
+        /// </summary>  
         /// <param name="fromCurrency">
         /// The from currency.
+        /// </param>
+        /// <param name="toCurrency">
+        /// The to currency.
         /// </param>
         /// <param name="amount">
         /// The amount.
@@ -80,9 +80,9 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("Convert/{toCurrency}/{fromCurrency}/{amount}")]
+        [Route("Convert/{fromCurrency}/{toCurrency}/{amount}")]
         [ResponseType(typeof(ActionResponse<decimal>))]
-        public async Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount)
+        public async Task<HttpResponseMessage> ConvertString(string fromCurrency, string toCurrency, decimal amount)
         {
             var request = new ConvertRequest { Amount = amount, FromCurrency = fromCurrency, ToCurrency = toCurrency };
 
@@ -127,8 +127,10 @@
         /// </returns>
         [HttpPost]
         [Route("Update")]
-        public async Task<ActionResponse<int>> Update(List<CurrencyIn> input)
+        [ResponseType(typeof(ActionResponse<int>))]
+        public async Task<HttpResponseMessage> Update(List<CurrencyIn> input)
         {
+            var stataus = HttpStatusCode.OK;
             var result = new ActionResponse<int> { HasError = false };
             try
             {
@@ -136,11 +138,12 @@
             }
             catch (Exception ex)
             {
+                stataus = HttpStatusCode.InternalServerError;
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;
             }
 
-            return result;
+            return this.Request.CreateResponse(stataus, result);
         }
     }
 }

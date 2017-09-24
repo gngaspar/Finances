@@ -3,12 +3,13 @@
     using global::NUnit.Framework;
 
     [TestFixture()]
-    public class CurrencyControllerTests
+    public class CurrencyControllerTests : BaseTest
     {
         [Test()]
         public void ConvertStringTest()
         {
-            Assert.Fail();
+            var controller = this.GetCurrencyController();
+            //var result = await controller.ConvertString("EUR", "PLN", 10);
         }
     }
 }

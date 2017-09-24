@@ -1,8 +1,11 @@
 ﻿namespace Finances.NUnit.Tests
 {
+    using Finances.Domain;
     using Finances.Domain.Repository;
+    using Finances.Endpoint.WebApi.ApiControllers;
     using Finances.Management;
     using Finances.NUnit.Tests.Mocks;
+    using Finances.NUnit.Tests.Mocks.Controller;
 
     /// <summary>
     /// The base test.
@@ -28,9 +31,14 @@
         public ServiceProxyMock ServiceProxy => this.serviceProxy ?? (this.serviceProxy = MockHelper.MockServiceProxy());
 
 
-        public CurrencyService GetCurrencyService()
+        public ICurrencyService GetCurrencyService()
         {
             return new CurrencyService(this.ServiceProxy.GetMock<ICurrencyRepository>().Object);
+        }
+
+        public CurrencyController GetCurrencyController()
+        {
+            return new CurrencyController(this.GetCurrencyService());
         }
     }
 }
