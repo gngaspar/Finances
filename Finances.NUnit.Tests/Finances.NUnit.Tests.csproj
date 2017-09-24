@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Finances.NUnit.Tests</RootNamespace>
     <AssemblyName>Finances.NUnit.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -45,11 +45,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrencyServiceTests.cs" />
+    <Compile Include="Currency\CurrencyControllerTests.cs" />
+    <Compile Include="Currency\CurrencyServiceTests.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\Finances.Domain\Finances.Domain.csproj">
       <Project>{27c511f1-af79-4367-9ac1-e2628dbad00a}</Project>
       <Name>Finances.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Finances.Endpoint.WebApi\Finances.Endpoint.WebApi.csproj">
+      <Project>{DEFC7AFE-284C-49EF-879B-BE13D01AA0A7}</Project>
+      <Name>Finances.Endpoint.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Finances.Management\Finances.Management.csproj">
       <Project>{5031ac9e-5a83-4029-9941-a02f43267f9b}</Project>
