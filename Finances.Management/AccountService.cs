@@ -55,11 +55,25 @@
                 throw new ArgumentNullException(nameof(input));
             }
 
-            //TODO: Add validations
-
+            // TODO: Add validations
             return await this.accountRepository.List(owner, input);
         }
 
+        /// <summary>
+        /// The add current account.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The Argument Null Exception.
+        /// </exception>
         public async Task<Guid> AddCurrentAccount(Guid owner, CurrentAccountIn input)
         {
             if (owner == null)
@@ -72,17 +86,32 @@
                 throw new ArgumentNullException(nameof(input));
             }
 
-            //TODO: Add validations
-
-
+            // TODO: Add validations
             var currentGuid = Guid.NewGuid();
 
             var result = await this.accountRepository.Add(owner, currentGuid, input);
 
             return result != 0 ? currentGuid : Guid.Empty;
-
         }
 
+        /// <summary>
+        /// The add saving account.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="NotImplementedException">
+        /// The Argument Null Exception.
+        /// </exception>
         public async Task<Guid> AddSavingAccount(Guid owner, Guid currentAccount, SavingAccountIn input)
         {
             throw new NotImplementedException();

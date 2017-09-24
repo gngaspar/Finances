@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using System.Web.Http.Description;
 
     using Finances.Contract;
     using Finances.Contract.Banking;
@@ -42,8 +45,10 @@
         /// </returns>
         [HttpPost]
         [Route("Convert")]
-        public async Task<ActionResponse<decimal>> Convert(ConvertRequest convert)
+        [ResponseType(typeof(ActionResponse<decimal>))]
+        public async Task<HttpResponseMessage> Convert(ConvertRequest convert)
         {
+            var stataus = HttpStatusCode.OK;
             var result = new ActionResponse<decimal> { HasError = false };
             try
             {
@@ -51,11 +56,37 @@
             }
             catch (Exception ex)
             {
+                stataus = HttpStatusCode.InternalServerError;
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;
             }
 
-            return result;
+            return this.Request.CreateResponse(stataus, result);
+        }
+
+        /// <summary>
+        /// The convert.
+        /// </summary>
+        /// <param name="toCurrency">
+        /// The to currency.
+        /// </param>
+        /// <param name="fromCurrency">
+        /// The from currency.
+        /// </param>
+        /// <param name="amount">
+        /// The amount.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route("Convert/{toCurrency}/{fromCurrency}/{amount}")]
+        [ResponseType(typeof(ActionResponse<decimal>))]
+        public async Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount)
+        {
+            var request = new ConvertRequest { Amount = amount, FromCurrency = fromCurrency, ToCurrency = toCurrency };
+
+            return await this.Convert(request);
         }
 
         /// <summary>
@@ -66,8 +97,10 @@
         /// </returns>
         [HttpPost]
         [Route("List")]
-        public async Task<ActionResponse<CurrencyListResponse>> List()
+        [ResponseType(typeof(ActionResponse<CurrencyListResponse>))]
+        public async Task<HttpResponseMessage> List()
         {
+            var stataus = HttpStatusCode.OK;
             var result = new ActionResponse<CurrencyListResponse> { HasError = false };
             try
             {
@@ -75,11 +108,12 @@
             }
             catch (Exception ex)
             {
+                stataus = HttpStatusCode.InternalServerError;
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;
             }
 
-            return result;
+            return this.Request.CreateResponse(stataus, result);
         }
 
         /// <summary>

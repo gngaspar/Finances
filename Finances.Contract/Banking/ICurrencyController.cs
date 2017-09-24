@@ -10,6 +10,7 @@
 namespace Finances.Contract.Banking
 {
     using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -26,7 +27,24 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<decimal>> Convert(ConvertRequest input);
+        Task<HttpResponseMessage> Convert(ConvertRequest input);
+
+        /// <summary>
+        /// The convert.
+        /// </summary>
+        /// <param name="toCurrency">
+        /// The to currency.
+        /// </param>
+        /// <param name="fromCurrency">
+        /// The from currency.
+        /// </param>
+        /// <param name="amount">
+        /// The amount.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount);
 
         /// <summary>
         /// The list.
@@ -34,7 +52,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<CurrencyListResponse>> List();
+        Task<HttpResponseMessage> List();
 
         /// <summary>
         /// The update.

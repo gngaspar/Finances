@@ -37,12 +37,17 @@
         ////    return await this.ExecuteSender<List<CurrencyIn>, ActionResponse>(input, context);
         ////}
 
-        Task<ActionResponse<decimal>> ICurrencyController.Convert(ConvertRequest convert)
+        public Task<HttpResponseMessage> Convert(ConvertRequest convert)
         {
             throw new NotImplementedException();
         }
 
-        Task<ActionResponse<CurrencyListResponse>> ICurrencyController.List()
+        public Task<HttpResponseMessage> ConvertString(string toCurrency, string fromCurrency, decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<HttpResponseMessage> ICurrencyController.List()
         {
             throw new NotImplementedException();
         }

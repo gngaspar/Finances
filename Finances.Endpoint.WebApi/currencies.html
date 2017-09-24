@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Banking App</title>
+</head>
+<body>
+    <div>
+        <h2>Currencies</h2>
+        <input type="button" id="bankCurrencies" name="Search" value="Search" onclick="find();" />
+        <ul id="currencies"></ul>
+    </div>
+    <script src="Scripts/jquery-3.1.1.js"></script>
+    <script>
+        var uri = 'Currency/List';
+        
+        function find() {
+
+            $.post(uri)
+                .done(function (data) {
+                    $.each(data.Results.Data, function (index, order) {
+                        $('#currencies').append('<li>' + order.Name + '-' + order.ReasonToOneEuro + '</li>');
+                    });
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#currencies').text('Error: ' + err);
+                });
+        }
+    </script>
+</body>
+</html>

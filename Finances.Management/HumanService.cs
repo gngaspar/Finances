@@ -58,8 +58,7 @@
                 throw new ArgumentNullException(nameof(input));
             }
 
-            //TODO: Add validations
-
+            // TODO: Add validations
             var ownerExits = await this.humanRepository.ExistOwner(code);
             if (!ownerExits)
             {

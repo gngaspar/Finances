@@ -62,7 +62,7 @@ namespace Finances.Management
 
             var result = await this.bankRepository.Add(code, bank);
 
-            return result != 0 ? code : Guid.Empty ;
+            return result != 0 ? code : Guid.Empty;
         }
 
         /// <summary>
@@ -142,8 +142,7 @@ namespace Finances.Management
             {
                 throw new ArgumentNullException(nameof(request.Order));
             }
-
-
+            
             return await this.bankRepository.List(request);
         }
 
