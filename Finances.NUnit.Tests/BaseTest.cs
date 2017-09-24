@@ -1,19 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finances.NUnit.Tests
+﻿namespace Finances.NUnit.Tests
 {
     using Finances.Domain.Repository;
+    using Finances.Management;
+    using Finances.NUnit.Tests.Mocks;
 
-    using Moq;
-
+    /// <summary>
+    /// The base test.
+    /// </summary>
     public class BaseTest
     {
-        private MockRepository mockRepository;
+        /// <summary>
+        /// The service proxy.
+        /// </summary>
+        private ServiceProxyMock serviceProxy;
 
-        private Mock<ICurrencyRepository> mockCurrencyRepository;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseTest"/> class.
+        /// </summary>
+        public BaseTest()
+        {
+            this.serviceProxy = MockHelper.MockServiceProxy();
+        }
+
+        /// <summary>
+        /// Gets the service proxy.
+        /// </summary>
+        public ServiceProxyMock ServiceProxy => this.serviceProxy ?? (this.serviceProxy = MockHelper.MockServiceProxy());
+
+
+        public CurrencyService GetCurrencyService()
+        {
+            return new CurrencyService(this.ServiceProxy.GetMock<ICurrencyRepository>().Object);
+        }
     }
 }

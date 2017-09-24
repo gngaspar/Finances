@@ -52,6 +52,12 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="Currency\CurrencyControllerTests.cs" />
     <Compile Include="Currency\CurrencyServiceTests.cs" />
+    <Compile Include="Mocks\BaseMock.cs" />
+    <Compile Include="Mocks\IMock.cs" />
+    <Compile Include="Mocks\IServiceProxy.cs" />
+    <Compile Include="Mocks\MockHelper.cs" />
+    <Compile Include="Mocks\ServiceProxyMock.cs" />
+    <Compile Include="Mocks\Repository\MockCurrencyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +93,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mock\" />
+    <Folder Include="Mocks\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
