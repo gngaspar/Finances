@@ -39,8 +39,24 @@
                               Name = "Zlote",
                               ReasonToOneEuro = 4.2m
                           };
+            var dollar = new CurrencyOut
+                          {
+                              ChangeAt = DateTime.MinValue,
+                              Code = "USD",
+                              Name = "Dollar",
+                              ReasonToOneEuro = 1.2m
+                          };
+            var tango = new CurrencyOut
+                             {
+                                 ChangeAt = DateTime.MinValue,
+                                 Code = "TNG",
+                                 Name = "Same like Euro",
+                                 ReasonToOneEuro = 0
+                             };
             list.Add(euro);
             list.Add(pln);
+            list.Add(dollar);
+            list.Add(tango);
             output.Data = list;
             output.NumberOfItems = list.Count;
             

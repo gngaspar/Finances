@@ -1,8 +1,10 @@
 ﻿namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using System.Web.Http.Description;
 
     using Finances.Contract;
     using Finances.Contract.Banking;
@@ -12,48 +14,53 @@
     /// The Controller for banking
     /// </summary>
     [RoutePrefix("Bank")]
-    public class BankController : ApiController, IBankController
+    public class BankController : BaseController, IBankController
     {
-        private readonly IBankService _bankService;
+        /// <summary>
+        /// The bank service.
+        /// </summary>
+        private readonly IBankService bankService;
 
         /// <summary>
-        /// The contructor for Ninject
+        /// Initializes a new instance of the <see cref="BankController"/> class.
         /// </summary>
-        /// <param name="bankService">The Banking Service interface</param>
+        /// <param name="bankService">
+        /// The bank service.
+        /// </param>
         public BankController(IBankService bankService)
         {
-            this._bankService = bankService;
+            this.bankService = bankService;
         }
 
         /// <summary>
-        /// Adds the specified bank.
+        /// The add.
         /// </summary>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<ActionResponse<Guid>> Add(BankIn bank)
+        [ResponseType(typeof(ActionResponse<Guid>))]
+        public async Task<HttpResponseMessage> Add(BankIn bank)
         {
-            var response = new ActionResponse<Guid> { HasError = false };
-            try
-            {
-                response.Results = await this._bankService.Add(bank);
-            }
-            catch (Exception ex)
-            {
-                response.HasError = true;
-                response.ErrorMessage = ex.Message;
-            }
-
-            return response;
+            return await this.ProcessActionAsync(bank, this.bankService.Add);
         }
 
         /// <summary>
-        /// Edits the specified bank.
+        /// The edit.
         /// </summary>
-        /// <param name="code">The code.</param>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("{code:guid}/Edit")]
         public async Task<ActionResponse<bool>> Edit(Guid code, BankIn bank)
@@ -61,7 +68,7 @@
             var response = new ActionResponse<bool> { HasError = false, Results = false };
             try
             {
-                response.Results = await this._bankService.Edit(code, bank);
+                response.Results = await this.bankService.Edit(code, bank);
             }
             catch (Exception ex)
             {
@@ -73,26 +80,20 @@
         }
 
         /// <summary>
-        /// Lists the specified request.
+        /// The list.
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route("List")]
-        public async Task<ActionResponse<BankListResponse>> List(BankListRequest request)
+        [ResponseType(typeof(ActionResponse<BankListResponse>))]
+        public async Task<HttpResponseMessage> List(BankListRequest request)
         {
-            var response = new ActionResponse<BankListResponse> { HasError = false };
-            try
-            {
-                response.Results = await this._bankService.List(request);
-            }
-            catch (Exception ex)
-            {
-                response.HasError = true;
-                response.ErrorMessage = ex.Message;
-            }
-
-            return response;
+            return await this.ProcessActionAsync(request, this.bankService.List);
         }
     }
 }

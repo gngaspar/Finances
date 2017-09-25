@@ -4,17 +4,19 @@ namespace Finances.NUnit.Tests.Currency
     using System.Threading.Tasks;
 
     using Finances.Contract.Banking;
-    using Finances.Domain.Repository;
-    using Finances.Management;
+    using Finances.Domain;
 
     using global::NUnit.Framework;
 
     [TestFixture]
     public class CurrencyServiceTests : BaseTest
     {
+        private ICurrencyService service;
+
         [SetUp]
         public void TestInitialize()
         {
+            this.service = this.GetCurrencyService();
         }
 
         [TearDown]
@@ -23,26 +25,52 @@ namespace Finances.NUnit.Tests.Currency
         }
 
         [Test]
-        public void ConvertShouldReturnConvertedValue()
+        [TestCase("EUR", "PLN", 10, 42)]
+        [TestCase("PLN", "USD", 10, 2.85714285714286)]
+        [TestCase("PLN", "EUR", 8.4, 2)]
+        [TestCase("TNG", "EUR", 10, 10)]
+        public void ConvertShouldReturnConvertedValue(string from, string to, decimal amount, decimal expected)
         {
-            var service = this.GetCurrencyService();
-            var input = new ConvertRequest { Amount = 10, FromCurrency = "EUR", ToCurrency = "PLN" };
+            var input = new ConvertRequest { Amount = amount, FromCurrency = from, ToCurrency = to };
 
-            var result = service.Convert(input);
-            Assert.NotNull(result);
-            Assert.NotNull(result.Result);
-            Assert.IsTrue(result.Status == TaskStatus.RanToCompletion);
-            Assert.AreEqual(result.Result, 42m);
+            var result = this.service.Convert(input);
+
+            Assert.Multiple(() =>
+                {
+                    Assert.NotNull(result);
+                    Assert.NotNull(result.Result);
+                    Assert.IsTrue(result.Status == TaskStatus.RanToCompletion);
+                    Assert.AreEqual(Math.Round(expected, 6, MidpointRounding.ToEven), Math.Round(result.Result, 6, MidpointRounding.ToEven));
+                });
         }
 
         [Test]
-        public void ConvertToTheSameCurrency()
+        [TestCase("EUR", "EUR", 10)]
+        [TestCase("EURO", "PLN", 10)]
+        [TestCase("EUR", "PLNX", 10)]
+        [TestCase("EUR", "PLN", 0)]
+        [TestCase("", "PLN", 10)]
+        [TestCase("EUR", "", 10)]
+        public void ConvertShouldCrash(string from, string to, decimal amount)
         {
-            var service = this.GetCurrencyService();
-            var input = new ConvertRequest { Amount = 10, FromCurrency = "EUR", ToCurrency = "EUR" };
-            var result = service.Convert(input);
-            Assert.IsTrue(result.Status == TaskStatus.Faulted);
-            Assert.IsTrue(result.Exception != null);
+            var input = new ConvertRequest { Amount = amount, FromCurrency = from, ToCurrency = to };
+            var result = this.service.Convert(input);
+            Assert.Multiple(() =>
+                    {
+                        Assert.IsTrue(result.Status == TaskStatus.Faulted);
+                        Assert.IsTrue(result.Exception != null);
+                    });
+        }
+
+        [Test]
+        public void ConvertShouldCrashNull()
+        {
+            var result = this.service.Convert(null);
+            Assert.Multiple(() =>
+                {
+                    Assert.IsTrue(result.Status == TaskStatus.Faulted);
+                    Assert.IsTrue(result.Exception != null);
+                });
         }
     }
 }

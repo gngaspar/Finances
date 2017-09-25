@@ -1,6 +1,7 @@
 ﻿namespace Finances.Client
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using Finances.Client.Common;
     using Finances.Contract;
@@ -12,17 +13,17 @@
         {
         }
 
-        //public Task<BankListResponse> Bankist()
-        //{
-        //    var context = CreateContextXml();
+        ////public Task<BankListResponse> Bankist()
+        ////{
+        ////    var context = CreateContextXml();
 
-        // context.HttpMethod = HttpMethod.Post; context.ServiceMethod = ServiceMethod.List;
-        // //context.UrlPath = UrlPrefix + string.Format("/{0}/List", userId);
+        //// context.HttpMethod = HttpMethod.Post; context.ServiceMethod = ServiceMethod.List;
+        //// //context.UrlPath = UrlPrefix + string.Format("/{0}/List", userId);
 
-        //    //return await this.ExecuteSender<ListRequest, ListResponse>(request, context);
-        //    return new Task<BankListResponse>(new Func<BankListResponse> {Method = { }});
-        //}
-        public Task<ActionResponse<Guid>> Add(BankIn bank)
+        ////    //return await this.ExecuteSender<ListRequest, ListResponse>(request, context);
+        ////    return new Task<BankListResponse>(new Func<BankListResponse> {Method = { }});
+        
+        public Task<HttpResponseMessage> Add(BankIn bank)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +33,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<ActionResponse<BankListResponse>> List(BankListRequest request)
+        public Task<HttpResponseMessage> List(BankListRequest input)
         {
             throw new NotImplementedException();
         }

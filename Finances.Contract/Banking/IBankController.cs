@@ -10,6 +10,7 @@
 namespace Finances.Contract.Banking
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -27,7 +28,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<Guid>> Add(BankIn bank);
+        Task<HttpResponseMessage> Add(BankIn bank);
 
         /// <summary>
         /// The edit.
@@ -52,6 +53,6 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<BankListResponse>> List(BankListRequest input);
+        Task<HttpResponseMessage> List(BankListRequest input);
     }
 }

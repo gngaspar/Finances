@@ -9,7 +9,9 @@
         public void ConvertStringTest()
         {
             var controller = this.GetCurrencyController();
-            //var result = await controller.ConvertString("EUR", "PLN", 10);
+            // var result = await controller.ConvertString("EUR", "PLN", 10);
+
+            Assert.IsTrue(true);
         }
     }
 }
