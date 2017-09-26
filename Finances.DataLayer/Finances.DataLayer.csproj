@@ -90,17 +90,9 @@
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201611222208322_Initial.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Migrations\201611222208322_Initial.Designer.cs">
-      <DependentUpon>201611222208322_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071938221_IsArchivedAccountPlastic.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Migrations\201612071938221_IsArchivedAccountPlastic.Designer.cs">
-      <DependentUpon>201612071938221_IsArchivedAccountPlastic.cs</DependentUpon>
+    <Compile Include="Migrations\201709262021287_FullStart.cs" />
+    <Compile Include="Migrations\201709262021287_FullStart.Designer.cs">
+      <DependentUpon>201709262021287_FullStart.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
@@ -121,16 +113,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611222208322_Initial.resx">
-      <DependentUpon>201611222208322_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071938221_IsArchivedAccountPlastic.resx">
-      <DependentUpon>201612071938221_IsArchivedAccountPlastic.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709262021287_FullStart.resx">
+      <DependentUpon>201709262021287_FullStart.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
