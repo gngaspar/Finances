@@ -15,6 +15,7 @@ namespace Finances.Management
     using Finances.Contract.Banking;
     using Finances.Domain;
     using Finances.Domain.Repository;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The bank service implementation.
@@ -68,9 +69,6 @@ namespace Finances.Management
         /// <summary>
         /// The edit of an Bank.
         /// </summary>
-        /// <param name="code">
-        /// The code.
-        /// </param>
         /// <param name="bank">
         /// The bank.
         /// </param>
@@ -80,23 +78,23 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<bool> Edit(Guid code, BankIn bank)
+        public async Task<bool> Edit(BankEdit bank)
         {
-            ValidateBankIn(bank);
+            ValidateBankIn(bank.Bank);
 
-            var existCode = await this.bankRepository.ExistsByCode(code);
+            var existCode = await this.bankRepository.ExistsByCode(bank.Code);
             if (!existCode)
             {
-                throw new Exception($"Bank with {code} doesnt exists.");
+                throw new Exception($"Bank with {bank.Code} doesnt exists.");
             }
 
-            var existInOther = await this.bankRepository.ThisSwiftExistsInOther(code, bank.Swift);
+            var existInOther = await this.bankRepository.ThisSwiftExistsInOther(bank.Code, bank.Bank.Swift);
             if (!existInOther)
             {
-                throw new Exception($"The Swift {bank.Swift} exists in a bank with a diferent then {code} .");
+                throw new Exception($"The Swift {bank.Bank.Swift} exists in a bank with a diferent then {bank.Code} .");
             }
 
-            var result = await this.bankRepository.Edit(code, bank);
+            var result = await this.bankRepository.Edit(bank.Code, bank.Bank);
 
             return result != 0;
         }
