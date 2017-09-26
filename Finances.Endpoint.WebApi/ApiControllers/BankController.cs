@@ -9,6 +9,7 @@
     using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The Controller for banking
@@ -63,20 +64,12 @@
         /// </returns>
         [HttpPost]
         [Route("{code:guid}/Edit")]
-        public async Task<ActionResponse<bool>> Edit(Guid code, BankIn bank)
+        [ResponseType(typeof(ActionResponse<bool>))]
+        public async Task<HttpResponseMessage> Edit(Guid code, BankIn bank)
         {
-            var response = new ActionResponse<bool> { HasError = false, Results = false };
-            try
-            {
-                response.Results = await this.bankService.Edit(code, bank);
-            }
-            catch (Exception ex)
-            {
-                response.HasError = true;
-                response.ErrorMessage = ex.Message;
-            }
+            var input = new BankEdit { Bank = bank, Code = code };
 
-            return response;
+            return await this.ProcessActionAsync(input, this.bankService.Edit);
         }
 
         /// <summary>
