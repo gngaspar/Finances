@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CardProvider.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="CardProvider.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the CardProvider type.
+//   The card provider.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

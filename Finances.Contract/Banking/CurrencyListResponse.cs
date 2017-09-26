@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CurrencyListResponse.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="CurrencyListResponse.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the CurrencyListResponse type.
+//   The currency list response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

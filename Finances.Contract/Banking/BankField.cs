@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankField.cs" company="Gng">
-//     Gng ggaspar@netcabo.pt
+// <copyright file="BankField.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The bank field.
+//   The bank field.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Finances.Contract.Banking
 {
     /// <summary>

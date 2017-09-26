@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IAccountController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The AccountController interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     using System;
     using System.Net.Http;
@@ -22,5 +31,19 @@
         /// The <see cref="Task"/>.
         /// </returns>
         Task<HttpResponseMessage> List(Guid owner, AccountListRequest input);
+
+        /// <summary>
+        /// The get get current details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> GetGetCurrentDetails(Guid owner, Guid account);
     }
 }

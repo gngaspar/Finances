@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Humans
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanListResponse.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human list response.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Humans
 {
     using System.Collections.Generic;
 

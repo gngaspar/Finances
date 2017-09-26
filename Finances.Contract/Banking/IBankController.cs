@@ -1,9 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IBankController.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="IBankController.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
 //   The BankController interface.
+//   Basic interface that exposes actions to be done in the Bank elements.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

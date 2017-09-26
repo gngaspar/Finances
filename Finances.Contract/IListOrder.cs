@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IListOrder.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="IListOrder.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the IListOrder type.
+//   The ListOrder interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountField.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account field.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     /// <summary>
     /// The account field.

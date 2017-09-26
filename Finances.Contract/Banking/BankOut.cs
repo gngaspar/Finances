@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankOut.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="BankOut.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-//   Defines the BankOut type.
+//   The bank out.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

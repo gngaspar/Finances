@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Humans
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanIn.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human in.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Humans
 {
     using System;
 

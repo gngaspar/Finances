@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountListFilter.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account list filter.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     using System;
     using System.Collections.Generic;
@@ -63,6 +72,9 @@
         /// </summary>
         public bool FilterByCurrency { get; set; }
 
+        /// <summary>
+        /// Gets or sets the types.
+        /// </summary>
         public List<AccountType> Types { get; set; }
     }
 }

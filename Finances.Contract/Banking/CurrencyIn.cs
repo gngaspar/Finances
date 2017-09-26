@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CurrencyIn.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="CurrencyIn.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the CurrencyIn type.
+//   The currency in.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

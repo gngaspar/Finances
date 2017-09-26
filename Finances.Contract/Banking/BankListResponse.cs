@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankListResponse.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="BankListResponse.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the BankListResponse type.
+//   The bank list response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

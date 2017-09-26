@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Humans
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanFilter.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human filter.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Humans
 {
     /// <summary>
     /// The human filter.

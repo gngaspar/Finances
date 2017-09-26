@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AutomaticRenovation.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="AutomaticRenovation.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The automatic renovation.
+//   The automatic renovation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

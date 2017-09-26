@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountListResponse.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account list response.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     using System.Collections.Generic;
 

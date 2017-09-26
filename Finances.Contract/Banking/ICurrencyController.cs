@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICurrencyController.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="ICurrencyController.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The Currency interface
+//   The Currency interface
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

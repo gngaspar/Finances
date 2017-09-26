@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Humans
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanListRequest.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human list request.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Humans
 {
     /// <summary>
     /// The human list request.

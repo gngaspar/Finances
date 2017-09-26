@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankOrder.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="BankOrder.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the BankOrder type.
+//   The bank order.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ namespace Finances.Contract.Banking
         public BankField Field { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether is desc.
+        /// Gets or sets a value indicating whether is descendent.
         /// </summary>
         public bool IsDesc { get; set; }
     }

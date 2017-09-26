@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountType.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     /// <summary>
     /// The account type.

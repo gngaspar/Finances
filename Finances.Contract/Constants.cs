@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Constants.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="Constants.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The constants.
+//   The constants.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

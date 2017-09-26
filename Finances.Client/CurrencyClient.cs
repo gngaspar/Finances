@@ -1,4 +1,13 @@
-﻿namespace Finances.Client
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyClient.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   Defines the CurrencyClient type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Client
 {
     using System;
     using System.Collections.Generic;
@@ -8,11 +17,23 @@
     using Finances.Contract;
     using Finances.Contract.Banking;
 
+    /// <summary>
+    /// The currency client.
+    /// </summary>
     public class CurrencyClient : ClientBase, ICurrencyController
     {
+        /// <summary>
+        /// The url prefix.
+        /// </summary>
         private const string UrlPrefix = "/Currency/";
 
-        public CurrencyClient(IRestSender sender) : base(sender)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrencyClient"/> class.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        public CurrencyClient( IRestSender sender ) : base( sender )
         {
         }
 
@@ -37,22 +58,61 @@
         ////    return await this.ExecuteSender<List<CurrencyIn>, ActionResponse>(input, context);
         ////}
 
-        public Task<HttpResponseMessage> Convert(ConvertRequest convert)
+        /// <summary>
+        /// The convert.
+        /// </summary>
+        /// <param name="convert">
+        /// The object to convert.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<HttpResponseMessage> Convert( ConvertRequest convert )
         {
             throw new NotImplementedException();
         }
 
-        public Task<HttpResponseMessage> ConvertString(string fromCurrency, string toCurrency, decimal amount)
+        /// <summary>
+        /// The convert string.
+        /// </summary>
+        /// <param name="fromCurrency">
+        /// The from currency.
+        /// </param>
+        /// <param name="toCurrency">
+        /// The to currency.
+        /// </param>
+        /// <param name="amount">
+        /// The amount.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<HttpResponseMessage> ConvertString( string fromCurrency, string toCurrency, decimal amount )
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The list.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<HttpResponseMessage> ICurrencyController.List()
         {
             throw new NotImplementedException();
         }
 
-        Task<HttpResponseMessage> ICurrencyController.Update(List<CurrencyIn> input)
+        /// <summary>
+        /// The update.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> ICurrencyController.Update( List<CurrencyIn> input )
         {
             throw new NotImplementedException();
         }

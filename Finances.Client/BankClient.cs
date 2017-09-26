@@ -1,4 +1,13 @@
-﻿namespace Finances.Client
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankClient.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The bank client.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Client
 {
     using System;
     using System.Net.Http;
@@ -12,7 +21,13 @@
     /// </summary>
     public class BankClient : ClientBase, IBankController
     {
-        public BankClient(IRestSender sender) : base(sender)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BankClient"/> class.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        public BankClient( IRestSender sender ) : base( sender )
         {
         }
 
@@ -35,7 +50,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<HttpResponseMessage> Add(BankIn bank)
+        public Task<HttpResponseMessage> Add( BankIn bank )
         {
             throw new NotImplementedException();
         }
@@ -52,7 +67,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<HttpResponseMessage> Edit(Guid code, BankIn bank)
+        public Task<HttpResponseMessage> Edit( Guid code, BankIn bank )
         {
             throw new NotImplementedException();
         }
@@ -66,7 +81,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<HttpResponseMessage> List(BankListRequest input)
+        public Task<HttpResponseMessage> List( BankListRequest input )
         {
             throw new NotImplementedException();
         }

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ActionResponse.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="ActionResponse.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The action response.
+//   The action response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

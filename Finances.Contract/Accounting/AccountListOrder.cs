@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountListOrder.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account list order.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.Contract.Accounting
 {
@@ -17,7 +20,7 @@ namespace Finances.Contract.Accounting
         public AccountField Field { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether is desc.
+        /// Gets or sets a value indicating whether is descendent.
         /// </summary>
         public bool IsDesc { get; set; }
     }

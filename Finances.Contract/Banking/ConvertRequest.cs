@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConvertRequest.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="ConvertRequest.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The convert request.
+//   The convert request.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

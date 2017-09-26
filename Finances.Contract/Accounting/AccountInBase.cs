@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountInBase.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   Defines the AccountInBase type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.Contract.Accounting
 {
+    using System;
+
+    /// <summary>
+    /// The account in base.
+    /// </summary>
     public class AccountInBase
     {
         /// <summary>
@@ -57,6 +65,5 @@ namespace Finances.Contract.Accounting
         /// Gets or sets the start date.
         /// </summary>
         public DateTime StartDate { get; set; }
-
     }
 }

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InterestPayment.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="InterestPayment.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the InterestPayment type.
+//   The interest payment.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

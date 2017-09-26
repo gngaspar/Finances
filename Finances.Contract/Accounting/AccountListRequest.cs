@@ -1,4 +1,13 @@
-﻿namespace Finances.Contract.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountListRequest.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account list request.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Contract.Accounting
 {
     /// <summary>
     /// The account list request.

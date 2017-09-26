@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CurrencyOut.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="CurrencyOut.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// Defines the CurrencyOut type.
+//   The currency out.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Finances.Contract.Banking
 {
     using System;
