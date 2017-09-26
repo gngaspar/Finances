@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Conventions
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DataTypePropertyAttributeConvention.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The data type property attribute convention.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Conventions
 {
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity.ModelConfiguration.Configuration;
@@ -18,11 +27,11 @@
         /// <param name="attribute">
         /// The attribute.
         /// </param>
-        public override void Apply(ConventionPrimitivePropertyConfiguration configuration, DataTypeAttribute attribute)
+        public override void Apply( ConventionPrimitivePropertyConfiguration configuration, DataTypeAttribute attribute )
         {
-            if (attribute.DataType == DataType.Date)
+            if ( attribute.DataType == DataType.Date )
             {
-                configuration.HasColumnType("Date");
+                configuration.HasColumnType( "Date" );
             }
         }
     }

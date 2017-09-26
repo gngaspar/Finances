@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.ApiControllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human Controller
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
     using System.Threading.Tasks;
@@ -13,7 +22,7 @@
     /// </summary>
     /// <seealso cref="ApiController"/>
     /// <seealso cref="IHumanController"/>
-    [RoutePrefix("Human")]
+    [RoutePrefix( "Human" )]
     public class HumanController : ApiController, IHumanController
     {
         /// <summary>
@@ -25,7 +34,7 @@
         /// Initializes a new instance of the <see cref="HumanController"/> class.
         /// </summary>
         /// <param name="service">The service.</param>
-        public HumanController(IHumanService service)
+        public HumanController( IHumanService service )
         {
             this.service = service;
         }
@@ -43,15 +52,15 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("{code:guid}/Add")]
-        public async Task<ActionResponse<Guid>> Add(Guid code, HumanIn input)
+        [Route( "{code:guid}/Add" )]
+        public async Task<ActionResponse<Guid>> Add( Guid code, HumanIn input )
         {
             var result = new ActionResponse<Guid> { HasError = false };
             try
             {
-                result.Results = await this.service.Add(code, input);
+                result.Results = await this.service.Add( code, input );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;
@@ -76,15 +85,15 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("{code:guid}/Edit/{human:guid}")]
-        public async Task<ActionResponse<bool>> Edit(Guid code, Guid human, HumanIn input)
+        [Route( "{code:guid}/Edit/{human:guid}" )]
+        public async Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input )
         {
             var result = new ActionResponse<bool> { HasError = false };
             try
             {
-                result.Results = await this.service.Edit(code, human, input);
+                result.Results = await this.service.Edit( code, human, input );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;
@@ -106,15 +115,15 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("{code:guid}/List")]
-        public async Task<ActionResponse<HumanListResponse>> List(Guid code, HumanListRequest input)
+        [Route( "{code:guid}/List" )]
+        public async Task<ActionResponse<HumanListResponse>> List( Guid code, HumanListRequest input )
         {
             var result = new ActionResponse<HumanListResponse> { HasError = false };
             try
             {
-                result.Results = await this.service.List(code, input);
+                result.Results = await this.service.List( code, input );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 result.HasError = true;
                 result.ErrorMessage = ex.Message;

@@ -1,9 +1,18 @@
-﻿namespace Finances.Endpoint.WebApi
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WebApiConfig.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The WebApi Configuration section
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi
 {
     using System.Web.Http;
 
     /// <summary>
-    /// The WebApi Configuration section
+    /// The Web API Configuration section
     /// </summary>
     public static class WebApiConfig
     {
@@ -11,7 +20,7 @@
         /// Registers the specified configuration.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public static void Register(HttpConfiguration config)
+        public static void Register( HttpConfiguration config )
         {
             // Web API configuration and services
 
@@ -21,8 +30,7 @@
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new { id = RouteParameter.Optional } );
         }
     }
 }

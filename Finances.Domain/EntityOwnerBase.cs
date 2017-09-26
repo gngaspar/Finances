@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EntityOwnerBase.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The base that allows you to have a unique code and a entity owner.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain
 {
     using System;
     using System.ComponentModel.DataAnnotations;

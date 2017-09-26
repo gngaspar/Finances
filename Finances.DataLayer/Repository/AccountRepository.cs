@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Repository
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountRepository.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account repository.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Repository
 {
     using System;
     using System.Data.Entity;
@@ -33,12 +42,27 @@
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
         /// <param name="bankingDbContext">The banking database context.</param>
-        internal AccountRepository(BankingDbContext bankingDbContext)
+        internal AccountRepository( BankingDbContext bankingDbContext )
         {
             this.context = bankingDbContext;
         }
 
-        public async Task<int> Add(Guid owner, Guid code, CurrentAccountIn input)
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<int> Add( Guid owner, Guid code, CurrentAccountIn input )
         {
             var account = new CurrentAccountEntity
             {
@@ -55,62 +79,137 @@
                 StartDate = input.StartDate
             };
 
-            this.context.Accounts.Add(account);
+            this.context.Accounts.Add( account );
 
-            foreach (var loan in input.Loans)
+            foreach ( var loan in input.Loans )
             {
-                this.context.Accounts.Add(GetLoans(owner, code, Guid.NewGuid(), loan));
+                this.context.Accounts.Add( GetLoans( owner, code, Guid.NewGuid(), loan ) );
             }
 
-            foreach (var saving in input.Savings)
+            foreach ( var saving in input.Savings )
             {
-                this.context.Accounts.Add(GetSavings(owner, code, Guid.NewGuid(), saving));
+                this.context.Accounts.Add( GetSavings( owner, code, Guid.NewGuid(), saving ) );
             }
 
             var myint = await this.context.SaveChangesAsync();
             return myint;
         }
 
-        public async Task<int> Add(Guid owner, Guid currentAccount, Guid code, LoanAccountIn input)
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<int> Add( Guid owner, Guid currentAccount, Guid code, LoanAccountIn input )
         {
-            var account = GetLoans(owner, currentAccount, code, input);
+            var account = GetLoans( owner, currentAccount, code, input );
 
-            this.context.Accounts.Add(account);
+            this.context.Accounts.Add( account );
 
             var myint = await this.context.SaveChangesAsync();
 
             return myint;
         }
 
-        public async Task<int> Add(Guid owner, Guid currentAccount, Guid code, SavingAccountIn input)
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<int> Add( Guid owner, Guid currentAccount, Guid code, SavingAccountIn input )
         {
-            var account = GetSavings(owner, currentAccount, code, input);
+            var account = GetSavings( owner, currentAccount, code, input );
 
-            this.context.Accounts.Add(account);
+            this.context.Accounts.Add( account );
 
             var myint = await this.context.SaveChangesAsync();
 
             return myint;
         }
 
-        public Task<CurrentAccountOut> GetCurrent(Guid account)
+        /// <summary>
+        /// The get current.
+        /// </summary>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<CurrentAccountOut> GetCurrent( Guid account )
         {
             throw new NotImplementedException();
         }
 
-        public Task<LoanAccountOut> GetLoan(Guid account)
+        /// <summary>
+        /// The get loan.
+        /// </summary>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<LoanAccountOut> GetLoan( Guid account )
         {
             throw new NotImplementedException();
         }
 
-        public Task<SavingAccountOut> GetSaving(Guid account)
+        /// <summary>
+        /// The get saving.
+        /// </summary>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<SavingAccountOut> GetSaving( Guid account )
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> IsOwner(Guid owner, Guid account)
+        /// <summary>
+        /// The is owner.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<bool> IsOwner( Guid owner, Guid account )
         {
-            var exist = await this.context.Accounts.CountAsync(b => b.Code == account && b.Owner == owner);
+            var exist = await this.context.Accounts.CountAsync( b => b.Code == account && b.Owner == owner );
             return exist == 1;
         }
 
@@ -128,57 +227,57 @@
         /// <param name="owner">The owner.</param>
         /// <param name="input">The input.</param>
         /// <returns>The <see cref="Task"/>.</returns>
-        public async Task<AccountListResponse> List(Guid owner, AccountListRequest input)
+        public async Task<AccountListResponse> List( Guid owner, AccountListRequest input )
         {
-            IQueryable<AccountEntity> listQuery = this.context.Accounts.Where(o => o.Owner == owner
-                        && ((!input.Filter.BringArchived && !o.IsArchived) || input.Filter.BringArchived));
+            IQueryable<AccountEntity> listQuery = this.context.Accounts.Where( o => o.Owner == owner
+                         && ( ( !input.Filter.BringArchived && !o.IsArchived ) || input.Filter.BringArchived ) );
 
-            if (!string.IsNullOrEmpty(input.Filter.Description))
+            if ( !string.IsNullOrEmpty( input.Filter.Description ) )
             {
                 listQuery = input.Filter.DescriptionExact ?
-                        listQuery.Where(x => x.Description == input.Filter.Description) :
-                        listQuery.Where(x => x.Description.Contains(input.Filter.Description));
+                        listQuery.Where( x => x.Description == input.Filter.Description ) :
+                        listQuery.Where( x => x.Description.Contains( input.Filter.Description ) );
             }
 
-            if (input.Filter.FilterByBank)
+            if ( input.Filter.FilterByBank )
             {
-                listQuery = listQuery.Where(x => x.Bank == input.Filter.Bank);
+                listQuery = listQuery.Where( x => x.Bank == input.Filter.Bank );
             }
 
-            if (input.Filter.FilterByCurrency && !string.IsNullOrEmpty(input.Filter.Currency))
+            if ( input.Filter.FilterByCurrency && !string.IsNullOrEmpty( input.Filter.Currency ) )
             {
-                listQuery = listQuery.Where(x => x.Currency == input.Filter.Currency);
+                listQuery = listQuery.Where( x => x.Currency == input.Filter.Currency );
             }
 
-            if (input.Filter.FilterByHolder && !input.Filter.BringOnlyMine)
+            if ( input.Filter.FilterByHolder && !input.Filter.BringOnlyMine )
             {
-                listQuery = listQuery.Where(x => x.Holder == input.Filter.Holder);
+                listQuery = listQuery.Where( x => x.Holder == input.Filter.Holder );
             }
 
-            if (input.Filter.BringOnlyMine)
+            if ( input.Filter.BringOnlyMine )
             {
-                listQuery = listQuery.Where(x => x.Holder == owner);
+                listQuery = listQuery.Where( x => x.Holder == owner );
             }
 
-            if (!string.IsNullOrEmpty(input.Filter.Number))
+            if ( !string.IsNullOrEmpty( input.Filter.Number ) )
             {
-                listQuery = listQuery.Where(x => x.Number.Contains(input.Filter.Number));
+                listQuery = listQuery.Where( x => x.Number.Contains( input.Filter.Number ) );
             }
 
-            listQuery = listQuery.Where(x =>
-                (input.Filter.Types.Contains(AccountType.CurrentAccount) && x is CurrentAccountEntity)
-                || (input.Filter.Types.Contains(AccountType.LoanAccount) && x is LoanAccountEntity)
-                || (input.Filter.Types.Contains(AccountType.SavingAccount) && x is SavingAccountEntity));
+            listQuery = listQuery.Where( x =>
+                 ( input.Filter.Types.Contains( AccountType.CurrentAccount ) && x is CurrentAccountEntity )
+                 || ( input.Filter.Types.Contains( AccountType.LoanAccount ) && x is LoanAccountEntity )
+                 || ( input.Filter.Types.Contains( AccountType.SavingAccount ) && x is SavingAccountEntity ) );
 
             var queryResult = await listQuery.CountAsync();
 
             var orderType = input.Order.IsDesc ? SortOrder.Descending : SortOrder.Ascending;
 
             var list = await listQuery
-                        .OrderByFieldAccount(orderType, input.Order.Field)
-                        .Skip((input.Page - 1) * input.ItemsPerPage)
-                        .Take(input.ItemsPerPage)
-                        .Select(order => new Account
+                        .OrderByFieldAccount( orderType, input.Order.Field )
+                        .Skip( ( input.Page - 1 ) * input.ItemsPerPage )
+                        .Take( input.ItemsPerPage )
+                        .Select( order => new Account
                         {
                             Code = order.Code,
                             StartDate = order.StartDate,
@@ -192,7 +291,7 @@
                             CreatedAt = order.CreatedAt,
                             IsArchived = order.IsArchived,
                             Type = order is CurrentAccountEntity ? AccountType.CurrentAccount : order is LoanAccountEntity ? AccountType.LoanAccount : AccountType.SavingAccount
-                        }).ToListAsync();
+                        } ).ToListAsync();
 
             var result = new AccountListResponse
             {
@@ -203,7 +302,25 @@
             return result;
         }
 
-        private static LoanAccountEntity GetLoans(Guid owner, Guid currentAccount, Guid code, LoanAccountIn input)
+        /// <summary>
+        /// The get loans.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="LoanAccountEntity"/>.
+        /// </returns>
+        private static LoanAccountEntity GetLoans( Guid owner, Guid currentAccount, Guid code, LoanAccountIn input )
         {
             return new LoanAccountEntity
             {
@@ -217,7 +334,7 @@
                 Currency = input.Currency,
                 Number = input.Number,
                 StartDate = input.StartDate,
-                InicialAmount = input.InicialAmount,
+                InitialAmount = input.InitialAmount,
                 InterestNetRate = input.InterestNetRate,
                 LoanInterestRate = input.LoanInterestRate,
                 LoanRelatedAccount = currentAccount,
@@ -226,7 +343,25 @@
             };
         }
 
-        private static SavingAccountEntity GetSavings(Guid owner, Guid currentAccount, Guid code, SavingAccountIn input)
+        /// <summary>
+        /// The get savings.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="SavingAccountEntity"/>.
+        /// </returns>
+        private static SavingAccountEntity GetSavings( Guid owner, Guid currentAccount, Guid code, SavingAccountIn input )
         {
             return new SavingAccountEntity
             {

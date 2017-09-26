@@ -1,9 +1,18 @@
-﻿namespace Finances.Domain.Plastic
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PrePaidCardEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The pre paid card entity.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Plastic
 {
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// The Pre paid Card representantion on the database.
+    /// The pre paid card entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.Plastic.CardEntity"/>
     public class PrePaidCardEntity : CardEntity

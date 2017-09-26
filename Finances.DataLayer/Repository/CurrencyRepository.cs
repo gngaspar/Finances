@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Repository
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyRepository.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The currency repository.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -34,7 +43,7 @@
         /// <param name="bankingDbContext">
         /// The banking database context.
         /// </param>
-        internal CurrencyRepository(BankingDbContext bankingDbContext)
+        internal CurrencyRepository( BankingDbContext bankingDbContext )
         {
             this.context = bankingDbContext;
         }
@@ -47,18 +56,18 @@
         /// </returns>
         public async Task<int> CopyToHistory()
         {
-            var queryResult = await this.context.Currencies.Where(i => i.ReasonToOneEuro != 0).Select(c => new
+            var queryResult = await this.context.Currencies.Where( i => i.ReasonToOneEuro != 0 ).Select( c => new
             {
                 c.ReasonToOneEuro,
                 c.Currency
-            }).ToListAsync();
+            } ).ToListAsync();
 
-            this.context.CurrencyHistory.AddRange(queryResult.Select(c => new CurrencyHistoryEntity
+            this.context.CurrencyHistory.AddRange( queryResult.Select( c => new CurrencyHistoryEntity
             {
                 ReasonToOneEuro = c.ReasonToOneEuro,
                 Currency = c.Currency,
-                CreatedAtDay = DateTime.Now.AddDays(-1)
-            }));
+                CreatedAtDay = DateTime.Now.AddDays( -1 )
+            } ) );
 
             return await this.context.SaveChangesAsync();
         }
@@ -81,12 +90,12 @@
         {
             var hasAny = await this.context.CurrencyHistory.AnyAsync();
 
-            if (!hasAny)
+            if ( !hasAny )
             {
-                return DateTime.Now.AddYears(-1);
+                return DateTime.Now.AddYears( -1 );
             }
 
-            return await this.context.CurrencyHistory.MaxAsync(i => i.CreatedAtDay);
+            return await this.context.CurrencyHistory.MaxAsync( i => i.CreatedAtDay );
         }
 
         /// <summary>
@@ -99,14 +108,14 @@
         {
             var queryResult = await this.context.Currencies.CountAsync();
 
-            var list = await this.context.Currencies.OrderBy(o => o.Order)
-                        .Select(currency => new CurrencyOut
+            var list = await this.context.Currencies.OrderBy( o => o.Order )
+                        .Select( currency => new CurrencyOut
                         {
                             Name = currency.Name,
                             Code = currency.Currency,
                             ReasonToOneEuro = currency.ReasonToOneEuro,
                             ChangeAt = currency.ChangeAt,
-                        }).ToListAsync();
+                        } ).ToListAsync();
 
             var result = new CurrencyListResponse
             {
@@ -126,12 +135,12 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<int> Update(List<CurrencyIn> input)
+        public async Task<int> Update( List<CurrencyIn> input )
         {
-            var myList = await this.context.Currencies.ToListAsync();
-            var myCounter = myList.Count + 1;
+            var currencyEntities = await this.context.Currencies.ToListAsync();
+            var counter = currencyEntities.Count + 1;
 
-            foreach (var currency in input.OrderBy(i => i.Code))
+            foreach ( var currency in input.OrderBy( i => i.Code ) )
             {
                 currency.Code = currency.Code.ToUpper();
 
@@ -141,15 +150,15 @@
                     ReasonToOneEuro = currency.ReasonToOneEuro
                 };
 
-                var oldCurreny = myList.FirstOrDefault(i => i.Currency == currency.Code);
+                var oldCurreny = currencyEntities.FirstOrDefault( i => i.Currency == currency.Code );
 
-                currencyEntity.Order = oldCurreny?.Order ?? (currencyEntity.Order = myCounter);
-                currencyEntity.Name = (oldCurreny != null) ? oldCurreny.Name : currency.Code;
+                currencyEntity.Order = oldCurreny?.Order ?? ( currencyEntity.Order = counter );
+                currencyEntity.Name = ( oldCurreny != null ) ? oldCurreny.Name : currency.Code;
                 currencyEntity.ChangeAt = DateTime.Now;
 
-                this.context.SeedAddOrUpdate(p => p.Currency, p => new { p.ReasonToOneEuro, p.ChangeAt }, currencyEntity);
+                this.context.SeedAddOrUpdate( p => p.Currency, p => new { p.ReasonToOneEuro, p.ChangeAt }, currencyEntity );
 
-                myCounter = myCounter + 1;
+                counter = counter + 1;
             }
 
             return await this.context.SaveChangesAsync();

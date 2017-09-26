@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Migrations
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CustomSqlServerMigrationSqlGenerator.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The custom server migration database generator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Migrations
 {
     using System.Collections.Generic;
     using System.Data.Entity.Core.Metadata.Edm;
@@ -16,11 +25,11 @@
         /// <param name="addColumnOperation">
         /// The add column operation.
         /// </param>
-        protected override void Generate(AddColumnOperation addColumnOperation)
+        protected override void Generate( AddColumnOperation addColumnOperation )
         {
-            SetCreatedColumn(addColumnOperation.Column);
+            SetCreatedColumn( addColumnOperation.Column );
 
-            base.Generate(addColumnOperation);
+            base.Generate( addColumnOperation );
         }
 
         /// <summary>
@@ -29,11 +38,11 @@
         /// <param name="createTableOperation">
         /// The create table operation.
         /// </param>
-        protected override void Generate(CreateTableOperation createTableOperation)
+        protected override void Generate( CreateTableOperation createTableOperation )
         {
-            SetCreatedColumn(createTableOperation.Columns);
+            SetCreatedColumn( createTableOperation.Columns );
 
-            base.Generate(createTableOperation);
+            base.Generate( createTableOperation );
         }
 
         /// <summary>
@@ -42,11 +51,11 @@
         /// <param name="columns">
         /// The columns.
         /// </param>
-        private static void SetCreatedColumn(IEnumerable<ColumnModel> columns)
+        private static void SetCreatedColumn( IEnumerable<ColumnModel> columns )
         {
-            foreach (var columnModel in columns)
+            foreach ( var columnModel in columns )
             {
-                SetCreatedColumn(columnModel);
+                SetCreatedColumn( columnModel );
             }
         }
 
@@ -56,14 +65,14 @@
         /// <param name="column">
         /// The column.
         /// </param>
-        private static void SetCreatedColumn(PropertyModel column)
+        private static void SetCreatedColumn( PropertyModel column )
         {
-            if ((column.Name == "CreatedAt" || column.Name == "ChangeAt") && column.Type == PrimitiveTypeKind.DateTime)
+            if ( ( column.Name == "CreatedAt" || column.Name == "ChangeAt" ) && column.Type == PrimitiveTypeKind.DateTime )
             {
                 column.DefaultValueSql = "GETDATE()";
             }
 
-            if (column.Name == "Code" && column.Type == PrimitiveTypeKind.Guid)
+            if ( column.Name == "Code" && column.Type == PrimitiveTypeKind.Guid )
             {
                 column.DefaultValueSql = "NEWID()";
             }

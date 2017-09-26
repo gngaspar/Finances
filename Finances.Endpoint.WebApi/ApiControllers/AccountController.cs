@@ -1,7 +1,15 @@
-﻿namespace Finances.Endpoint.WebApi.ApiControllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The account Controller.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
-    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -10,25 +18,26 @@
     using Finances.Contract;
     using Finances.Contract.Accounting;
     using Finances.Domain;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The account Controller.
     /// </summary>
-    [RoutePrefix("Account")]
-    public class AccountController : ApiController, IAccountController
+    [RoutePrefix( "Account" )]
+    public class AccountController : BaseController, IAccountController
     {
         /// <summary>
         /// The service.
         /// </summary>
-        private readonly IAccountService service;
+        private readonly IAccountService accountService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
-        /// <param name="service">The service.</param>
-        public AccountController(IAccountService service)
+        /// <param name="accountService">The account Service.</param>
+        public AccountController( IAccountService accountService )
         {
-            this.service = service;
+            this.accountService = accountService;
         }
 
         /// <summary>
@@ -44,18 +53,34 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [ResponseType( typeof( AccountListResponse ) )]
-        [Route("{owner:guid}/List")]
-        public async Task<HttpResponseMessage> List(Guid owner, AccountListRequest input)
+        [Route( "{owner:guid}/List" )]
+        [ResponseType( typeof( ActionResponse<AccountListResponse> ) )]
+        public async Task<HttpResponseMessage> List( Guid owner, AccountListRequest input )
         {
-            try
-            {
-                return this.Request.CreateResponse( HttpStatusCode.OK, await this.service.List( owner, input ) );
-            }
-            catch (Exception ex)
-            {
-                return this.Request.CreateResponse( HttpStatusCode.InternalServerError, ex );
-            }
+            var request = new AccountList { Owner = owner, Request = input };
+
+            return await this.ProcessActionAsync( request, this.accountService.List );
+        }
+
+        /// <summary>
+        /// The get get current details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "{owner:guid}/Current/Details/{account:guid}" )]
+        [ResponseType( typeof( ActionResponse<AccountListResponse> ) )]
+        public async Task<HttpResponseMessage> GetGetCurrentDetails( Guid owner, Guid account )
+        {
+            var input = new CurrentDetails { Code = account, Owner = owner };
+            return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
         }
     }
 }

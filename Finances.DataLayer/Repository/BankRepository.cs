@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Repository
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankRepository.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The bank repository.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Repository
 {
     using System;
     using System.Data.Entity;
@@ -35,7 +44,7 @@
         /// <param name="bankingDbContext">
         /// The banking database context.
         /// </param>
-        internal BankRepository(BankingDbContext bankingDbContext)
+        internal BankRepository( BankingDbContext bankingDbContext )
         {
             this.context = bankingDbContext;
         }
@@ -52,7 +61,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<int> Add(Guid code, BankIn bank)
+        public async Task<int> Add( Guid code, BankIn bank )
         {
             var newBank = new BankEntity
             {
@@ -63,7 +72,7 @@
                 Url = bank.Url
             };
 
-            this.context.Entry(newBank).State = EntityState.Added;
+            this.context.Entry( newBank ).State = EntityState.Added;
             var myint = await this.context.SaveChangesAsync();
 
             return myint;
@@ -89,7 +98,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<int> Edit(Guid code, BankIn bank)
+        public async Task<int> Edit( Guid code, BankIn bank )
         {
             var newBank = new BankEntity
             {
@@ -100,7 +109,7 @@
                 Url = bank.Url
             };
 
-            this.context.SeedAddOrUpdate(p => p.Code, p => new { p.Name, p.Swift, p.Country, p.Url, p.ChangeAt }, newBank);
+            this.context.SeedAddOrUpdate( p => p.Code, p => new { p.Name, p.Swift, p.Country, p.Url, p.ChangeAt }, newBank );
 
             var myint = await this.context.SaveChangesAsync();
             return myint;
@@ -115,9 +124,9 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<bool> ExistsByCode(Guid guid)
+        public async Task<bool> ExistsByCode( Guid guid )
         {
-            var exist = await this.context.Banks.CountAsync(b => b.Code == guid);
+            var exist = await this.context.Banks.CountAsync( b => b.Code == guid );
             return exist == 1;
         }
 
@@ -130,9 +139,9 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<bool> ExistsBySwift(string swift)
+        public async Task<bool> ExistsBySwift( string swift )
         {
-            var exist = await this.context.Banks.CountAsync(b => b.Swift == swift);
+            var exist = await this.context.Banks.CountAsync( b => b.Swift == swift );
             return exist == 1;
         }
 
@@ -145,22 +154,22 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<BankListResponse> List(BankListRequest parameters)
+        public async Task<BankListResponse> List( BankListRequest parameters )
         {
             IQueryable<BankEntity> listQuery = this.context.Banks;
 
-            if (!string.IsNullOrEmpty(parameters.Filter.Name))
+            if ( !string.IsNullOrEmpty( parameters.Filter.Name ) )
             {
                 listQuery = parameters.Filter.NameExact ?
-                        listQuery.Where(x => x.Name == parameters.Filter.Name) :
-                        listQuery.Where(x => x.Name.Contains(parameters.Filter.Name));
+                        listQuery.Where( x => x.Name == parameters.Filter.Name ) :
+                        listQuery.Where( x => x.Name.Contains( parameters.Filter.Name ) );
             }
 
-            if (!string.IsNullOrEmpty(parameters.Filter.Swift))
+            if ( !string.IsNullOrEmpty( parameters.Filter.Swift ) )
             {
                 listQuery = parameters.Filter.SwiftExact ?
-                        listQuery.Where(x => x.Name == parameters.Filter.Swift) :
-                        listQuery.Where(x => x.Swift.Contains(parameters.Filter.Swift));
+                        listQuery.Where( x => x.Name == parameters.Filter.Swift ) :
+                        listQuery.Where( x => x.Swift.Contains( parameters.Filter.Swift ) );
             }
 
             var queryResult = await listQuery.CountAsync();
@@ -168,10 +177,10 @@
             var orderType = parameters.Order.IsDesc ? SortOrder.Descending : SortOrder.Ascending;
 
             var list = await listQuery
-                        .OrderByFieldBank(orderType, parameters.Order.Field)
-                        .Skip((parameters.Page - 1) * parameters.ItemsPerPage)
-                        .Take(parameters.ItemsPerPage)
-                        .Select(order => new BankOut
+                        .OrderByFieldBank( orderType, parameters.Order.Field )
+                        .Skip( ( parameters.Page - 1 ) * parameters.ItemsPerPage )
+                        .Take( parameters.ItemsPerPage )
+                        .Select( order => new BankOut
                         {
                             Code = order.Code,
                             Name = order.Name,
@@ -180,7 +189,7 @@
                             Swift = order.Swift,
                             ChangeAt = order.ChangeAt,
                             CreatedAt = order.CreatedAt
-                        }).ToListAsync();
+                        } ).ToListAsync();
 
             var result = new BankListResponse
             {
@@ -203,9 +212,9 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<bool> ThisSwiftExistsInOther(Guid code, string swift)
+        public async Task<bool> ThisSwiftExistsInOther( Guid code, string swift )
         {
-            var exist = await this.context.Banks.CountAsync(b => b.Swift == swift && b.Code != code);
+            var exist = await this.context.Banks.CountAsync( b => b.Swift == swift && b.Code != code );
             return exist == 1;
         }
     }

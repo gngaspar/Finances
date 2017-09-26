@@ -90,11 +90,15 @@
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DataTypePropertyAttributeConvention.cs" />
     <Compile Include="Extension\SeedExtension.cs" />
-    <Compile Include="Migrations\201611222208322_Initial.cs" />
+    <Compile Include="Migrations\201611222208322_Initial.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201611222208322_Initial.Designer.cs">
       <DependentUpon>201611222208322_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612071938221_IsArchivedAccountPlastic.cs" />
+    <Compile Include="Migrations\201612071938221_IsArchivedAccountPlastic.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\201612071938221_IsArchivedAccountPlastic.Designer.cs">
       <DependentUpon>201612071938221_IsArchivedAccountPlastic.cs</DependentUpon>
     </Compile>

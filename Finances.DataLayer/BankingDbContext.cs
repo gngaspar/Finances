@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankingDbContext.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The banking database context.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer
 {
     using System;
     using System.Data.Entity;
@@ -28,9 +37,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="BankingDbContext"/> class.
         /// </summary>
-        public BankingDbContext() : base("BankingConnection")
+        public BankingDbContext() : base( "BankingConnection" )
         {
-            Database.SetInitializer<BankingDbContext>(null);
+            Database.SetInitializer<BankingDbContext>( null );
             this.Configuration.AutoDetectChangesEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
 
@@ -39,19 +48,19 @@
 #if DEBUG
             this.Database.Log = s =>
                 {
-                    lock (Lock)
+                    lock ( Lock )
                     {
                         try
                         {
                             string path = @"C:\Logs";
-                            if (!Directory.Exists(path))
+                            if ( !Directory.Exists( path ) )
                             {
-                                Directory.CreateDirectory(path);
+                                Directory.CreateDirectory( path );
                             }
 
-                            File.AppendAllText($"{path}\\BankingLog.txt", s);
+                            File.AppendAllText( $"{path}\\BankingLog.txt", s );
                         }
-                        catch (Exception)
+                        catch ( Exception )
                         {
                             // ignored
                         }
@@ -95,11 +104,11 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public override Task<int> SaveChangesAsync( CancellationToken cancellationToken )
         {
             this.SetCreatedDate();
 
-            return base.SaveChangesAsync(cancellationToken);
+            return base.SaveChangesAsync( cancellationToken );
         }
 
         /// <summary>
@@ -148,12 +157,12 @@
         /// <param name="modelBuilder">
         /// The model builder.
         /// </param>
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating( DbModelBuilder modelBuilder )
         {
-            modelBuilder.Conventions.Add(new DataTypePropertyAttributeConvention());
-            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
-            modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Add( new DataTypePropertyAttributeConvention() );
+            modelBuilder.Conventions.Add( new DecimalPrecisionAttributeConvention() );
+            modelBuilder.Configurations.AddFromAssembly( this.GetType().Assembly );
+            base.OnModelCreating( modelBuilder );
         }
 
         /// <summary>
@@ -161,20 +170,20 @@
         /// </summary>
         private void SetCreatedDate()
         {
-            var addedEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Added).ToList();
+            var addedEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where( e => e.State == EntityState.Added ).ToList();
 
-            addedEntities.ForEach(e =>
-            {
-                e.Entity.CreatedAt = DateTime.Now;
-                e.Entity.ChangeAt = DateTime.Now;
-            });
+            addedEntities.ForEach( e =>
+             {
+                 e.Entity.CreatedAt = DateTime.Now;
+                 e.Entity.ChangeAt = DateTime.Now;
+             } );
 
-            var modifiefEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where(e => e.State == EntityState.Modified).ToList();
+            var modifiefEntities = this.ChangeTracker.Entries<EntityDateTimeBase>().Where( e => e.State == EntityState.Modified ).ToList();
 
-            modifiefEntities.ForEach(e =>
-            {
-                e.Entity.ChangeAt = DateTime.Now;
-            });
+            modifiefEntities.ForEach( e =>
+             {
+                 e.Entity.ChangeAt = DateTime.Now;
+             } );
         }
     }
 }

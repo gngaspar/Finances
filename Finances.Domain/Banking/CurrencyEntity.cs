@@ -1,12 +1,24 @@
-﻿namespace Finances.Domain.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Currency representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Banking
 {
     /// <summary>
-    /// The Currency representantion on the database.
+    /// The currency entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
     public class CurrencyEntity : EntityDateTimeBase
     {
-        private string _currency;
+        /// <summary>
+        /// The currency.
+        /// </summary>
+        private string currency;
 
         /// <summary>
         /// Gets or sets the code of the currency.
@@ -14,8 +26,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return _currency.ToUpper(); }
-            set { _currency = value.ToUpper(); }
+            get { return this.currency.ToUpper(); }
+            set { this.currency = value.ToUpper(); }
         }
 
         /// <summary>

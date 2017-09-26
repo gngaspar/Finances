@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.ApiControllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BaseController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The base controller.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
     using System.Net;
@@ -20,11 +29,12 @@
         /// The method.
         /// </param>
         /// <typeparam name="TResp">
+        /// The type of request.
         /// </typeparam>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        protected async Task<HttpResponseMessage> ProcessActionAsync<TResp>(Func<Task<TResp>> method)
+        protected async Task<HttpResponseMessage> ProcessActionAsync<TResp>( Func<Task<TResp>> method )
         {
             var output = new ActionResponse<TResp>();
             var statusCode = HttpStatusCode.OK;
@@ -32,16 +42,15 @@
             {
                 output.HasError = false;
                 output.Results = await method();
-
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 output.ErrorMessage = ex.Message;
                 output.HasError = true;
                 statusCode = HttpStatusCode.InternalServerError;
             }
 
-            return this.Request.CreateResponse(statusCode, output);
+            return this.Request.CreateResponse( statusCode, output );
         }
 
         /// <summary>
@@ -62,24 +71,23 @@
         /// <returns>
         /// The response.
         /// </returns>
-        protected async Task<HttpResponseMessage> ProcessActionAsync<TReq, TResp>(TReq request, Func<TReq, Task<TResp>> method)
+        protected async Task<HttpResponseMessage> ProcessActionAsync<TReq, TResp>( TReq request, Func<TReq, Task<TResp>> method )
         {
             var output = new ActionResponse<TResp>();
             var statusCode = HttpStatusCode.OK;
             try
             {
                 output.HasError = false;
-                output.Results = await method(request);
-  
+                output.Results = await method( request );
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 output.ErrorMessage = ex.Message;
                 output.HasError = true;
                 statusCode = HttpStatusCode.InternalServerError;
             }
-            
-            return this.Request.CreateResponse(statusCode, output);
+
+            return this.Request.CreateResponse( statusCode, output );
         }
     }
 }

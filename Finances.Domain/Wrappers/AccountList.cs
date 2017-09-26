@@ -1,30 +1,31 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankEdit.cs" company="GNG">
+// <copyright file="AccountList.cs" company="GNG">
 //   GNG
 // </copyright>
 // <summary>
-//   The bank edit.
+//   The account list.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.Domain.Wrappers
 {
     using System;
-    using Finances.Contract.Banking;
+
+    using Finances.Contract.Accounting;
 
     /// <summary>
-    /// The bank edit.
+    /// The account list.
     /// </summary>
-    public class BankEdit
+    public class AccountList
     {
         /// <summary>
-        /// Gets or sets the code.
+        /// Gets or sets the owner.
         /// </summary>
-        public Guid Code { get; set; }
+        public Guid Owner { get; set; }
 
         /// <summary>
-        /// Gets or sets the bank.
+        /// Gets or sets the request.
         /// </summary>
-        public BankIn Bank { get; set; }
+        public AccountListRequest Request { get; set; }
     }
 }

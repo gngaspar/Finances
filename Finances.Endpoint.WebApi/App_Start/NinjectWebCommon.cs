@@ -1,7 +1,16 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NinjectWebCommon.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Default
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 using Finances.Endpoint.WebApi;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod( typeof( NinjectWebCommon ), "Start" )]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute( typeof( NinjectWebCommon ), "Stop" )]
 
 namespace Finances.Endpoint.WebApi
 {
@@ -16,6 +25,9 @@ namespace Finances.Endpoint.WebApi
     /// </summary>
     public static class NinjectWebCommon
     {
+        /// <summary>
+        /// The BOOT STRAPPER.
+        /// </summary>
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
@@ -29,9 +41,9 @@ namespace Finances.Endpoint.WebApi
         /// </summary>
         public static void Start()
         {
-            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
-            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            Bootstrapper.Initialize(CreateKernel);
+            DynamicModuleUtility.RegisterModule( typeof( OnePerRequestHttpModule ) );
+            DynamicModuleUtility.RegisterModule( typeof( NinjectHttpModule ) );
+            Bootstrapper.Initialize( CreateKernel );
         }
 
         /// <summary>
@@ -51,10 +63,10 @@ namespace Finances.Endpoint.WebApi
             var kernel = new StandardKernel();
             try
             {
-                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                kernel.Bind<Func<IKernel>>().ToMethod( ctx => () => new Bootstrapper().Kernel );
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                kernel.Load(typeof(WebApiApplication).Assembly);
+                kernel.Load( typeof( WebApiApplication ).Assembly );
                 return kernel;
             }
             catch

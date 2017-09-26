@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IHumanService.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The HumanService interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain
 {
     using System;
     using System.Threading.Tasks;
@@ -22,7 +31,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<Guid> Add(Guid owner, HumanIn input);
+        Task<Guid> Add( Guid owner, HumanIn input );
 
         /// <summary>
         /// The edit.
@@ -39,7 +48,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<bool> Edit(Guid owner, Guid code, HumanIn input);
+        Task<bool> Edit( Guid owner, Guid code, HumanIn input );
 
         /// <summary>
         /// The list.
@@ -53,6 +62,6 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HumanListResponse> List(Guid owner, HumanListRequest input);
+        Task<HumanListResponse> List( Guid owner, HumanListRequest input );
     }
 }

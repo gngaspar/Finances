@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Repository
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IHumanRepository.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The HumanRepository interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Repository
 {
     using System;
     using System.Threading.Tasks;
@@ -25,7 +34,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<int> Add(Guid owner, Guid code, HumanIn input);
+        Task<int> Add( Guid owner, Guid code, HumanIn input );
 
         /// <summary>
         /// The edit.
@@ -39,7 +48,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<int> Edit(Guid code, HumanIn input);
+        Task<int> Edit( Guid code, HumanIn input );
 
         /// <summary>
         /// The exist.
@@ -50,7 +59,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<bool> Exist(Guid input);
+        Task<bool> Exist( Guid input );
 
         /// <summary>
         /// The exist owner.
@@ -61,7 +70,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<bool> ExistOwner(Guid input);
+        Task<bool> ExistOwner( Guid input );
 
         /// <summary>
         /// The is he owner.
@@ -75,7 +84,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<bool> IsHeOwner(Guid owner, Guid code);
+        Task<bool> IsHeOwner( Guid owner, Guid code );
 
         /// <summary>
         /// The list.
@@ -89,6 +98,6 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HumanListResponse> List(Guid owner, HumanListRequest input);
+        Task<HumanListResponse> List( Guid owner, HumanListRequest input );
     }
 }

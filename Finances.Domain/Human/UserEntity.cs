@@ -1,11 +1,20 @@
-﻿namespace Finances.Domain.Human
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The User representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Human
 {
     using System;
 
     //Todo: move this to its own project
 
     /// <summary>
-    /// The User representantion on the database.
+    /// The user entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
     public class UserEntity : EntityDateTimeBase
@@ -53,9 +62,9 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the nif.
+        /// Gets or sets the NIF.
         /// </summary>
-        /// <value>The nif.</value>
+        /// <value>The NIF.</value>
         public string Nif { get; set; }
 
         /// <summary>

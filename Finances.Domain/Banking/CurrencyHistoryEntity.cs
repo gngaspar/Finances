@@ -1,13 +1,25 @@
-﻿namespace Finances.Domain.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrencyHistoryEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Currency representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Banking
 {
     using System;
 
     /// <summary>
-    /// The Currency representantion on the database.
+    /// The currency history entity.
     /// </summary>
     public class CurrencyHistoryEntity
     {
-        private string _currency;
+        /// <summary>
+        /// The currency.
+        /// </summary>
+        private string currency;
 
         /// <summary>
         /// Gets or sets the created at day.
@@ -21,8 +33,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return _currency.ToUpper(); }
-            set { _currency = value.ToUpper(); }
+            get { return this.currency.ToUpper(); }
+            set { this.currency = value.ToUpper(); }
         }
 
         /// <summary>

@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.DependencyInjection
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankingDependencyInjection.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The configuration of Ninject for banking
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.DependencyInjection
 {
     using Finances.DataLayer.Repository;
     using Finances.Domain;
@@ -7,7 +16,7 @@
     using Ninject.Modules;
 
     /// <summary>
-    /// The configuration of Ninject for banking
+    /// The configuration of NINJECT for banking
     /// </summary>
     /// <seealso cref="Ninject.Modules.NinjectModule"/>
     public class BankingDependencyInjection : NinjectModule
@@ -17,11 +26,11 @@
         /// </summary>
         public override void Load()
         {
-            //this.Bind(typeof(Lazy<>)).ToMethod(ctx =>
-            //    this.GetType()
-            //   .GetMethod("GetLazyProvider", BindingFlags.Instance | BindingFlags.NonPublic)
-            //   .MakeGenericMethod(ctx.GenericArguments[0])
-            //   .Invoke(this, new object[] { ctx.Kernel }));
+            ////this.Bind(typeof(Lazy<>)).ToMethod(ctx =>
+            ////    this.GetType()
+            ////   .GetMethod("GetLazyProvider", BindingFlags.Instance | BindingFlags.NonPublic)
+            ////   .MakeGenericMethod(ctx.GenericArguments[0])
+            ////   .Invoke(this, new object[] { ctx.Kernel }));
 
             this.Bind<IBankService>().To<BankService>();
             this.Bind<IBankRepository>().To<BankRepository>();
@@ -32,10 +41,8 @@
             this.Bind<IHumanService>().To<HumanService>();
             this.Bind<IHumanRepository>().To<HumanRepository>();
 
-
             this.Bind<IAccountService>().To<AccountService>();
             this.Bind<IAccountRepository>().To<AccountRepository>();
-
         }
 
         //protected Lazy<T> GetLazyProvider<T>(IKernel kernel)

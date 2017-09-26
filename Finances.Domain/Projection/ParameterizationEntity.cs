@@ -1,14 +1,26 @@
-﻿namespace Finances.Domain.Projection
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ParameterizationEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Parameterization representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Projection
 {
     using System;
 
     /// <summary>
-    /// The Parameterization representantion on the database.
+    /// The parameterization entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityOwnerBase"/>
     public class ParameterizationEntity : EntityOwnerBase
     {
-        private string _currency;
+        /// <summary>
+        /// The currency.
+        /// </summary>
+        private string currency;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="ParameterizationEntity"/> is active.
@@ -28,8 +40,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return this._currency.ToUpper(); }
-            set { this._currency = value.ToUpper(); }
+            get { return this.currency.ToUpper(); }
+            set { this.currency = value.ToUpper(); }
         }
 
         /// <summary>

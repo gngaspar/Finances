@@ -1,4 +1,13 @@
-﻿namespace Finances.DataLayer.Extension
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SeedExtension.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The seed extension.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.DataLayer.Extension
 {
     using System;
     using System.Collections.Generic;
@@ -22,52 +31,52 @@
         /// <param name="identifierExpression">The identifier expression.</param>
         /// <param name="updatingExpression">The updating expression.</param>
         /// <param name="entities">The entities.</param>
-        internal static void SeedAddOrUpdate<T>(this DbContext db, Expression<Func<T, object>> identifierExpression, Expression<Func<T, object>> updatingExpression, params T[] entities) where T : class
+        internal static void SeedAddOrUpdate<T>( this DbContext db, Expression<Func<T, object>> identifierExpression, Expression<Func<T, object>> updatingExpression, params T[] entities ) where T : class
         {
-            if (updatingExpression == null)
+            if ( updatingExpression == null )
             {
-                db.Set<T>().AddOrUpdate(identifierExpression, entities);
+                db.Set<T>().AddOrUpdate( identifierExpression, entities );
                 return;
             }
 
-            var identifyingProperties = GetProperties<T>(identifierExpression).ToList();
+            var identifyingProperties = GetProperties<T>( identifierExpression ).ToList();
 
-            var updatingProperties = GetProperties<T>(updatingExpression).Where(pi => IsModifiedable(pi.PropertyType)).ToList();
+            var updatingProperties = GetProperties<T>( updatingExpression ).Where( pi => IsModifiedable( pi.PropertyType ) ).ToList();
 
-            var parameter = Expression.Parameter(typeof(T));
-            foreach (var entity in entities)
+            var parameter = Expression.Parameter( typeof( T ) );
+            foreach ( var entity in entities )
             {
-                var matches = identifyingProperties.Select(pi => Expression.Equal(Expression.Property(parameter, pi.Name), Expression.Constant(pi.GetValue(entity, null))));
-                var matchExpression = matches.Aggregate<BinaryExpression, Expression>(null, (agg, v) => (agg == null) ? v : Expression.AndAlso(agg, v));
+                var matches = identifyingProperties.Select( pi => Expression.Equal( Expression.Property( parameter, pi.Name ), Expression.Constant( pi.GetValue( entity, null ) ) ) );
+                var matchExpression = matches.Aggregate<BinaryExpression, Expression>( null, ( agg, v ) => ( agg == null ) ? v : Expression.AndAlso( agg, v ) );
 
-                var predicate = Expression.Lambda<Func<T, bool>>(matchExpression, new[] { parameter });
-                var existing = db.Set<T>().SingleOrDefault(predicate);
-                if (existing == null)
+                var predicate = Expression.Lambda<Func<T, bool>>( matchExpression, new[] { parameter } );
+                var existing = db.Set<T>().SingleOrDefault( predicate );
+                if ( existing == null )
                 {
                     // New.
-                    db.Set<T>().Add(entity);
+                    db.Set<T>().Add( entity );
                     continue;
                 }
 
                 // Update.
-                foreach (var prop in updatingProperties)
+                foreach ( var prop in updatingProperties )
                 {
-                    if (prop.Name == "ChangeAt")
+                    if ( prop.Name == "ChangeAt" )
                     {
-                        db.Entry(existing).Property(prop.Name).IsModified = true;
-                        prop.SetValue(existing, DateTime.Now);
+                        db.Entry( existing ).Property( prop.Name ).IsModified = true;
+                        prop.SetValue( existing, DateTime.Now );
                         continue;
                     }
 
-                    var oldValue = prop.GetValue(existing, null);
-                    var newValue = prop.GetValue(entity, null);
-                    if (Equals(oldValue, newValue))
+                    var oldValue = prop.GetValue( existing, null );
+                    var newValue = prop.GetValue( entity, null );
+                    if ( object.Equals( oldValue, newValue ) )
                     {
                         continue;
                     }
 
-                    db.Entry(existing).Property(prop.Name).IsModified = true;
-                    prop.SetValue(existing, newValue);
+                    db.Entry( existing ).Property( prop.Name ).IsModified = true;
+                    prop.SetValue( existing, newValue );
                 }
             }
         }
@@ -84,37 +93,37 @@
         /// <returns>
         /// The <see cref="IEnumerable"/>.
         /// </returns>
-        private static IEnumerable<PropertyInfo> GetProperties<T>(Expression<Func<T, object>> exp) where T : class
+        private static IEnumerable<PropertyInfo> GetProperties<T>( Expression<Func<T, object>> exp ) where T : class
         {
-            var type = typeof(T);
+            var type = typeof( T );
             var properties = new List<PropertyInfo>();
 
-            if (exp.Body.NodeType == ExpressionType.MemberAccess)
+            if ( exp.Body.NodeType == ExpressionType.MemberAccess )
             {
                 var memExp = exp.Body as MemberExpression;
-                if (memExp != null && memExp.Member != null)
+                if ( memExp != null && memExp.Member != null )
                 {
-                    properties.Add(type.GetProperty(memExp.Member.Name));
+                    properties.Add( type.GetProperty( memExp.Member.Name ) );
                 }
             }
-            else if (exp.Body.NodeType == ExpressionType.Convert)
+            else if ( exp.Body.NodeType == ExpressionType.Convert )
             {
                 var unaryExp = exp.Body as UnaryExpression;
-                if (unaryExp != null)
+                if ( unaryExp != null )
                 {
                     var propExp = unaryExp.Operand as MemberExpression;
-                    if (propExp != null && propExp.Member != null)
+                    if ( propExp != null && propExp.Member != null )
                     {
-                        properties.Add(type.GetProperty(propExp.Member.Name));
+                        properties.Add( type.GetProperty( propExp.Member.Name ) );
                     }
                 }
             }
-            else if (exp.Body.NodeType == ExpressionType.New)
+            else if ( exp.Body.NodeType == ExpressionType.New )
             {
                 var newExp = exp.Body as NewExpression;
-                if (newExp != null)
+                if ( newExp != null )
                 {
-                    properties.AddRange(newExp.Members.Select(x => type.GetProperty(x.Name)));
+                    properties.AddRange( newExp.Members.Select( x => type.GetProperty( x.Name ) ) );
                 }
             }
 
@@ -130,9 +139,9 @@
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        private static bool IsModifiedable(Type type)
+        private static bool IsModifiedable( Type type )
         {
-            return type.IsPrimitive || type.IsValueType || type == typeof(string);
+            return type.IsPrimitive || type.IsValueType || type == typeof( string );
         }
     }
 }

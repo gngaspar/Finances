@@ -1,9 +1,18 @@
-﻿namespace Finances.Domain.Human
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PersonEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Person representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Human
 {
     using System;
 
     /// <summary>
-    /// The Person representantion on the database.
+    /// The person entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
     public class PersonEntity : EntityDateTimeBase

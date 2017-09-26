@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Extensions
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DecimalPrecisionAttribute.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The decimal Precision attribute.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Extensions
 {
     using System;
 
@@ -6,7 +15,7 @@
     /// The decimal Precision attribute.
     /// </summary>
     /// <seealso cref="System.Attribute"/>
-    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    [AttributeUsage( AttributeTargets.Property, Inherited = false, AllowMultiple = false )]
     public sealed class DecimalPrecisionAttribute : Attribute
     {
         /// <summary>
@@ -14,10 +23,10 @@
         /// </summary>
         /// <param name="precision">The precision.</param>
         /// <param name="scale">The scale.</param>
-        public DecimalPrecisionAttribute(byte precision, byte scale)
+        public DecimalPrecisionAttribute( byte precision, byte scale )
         {
-            Precision = precision;
-            Scale = scale;
+            this.Precision = precision;
+            this.Scale = scale;
         }
 
         /// <summary>

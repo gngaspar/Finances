@@ -1,9 +1,18 @@
-﻿namespace Finances.Domain.Plastic
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CreditCardEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Credit Card representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Plastic
 {
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// The Credit Card representantion on the database.
+    /// The credit card entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.Plastic.CardEntity"/>
     public class CreditCardEntity : CardEntity

@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.ApiControllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Controller for banking
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
     using System.Net.Http;
@@ -14,7 +23,7 @@
     /// <summary>
     /// The Controller for banking
     /// </summary>
-    [RoutePrefix("Bank")]
+    [RoutePrefix( "Bank" )]
     public class BankController : BaseController, IBankController
     {
         /// <summary>
@@ -28,7 +37,7 @@
         /// <param name="bankService">
         /// The bank service.
         /// </param>
-        public BankController(IBankService bankService)
+        public BankController( IBankService bankService )
         {
             this.bankService = bankService;
         }
@@ -43,11 +52,11 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("Add")]
-        [ResponseType(typeof(ActionResponse<Guid>))]
-        public async Task<HttpResponseMessage> Add(BankIn bank)
+        [Route( "Add" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> Add( BankIn bank )
         {
-            return await this.ProcessActionAsync(bank, this.bankService.Add);
+            return await this.ProcessActionAsync( bank, this.bankService.Add );
         }
 
         /// <summary>
@@ -63,13 +72,13 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("{code:guid}/Edit")]
-        [ResponseType(typeof(ActionResponse<bool>))]
-        public async Task<HttpResponseMessage> Edit(Guid code, BankIn bank)
+        [Route( "{code:guid}/Edit" )]
+        [ResponseType( typeof( ActionResponse<bool> ) )]
+        public async Task<HttpResponseMessage> Edit( Guid code, BankIn bank )
         {
             var input = new BankEdit { Bank = bank, Code = code };
 
-            return await this.ProcessActionAsync(input, this.bankService.Edit);
+            return await this.ProcessActionAsync( input, this.bankService.Edit );
         }
 
         /// <summary>
@@ -82,11 +91,11 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route("List")]
-        [ResponseType(typeof(ActionResponse<BankListResponse>))]
-        public async Task<HttpResponseMessage> List(BankListRequest request)
+        [Route( "List" )]
+        [ResponseType( typeof( ActionResponse<BankListResponse> ) )]
+        public async Task<HttpResponseMessage> List( BankListRequest request )
         {
-            return await this.ProcessActionAsync(request, this.bankService.List);
+            return await this.ProcessActionAsync( request, this.bankService.List );
         }
     }
 }

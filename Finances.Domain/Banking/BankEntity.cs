@@ -1,14 +1,26 @@
-﻿namespace Finances.Domain.Banking
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BankEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Bank representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Banking
 {
     using System;
 
     /// <summary>
-    /// The Bank representantion on the database.
+    /// The bank entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityDateTimeBase"/>
     public class BankEntity : EntityDateTimeBase
     {
-        private string _country;
+        /// <summary>
+        /// The country.
+        /// </summary>
+        private string country;
 
         /// <summary>
         /// Gets or sets the Code.
@@ -22,8 +34,8 @@
         /// <value>The country.</value>
         public string Country
         {
-            get { return _country.ToUpper(); }
-            set { _country = value.ToUpper(); }
+            get { return this.country.ToUpper(); }
+            set { this.country = value.ToUpper(); }
         }
 
         /// <summary>

@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Repository
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ICurrencyRepository.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The CurrencyRepository interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -43,6 +52,6 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<int> Update(List<CurrencyIn> input);
+        Task<int> Update( List<CurrencyIn> input );
     }
 }

@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EntityDateTimeBase.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The base of entities to have dates information
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain
 {
     using System;
 

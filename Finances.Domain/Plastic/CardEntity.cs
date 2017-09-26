@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Plastic
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CardEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Card representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Plastic
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -7,13 +16,19 @@
     using Finances.Contract.Common;
 
     /// <summary>
-    /// The Card representantion on the database.
+    /// The card entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityOwnerBankBase"/>
     public abstract class CardEntity : EntityOwnerBankBase
     {
-        private string _currency;
+        /// <summary>
+        /// The currency.
+        /// </summary>
+        private string currency;
 
+        /// <summary>
+        /// Gets or sets the account.
+        /// </summary>
         [Required]
         public Guid Account { get; set; }
 
@@ -35,8 +50,8 @@
         /// </summary>
         /// <value>The card provider string.</value>
         [Required]
-        [MaxLength(100)]
-        [Column("CardProvider")]
+        [MaxLength( 100 )]
+        [Column( "CardProvider" )]
         public string CardProviderString => this.CardProvider.ToString();
 
         /// <summary>
@@ -45,8 +60,8 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return this._currency.ToUpper(); }
-            set { this._currency = value.ToUpper(); }
+            get { return this.currency.ToUpper(); }
+            set { this.currency = value.ToUpper(); }
         }
 
         /// <summary>

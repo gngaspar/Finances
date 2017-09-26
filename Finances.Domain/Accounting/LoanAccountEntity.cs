@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LoanAccountEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The loan account entity.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Accounting
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -6,31 +15,31 @@
     using Finances.Domain.Extensions;
 
     /// <summary>
-    /// The Loan Account representantion on the database.
+    /// The loan account entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.Accounting.AccountEntity"/>
     public class LoanAccountEntity : AccountEntity
     {
         /// <summary>
-        /// Gets or sets the Inicial Amount.
+        /// Gets or sets the initial amount.
         /// </summary>
-        /// <value>The inicial amount.</value>
+        /// <value>The initial amount.</value>
         [Required]
-        public decimal InicialAmount { get; set; }
+        public decimal InitialAmount { get; set; }
 
         /// <summary>
         /// Gets or sets the Interest Net Rate.
         /// </summary>
         /// <value>The interest net rate.</value>
         [Required]
-        [DecimalPrecision(18, 3)]
+        [DecimalPrecision( 18, 3 )]
         public decimal InterestNetRate { get; set; }
 
         /// <summary>
         /// Gets or sets the Loan end Date.
         /// </summary>
         /// <value>The loan end date.</value>
-        [DataType(DataType.Date)]
+        [DataType( DataType.Date )]
         public DateTime LoanEndDate { get; set; }
 
         /// <summary>
@@ -38,7 +47,7 @@
         /// </summary>
         /// <value>The loan interest rate.</value>
         [Required]
-        [DecimalPrecision(18, 3)]
+        [DecimalPrecision( 18, 3 )]
         public decimal LoanInterestRate { get; set; }
 
         /// <summary>
@@ -52,7 +61,7 @@
         /// </summary>
         /// <value>The premium percentage.</value>
         [Required]
-        [DecimalPrecision(18, 3)]
+        [DecimalPrecision( 18, 3 )]
         public decimal PremiumPercentage { get; set; }
     }
 }

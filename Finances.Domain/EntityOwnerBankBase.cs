@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EntityOwnerBankBase.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Entity even more expanded, to have information about each bank its related
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain
 {
     using System;
     using System.ComponentModel.DataAnnotations;

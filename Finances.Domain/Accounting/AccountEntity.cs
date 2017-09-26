@@ -1,14 +1,26 @@
-﻿namespace Finances.Domain.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AccountEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The Account representantion on the database.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Accounting
 {
     using System;
 
     /// <summary>
-    /// The Account representantion on the database.
+    /// The account entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.EntityOwnerBankBase"/>
     public abstract class AccountEntity : EntityOwnerBankBase
     {
-        private string _currency;
+        /// <summary>
+        /// The currency.
+        /// </summary>
+        private string currency;
 
         /// <summary>
         /// Gets or sets the Amount.
@@ -22,8 +34,15 @@
         /// <value>The code.</value>
         public string Currency
         {
-            get { return _currency.ToUpper(); }
-            set { _currency = value.ToUpper(); }
+            get
+            {
+                return this.currency.ToUpper();
+            }
+
+            set
+            {
+                this.currency = value.ToUpper();
+            }
         }
 
         /// <summary>

@@ -1,4 +1,13 @@
-﻿namespace Finances.Domain.Accounting
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SavingAccountEntity.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The saving account entity.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Domain.Accounting
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -8,7 +17,7 @@
     using Finances.Domain.Extensions;
 
     /// <summary>
-    /// The Saving Account representantion on the database.
+    /// The saving account entity.
     /// </summary>
     /// <seealso cref="Finances.Domain.Accounting.AccountEntity"/>
     public class SavingAccountEntity : AccountEntity
@@ -25,9 +34,9 @@
         /// </summary>
         /// <value>The automatic renovation string.</value>
         [Required]
-        [MaxLength(100)]
-        [Column("AutomaticRenovation")]
-        public string AutomaticRenovationString => AutomaticRenovation.ToString();
+        [MaxLength( 100 )]
+        [Column( "AutomaticRenovation" )]
+        public string AutomaticRenovationString => this.AutomaticRenovation.ToString();
 
         /// <summary>
         /// Gets or sets a value indicating whether [interest capitalization].
@@ -48,16 +57,16 @@
         /// </summary>
         /// <value>The interest payment string.</value>
         [Required]
-        [MaxLength(100)]
-        [Column("InterestPayment")]
-        public string InterestPaymentString => InterestPayment.ToString();
+        [MaxLength( 100 )]
+        [Column( "InterestPayment" )]
+        public string InterestPaymentString => this.InterestPayment.ToString();
 
         /// <summary>
         /// Gets or sets the saving end date.
         /// </summary>
         /// <value>The saving end date.</value>
         [Required]
-        [DataType(DataType.Date)]
+        [DataType( DataType.Date )]
         public DateTime SavingEndDate { get; set; }
 
         /// <summary>
@@ -65,7 +74,7 @@
         /// </summary>
         /// <value>The saving interest rate.</value>
         [Required]
-        [DecimalPrecision(18, 3)]
+        [DecimalPrecision( 18, 3 )]
         public decimal SavingInterestRate { get; set; }
 
         /// <summary>
