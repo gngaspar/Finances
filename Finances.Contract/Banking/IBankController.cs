@@ -42,7 +42,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<bool>> Edit(Guid code, BankIn bank);
+        Task<HttpResponseMessage> Edit(Guid code, BankIn bank);
 
         /// <summary>
         /// The list.
