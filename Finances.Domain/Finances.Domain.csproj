@@ -94,6 +94,7 @@
     <Compile Include="Repository\IBankRepository.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IHumanRepository.cs" />
+    <Compile Include="Wrappers\BankEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

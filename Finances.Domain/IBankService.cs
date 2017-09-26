@@ -4,32 +4,44 @@
     using System.Threading.Tasks;
     using Finances.Contract;
     using Finances.Contract.Banking;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
-    /// The Bank service actions methods representantion.
+    /// The Bank service actions methods.
     /// </summary>
     public interface IBankService
     {
         /// <summary>
         /// Adds the specified bank.
         /// </summary>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<Guid> Add(BankIn bank);
 
         /// <summary>
         /// Edits the specified bank.
         /// </summary>
-        /// <param name="code">The code.</param>
-        /// <param name="bank">The bank.</param>
-        /// <returns></returns>
-        Task<bool> Edit(Guid code, BankIn bank);
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<bool> Edit( BankEdit bank);
 
         /// <summary>
         /// Lists the specified request.
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<BankListResponse> List(BankListRequest request);
     }
 }
