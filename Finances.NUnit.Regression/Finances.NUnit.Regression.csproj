@@ -56,13 +56,14 @@
     <Compile Include="Common\SelectorCollection.cs" />
     <Compile Include="Common\SelectorConfigElement.cs" />
     <Compile Include="Common\PagesSection.cs" />
-    <Compile Include="Selenium\WebElement.cs" />
+    <Compile Include="Selenium\WebElementHelper.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CurrencyService.cs" company="Gng">
-// Gng ggaspar@netcabo.pt
+// <copyright file="CurrencyService.cs" company="GNG">
+//   GNG
 // </copyright>
 // <summary>
-// The currency service implementation.
+//   The currency service implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ namespace Finances.Management
         /// Initializes a new instance of the <see cref="CurrencyService"/> class.
         /// </summary>
         /// <param name="currencyRepository">The currency repository.</param>
-        public CurrencyService(ICurrencyRepository currencyRepository)
+        public CurrencyService( ICurrencyRepository currencyRepository )
         {
             this.currencyRepository = currencyRepository;
         }
@@ -52,68 +52,68 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<decimal> Convert(ConvertRequest convert)
+        public async Task<decimal> Convert( ConvertRequest convert )
         {
-            if (convert == null)
+            if ( convert == null )
             {
-                throw new ArgumentNullException(nameof(convert));
+                throw new ArgumentNullException( nameof( convert ) );
             }
 
-            if (string.IsNullOrEmpty(convert.FromCurrency) || string.IsNullOrEmpty(convert.FromCurrency.Trim()))
+            if ( string.IsNullOrEmpty( convert.FromCurrency ) || string.IsNullOrEmpty( convert.FromCurrency.Trim() ) )
             {
-                throw new Exception("From currency cant be empty.");
+                throw new Exception( "From currency cant be empty." );
             }
 
-            if (string.IsNullOrEmpty(convert.ToCurrency) || string.IsNullOrEmpty(convert.ToCurrency.Trim()))
+            if ( string.IsNullOrEmpty( convert.ToCurrency ) || string.IsNullOrEmpty( convert.ToCurrency.Trim() ) )
             {
-                throw new Exception("To currency cant be empty.");
+                throw new Exception( "To currency cant be empty." );
             }
 
-            if (string.Equals(convert.FromCurrency, convert.ToCurrency, StringComparison.CurrentCultureIgnoreCase))
+            if ( string.Equals( convert.FromCurrency, convert.ToCurrency, StringComparison.CurrentCultureIgnoreCase ) )
             {
-                throw new Exception("Cant convert to the same currency.");
+                throw new Exception( "Cant convert to the same currency." );
             }
 
-            if (convert.Amount == 0)
+            if ( convert.Amount == 0 )
             {
-                throw new Exception("Amount must be different of Zero (0).");
+                throw new Exception( "Amount must be different of Zero (0)." );
             }
 
             var listOfCurrencies = await this.currencyRepository.List();
 
-            if (listOfCurrencies?.Data == null)
+            if ( listOfCurrencies?.Data == null )
             {
-                throw new Exception("Cant get currencies.");
+                throw new Exception( "Cant get currencies." );
             }
 
-            var from = listOfCurrencies.Data.FirstOrDefault(i => i.Code == convert.FromCurrency.ToUpper());
-            if (from == null)
+            var from = listOfCurrencies.Data.FirstOrDefault( i => i.Code == convert.FromCurrency.ToUpper() );
+            if ( from == null )
             {
-                throw new Exception($"Cant find { convert.FromCurrency} currency.");
+                throw new Exception( $"Cant find { convert.FromCurrency} currency." );
             }
 
-            var to = listOfCurrencies.Data.FirstOrDefault(i => i.Code == convert.ToCurrency.ToUpper());
-            if (to == null)
+            var to = listOfCurrencies.Data.FirstOrDefault( i => i.Code == convert.ToCurrency.ToUpper() );
+            if ( to == null )
             {
-                throw new Exception($"Cant find { convert.ToCurrency} currency.");
+                throw new Exception( $"Cant find { convert.ToCurrency} currency." );
             }
 
-            if (from.ReasonToOneEuro == 0 && to.ReasonToOneEuro == 0)
+            if ( from.ReasonToOneEuro == 0 && to.ReasonToOneEuro == 0 )
             {
                 return convert.Amount;
             }
 
-            if (to.ReasonToOneEuro == 0)
+            if ( to.ReasonToOneEuro == 0 )
             {
                 return convert.Amount / from.ReasonToOneEuro;
             }
 
-            if (from.ReasonToOneEuro == 0)
+            if ( from.ReasonToOneEuro == 0 )
             {
                 return convert.Amount * to.ReasonToOneEuro;
             }
 
-            return to.ReasonToOneEuro * (convert.Amount / from.ReasonToOneEuro);
+            return to.ReasonToOneEuro * ( convert.Amount / from.ReasonToOneEuro );
         }
 
         /// <summary>
@@ -139,25 +139,25 @@ namespace Finances.Management
         /// <exception cref="ArgumentNullException">
         /// The exception.
         /// </exception>
-        public async Task<int> Update(List<CurrencyIn> input)
+        public async Task<int> Update( List<CurrencyIn> input )
         {
-            if (input == null)
+            if ( input == null )
             {
-                throw new ArgumentNullException(nameof(input));
+                throw new ArgumentNullException( nameof( input ) );
             }
 
             var date = await this.currencyRepository.GetTheHistoryLastDay();
-            if (date.Date != DateTime.Now.AddDays(-1).Date)
+            if ( date.Date != DateTime.Now.AddDays( -1 ).Date )
             {
                 await this.currencyRepository.CopyToHistory();
             }
 
-            foreach (var currencyIn in input)
+            foreach ( var currencyIn in input )
             {
-                this.ValidateCurrency(currencyIn);
+                this.ValidateCurrency( currencyIn );
             }
 
-            return await this.currencyRepository.Update(input);
+            return await this.currencyRepository.Update( input );
         }
 
         /// <summary>
@@ -172,26 +172,26 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        private void ValidateCurrency(CurrencyIn currencyIn)
+        private void ValidateCurrency( CurrencyIn currencyIn )
         {
-            if (currencyIn == null)
+            if ( currencyIn == null )
             {
-                throw new ArgumentNullException(nameof(currencyIn));
+                throw new ArgumentNullException( nameof( currencyIn ) );
             }
 
-            if (string.IsNullOrEmpty(currencyIn.Code) || string.IsNullOrEmpty(currencyIn.Code.Trim()))
+            if ( string.IsNullOrEmpty( currencyIn.Code ) || string.IsNullOrEmpty( currencyIn.Code.Trim() ) )
             {
-                throw new Exception("The currency code cant be empty.");
+                throw new Exception( "The currency code cant be empty." );
             }
 
-            if (currencyIn.Code.Length != 3)
+            if ( currencyIn.Code.Length != 3 )
             {
-                throw new Exception($"The currency code { currencyIn.Code} must be 3 chars.");
+                throw new Exception( $"The currency code { currencyIn.Code} must be 3 chars." );
             }
 
-            if (currencyIn.ReasonToOneEuro < 0)
+            if ( currencyIn.ReasonToOneEuro < 0 )
             {
-                throw new Exception($"In the currency code { currencyIn.Code}, ReasonToOneEuro cant be smaller than zero.");
+                throw new Exception( $"In the currency code { currencyIn.Code}, ReasonToOneEuro cant be smaller than zero." );
             }
         }
     }

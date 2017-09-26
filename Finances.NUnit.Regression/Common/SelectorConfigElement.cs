@@ -1,4 +1,13 @@
-﻿namespace Finances.NUnit.Regression.Common
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SelectorConfigElement.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The selector config element.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.NUnit.Regression.Common
 {
     using System.Configuration;
 
@@ -26,7 +35,7 @@
         /// <param name="selector">
         /// The selector.
         /// </param>
-        public SelectorConfigElement(string name, string type, string selector)
+        public SelectorConfigElement( string name, string type, string selector )
         {
             this.Name = name;
             this.Type = type;
@@ -36,31 +45,31 @@
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        [ConfigurationProperty("name", IsRequired = true, IsKey = true, DefaultValue = "")]
+        [ConfigurationProperty( "name", IsRequired = true, IsKey = true, DefaultValue = "" )]
         public string Name
         {
-            get { return (string)this["name"]; }
-            set { this["name"] = value; }
+            get { return (string) this[ "name" ]; }
+            set { this[ "name" ] = value; }
         }
 
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        [ConfigurationProperty("type", IsRequired = true, DefaultValue = "Id")]
+        [ConfigurationProperty( "type", IsRequired = true, DefaultValue = "Id" )]
         public string Type
         {
-            get { return (string)this["type"]; }
-            set { this["type"] = value; }
+            get { return (string) this[ "type" ]; }
+            set { this[ "type" ] = value; }
         }
 
         /// <summary>
         /// Gets or sets the selector.
         /// </summary>
-        [ConfigurationProperty("selector", IsRequired = true, DefaultValue = "")]
+        [ConfigurationProperty( "selector", IsRequired = true, DefaultValue = "" )]
         public string Selector
         {
-            get { return (string)this["selector"]; }
-            set { this["selector"] = value; }
+            get { return (string) this[ "selector" ]; }
+            set { this[ "selector" ] = value; }
         }
     }
 }

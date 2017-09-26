@@ -1,4 +1,13 @@
-﻿namespace Finances.NUnit.Tests.Mocks
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ServiceProxyMock.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The service proxy mock.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.NUnit.Tests.Mocks
 {
     using System;
     using System.Collections.Concurrent;
@@ -28,8 +37,8 @@
         /// </summary>
         public ServiceProxyMock()
         {
-            this.serviceProxyMock = (Mock<IServiceProxy>)Create();
-            if (this.mocks.Count == 0)
+            this.serviceProxyMock = (Mock<IServiceProxy>) Create();
+            if ( this.mocks.Count == 0 )
             {
                 this.RegisterProxyMocks();
             }
@@ -52,7 +61,7 @@
         public Mock<T> GetMock<T>() where T : class
         {
             BaseMock mock;
-            if (this.mocks.TryGetValue(typeof(T), out mock))
+            if ( this.mocks.TryGetValue( typeof( T ), out mock ) )
             {
                 return mock.Create() as Mock<T>;
             }
@@ -66,7 +75,7 @@
         /// <param name="mock">
         /// The mock.
         /// </param>
-        public override void Setup(Mock<IServiceProxy> mock)
+        public override void Setup( Mock<IServiceProxy> mock )
         {
         }
 
@@ -76,26 +85,26 @@
         private void RegisterProxyMocks()
         {
             var assembly = AppDomain.CurrentDomain.
-                GetAssemblies().FirstOrDefault(x => x.FullName.StartsWith("Finances.NUnit.Tests", StringComparison.Ordinal));
+                GetAssemblies().FirstOrDefault( x => x.FullName.StartsWith( "Finances.NUnit.Tests", StringComparison.Ordinal ) );
 
-            var types = assembly.GetTypes().Where(x => x.IsClass
-               && x.IsSubclassOf(typeof(BaseMock))
-               && x != typeof(BaseMock)
-               && x != typeof(ServiceProxyMock)
-               && x.IsGenericType == false &&
-               x.Namespace.StartsWith("Finances.NUnit.Tests.Mocks", StringComparison.Ordinal)).Distinct().ToList();
+            var types = assembly.GetTypes().Where( x => x.IsClass
+                && x.IsSubclassOf( typeof( BaseMock ) )
+                && x != typeof( BaseMock )
+                && x != typeof( ServiceProxyMock )
+                && x.IsGenericType == false &&
+                x.Namespace.StartsWith( "Finances.NUnit.Tests.Mocks", StringComparison.Ordinal ) ).Distinct().ToList();
 
-            foreach (var type in types)
+            foreach ( var type in types )
             {
-                var mockObject = (BaseMock)Activator.CreateInstance(type);
+                var mockObject = (BaseMock) Activator.CreateInstance( type );
                 var mockType = mockObject.GetMockType();
-                this.mocks[mockType] = mockObject;
+                this.mocks[ mockType ] = mockObject;
 
-                var input = Expression.Parameter(typeof(IServiceProxy), "input");
-                var method = typeof(IServiceProxy).GetMethod("Resolve").MakeGenericMethod(mockType);
+                var input = Expression.Parameter( typeof( IServiceProxy ), "input" );
+                var method = typeof( IServiceProxy ).GetMethod( "Resolve" ).MakeGenericMethod( mockType );
 
-                var result = Expression.Lambda<Func<IServiceProxy, object>>(Expression.Call(input, method), input);
-                this.serviceProxyMock.Setup(result).Returns(() => (mockObject.Create() as Mock).Object);
+                var result = Expression.Lambda<Func<IServiceProxy, object>>( Expression.Call( input, method ), input );
+                this.serviceProxyMock.Setup( result ).Returns( () => ( mockObject.Create() as Mock ).Object );
             }
         }
     }

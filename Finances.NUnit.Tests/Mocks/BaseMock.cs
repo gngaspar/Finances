@@ -1,4 +1,13 @@
-﻿namespace Finances.NUnit.Tests.Mocks
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BaseMock.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The base mock.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.NUnit.Tests.Mocks
 {
     using System;
 
@@ -23,7 +32,7 @@
         /// <param name="mock">
         /// The mock.
         /// </param>
-        public abstract void Setup(Mock<T> mock);
+        public abstract void Setup( Mock<T> mock );
 
         /// <summary>
         /// The create.
@@ -33,10 +42,10 @@
         /// </returns>
         public override object Create()
         {
-            if (this.mock == null)
+            if ( this.mock == null )
             {
                 var mockObject = new Mock<T>();
-                this.Setup(mockObject);
+                this.Setup( mockObject );
                 this.mock = mockObject;
             }
 
@@ -51,7 +60,7 @@
         /// </returns>
         public override Type GetMockType()
         {
-            return typeof(T);
+            return typeof( T );
         }
     }
 

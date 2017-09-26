@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MockCurrencyController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   Defines the MockCurrencyController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.NUnit.Tests.Mocks.Controller
 {
     using Finances.Contract.Banking;
-
-    using global::NUnit.Framework;
-
     using Moq;
 
-    public class MockCurrencyController :BaseMock<ICurrencyController>
+    /// <summary>
+    /// The mock currency controller.
+    /// </summary>
+    public class MockCurrencyController : BaseMock<ICurrencyController>
     {
-        public override void Setup(Mock<ICurrencyController> mock)
+        /// <summary>
+        /// The setup.
+        /// </summary>
+        /// <param name="mock">
+        /// The mock.
+        /// </param>
+        public override void Setup( Mock<ICurrencyController> mock )
         {
             // mock.Setup(x => x.Convert(Is.InstanceOf<>())
         }

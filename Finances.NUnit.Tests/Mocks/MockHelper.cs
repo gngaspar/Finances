@@ -1,4 +1,13 @@
-﻿namespace Finances.NUnit.Tests.Mocks
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MockHelper.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The mock helper.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.NUnit.Tests.Mocks
 {
     /// <summary>
     /// The mock helper.

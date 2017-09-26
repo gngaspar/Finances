@@ -1,11 +1,19 @@
-﻿namespace Finances.NUnit.Tests
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BaseTest.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The base test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.NUnit.Tests
 {
     using Finances.Domain;
     using Finances.Domain.Repository;
     using Finances.Endpoint.WebApi.ApiControllers;
     using Finances.Management;
     using Finances.NUnit.Tests.Mocks;
-    using Finances.NUnit.Tests.Mocks.Controller;
 
     /// <summary>
     /// The base test.
@@ -28,17 +36,28 @@
         /// <summary>
         /// Gets the service proxy.
         /// </summary>
-        public ServiceProxyMock ServiceProxy => this.serviceProxy ?? (this.serviceProxy = MockHelper.MockServiceProxy());
+        public ServiceProxyMock ServiceProxy => this.serviceProxy ?? ( this.serviceProxy = MockHelper.MockServiceProxy() );
 
-
+        /// <summary>
+        /// The get currency service.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="ICurrencyService"/>.
+        /// </returns>
         public ICurrencyService GetCurrencyService()
         {
-            return new CurrencyService(this.ServiceProxy.GetMock<ICurrencyRepository>().Object);
+            return new CurrencyService( this.ServiceProxy.GetMock<ICurrencyRepository>().Object );
         }
 
+        /// <summary>
+        /// The get currency controller.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="CurrencyController"/>.
+        /// </returns>
         public CurrencyController GetCurrencyController()
         {
-            return new CurrencyController(this.GetCurrencyService());
+            return new CurrencyController( this.GetCurrencyService() );
         }
     }
 }

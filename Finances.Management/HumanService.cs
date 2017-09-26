@@ -1,4 +1,13 @@
-﻿namespace Finances.Management
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HumanService.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The human service.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Management
 {
     using System;
     using System.Threading.Tasks;
@@ -23,7 +32,7 @@
         /// <param name="humanRepository">
         /// The human repository.
         /// </param>
-        public HumanService(IHumanRepository humanRepository)
+        public HumanService( IHumanRepository humanRepository )
         {
             this.humanRepository = humanRepository;
         }
@@ -46,28 +55,28 @@
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<Guid> Add(Guid code, HumanIn input)
+        public async Task<Guid> Add( Guid code, HumanIn input )
         {
-            if (code == null)
+            if ( code == null )
             {
-                throw new ArgumentNullException(nameof(code));
+                throw new ArgumentNullException( nameof( code ) );
             }
 
-            if (input == null)
+            if ( input == null )
             {
-                throw new ArgumentNullException(nameof(input));
+                throw new ArgumentNullException( nameof( input ) );
             }
 
             // TODO: Add validations
-            var ownerExits = await this.humanRepository.ExistOwner(code);
-            if (!ownerExits)
+            var ownerExits = await this.humanRepository.ExistOwner( code );
+            if ( !ownerExits )
             {
-                throw new Exception("User doesnt exist.");
+                throw new Exception( "User doesnt exist." );
             }
 
             var newCode = Guid.NewGuid();
 
-            var created = await this.humanRepository.Add(code, newCode, input);
+            var created = await this.humanRepository.Add( code, newCode, input );
 
             return created != 0 ? newCode : Guid.Empty;
         }
@@ -93,44 +102,43 @@
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<bool> Edit(Guid owner, Guid code, HumanIn input)
+        public async Task<bool> Edit( Guid owner, Guid code, HumanIn input )
         {
-            if (owner == null)
+            if ( owner == null )
             {
-                throw new ArgumentNullException(nameof(owner));
+                throw new ArgumentNullException( nameof( owner ) );
             }
 
-            if (code == null)
+            if ( code == null )
             {
-                throw new ArgumentNullException(nameof(code));
+                throw new ArgumentNullException( nameof( code ) );
             }
 
-            if (input == null)
+            if ( input == null )
             {
-                throw new ArgumentNullException(nameof(input));
+                throw new ArgumentNullException( nameof( input ) );
             }
 
             //TODO: Add validations
-
-            var ownerExits = await this.humanRepository.ExistOwner(owner);
-            if (!ownerExits)
+            var ownerExits = await this.humanRepository.ExistOwner( owner );
+            if ( !ownerExits )
             {
-                throw new Exception("User doesnt exist.");
-            }
-           
-            var exitsHuman = await this.humanRepository.Exist(code);
-            if (!exitsHuman)
-            {
-                throw new Exception("User to change doesnt exist.");
+                throw new Exception( "User doesnt exist." );
             }
 
-            var isOwner = await this.humanRepository.IsHeOwner(owner, code);
-            if (!isOwner)
+            var exitsHuman = await this.humanRepository.Exist( code );
+            if ( !exitsHuman )
             {
-                throw new Exception("User is not owner.");
+                throw new Exception( "User to change doesnt exist." );
             }
 
-            var changed = await this.humanRepository.Edit(code, input);
+            var confirmIfIsOwner = await this.humanRepository.IsHeOwner( owner, code );
+            if ( !confirmIfIsOwner )
+            {
+                throw new Exception( "User is not owner." );
+            }
+
+            var changed = await this.humanRepository.Edit( code, input );
 
             return changed != 0;
         }
@@ -153,27 +161,26 @@
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<HumanListResponse> List(Guid code, HumanListRequest input)
+        public async Task<HumanListResponse> List( Guid code, HumanListRequest input )
         {
-            if (code == null)
+            if ( code == null )
             {
-                throw new ArgumentNullException(nameof(code));
+                throw new ArgumentNullException( nameof( code ) );
             }
 
-            if (input == null)
+            if ( input == null )
             {
-                throw new ArgumentNullException(nameof(input));
+                throw new ArgumentNullException( nameof( input ) );
             }
 
             //TODO: Add validations
-
-            var ownerExits = await this.humanRepository.ExistOwner(code);
-            if (!ownerExits)
+            var ownerExits = await this.humanRepository.ExistOwner( code );
+            if ( !ownerExits )
             {
-                throw new Exception("User doesnt exist.");
+                throw new Exception( "User doesnt exist." );
             }
-           
-            return await this.humanRepository.List(code, input);
+
+            return await this.humanRepository.List( code, input );
         }
     }
 }
