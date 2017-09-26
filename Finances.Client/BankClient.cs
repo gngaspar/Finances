@@ -7,6 +7,9 @@
     using Finances.Contract;
     using Finances.Contract.Banking;
 
+    /// <summary>
+    /// The bank client.
+    /// </summary>
     public class BankClient : ClientBase, IBankController
     {
         public BankClient(IRestSender sender) : base(sender)
@@ -22,17 +25,47 @@
 
         ////    //return await this.ExecuteSender<ListRequest, ListResponse>(request, context);
         ////    return new Task<BankListResponse>(new Func<BankListResponse> {Method = { }});
-        
+
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public Task<HttpResponseMessage> Add(BankIn bank)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResponse<bool>> Edit(Guid code, BankIn bank)
+        /// <summary>
+        /// The edit.
+        /// </summary>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="bank">
+        /// The bank.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<HttpResponseMessage> Edit(Guid code, BankIn bank)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The list.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public Task<HttpResponseMessage> List(BankListRequest input)
         {
             throw new NotImplementedException();
