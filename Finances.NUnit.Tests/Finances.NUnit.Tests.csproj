@@ -38,8 +38,8 @@
       <HintPath>..\packages\Castle.Core.4.1.1\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.7.99.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.7.99\lib\net45\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.7.127.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.127\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -71,8 +71,8 @@
       <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.1\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

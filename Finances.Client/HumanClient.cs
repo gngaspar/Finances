@@ -10,6 +10,7 @@
 namespace Finances.Client
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     using Finances.Client.Common;
@@ -27,8 +28,8 @@ namespace Finances.Client
         /// <param name="sender">
         /// The sender.
         /// </param>
-        public HumanClient(IRestSender sender)
-            : base(sender)
+        public HumanClient( IRestSender sender )
+            : base( sender )
         {
         }
 
@@ -44,7 +45,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<ActionResponse<Guid>> Add(Guid code, HumanIn input)
+        public Task<ActionResponse<Guid>> Add( Guid code, HumanIn input )
         {
             throw new NotImplementedException();
         }
@@ -64,7 +65,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<ActionResponse<bool>> Edit(Guid code, Guid human, HumanIn input)
+        public Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input )
         {
             throw new NotImplementedException();
         }
@@ -81,7 +82,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<ActionResponse<HumanListResponse>> List(Guid code, HumanListRequest input)
+        public Task<HttpResponseMessage> List( Guid code, HumanListRequest input )
         {
             throw new NotImplementedException();
         }

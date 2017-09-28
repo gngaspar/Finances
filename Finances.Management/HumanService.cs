@@ -40,8 +40,8 @@ namespace Finances.Management
         /// <summary>
         /// The add.
         /// </summary>
-        /// <param name="code">
-        /// The code.
+        /// <param name="owner">
+        /// The owner.
         /// </param>
         /// <param name="input">
         /// The input.
@@ -55,11 +55,11 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<Guid> Add( Guid code, HumanIn input )
+        public async Task<Guid> Add( Guid owner, HumanIn input )
         {
-            if ( code == null )
+            if ( owner == null )
             {
-                throw new ArgumentNullException( nameof( code ) );
+                throw new ArgumentNullException( nameof( owner ) );
             }
 
             if ( input == null )
@@ -68,7 +68,7 @@ namespace Finances.Management
             }
 
             // TODO: Add validations
-            var ownerExits = await this.humanRepository.ExistOwner( code );
+            var ownerExits = await this.humanRepository.ExistOwner( owner );
             if ( !ownerExits )
             {
                 throw new Exception( "User doesnt exist." );
@@ -76,7 +76,7 @@ namespace Finances.Management
 
             var newCode = Guid.NewGuid();
 
-            var created = await this.humanRepository.Add( code, newCode, input );
+            var created = await this.humanRepository.Add( owner, newCode, input );
 
             return created != 0 ? newCode : Guid.Empty;
         }
@@ -146,8 +146,8 @@ namespace Finances.Management
         /// <summary>
         /// The list.
         /// </summary>
-        /// <param name="code">
-        /// The code.
+        /// <param name="owner">
+        /// The owner.
         /// </param>
         /// <param name="input">
         /// The input.
@@ -161,11 +161,11 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<HumanListResponse> List( Guid code, HumanListRequest input )
+        public async Task<HumanListResponse> List( Guid owner, HumanListRequest input )
         {
-            if ( code == null )
+            if ( owner == null )
             {
-                throw new ArgumentNullException( nameof( code ) );
+                throw new ArgumentNullException( nameof( owner ) );
             }
 
             if ( input == null )
@@ -174,13 +174,13 @@ namespace Finances.Management
             }
 
             //TODO: Add validations
-            var ownerExits = await this.humanRepository.ExistOwner( code );
+            var ownerExits = await this.humanRepository.ExistOwner( owner );
             if ( !ownerExits )
             {
                 throw new Exception( "User doesnt exist." );
             }
 
-            return await this.humanRepository.List( code, input );
+            return await this.humanRepository.List( owner, input );
         }
     }
 }

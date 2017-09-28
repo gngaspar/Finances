@@ -89,7 +89,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost]
+        [HttpGet]
         [Route( "List" )]
         [ResponseType( typeof( ActionResponse<CurrencyListResponse> ) )]
         public async Task<HttpResponseMessage> List()

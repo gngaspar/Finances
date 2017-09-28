@@ -11,6 +11,8 @@ namespace Finances.Endpoint.WebApi
 {
     using System.Web.Http;
 
+    using Newtonsoft.Json.Serialization;
+
     /// <summary>
     /// The Web API Configuration section
     /// </summary>
@@ -27,10 +29,11 @@ namespace Finances.Endpoint.WebApi
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional } );
+            var jsonSerializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
+            jsonSerializerSettings.Converters.Add( new Newtonsoft.Json.Converters.StringEnumConverter() );
+            jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.Remove( config.Formatters.XmlFormatter );
+
         }
     }
 }

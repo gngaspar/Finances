@@ -28,7 +28,7 @@ namespace Finances.Endpoint.WebApi
             // Code that runs on application startup
             GlobalConfiguration.Configure( WebApiConfig.Register );
 
-            GlobalConfiguration.Configuration.Formatters.XmlFormatter.UseXmlSerializer = true;
+            //GlobalConfiguration.Configuration.Formatters.XmlFormatter.UseXmlSerializer = true;
 
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

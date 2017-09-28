@@ -14,7 +14,7 @@
     <script src="Scripts/jquery-3.2.1.js"></script>
     <script>
         var uri = 'bank/list';
-        
+
         function find() {
             var text = $('#bankInput').val();
             var checked = $('#bankExact').is(":checked");
@@ -24,7 +24,7 @@
                 Page: 1,
                 Filter: {
                     Name: text,
-                    NameExact: checked,
+                    NameExact: checked
                 },
                 Order: {
                     Field: "None",
@@ -34,8 +34,8 @@
 
             $.post(uri, obj)
                 .done(function (data) {
-                    $.each(data.Results.Data, function (index, order) {
-                        $('#banks').append('<li>' + order.Name + '</li>');
+                    $.each(data.results.data, function (index, order) {
+                        $('#banks').append('<li>' + order.name + '</li>');
                     });
                 })
                 .fail(function (jqXHR, textStatus, err) {

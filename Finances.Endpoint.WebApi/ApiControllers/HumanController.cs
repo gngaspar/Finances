@@ -10,8 +10,10 @@
 namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using System.Web.Http.Description;
 
     using Finances.Contract;
     using Finances.Contract.Humans;
@@ -23,27 +25,27 @@ namespace Finances.Endpoint.WebApi.ApiControllers
     /// <seealso cref="ApiController"/>
     /// <seealso cref="IHumanController"/>
     [RoutePrefix( "Human" )]
-    public class HumanController : ApiController, IHumanController
+    public class HumanController : BaseController, IHumanController
     {
         /// <summary>
-        /// The service.
+        /// The human Service.
         /// </summary>
-        private readonly IHumanService service;
+        private readonly IHumanService humanService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HumanController"/> class.
         /// </summary>
         /// <param name="service">The service.</param>
-        public HumanController( IHumanService service )
+        public HumanController( IHumanService humanService )
         {
-            this.service = service;
+            this.humanService = humanService;
         }
 
         /// <summary>
         /// The add.
         /// </summary>
-        /// <param name="code">
-        /// The code.
+        /// <param name="owner">
+        /// The owner.
         /// </param>
         /// <param name="input">
         /// The input.
@@ -52,13 +54,13 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route( "{code:guid}/Add" )]
-        public async Task<ActionResponse<Guid>> Add( Guid code, HumanIn input )
+        [Route( "{owner:guid}/Add" )]
+        public async Task<ActionResponse<Guid>> Add( Guid owner, HumanIn input )
         {
             var result = new ActionResponse<Guid> { HasError = false };
             try
             {
-                result.Results = await this.service.Add( code, input );
+                result.Results = await this.humanService.Add( owner, input );
             }
             catch ( Exception ex )
             {
@@ -85,13 +87,15 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route( "{code:guid}/Edit/{human:guid}" )]
-        public async Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input )
+        [Route( "{owner:guid}/Edit/{human:guid}" )]
+        public async Task<ActionResponse<bool>> Edit( Guid owner, Guid human, HumanIn input )
         {
+
+
             var result = new ActionResponse<bool> { HasError = false };
             try
             {
-                result.Results = await this.service.Edit( code, human, input );
+                result.Results = await this.humanService.Edit( owner, human, input );
             }
             catch ( Exception ex )
             {
@@ -105,8 +109,8 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <summary>
         /// The list.
         /// </summary>
-        /// <param name="code">
-        /// The code.
+        /// <param name="owner">
+        /// The owner exemple 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B.
         /// </param>
         /// <param name="input">
         /// The input.
@@ -115,21 +119,11 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost]
-        [Route( "{code:guid}/List" )]
-        public async Task<ActionResponse<HumanListResponse>> List( Guid code, HumanListRequest input )
+        [Route( "{owner:guid}/List" )]
+        [ResponseType( typeof( ActionResponse<HumanListResponse> ) )]
+        public async Task<HttpResponseMessage> List( Guid owner, HumanListRequest input )
         {
-            var result = new ActionResponse<HumanListResponse> { HasError = false };
-            try
-            {
-                result.Results = await this.service.List( code, input );
-            }
-            catch ( Exception ex )
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
+            return await this.ProcessActionAsync( owner, input, this.humanService.List );
         }
     }
 }

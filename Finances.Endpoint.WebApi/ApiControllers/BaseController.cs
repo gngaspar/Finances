@@ -89,5 +89,43 @@ namespace Finances.Endpoint.WebApi.ApiControllers
 
             return this.Request.CreateResponse( statusCode, output );
         }
+
+        /// <summary>
+        /// The process action async.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <param name="method">
+        /// The method.
+        /// </param>
+        /// <typeparam name="TReq">
+        /// </typeparam>
+        /// <typeparam name="TResp">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        protected async Task<HttpResponseMessage> ProcessActionAsync<Guid, TReq, TResp>( Guid owner, TReq input, Func<Guid, TReq, Task<TResp>> method )
+        {
+            var output = new ActionResponse<TResp>();
+            var statusCode = HttpStatusCode.OK;
+            try
+            {
+                output.HasError = false;
+                output.Results = await method( owner, input );
+            }
+            catch ( Exception ex )
+            {
+                output.ErrorMessage = ex.Message;
+                output.HasError = true;
+                statusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return this.Request.CreateResponse( statusCode, output );
+        }
     }
 }

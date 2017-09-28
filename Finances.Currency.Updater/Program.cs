@@ -11,6 +11,7 @@ namespace Finances.Currency.Updater
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -59,7 +60,10 @@ namespace Finances.Currency.Updater
             Console.WriteLine( $"{DateTime.Now} Got Currencies {currencies.Count} Sent to service" );
             var doneOk = SendCurrenciesToUpdate( currencies );
             Console.WriteLine( $"{DateTime.Now} response from service {( doneOk.Result.HasError ? doneOk.Result.ErrorMessage : doneOk.Result.Results.ToString() )} " );
-            Console.ReadKey();
+            if ( doneOk.Result.HasError )
+            {
+                Console.ReadKey();
+            }
         }
 
         /// <summary>
@@ -77,7 +81,7 @@ namespace Finances.Currency.Updater
 
             using ( var client = new HttpClient() )
             {
-                client.BaseAddress = new Uri( "http://localhost:3001/" );
+                client.BaseAddress = new Uri( ConfigurationManager.AppSettings[ "Server" ] );
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 

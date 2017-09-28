@@ -11,6 +11,7 @@ namespace Finances.DataLayer
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Data.Entity.SqlServer;
     using System.IO;
     using System.Linq;
@@ -159,6 +160,8 @@ namespace Finances.DataLayer
         /// </param>
         protected override void OnModelCreating( DbModelBuilder modelBuilder )
         {
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add( new DataTypePropertyAttributeConvention() );
             modelBuilder.Conventions.Add( new DecimalPrecisionAttributeConvention() );
             modelBuilder.Configurations.AddFromAssembly( this.GetType().Assembly );

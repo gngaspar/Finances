@@ -10,6 +10,7 @@
 namespace Finances.Contract.Humans
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     using Finances.Contract.Banking;
@@ -31,7 +32,7 @@ namespace Finances.Contract.Humans
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<HumanListResponse>> List(Guid code, HumanListRequest input);
+        Task<HttpResponseMessage> List( Guid code, HumanListRequest input );
 
         /// <summary>
         /// The add.
@@ -45,7 +46,7 @@ namespace Finances.Contract.Humans
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<Guid>> Add(Guid code, HumanIn input);
+        Task<ActionResponse<Guid>> Add( Guid code, HumanIn input );
 
         /// <summary>
         /// The edit.
@@ -62,6 +63,6 @@ namespace Finances.Contract.Humans
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<bool>> Edit(Guid code, Guid human, HumanIn input);
+        Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input );
     }
 }
