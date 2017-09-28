@@ -110,7 +110,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The list.
         /// </summary>
         /// <param name="owner">
-        /// The owner exemple 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B.
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
         /// </param>
         /// <param name="input">
         /// The input.
@@ -123,6 +123,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         [ResponseType( typeof( ActionResponse<HumanListResponse> ) )]
         public async Task<HttpResponseMessage> List( Guid owner, HumanListRequest input )
         {
+            this.Validator.Page( input ).Items( input );
             return await this.ProcessActionAsync( owner, input, this.humanService.List );
         }
     }

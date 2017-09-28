@@ -73,14 +73,6 @@ namespace Finances.DataLayer.Repository
         }
 
         /// <summary>
-        /// The dispose.
-        /// </summary>
-        public void Dispose()
-        {
-            this.context.Dispose();
-        }
-
-        /// <summary>
         /// The get the history last day.
         /// </summary>
         /// <returns>
@@ -153,7 +145,7 @@ namespace Finances.DataLayer.Repository
                 var oldCurreny = currencyEntities.FirstOrDefault( i => i.Currency == currency.Code );
 
                 currencyEntity.Order = oldCurreny?.Order ?? ( currencyEntity.Order = counter );
-                currencyEntity.Name = ( oldCurreny != null ) ? oldCurreny.Name : currency.Code;
+                currencyEntity.Name = oldCurreny != null ? oldCurreny.Name : currency.Code;
                 currencyEntity.ChangeAt = DateTime.Now;
 
                 this.context.SeedAddOrUpdate( p => p.Currency, p => new { p.ReasonToOneEuro, p.ChangeAt }, currencyEntity );
@@ -162,6 +154,14 @@ namespace Finances.DataLayer.Repository
             }
 
             return await this.context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// The dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            this.context.Dispose();
         }
     }
 }

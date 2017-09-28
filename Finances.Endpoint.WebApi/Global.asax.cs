@@ -12,6 +12,8 @@ namespace Finances.Endpoint.WebApi
     using System;
     using System.Web.Http;
 
+    using Finances.Endpoint.WebApi.Infrastructure.Logs;
+
     /// <summary>
     /// The Web API Application Section
     /// </summary>
@@ -31,6 +33,20 @@ namespace Finances.Endpoint.WebApi
             //GlobalConfiguration.Configuration.Formatters.XmlFormatter.UseXmlSerializer = true;
 
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        /// <summary>
+        /// The application_ error.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The event.
+        /// </param>
+        private void Application_Error( object sender, EventArgs e )
+        {
+            EventViewerLogger.LogException( this.Server.GetLastError() );
         }
     }
 }

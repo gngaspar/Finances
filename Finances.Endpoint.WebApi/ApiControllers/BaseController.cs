@@ -16,12 +16,28 @@ namespace Finances.Endpoint.WebApi.ApiControllers
     using System.Web.Http;
 
     using Finances.Contract;
+    using Finances.Domain;
+    using Finances.Endpoint.WebApi.Infrastructure.Logs;
+    using Finances.Endpoint.WebApi.Infrastructure.Validation;
 
     /// <summary>
     /// The base controller.
     /// </summary>
     public abstract class BaseController : ApiController
     {
+        /// <summary>
+        /// The validator filed.
+        /// </summary>
+        private static readonly Lazy<InputValidation> ValidatorFiled = new Lazy<InputValidation>( () => new InputValidation() );
+
+        /// <summary>
+        /// Gets the validator.
+        /// </summary>
+        /// <value>
+        /// The validator.
+        /// </value>
+        protected InputValidation Validator => ValidatorFiled.Value;
+
         /// <summary>
         /// The process action async.
         /// </summary>
@@ -45,7 +61,10 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             }
             catch ( Exception ex )
             {
+                var financesException = new FinancesException( ex.GetType().Name, ex );
+                EventViewerLogger.LogException( financesException );
                 output.ErrorMessage = ex.Message;
+                output.ErrorGuid = financesException.ErrorCode.ToString();
                 output.HasError = true;
                 statusCode = HttpStatusCode.InternalServerError;
             }
@@ -82,7 +101,10 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             }
             catch ( Exception ex )
             {
+                var financesException = new FinancesException( ex.GetType().Name, ex );
+                EventViewerLogger.LogException( financesException );
                 output.ErrorMessage = ex.Message;
+                output.ErrorGuid = financesException.ErrorCode.ToString();
                 output.HasError = true;
                 statusCode = HttpStatusCode.InternalServerError;
             }
@@ -102,14 +124,19 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <param name="method">
         /// The method.
         /// </param>
+        /// <typeparam name="Guid">
+        /// The guid.
+        /// </typeparam>
         /// <typeparam name="TReq">
+        /// The type of request.
         /// </typeparam>
         /// <typeparam name="TResp">
+        /// The type of Response.
         /// </typeparam>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        protected async Task<HttpResponseMessage> ProcessActionAsync<Guid, TReq, TResp>( Guid owner, TReq input, Func<Guid, TReq, Task<TResp>> method )
+        protected async Task<HttpResponseMessage> ProcessActionAsync<TReq, TResp>( Guid owner, TReq input, Func<Guid, TReq, Task<TResp>> method )
         {
             var output = new ActionResponse<TResp>();
             var statusCode = HttpStatusCode.OK;
@@ -120,7 +147,10 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             }
             catch ( Exception ex )
             {
+                var financesException = new FinancesException( ex.GetType().Name, ex );
+                EventViewerLogger.LogException( financesException );
                 output.ErrorMessage = ex.Message;
+                output.ErrorGuid = financesException.ErrorCode.ToString();
                 output.HasError = true;
                 statusCode = HttpStatusCode.InternalServerError;
             }

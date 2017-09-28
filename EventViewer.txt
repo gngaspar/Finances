@@ -1,0 +1,2 @@
+New-EventLog -LogName Finances3001 -Source Finances3001
+REM Remove-EventLog -LogName Finances3001

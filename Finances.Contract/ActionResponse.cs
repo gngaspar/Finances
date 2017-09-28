@@ -26,7 +26,12 @@ namespace Finances.Contract
         /// Gets or sets the error message.
         /// </summary>
         public string ErrorMessage { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        public string ErrorGuid { get; set; }
+
         /// <summary>
         /// Gets or sets the results.
         /// </summary>

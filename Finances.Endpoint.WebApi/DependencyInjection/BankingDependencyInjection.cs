@@ -9,11 +9,16 @@
 
 namespace Finances.Endpoint.WebApi.DependencyInjection
 {
+    using System;
+    using System.Reflection;
+
     using Finances.DataLayer;
     using Finances.DataLayer.Repository;
     using Finances.Domain;
     using Finances.Domain.Repository;
     using Finances.Management;
+
+    using Ninject;
     using Ninject.Modules;
     using Ninject.Web.Common;
 
@@ -28,11 +33,12 @@ namespace Finances.Endpoint.WebApi.DependencyInjection
         /// </summary>
         public override void Load()
         {
-            ////this.Bind(typeof(Lazy<>)).ToMethod(ctx =>
-            ////    this.GetType()
-            ////   .GetMethod("GetLazyProvider", BindingFlags.Instance | BindingFlags.NonPublic)
-            ////   .MakeGenericMethod(ctx.GenericArguments[0])
-            ////   .Invoke(this, new object[] { ctx.Kernel }));
+            this.Bind( typeof( Lazy<> ) ).ToMethod( ctx =>
+                     this.GetType()
+                    .GetMethod( "GetLazyProvider", BindingFlags.Instance | BindingFlags.NonPublic )
+                    .MakeGenericMethod( ctx.GenericArguments[ 0 ] )
+                    .Invoke( this, new object[] { ctx.Kernel } ) );
+
             this.Bind<BankingDbContext>().ToSelf().InRequestScope();
 
             this.Bind<IBankService>().To<BankService>();
@@ -48,9 +54,9 @@ namespace Finances.Endpoint.WebApi.DependencyInjection
             this.Bind<IAccountRepository>().To<AccountRepository>().InRequestScope();
         }
 
-        //protected Lazy<T> GetLazyProvider<T>(IKernel kernel)
-        //{
-        //    return new Lazy<T>(() => kernel.Get<T>());
-        //}
+        protected Lazy<T> GetLazyProvider<T>( IKernel kernel )
+        {
+            return new Lazy<T>( () => kernel.Get<T>() );
+        }
     }
 }

@@ -95,6 +95,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         [ResponseType( typeof( ActionResponse<BankListResponse> ) )]
         public async Task<HttpResponseMessage> List( BankListRequest request )
         {
+            this.Validator.Page( request ).Items( request );
             return await this.ProcessActionAsync( request, this.bankService.List );
         }
     }
