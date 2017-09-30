@@ -45,7 +45,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<ActionResponse<Guid>> Add( Guid code, HumanIn input )
+        public Task<HttpResponseMessage> Add( Guid code, HumanIn input )
         {
             throw new NotImplementedException();
         }
@@ -65,7 +65,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input )
+        public Task<HttpResponseMessage> Edit( Guid code, Guid human, HumanIn input )
         {
             throw new NotImplementedException();
         }

@@ -18,6 +18,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
     using Finances.Contract;
     using Finances.Contract.Humans;
     using Finances.Domain;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The human Controller
@@ -45,7 +46,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The add.
         /// </summary>
         /// <param name="owner">
-        /// The owner.
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
         /// </param>
         /// <param name="input">
         /// The input.
@@ -55,27 +56,17 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// </returns>
         [HttpPost]
         [Route( "{owner:guid}/Add" )]
-        public async Task<ActionResponse<Guid>> Add( Guid owner, HumanIn input )
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> Add( Guid owner, HumanIn input )
         {
-            var result = new ActionResponse<Guid> { HasError = false };
-            try
-            {
-                result.Results = await this.humanService.Add( owner, input );
-            }
-            catch ( Exception ex )
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
+            return await this.ProcessActionAsync( owner, input, this.humanService.Add );
         }
 
         /// <summary>
         /// The edit.
         /// </summary>
-        /// <param name="code">
-        /// The code.
+        /// <param name="owner">
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
         /// </param>
         /// <param name="human">
         /// The human.
@@ -88,22 +79,11 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// </returns>
         [HttpPost]
         [Route( "{owner:guid}/Edit/{human:guid}" )]
-        public async Task<ActionResponse<bool>> Edit( Guid owner, Guid human, HumanIn input )
+        [ResponseType( typeof( ActionResponse<bool> ) )]
+        public async Task<HttpResponseMessage> Edit( Guid owner, Guid human, HumanIn input )
         {
-
-
-            var result = new ActionResponse<bool> { HasError = false };
-            try
-            {
-                result.Results = await this.humanService.Edit( owner, human, input );
-            }
-            catch ( Exception ex )
-            {
-                result.HasError = true;
-                result.ErrorMessage = ex.Message;
-            }
-
-            return result;
+            var result = new HumanEdit { Code = human, Human = input };
+            return await this.ProcessActionAsync( owner, result, this.humanService.Edit );
         }
 
         /// <summary>

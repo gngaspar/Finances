@@ -13,6 +13,7 @@ namespace Finances.Domain
     using System.Threading.Tasks;
 
     using Finances.Contract.Humans;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The HumanService interface.
@@ -39,16 +40,13 @@ namespace Finances.Domain
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="code">
-        /// The code.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<bool> Edit( Guid owner, Guid code, HumanIn input );
+        Task<bool> Edit( Guid owner, HumanEdit input );
 
         /// <summary>
         /// The list.

@@ -46,7 +46,7 @@ namespace Finances.Contract.Humans
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<Guid>> Add( Guid code, HumanIn input );
+        Task<HttpResponseMessage> Add( Guid code, HumanIn input );
 
         /// <summary>
         /// The edit.
@@ -63,6 +63,6 @@ namespace Finances.Contract.Humans
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<ActionResponse<bool>> Edit( Guid code, Guid human, HumanIn input );
+        Task<HttpResponseMessage> Edit( Guid code, Guid human, HumanIn input );
     }
 }

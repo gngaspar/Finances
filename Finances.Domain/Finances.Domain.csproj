@@ -98,6 +98,7 @@
     <Compile Include="Wrappers\AccountList.cs" />
     <Compile Include="Wrappers\BankEdit.cs" />
     <Compile Include="Wrappers\CurrentDetails.cs" />
+    <Compile Include="Wrappers\HumanEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

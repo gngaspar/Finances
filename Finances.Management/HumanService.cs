@@ -15,6 +15,7 @@ namespace Finances.Management
     using Finances.Contract.Humans;
     using Finances.Domain;
     using Finances.Domain.Repository;
+    using Finances.Domain.Wrappers;
 
     /// <summary>
     /// The human service.
@@ -87,9 +88,6 @@ namespace Finances.Management
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="code">
-        /// The code.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
@@ -102,21 +100,26 @@ namespace Finances.Management
         /// <exception cref="Exception">
         /// The exception.
         /// </exception>
-        public async Task<bool> Edit( Guid owner, Guid code, HumanIn input )
+        public async Task<bool> Edit( Guid owner, HumanEdit input )
         {
             if ( owner == null )
             {
                 throw new ArgumentNullException( nameof( owner ) );
             }
 
-            if ( code == null )
-            {
-                throw new ArgumentNullException( nameof( code ) );
-            }
-
             if ( input == null )
             {
                 throw new ArgumentNullException( nameof( input ) );
+            }
+
+            if ( input.Human == null )
+            {
+                throw new ArgumentNullException( nameof( input.Human ) );
+            }
+
+            if ( input.Code == null )
+            {
+                throw new ArgumentNullException( nameof( input.Code ) );
             }
 
             //TODO: Add validations
@@ -126,19 +129,19 @@ namespace Finances.Management
                 throw new Exception( "User doesnt exist." );
             }
 
-            var exitsHuman = await this.humanRepository.Exist( code );
+            var exitsHuman = await this.humanRepository.Exist( input.Code );
             if ( !exitsHuman )
             {
                 throw new Exception( "User to change doesnt exist." );
             }
 
-            var confirmIfIsOwner = await this.humanRepository.IsHeOwner( owner, code );
+            var confirmIfIsOwner = await this.humanRepository.IsHeOwner( owner, input.Code );
             if ( !confirmIfIsOwner )
             {
                 throw new Exception( "User is not owner." );
             }
 
-            var changed = await this.humanRepository.Edit( code, input );
+            var changed = await this.humanRepository.Edit( input.Code, input.Human );
 
             return changed != 0;
         }

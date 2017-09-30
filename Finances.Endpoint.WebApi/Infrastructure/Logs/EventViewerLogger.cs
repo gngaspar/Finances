@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.Infrastructure.Logs
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EventViewerLogger.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The event viewer logger.
+// </summary>W
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.Infrastructure.Logs
 {
     using System;
     using System.Configuration;
