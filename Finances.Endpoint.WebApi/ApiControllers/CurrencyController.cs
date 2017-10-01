@@ -98,6 +98,23 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         }
 
         /// <summary>
+        /// The history.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "GetHistory" )]
+        [ResponseType( typeof( ActionResponse<HistoryListResponse> ) )]
+        public async Task<HttpResponseMessage> GetHistory( HistoryListRequest request )
+        {
+            return await this.ProcessActionAsync( request, this.currencyService.History );
+        }
+
+        /// <summary>
         /// The update.
         /// </summary>
         /// <param name="input">

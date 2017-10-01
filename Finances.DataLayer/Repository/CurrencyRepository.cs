@@ -118,6 +118,11 @@ namespace Finances.DataLayer.Repository
             return result;
         }
 
+        public async Task<CurrencyEntity> GetCurrency( string code )
+        {
+            return await this.context.Currencies.Where( i => i.Currency == code ).FirstOrDefaultAsync();
+        }
+
         /// <summary>
         /// The update.
         /// </summary>
@@ -154,6 +159,29 @@ namespace Finances.DataLayer.Repository
             }
 
             return await this.context.SaveChangesAsync();
+        }
+
+
+        /// <summary>
+        /// The get history.
+        /// </summary>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <param name="startDay">
+        /// The start day.
+        /// </param>
+        /// <param name="endDay">
+        /// The end day.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<List<HistoryValue>> GetHistory( string code, DateTime startDay, DateTime endDay )
+        {
+            return await this.context.CurrencyHistory.Where( i => i.Currency == code && i.CreatedAtDay >= startDay && i.CreatedAtDay <= endDay )
+                .OrderBy( i => i.CreatedAtDay )
+                .Select( histo => new HistoryValue { ChangeAt = histo.CreatedAtDay, ReasonToOneEuro = histo.ReasonToOneEuro } ).ToListAsync();
         }
 
         /// <summary>

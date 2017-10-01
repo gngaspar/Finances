@@ -93,6 +93,10 @@
     <Compile Include="Banking\CurrencyIn.cs" />
     <Compile Include="Banking\CurrencyOut.cs" />
     <Compile Include="Banking\CurrencyListResponse.cs" />
+    <Compile Include="Banking\HistoryListRequest.cs" />
+    <Compile Include="Banking\HistoryListResponse.cs" />
+    <Compile Include="Banking\HistoryOut.cs" />
+    <Compile Include="Banking\HistoryValue.cs" />
     <Compile Include="Banking\IBankController.cs" />
     <Compile Include="Banking\ICurrencyController.cs" />
     <Compile Include="Common\AutomaticRenovation.cs" />

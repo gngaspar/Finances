@@ -27,7 +27,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> Convert(ConvertRequest input);
+        Task<HttpResponseMessage> Convert( ConvertRequest input );
 
         /// <summary>
         /// The convert.
@@ -44,7 +44,7 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> ConvertString(string fromCurrency, string toCurrency, decimal amount);
+        Task<HttpResponseMessage> ConvertString( string fromCurrency, string toCurrency, decimal amount );
 
         /// <summary>
         /// The list.
@@ -55,6 +55,17 @@ namespace Finances.Contract.Banking
         Task<HttpResponseMessage> List();
 
         /// <summary>
+        /// The get history.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> GetHistory( HistoryListRequest request );
+
+        /// <summary>
         /// The update.
         /// </summary>
         /// <param name="input">
@@ -63,6 +74,6 @@ namespace Finances.Contract.Banking
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> Update(List<CurrencyIn> input);
+        Task<HttpResponseMessage> Update( List<CurrencyIn> input );
     }
 }

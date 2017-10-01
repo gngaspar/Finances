@@ -48,5 +48,16 @@ namespace Finances.Domain
         /// The <see cref="Task"/>.
         /// </returns>
         Task<int> Update( List<CurrencyIn> input );
+
+        /// <summary>
+        /// The history.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HistoryListResponse> History( HistoryListRequest request );
     }
 }

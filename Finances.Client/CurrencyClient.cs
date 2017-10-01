@@ -103,6 +103,11 @@ namespace Finances.Client
             throw new NotImplementedException();
         }
 
+        public Task<HttpResponseMessage> GetHistory( HistoryListRequest request )
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// The update.
         /// </summary>

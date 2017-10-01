@@ -13,7 +13,6 @@ namespace Finances.Management
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
     using Finances.Domain.Repository;
@@ -64,10 +63,14 @@ namespace Finances.Management
                 throw new Exception( "From currency cant be empty." );
             }
 
+            ValidateCurrency( convert.FromCurrency );
+
             if ( string.IsNullOrEmpty( convert.ToCurrency ) || string.IsNullOrEmpty( convert.ToCurrency.Trim() ) )
             {
                 throw new Exception( "To currency cant be empty." );
             }
+
+            ValidateCurrency( convert.ToCurrency );
 
             if ( string.Equals( convert.FromCurrency, convert.ToCurrency, StringComparison.CurrentCultureIgnoreCase ) )
             {
@@ -161,6 +164,70 @@ namespace Finances.Management
         }
 
         /// <summary>
+        /// The history.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<HistoryListResponse> History( HistoryListRequest request )
+        {
+            var historyListResponse = new HistoryListResponse();
+            var listOf = new List<HistoryOut>();
+            foreach ( var currency in request.Currencies )
+            {
+                ValidateCurrency( currency );
+                var temp = await this.currencyRepository.GetCurrency( currency );
+                if ( temp == null )
+                {
+                    throw new Exception( $"Couldnt find currency {currency} ." );
+                }
+
+                var list = await this.currencyRepository.GetHistory( currency, request.StartDate, request.EndDate );
+
+                var newItem = new HistoryOut
+                {
+                    Code = temp.Currency,
+                    Name = temp.Name,
+                    ReasonToOneEuro = temp.ReasonToOneEuro,
+                    ChangeAt = temp.ChangeAt,
+                    Data = list
+                };
+
+                listOf.Add( newItem );
+            }
+
+            historyListResponse.Data = listOf;
+            historyListResponse.NumberOfItems = listOf.Count;
+
+            return historyListResponse;
+        }
+
+        /// <summary>
+        /// The validate currency.
+        /// </summary>
+        /// <param name="currencyIn">
+        /// The currency in.
+        /// </param>
+        /// <exception cref="Exception">
+        /// The Exception.
+        /// </exception>
+        private static void ValidateCurrency( string currencyIn )
+        {
+            if ( string.IsNullOrEmpty( currencyIn ) || string.IsNullOrEmpty( currencyIn.Trim() ) )
+            {
+                throw new Exception( "The currency code cant be empty." );
+            }
+
+            if ( currencyIn.Length != 3 )
+            {
+                throw new Exception( $"The currency code {currencyIn} must be 3 chars." );
+            }
+        }
+
+        /// <summary>
         /// The validate currency.
         /// </summary>
         /// <param name="currencyIn">
@@ -179,15 +246,7 @@ namespace Finances.Management
                 throw new ArgumentNullException( nameof( currencyIn ) );
             }
 
-            if ( string.IsNullOrEmpty( currencyIn.Code ) || string.IsNullOrEmpty( currencyIn.Code.Trim() ) )
-            {
-                throw new Exception( "The currency code cant be empty." );
-            }
-
-            if ( currencyIn.Code.Length != 3 )
-            {
-                throw new Exception( $"The currency code { currencyIn.Code} must be 3 chars." );
-            }
+            ValidateCurrency( currencyIn.Code );
 
             if ( currencyIn.ReasonToOneEuro < 0 )
             {
