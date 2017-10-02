@@ -54,7 +54,7 @@ namespace Finances.Domain.Repository
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<CurrencyEntity> GetCurrency( string code );
+        Task<CurrencyOut> GetCurrency( string code );
 
         /// <summary>
         /// The update.

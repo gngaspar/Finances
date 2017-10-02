@@ -13,6 +13,8 @@ namespace Finances.Management
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Finances.Contract;
     using Finances.Contract.Banking;
     using Finances.Domain;
     using Finances.Domain.Repository;
@@ -172,11 +174,23 @@ namespace Finances.Management
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<HistoryListResponse> History( HistoryListRequest request )
+        public async Task<HistoryListResponse> GetHistory( HistoryListRequest request )
         {
+            var numberOfdays = ( request.EndDate - request.StartDate ).TotalDays;
+            if ( numberOfdays >= 370 )
+            {
+                throw new Exception( "Only 365 days available." );
+            }
+
+            var numberOfCurrencies = request.Currencies.Count( i => i != Constants.Eur );
+            if ( numberOfCurrencies > 3 )
+            {
+                throw new Exception( "Only 3 Currencies available." );
+            }
+
             var historyListResponse = new HistoryListResponse();
             var listOf = new List<HistoryOut>();
-            foreach ( var currency in request.Currencies )
+            foreach ( var currency in request.Currencies.Where( v => v != Constants.Eur ) )
             {
                 ValidateCurrency( currency );
                 var temp = await this.currencyRepository.GetCurrency( currency );
@@ -189,7 +203,7 @@ namespace Finances.Management
 
                 var newItem = new HistoryOut
                 {
-                    Code = temp.Currency,
+                    Code = temp.Code,
                     Name = temp.Name,
                     ReasonToOneEuro = temp.ReasonToOneEuro,
                     ChangeAt = temp.ChangeAt,

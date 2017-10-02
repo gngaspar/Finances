@@ -118,9 +118,30 @@ namespace Finances.DataLayer.Repository
             return result;
         }
 
-        public async Task<CurrencyEntity> GetCurrency( string code )
+        /// <summary>
+        /// The get currency.
+        /// </summary>
+        /// <param name="code">
+        /// The code.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<CurrencyOut> GetCurrency( string code )
         {
-            return await this.context.Currencies.Where( i => i.Currency == code ).FirstOrDefaultAsync();
+            var cur = await this.context.Currencies.Where( i => i.Currency == code ).FirstOrDefaultAsync();
+            if ( cur != null )
+            {
+                return new CurrencyOut
+                {
+                    Code = cur.Currency,
+                    Name = cur.Name,
+                    ReasonToOneEuro = cur.ReasonToOneEuro,
+                    ChangeAt = cur.ChangeAt
+                };
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -160,7 +181,6 @@ namespace Finances.DataLayer.Repository
 
             return await this.context.SaveChangesAsync();
         }
-
 
         /// <summary>
         /// The get history.

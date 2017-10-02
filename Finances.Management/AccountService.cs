@@ -206,8 +206,18 @@ namespace Finances.Management
                 throw new ArgumentNullException( nameof( input.Code ) );
             }
 
-            //TODO: Add validations
+            var owner = await this.accountRepository.IsOwner( input.Owner, input.Code );
+            if ( !owner )
+            {
+                throw new Exception( "Account " + input.Code + " doesnt belong to " + input.Owner + "." );
+            }
+
             var current = await this.accountRepository.GetCurrent( input.Code );
+
+            if ( current == null )
+            {
+                throw new Exception( "Account " + input.Code + " couldnt be found." );
+            }
 
             return current;
         }

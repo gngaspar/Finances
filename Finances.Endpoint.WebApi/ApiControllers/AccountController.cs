@@ -44,7 +44,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The list.
         /// </summary>
         /// <param name="owner">
-        /// The owner.
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
         /// </param>
         /// <param name="input">
         /// The input.
@@ -66,7 +66,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The get get current details.
         /// </summary>
         /// <param name="owner">
-        /// The owner.
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
         /// </param>
         /// <param name="account">
         /// The account.

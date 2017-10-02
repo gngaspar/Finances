@@ -162,9 +162,28 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<CurrentAccountOut> GetCurrent( Guid account )
+        public async Task<CurrentAccountOut> GetCurrent( Guid account )
         {
-            throw new NotImplementedException();
+            var accountFromDatabase = (CurrentAccountEntity) await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
+            if ( accountFromDatabase != null )
+            {
+                return new CurrentAccountOut
+                {
+                    Currency = accountFromDatabase.Currency,
+                    Amount = accountFromDatabase.Amount,
+                    ChangeAt = accountFromDatabase.ChangeAt,
+                    StartDate = accountFromDatabase.StartDate,
+                    Bank = accountFromDatabase.Bank,
+                    CreatedAt = accountFromDatabase.CreatedAt,
+                    Description = accountFromDatabase.Description,
+                    Holder = accountFromDatabase.Holder,
+                    Iban = accountFromDatabase.Iban,
+                    IsArchived = accountFromDatabase.IsArchived,
+                    Number = accountFromDatabase.Number
+                };
+            }
+
+            return null;
         }
 
         /// <summary>

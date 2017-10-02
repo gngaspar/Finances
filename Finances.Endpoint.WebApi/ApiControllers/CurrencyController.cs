@@ -111,7 +111,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         [ResponseType( typeof( ActionResponse<HistoryListResponse> ) )]
         public async Task<HttpResponseMessage> GetHistory( HistoryListRequest request )
         {
-            return await this.ProcessActionAsync( request, this.currencyService.History );
+            return await this.ProcessActionAsync( request, this.currencyService.GetHistory );
         }
 
         /// <summary>

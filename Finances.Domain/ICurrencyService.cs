@@ -58,6 +58,6 @@ namespace Finances.Domain
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HistoryListResponse> History( HistoryListRequest request );
+        Task<HistoryListResponse> GetHistory( HistoryListRequest request );
     }
 }
