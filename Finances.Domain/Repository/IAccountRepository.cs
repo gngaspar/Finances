@@ -13,6 +13,7 @@ namespace Finances.Domain.Repository
     using System.Threading.Tasks;
 
     using Finances.Contract.Accounting;
+    using Finances.Domain.Accounting;
 
     /// <summary>
     /// The AccountRepository interface.
@@ -136,5 +137,10 @@ namespace Finances.Domain.Repository
         /// The <see cref="Task"/>.
         /// </returns>
         Task<bool> IsOwner( Guid owner, Guid account );
+
+        Task<AccountType> IsType( Guid account );
+
+        AccountType IsType( AccountEntity accountEntity );
+
     }
 }

@@ -164,9 +164,22 @@ namespace Finances.DataLayer.Repository
         /// </returns>
         public async Task<CurrentAccountOut> GetCurrent( Guid account )
         {
-            var accountFromDatabase = (CurrentAccountEntity) await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null )
+            var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
+            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.CurrentAccount )
             {
+                var castedAccount = (CurrentAccountEntity) accountFromDatabase;
+
+                var loansList = await this.context.Accounts.Where(
+                                        i => i is LoanAccountEntity
+                                             && ( (LoanAccountEntity) i ).LoanRelatedAccount == account ).ToListAsync();
+
+                var savingList = await this.context.Accounts.Where(
+                                    i => i is SavingAccountEntity
+                                         && ( (SavingAccountEntity) i ).SavingRelatedAccount == account ).ToListAsync();
+
+                var listLoans = loansList.Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
+                var listSaving = savingList.Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
+
                 return new CurrentAccountOut
                 {
                     Currency = accountFromDatabase.Currency,
@@ -177,9 +190,11 @@ namespace Finances.DataLayer.Repository
                     CreatedAt = accountFromDatabase.CreatedAt,
                     Description = accountFromDatabase.Description,
                     Holder = accountFromDatabase.Holder,
-                    Iban = accountFromDatabase.Iban,
+                    Iban = castedAccount.Iban,
                     IsArchived = accountFromDatabase.IsArchived,
-                    Number = accountFromDatabase.Number
+                    Number = accountFromDatabase.Number,
+                    Loans = listLoans,
+                    Savings = listSaving
                 };
             }
 
@@ -195,9 +210,15 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<LoanAccountOut> GetLoan( Guid account )
+        public async Task<LoanAccountOut> GetLoan( Guid account )
         {
-            throw new NotImplementedException();
+            var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
+            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.LoanAccount )
+            {
+                return GetLoanOut( (LoanAccountEntity) accountFromDatabase );
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -209,9 +230,15 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<SavingAccountOut> GetSaving( Guid account )
+        public async Task<SavingAccountOut> GetSaving( Guid account )
         {
-            throw new NotImplementedException();
+            var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
+            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.SavingAccount )
+            {
+                return GetSavingOut( (SavingAccountEntity) accountFromDatabase );
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -230,6 +257,53 @@ namespace Finances.DataLayer.Repository
         {
             var exist = await this.context.Accounts.CountAsync( b => b.Code == account && b.Owner == owner );
             return exist == 1;
+        }
+
+        /// <summary>
+        /// The is type.
+        /// </summary>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<AccountType> IsType( Guid account )
+        {
+            var accountEntity = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
+            return this.IsType( accountEntity );
+        }
+
+        /// <summary>
+        /// The is type.
+        /// </summary>
+        /// <param name="accountEntity">
+        /// The account entity.
+        /// </param>
+        /// <returns>
+        /// The <see cref="AccountType"/>.
+        /// </returns>
+        /// <exception cref="InvalidCastException">
+        /// The Invalid Cast Exception.
+        /// </exception>
+        public AccountType IsType( AccountEntity accountEntity )
+        {
+            if ( accountEntity is CurrentAccountEntity )
+            {
+                return AccountType.CurrentAccount;
+            }
+
+            if ( accountEntity is LoanAccountEntity )
+            {
+                return AccountType.LoanAccount;
+            }
+
+            if ( accountEntity is SavingAccountEntity )
+            {
+                return AccountType.SavingAccount;
+            }
+
+            throw new InvalidCastException( "Account cant be cast." );
         }
 
         /// <summary>
@@ -319,6 +393,68 @@ namespace Finances.DataLayer.Repository
             };
 
             return result;
+        }
+
+        /// <summary>
+        /// The get saving out.
+        /// </summary>
+        /// <param name="a">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="SavingAccountOut"/>.
+        /// </returns>
+        private static SavingAccountOut GetSavingOut( SavingAccountEntity a )
+        {
+            return new SavingAccountOut
+            {
+                ChangeAt = a.ChangeAt,
+                Currency = a.Currency,
+                StartDate = a.StartDate,
+                Amount = a.Amount,
+                Bank = a.Bank,
+                Description = a.Description,
+                CreatedAt = a.CreatedAt,
+                Holder = a.Holder,
+                IsArchived = a.IsArchived,
+                Number = a.Number,
+                AutomaticRenovation = a.AutomaticRenovation,
+                InterestCapitalization = a.InterestCapitalization,
+                InterestPayment = a.InterestPayment,
+                SavingEndDate = a.SavingEndDate,
+                SavingInterestRate = a.SavingInterestRate
+            };
+        }
+
+        /// <summary>
+        /// The get loan out.
+        /// </summary>
+        /// <param name="a">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="LoanAccountOut"/>.
+        /// </returns>
+        private static LoanAccountOut GetLoanOut( LoanAccountEntity a )
+        {
+            return new LoanAccountOut
+            {
+                ChangeAt = a.ChangeAt,
+                Currency = a.Currency,
+                StartDate = a.StartDate,
+                Amount = a.Amount,
+                Bank = a.Bank,
+                Description = a.Description,
+                CreatedAt = a.CreatedAt,
+                Holder = a.Holder,
+                IsArchived = a.IsArchived,
+                Number = a.Number,
+                InitialAmount = a.InitialAmount,
+                InterestNetRate = a.InterestNetRate,
+                LoanEndDate = a.LoanEndDate,
+                LoanInterestRate = a.LoanInterestRate,
+                PremiumPercentage = a.PremiumPercentage,
+            };
         }
 
         /// <summary>

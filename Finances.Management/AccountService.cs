@@ -160,7 +160,30 @@ namespace Finances.Management
         /// </returns>
         public async Task<LoanAccountOut> GetLoanDetails( Guid owner, Guid account )
         {
-            throw new NotImplementedException();
+            if ( owner == null || owner == Guid.Empty )
+            {
+                throw new ArgumentNullException( nameof( owner ) );
+            }
+
+            if ( account == null || account == Guid.Empty )
+            {
+                throw new ArgumentNullException( nameof( account ) );
+            }
+
+            var theOwner = await this.accountRepository.IsOwner( owner, account );
+            if ( !theOwner )
+            {
+                throw new Exception( "Account " + account + " doesnt belong to " + owner + "." );
+            }
+
+            var details = await this.accountRepository.GetLoan( account );
+
+            if ( details == null )
+            {
+                throw new Exception( "Account " + account + " couldnt be found." );
+            }
+
+            return details;
         }
 
         /// <summary>
@@ -175,9 +198,32 @@ namespace Finances.Management
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<SavingAccountOut> GetSavingDetails( Guid owner, Guid account )
+        public async Task<SavingAccountOut> GetSavingDetails( Guid owner, Guid account )
         {
-            throw new NotImplementedException();
+            if ( owner == null || owner == Guid.Empty )
+            {
+                throw new ArgumentNullException( nameof( owner ) );
+            }
+
+            if ( account == null || account == Guid.Empty )
+            {
+                throw new ArgumentNullException( nameof( account ) );
+            }
+
+            var theOwner = await this.accountRepository.IsOwner( owner, account );
+            if ( !theOwner )
+            {
+                throw new Exception( "Account " + account + " doesnt belong to " + owner + "." );
+            }
+
+            var details = await this.accountRepository.GetSaving( account );
+
+            if ( details == null )
+            {
+                throw new Exception( "Account " + account + " couldnt be found." );
+            }
+
+            return details;
         }
 
         /// <summary>
