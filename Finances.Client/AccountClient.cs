@@ -61,7 +61,7 @@ namespace Finances.Client
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task<HttpResponseMessage> GetGetCurrentDetails( Guid owner, Guid account )
+        public Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
         {
             return null;
         }

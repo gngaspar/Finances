@@ -77,7 +77,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         [HttpPost]
         [Route( "{owner:guid}/Current/Details/{account:guid}" )]
         [ResponseType( typeof( ActionResponse<AccountListResponse> ) )]
-        public async Task<HttpResponseMessage> GetGetCurrentDetails( Guid owner, Guid account )
+        public async Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
         {
             var input = new CurrentDetails { Code = account, Owner = owner };
             return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );

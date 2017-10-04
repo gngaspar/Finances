@@ -30,7 +30,7 @@ namespace Finances.Contract.Accounting
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> List(Guid owner, AccountListRequest input);
+        Task<HttpResponseMessage> List( Guid owner, AccountListRequest input );
 
         /// <summary>
         /// The get get current details.
@@ -44,6 +44,6 @@ namespace Finances.Contract.Accounting
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<HttpResponseMessage> GetGetCurrentDetails(Guid owner, Guid account);
+        Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account );
     }
 }

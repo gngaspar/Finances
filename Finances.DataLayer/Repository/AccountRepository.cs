@@ -169,16 +169,14 @@ namespace Finances.DataLayer.Repository
             {
                 var castedAccount = (CurrentAccountEntity) accountFromDatabase;
 
-                var loansList = await this.context.Accounts.Where(
-                                        i => i is LoanAccountEntity
-                                             && ( (LoanAccountEntity) i ).LoanRelatedAccount == account ).ToListAsync();
+                IQueryable<AccountEntity> listQuery = this.context.Accounts.Where( o => o.Owner == castedAccount.Owner );
 
-                var savingList = await this.context.Accounts.Where(
-                                    i => i is SavingAccountEntity
-                                         && ( (SavingAccountEntity) i ).SavingRelatedAccount == account ).ToListAsync();
+                var loansList = await listQuery.Where( i => i is LoanAccountEntity ).ToListAsync();
 
-                var listLoans = loansList.Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
-                var listSaving = savingList.Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
+                var savingList = await listQuery.Where( i => i is SavingAccountEntity ).ToListAsync();
+
+                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == accountFromDatabase.Code ).Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
+                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == accountFromDatabase.Code ).Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
 
                 return new CurrentAccountOut
                 {
