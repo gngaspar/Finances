@@ -112,18 +112,22 @@ namespace Finances.Management
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="currentAccount">
-        /// The current account.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<Guid> AddSavingAccount( Guid owner, Guid currentAccount, SavingAccountIn input )
+        public async Task<Guid> AddSavingAccount( Guid owner, AccountAdd input )
         {
-            throw new NotImplementedException();
+            var id = Guid.NewGuid();
+            var done = await this.accountRepository.Add( owner, input.CurrentAccount, id, input.Saving );
+            if ( done == 1 )
+            {
+                return id;
+            }
+
+            return Guid.Empty;
         }
 
         /// <summary>
@@ -132,18 +136,22 @@ namespace Finances.Management
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="currentAccount">
-        /// The current account.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<Guid> AddLoanAccount( Guid owner, Guid currentAccount, LoanAccountIn input )
+        public async Task<Guid> AddLoanAccount( Guid owner, AccountAdd input )
         {
-            throw new NotImplementedException();
+            var id = Guid.NewGuid();
+            var done = await this.accountRepository.Add( owner, input.CurrentAccount, id, input.Loan );
+            if ( done == 1 )
+            {
+                return id;
+            }
+
+            return Guid.Empty;
         }
 
         /// <summary>

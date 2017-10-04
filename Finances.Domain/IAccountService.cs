@@ -12,7 +12,6 @@ namespace Finances.Domain
     using System;
     using System.Threading.Tasks;
 
-    using Finances.Contract;
     using Finances.Contract.Accounting;
     using Finances.Domain.Wrappers;
 
@@ -52,16 +51,13 @@ namespace Finances.Domain
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="currentAccount">
-        /// The current account.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<Guid> AddSavingAccount( Guid owner, Guid currentAccount, SavingAccountIn input );
+        Task<Guid> AddSavingAccount( Guid owner, AccountAdd input );
 
         /// <summary>
         /// The add loan account.
@@ -69,16 +65,13 @@ namespace Finances.Domain
         /// <param name="owner">
         /// The owner.
         /// </param>
-        /// <param name="currentAccount">
-        /// The current account.
-        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<Guid> AddLoanAccount( Guid owner, Guid currentAccount, LoanAccountIn input );
+        Task<Guid> AddLoanAccount( Guid owner, AccountAdd input );
 
         /// <summary>
         /// The get loan details.

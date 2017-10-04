@@ -490,7 +490,7 @@ namespace Finances.DataLayer.Repository
         /// </returns>
         private static LoanAccountEntity GetLoans( Guid owner, Guid currentAccount, Guid code, LoanAccountIn input )
         {
-            return new LoanAccountEntity
+            var output = new LoanAccountEntity
             {
                 Code = code,
                 Owner = owner,
@@ -505,10 +505,16 @@ namespace Finances.DataLayer.Repository
                 InitialAmount = input.InitialAmount,
                 InterestNetRate = input.InterestNetRate,
                 LoanInterestRate = input.LoanInterestRate,
-                LoanRelatedAccount = currentAccount,
                 PremiumPercentage = input.PremiumPercentage,
                 LoanEndDate = input.LoanEndDate
             };
+
+            if ( currentAccount != Guid.Empty )
+            {
+                output.LoanRelatedAccount = currentAccount;
+            }
+
+            return output;
         }
 
         /// <summary>
@@ -531,7 +537,7 @@ namespace Finances.DataLayer.Repository
         /// </returns>
         private static SavingAccountEntity GetSavings( Guid owner, Guid currentAccount, Guid code, SavingAccountIn input )
         {
-            return new SavingAccountEntity
+            var output = new SavingAccountEntity
             {
                 Code = code,
                 Owner = owner,
@@ -543,13 +549,19 @@ namespace Finances.DataLayer.Repository
                 Currency = input.Currency,
                 Number = input.Number,
                 StartDate = input.StartDate,
-                SavingRelatedAccount = currentAccount,
                 AutomaticRenovation = input.AutomaticRenovation,
                 InterestCapitalization = input.InterestCapitalization,
                 InterestPayment = input.InterestPayment,
                 SavingEndDate = input.SavingEndDate,
                 SavingInterestRate = input.SavingInterestRate
             };
+
+            if ( currentAccount != Guid.Empty )
+            {
+                output.SavingRelatedAccount = currentAccount;
+            }
+
+            return output;
         }
     }
 }
