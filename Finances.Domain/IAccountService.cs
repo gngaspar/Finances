@@ -83,30 +83,24 @@ namespace Finances.Domain
         /// <summary>
         /// The get loan details.
         /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="account">
-        /// The account.
+        /// <param name="input">
+        /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<LoanAccountOut> GetLoanDetails( Guid owner, Guid account );
+        Task<LoanAccountOut> GetLoanDetails( AccountDetails input );
 
         /// <summary>
         /// The get saving details.
         /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="account">
-        /// The account.
+        /// <param name="input">
+        /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<SavingAccountOut> GetSavingDetails( Guid owner, Guid account );
+        Task<SavingAccountOut> GetSavingDetails( AccountDetails input );
 
         /// <summary>
         /// The get current details.
@@ -117,6 +111,6 @@ namespace Finances.Domain
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<CurrentAccountOut> GetCurrentDetails( CurrentDetails input );
+        Task<CurrentAccountOut> GetCurrentDetails( AccountDetails input );
     }
 }

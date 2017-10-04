@@ -97,7 +97,7 @@
     <Compile Include="Repository\IHumanRepository.cs" />
     <Compile Include="Wrappers\AccountList.cs" />
     <Compile Include="Wrappers\BankEdit.cs" />
-    <Compile Include="Wrappers\CurrentDetails.cs" />
+    <Compile Include="Wrappers\AccountDetails.cs" />
     <Compile Include="Wrappers\HumanEdit.cs" />
   </ItemGroup>
   <ItemGroup>

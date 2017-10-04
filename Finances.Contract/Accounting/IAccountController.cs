@@ -45,5 +45,9 @@ namespace Finances.Contract.Accounting
         /// The <see cref="Task"/>.
         /// </returns>
         Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account );
+
+        Task<HttpResponseMessage> GetLoanDetails( Guid owner, Guid account );
+
+        Task<HttpResponseMessage> GetSavingDetails( Guid owner, Guid account );
     }
 }

@@ -74,13 +74,55 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost]
-        [Route( "{owner:guid}/Current/Details/{account:guid}" )]
-        [ResponseType( typeof( ActionResponse<AccountListResponse> ) )]
+        [HttpGet]
+        [Route( "{owner:guid}/Current/{account:guid}/Details" )]
+        [ResponseType( typeof( ActionResponse<CurrentAccountOut> ) )]
         public async Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
         {
-            var input = new CurrentDetails { Code = account, Owner = owner };
+            var input = new AccountDetails { Code = account, Owner = owner };
             return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
+        }
+
+        /// <summary>
+        /// The get loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpGet]
+        [Route( "{owner:guid}/Loan/{account:guid}/Details" )]
+        [ResponseType( typeof( ActionResponse<LoanAccountOut> ) )]
+        public async Task<HttpResponseMessage> GetLoanDetails( Guid owner, Guid account )
+        {
+            var input = new AccountDetails { Code = account, Owner = owner };
+            return await this.ProcessActionAsync( input, this.accountService.GetLoanDetails );
+        }
+
+        /// <summary>
+        /// The get saving details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpGet]
+        [Route( "{owner:guid}/Saving/{account:guid}/Details" )]
+        [ResponseType( typeof( ActionResponse<LoanAccountOut> ) )]
+        public async Task<HttpResponseMessage> GetSavingDetails( Guid owner, Guid account )
+        {
+            var input = new AccountDetails { Code = account, Owner = owner };
+            return await this.ProcessActionAsync( input, this.accountService.GetSavingDetails );
         }
     }
 }

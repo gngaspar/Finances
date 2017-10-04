@@ -165,8 +165,13 @@ namespace Finances.DataLayer.Repository
         public async Task<CurrentAccountOut> GetCurrent( Guid account )
         {
             var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.CurrentAccount )
+            if ( accountFromDatabase != null )
             {
+                if ( this.IsType( accountFromDatabase ) != AccountType.CurrentAccount )
+                {
+                    throw new InvalidCastException( "The account " + account + " is not CurrentAccount." );
+                }
+
                 var castedAccount = (CurrentAccountEntity) accountFromDatabase;
 
                 IQueryable<AccountEntity> listQuery = this.context.Accounts.Where( o => o.Owner == castedAccount.Owner );
@@ -175,8 +180,8 @@ namespace Finances.DataLayer.Repository
 
                 var savingList = await listQuery.Where( i => i is SavingAccountEntity ).ToListAsync();
 
-                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == accountFromDatabase.Code ).Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
-                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == accountFromDatabase.Code ).Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
+                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
+                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
 
                 return new CurrentAccountOut
                 {
@@ -211,8 +216,13 @@ namespace Finances.DataLayer.Repository
         public async Task<LoanAccountOut> GetLoan( Guid account )
         {
             var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.LoanAccount )
+            if ( accountFromDatabase != null )
             {
+                if ( this.IsType( accountFromDatabase ) != AccountType.LoanAccount )
+                {
+                    throw new InvalidCastException( "The account " + account + " is not LoanAccount." );
+                }
+
                 return GetLoanOut( (LoanAccountEntity) accountFromDatabase );
             }
 
@@ -231,8 +241,13 @@ namespace Finances.DataLayer.Repository
         public async Task<SavingAccountOut> GetSaving( Guid account )
         {
             var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null && this.IsType( accountFromDatabase ) == AccountType.SavingAccount )
+            if ( accountFromDatabase != null )
             {
+                if ( this.IsType( accountFromDatabase ) != AccountType.SavingAccount )
+                {
+                    throw new InvalidCastException( "The account " + account + " is not SavingAccount." );
+                }
+
                 return GetSavingOut( (SavingAccountEntity) accountFromDatabase );
             }
 

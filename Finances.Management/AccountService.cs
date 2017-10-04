@@ -149,38 +149,21 @@ namespace Finances.Management
         /// <summary>
         /// The get loan details.
         /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="account">
-        /// The account.
+        /// <param name="input">
+        /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<LoanAccountOut> GetLoanDetails( Guid owner, Guid account )
+        public async Task<LoanAccountOut> GetLoanDetails( AccountDetails input )
         {
-            if ( owner == null || owner == Guid.Empty )
-            {
-                throw new ArgumentNullException( nameof( owner ) );
-            }
+            await this.Validate( input );
 
-            if ( account == null || account == Guid.Empty )
-            {
-                throw new ArgumentNullException( nameof( account ) );
-            }
-
-            var theOwner = await this.accountRepository.IsOwner( owner, account );
-            if ( !theOwner )
-            {
-                throw new Exception( "Account " + account + " doesnt belong to " + owner + "." );
-            }
-
-            var details = await this.accountRepository.GetLoan( account );
+            var details = await this.accountRepository.GetLoan( input.Code );
 
             if ( details == null )
             {
-                throw new Exception( "Account " + account + " couldnt be found." );
+                throw new Exception( "Account " + input.Code + " couldnt be found." );
             }
 
             return details;
@@ -189,38 +172,21 @@ namespace Finances.Management
         /// <summary>
         /// The get saving details.
         /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="account">
-        /// The account.
+        /// <param name="input">
+        /// The input.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<SavingAccountOut> GetSavingDetails( Guid owner, Guid account )
+        public async Task<SavingAccountOut> GetSavingDetails( AccountDetails input )
         {
-            if ( owner == null || owner == Guid.Empty )
-            {
-                throw new ArgumentNullException( nameof( owner ) );
-            }
+            await this.Validate( input );
 
-            if ( account == null || account == Guid.Empty )
-            {
-                throw new ArgumentNullException( nameof( account ) );
-            }
-
-            var theOwner = await this.accountRepository.IsOwner( owner, account );
-            if ( !theOwner )
-            {
-                throw new Exception( "Account " + account + " doesnt belong to " + owner + "." );
-            }
-
-            var details = await this.accountRepository.GetSaving( account );
+            var details = await this.accountRepository.GetSaving( input.Code );
 
             if ( details == null )
             {
-                throw new Exception( "Account " + account + " couldnt be found." );
+                throw new Exception( "Account " + input.Code + " couldnt be found." );
             }
 
             return details;
@@ -235,7 +201,36 @@ namespace Finances.Management
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CurrentAccountOut> GetCurrentDetails( CurrentDetails input )
+        public async Task<CurrentAccountOut> GetCurrentDetails( AccountDetails input )
+        {
+            await this.Validate( input );
+
+            var current = await this.accountRepository.GetCurrent( input.Code );
+
+            if ( current == null )
+            {
+                throw new Exception( "Account " + input.Code + " couldnt be found." );
+            }
+
+            return current;
+        }
+
+        /// <summary>
+        /// The validate.
+        /// </summary>
+        /// <param name="input">
+        /// The input.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// The Argument Null Exception.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// The Exception.
+        /// </exception>
+        private async Task Validate( AccountDetails input )
         {
             if ( input == null )
             {
@@ -257,15 +252,6 @@ namespace Finances.Management
             {
                 throw new Exception( "Account " + input.Code + " doesnt belong to " + input.Owner + "." );
             }
-
-            var current = await this.accountRepository.GetCurrent( input.Code );
-
-            if ( current == null )
-            {
-                throw new Exception( "Account " + input.Code + " couldnt be found." );
-            }
-
-            return current;
         }
     }
 }

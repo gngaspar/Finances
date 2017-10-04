@@ -32,38 +32,24 @@ namespace Finances.Client
         {
         }
 
-        /// <summary>
-        /// The list.
-        /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="input">
-        /// The input.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public Task<HttpResponseMessage> List( Guid owner, AccountListRequest input )
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// The get get current details.
-        /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <param name="account">
-        /// The account.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         public Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
         {
-            return null;
+            throw new NotImplementedException();
+        }
+
+        public Task<HttpResponseMessage> GetLoanDetails( Guid owner, Guid account )
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HttpResponseMessage> GetSavingDetails( Guid owner, Guid account )
+        {
+            throw new NotImplementedException();
         }
     }
 }
