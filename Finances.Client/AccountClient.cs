@@ -14,7 +14,6 @@ namespace Finances.Client
     using System.Threading.Tasks;
 
     using Finances.Client.Common;
-    using Finances.Contract;
     using Finances.Contract.Accounting;
 
     /// <summary>

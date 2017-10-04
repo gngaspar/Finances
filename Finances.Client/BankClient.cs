@@ -13,7 +13,6 @@ namespace Finances.Client
     using System.Net.Http;
     using System.Threading.Tasks;
     using Finances.Client.Common;
-    using Finances.Contract;
     using Finances.Contract.Banking;
 
     /// <summary>

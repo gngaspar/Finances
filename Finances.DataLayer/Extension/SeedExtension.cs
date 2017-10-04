@@ -91,7 +91,7 @@ namespace Finances.DataLayer.Extension
         /// The type.
         /// </typeparam>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        /// The enumerable of PropertyInfo.
         /// </returns>
         private static IEnumerable<PropertyInfo> GetProperties<T>( Expression<Func<T, object>> exp ) where T : class
         {

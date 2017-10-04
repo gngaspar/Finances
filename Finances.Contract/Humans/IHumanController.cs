@@ -13,8 +13,6 @@ namespace Finances.Contract.Humans
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    using Finances.Contract.Banking;
-
     /// <summary>
     /// The HumanController interface.
     /// </summary>

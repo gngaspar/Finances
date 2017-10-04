@@ -75,3 +75,4 @@ bin
 /Finances.NUnit.Regression/obj/Debug
 /.vs
 /Finances.sln.DotSettings.user
+/Finances.Endpoint.WebApi/aspnet_client

@@ -9,8 +9,6 @@
 
 namespace Finances.Contract.Humans
 {
-    using System;
-
     /// <summary>
     /// The human in.
     /// </summary>
