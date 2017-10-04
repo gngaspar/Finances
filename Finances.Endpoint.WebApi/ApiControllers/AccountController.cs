@@ -83,6 +83,15 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
         }
 
+        [HttpPost]
+        [Route( "{owner:guid}/Current/Add" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> AddCurrentDetails( Guid owner, CurrentAccountIn account )
+        {
+            return await this.ProcessActionAsync( owner, account, this.accountService.AddCurrentAccount );
+        }
+
+
         /// <summary>
         /// The get loan details.
         /// </summary>

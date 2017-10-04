@@ -51,5 +51,10 @@ namespace Finances.Client
         {
             throw new NotImplementedException();
         }
+
+        public Task<HttpResponseMessage> AddCurrentDetails( Guid owner, CurrentAccountIn account )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

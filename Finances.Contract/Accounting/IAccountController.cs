@@ -49,5 +49,7 @@ namespace Finances.Contract.Accounting
         Task<HttpResponseMessage> GetLoanDetails( Guid owner, Guid account );
 
         Task<HttpResponseMessage> GetSavingDetails( Guid owner, Guid account );
+
+        Task<HttpResponseMessage> AddCurrentDetails( Guid owner, CurrentAccountIn account );
     }
 }
