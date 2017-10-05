@@ -46,10 +46,77 @@ namespace Finances.Contract.Accounting
         /// </returns>
         Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account );
 
+        /// <summary>
+        /// The get loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<HttpResponseMessage> GetLoanDetails( Guid owner, Guid account );
 
+        /// <summary>
+        /// The get saving details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<HttpResponseMessage> GetSavingDetails( Guid owner, Guid account );
 
+        /// <summary>
+        /// The add current details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<HttpResponseMessage> AddCurrentDetails( Guid owner, CurrentAccountIn account );
+
+        /// <summary>
+        /// The add loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> AddLoanDetails( Guid owner, LoanAccountIn account );
+
+        /// <summary>
+        /// The add loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> AddLoanDetails( Guid owner, Guid currentAccount, LoanAccountIn account );
     }
 }

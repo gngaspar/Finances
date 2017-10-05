@@ -44,7 +44,7 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// The list.
         /// </summary>
         /// <param name="owner">
-        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B
         /// </param>
         /// <param name="input">
         /// The input.
@@ -63,10 +63,10 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         }
 
         /// <summary>
-        /// The get get current details.
+        /// The get current details.
         /// </summary>
         /// <param name="owner">
-        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B .
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B
         /// </param>
         /// <param name="account">
         /// The account.
@@ -91,6 +91,50 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             return await this.ProcessActionAsync( owner, account, this.accountService.AddCurrentAccount );
         }
 
+        /// <summary>
+        /// The add loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="loan">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "{owner:guid}/Loan/Add" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> AddLoanDetails( Guid owner, LoanAccountIn loan )
+        {
+            var input = new AccountAdd { CurrentAccount = Guid.Empty, Loan = loan };
+            return await this.ProcessActionAsync( owner, input, this.accountService.AddLoanAccount );
+        }
+
+        /// <summary>
+        /// The add loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The current account.
+        /// </param>
+        /// <param name="loan">
+        /// The loan.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "{owner:guid}/Current/{account:guid}/Loan" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> AddLoanDetails( Guid owner, Guid account, LoanAccountIn loan )
+        {
+            var input = new AccountAdd { CurrentAccount = account, Loan = loan };
+            return await this.ProcessActionAsync( owner, input, this.accountService.AddLoanAccount );
+        }
 
         /// <summary>
         /// The get loan details.
