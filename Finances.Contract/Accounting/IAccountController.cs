@@ -118,5 +118,36 @@ namespace Finances.Contract.Accounting
         /// The <see cref="Task"/>.
         /// </returns>
         Task<HttpResponseMessage> AddLoanDetails( Guid owner, Guid currentAccount, LoanAccountIn account );
+
+        /// <summary>
+        /// The add savings details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> AddSavingDetails( Guid owner, SavingAccountIn account );
+
+        /// <summary>
+        /// The add saving details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HttpResponseMessage> AddSavingDetails( Guid owner, Guid currentAccount, SavingAccountIn account );
     }
 }

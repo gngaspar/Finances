@@ -153,5 +153,42 @@ namespace Finances.Client
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// The add savings details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<HttpResponseMessage> AddSavingDetails( Guid owner, SavingAccountIn account )
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The add loan details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="currentAccount">
+        /// The current account.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<HttpResponseMessage> AddSavingDetails( Guid owner, Guid currentAccount, SavingAccountIn account )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

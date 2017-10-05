@@ -58,7 +58,6 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         public async Task<HttpResponseMessage> List( Guid owner, AccountListRequest input )
         {
             var request = new AccountList { Owner = owner, Request = input };
-
             return await this.ProcessActionAsync( request, this.accountService.List );
         }
 
@@ -83,6 +82,18 @@ namespace Finances.Endpoint.WebApi.ApiControllers
             return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
         }
 
+        /// <summary>
+        /// The add current details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
         [Route( "{owner:guid}/Current/Add" )]
         [ResponseType( typeof( ActionResponse<Guid> ) )]
@@ -134,6 +145,51 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         {
             var input = new AccountAdd { CurrentAccount = account, Loan = loan };
             return await this.ProcessActionAsync( owner, input, this.accountService.AddLoanAccount );
+        }
+
+        /// <summary>
+        /// The add savings details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "{owner:guid}/Saving/Add" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> AddSavingDetails( Guid owner, SavingAccountIn account )
+        {
+            var input = new AccountAdd { CurrentAccount = Guid.Empty, Saving = account };
+            return await this.ProcessActionAsync( owner, input, this.accountService.AddSavingAccount );
+        }
+
+        /// <summary>
+        /// The add saving details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="account">
+        /// The current account.
+        /// </param>
+        /// <param name="saving">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpPost]
+        [Route( "{owner:guid}/Current/{account:guid}/Saving" )]
+        [ResponseType( typeof( ActionResponse<Guid> ) )]
+        public async Task<HttpResponseMessage> AddSavingDetails( Guid owner, Guid account, SavingAccountIn saving )
+        {
+            var input = new AccountAdd { CurrentAccount = account, Saving = saving };
+            return await this.ProcessActionAsync( owner, input, this.accountService.AddSavingAccount );
         }
 
         /// <summary>
