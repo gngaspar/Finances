@@ -12,6 +12,7 @@ namespace Finances.NUnit.Tests
     using Finances.Domain;
     using Finances.Domain.Repository;
     using Finances.Endpoint.WebApi.ApiControllers;
+    using Finances.Endpoint.WebApi.Infrastructure;
     using Finances.Management;
     using Finances.NUnit.Tests.Mocks;
 
@@ -24,6 +25,8 @@ namespace Finances.NUnit.Tests
         /// The service proxy.
         /// </summary>
         private ServiceProxyMock serviceProxy;
+
+        private CacheProvider cacheProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseTest"/> class.
@@ -38,6 +41,9 @@ namespace Finances.NUnit.Tests
         /// </summary>
         public ServiceProxyMock ServiceProxy => this.serviceProxy ?? ( this.serviceProxy = MockHelper.MockServiceProxy() );
 
+        public CacheProvider CacheProvider =>
+            this.cacheProvider ?? ( this.cacheProvider = MockHelper.MockICacheProvider() );
+
         /// <summary>
         /// The get currency service.
         /// </summary>
@@ -46,7 +52,8 @@ namespace Finances.NUnit.Tests
         /// </returns>
         public ICurrencyService GetCurrencyService()
         {
-            return new CurrencyService( this.ServiceProxy.GetMock<ICurrencyRepository>().Object );
+            // TODO Fix This
+            return new CurrencyService( this.ServiceProxy.GetMock<ICurrencyRepository>().Object, this.CacheProvider );
         }
 
         /// <summary>
