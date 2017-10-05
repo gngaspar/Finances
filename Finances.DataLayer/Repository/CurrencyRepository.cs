@@ -118,6 +118,18 @@ namespace Finances.DataLayer.Repository
             return result;
         }
 
+        public List<CurrencyOut> All()
+        {
+            return this.context.Currencies.OrderBy( o => o.Order )
+                .Select( currency => new CurrencyOut
+                {
+                    Name = currency.Name,
+                    Code = currency.Currency,
+                    ReasonToOneEuro = currency.ReasonToOneEuro,
+                    ChangeAt = currency.ChangeAt,
+                } ).ToList();
+        }
+
         /// <summary>
         /// The get currency.
         /// </summary>

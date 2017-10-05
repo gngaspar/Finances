@@ -10,6 +10,7 @@
 namespace Finances.DataLayer.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
@@ -198,6 +199,26 @@ namespace Finances.DataLayer.Repository
             };
 
             return result;
+        }
+
+        /// <summary>
+        /// The all.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        public List<BankOut> All()
+        {
+            return this.context.Banks.Select( order => new BankOut
+            {
+                Code = order.Code,
+                Name = order.Name,
+                Country = order.Country,
+                Url = order.Url,
+                Swift = order.Swift,
+                ChangeAt = order.ChangeAt,
+                CreatedAt = order.CreatedAt
+            } ).ToList();
         }
 
         /// <summary>

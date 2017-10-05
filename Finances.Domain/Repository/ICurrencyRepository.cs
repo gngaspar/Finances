@@ -46,6 +46,14 @@ namespace Finances.Domain.Repository
         Task<CurrencyListResponse> List();
 
         /// <summary>
+        /// The list.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        List<CurrencyOut> All();
+
+        /// <summary>
         /// The get currency.
         /// </summary>
         /// <param name="code">

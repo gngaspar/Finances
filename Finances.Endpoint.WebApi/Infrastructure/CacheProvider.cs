@@ -10,19 +10,88 @@
 namespace Finances.Endpoint.WebApi.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.Caching;
 
+    using Finances.Contract.Banking;
     using Finances.Domain;
+    using Finances.Domain.Repository;
 
     /// <summary>
     /// The cache provider.
     /// </summary>
     public class CacheProvider : ICacheProvider
     {
+        /// <summary>
+        /// The currency repository.
+        /// </summary>
+        private ICurrencyRepository currencyRepository;
+
+        /// <summary>
+        /// The bank repository.
+        /// </summary>
+        private IBankRepository bankRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CacheProvider"/> class. 
+        /// The Cache Provider.
+        /// </summary>
+        /// <param name="currencyRepository">
+        /// The currency Repository.
+        /// </param>
+        /// <param name="bankRepository">
+        /// The bank Repository.
+        /// </param>
+        public CacheProvider( ICurrencyRepository currencyRepository, IBankRepository bankRepository )
+        {
+            this.currencyRepository = currencyRepository;
+            this.bankRepository = bankRepository;
+        }
+
         ///// <summary>
         ///// The locker.
         ///// </summary>
         /////private static readonly object Locker = new object();
+
+        /// <summary>
+        /// Gets the currencies.
+        /// </summary>
+        public List<CurrencyOut> Currencies
+        {
+            get
+            {
+                var list = this.GetObject<List<CurrencyOut>>( "Currencies" );
+
+                if ( list == null || list.Count == 0 )
+                {
+                    list = new List<CurrencyOut>();
+                    list.AddRange( this.currencyRepository.All() );
+                    this.SetObject( list, "Currencies" );
+                }
+
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// Gets the banks.
+        /// </summary>
+        public List<BankOut> Banks
+        {
+            get
+            {
+                var list = this.GetObject<List<BankOut>>( "Banks" );
+
+                if ( list == null || list.Count == 0 )
+                {
+                    list = new List<BankOut>();
+                    list.AddRange( this.bankRepository.All() );
+                    this.SetObject( list, "Banks" );
+                }
+
+                return list;
+            }
+        }
 
         /// <summary>
         /// Gets the object.
@@ -52,13 +121,7 @@ namespace Finances.Endpoint.WebApi.Infrastructure
         /// <param name="key">
         /// The key input.
         /// </param>
-        /// <param name="slidingExpiration">
-        /// The sliding expiration.
-        /// </param>
-        /// <param name="absoluteExpiration">
-        /// The absolute expiration.
-        /// </param>
-        public void SetObject( object value, string key, TimeSpan? slidingExpiration, TimeSpan? absoluteExpiration )
+        public void SetObject( object value, string key )
         {
             if ( value == null )
             {
@@ -67,20 +130,7 @@ namespace Finances.Endpoint.WebApi.Infrastructure
 
             ObjectCache cache = MemoryCache.Default;
 
-            CacheItemPolicy policy = new CacheItemPolicy();
-            if ( slidingExpiration.HasValue )
-            {
-                policy.SlidingExpiration = slidingExpiration.Value; ////TODO
-            }
-            else if ( absoluteExpiration.HasValue )
-            {
-                policy.AbsoluteExpiration = DateTimeOffset.Now.Add( absoluteExpiration.Value );
-            }
-            else
-            {
-                ////throw new InvalidAttributeException( "Expiration time is required" ); TODO
-            }
-
+            CacheItemPolicy policy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddDays( 1 ) };
             cache.AddOrGetExisting( key, value, policy );
         }
     }

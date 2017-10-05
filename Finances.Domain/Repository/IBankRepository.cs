@@ -10,6 +10,7 @@
 namespace Finances.Domain.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Finances.Contract.Banking;
 
@@ -55,6 +56,14 @@ namespace Finances.Domain.Repository
         /// <param name="parameters">The parameters.</param>
         /// <returns>The list of Banks.</returns>
         Task<BankListResponse> List( BankListRequest parameters );
+
+        /// <summary>
+        /// The all.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        List<BankOut> All();
 
         /// <summary>
         /// This the swift exists in other bank.

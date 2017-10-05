@@ -9,13 +9,25 @@
 
 namespace Finances.Domain
 {
-    using System;
+    using System.Collections.Generic;
+
+    using Finances.Contract.Banking;
 
     /// <summary>
     /// The CacheProvider interface.
     /// </summary>
     public interface ICacheProvider
     {
+        /// <summary>
+        /// Gets the currencies.
+        /// </summary>
+        List<CurrencyOut> Currencies { get; }
+
+        /// <summary>
+        /// Gets the banks.
+        /// </summary>
+        List<BankOut> Banks { get; }
+
         /// <summary>
         /// Gets the object.
         /// </summary>
@@ -29,8 +41,6 @@ namespace Finances.Domain
         /// </summary>
         /// <param name="value">The value input.</param>
         /// <param name="key">The key input.</param>
-        /// <param name="slidingExpiration">The sliding expiration.</param>
-        /// <param name="absoluteExpiration">The absolute expiration.</param>
-        void SetObject( object value, string key, TimeSpan? slidingExpiration, TimeSpan? absoluteExpiration );
+        void SetObject( object value, string key );
     }
 }
