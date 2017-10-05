@@ -102,6 +102,7 @@
       <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
@@ -178,6 +179,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ApiControllers\BankController.cs" />
     <Compile Include="ApiControllers\CurrencyController.cs" />
+    <Compile Include="Infrastructure\CacheProvider.cs" />
     <Compile Include="Infrastructure\Logs\EventViewerLogger.cs" />
     <Compile Include="Infrastructure\Validation\InputValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -72,6 +72,7 @@
     <Compile Include="Extensions\OrderByField.cs" />
     <Compile Include="FinancesException.cs" />
     <Compile Include="IAccountService.cs" />
+    <Compile Include="ICacheProvider.cs" />
     <Compile Include="ICurrencyService.cs" />
     <Compile Include="IHumanService.cs" />
     <Compile Include="Plastic\CardEntity.cs" />
