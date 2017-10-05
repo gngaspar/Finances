@@ -30,12 +30,23 @@ namespace Finances.Management
         private readonly ICurrencyRepository currencyRepository;
 
         /// <summary>
+        /// The cache provider.
+        /// </summary>
+        private ICacheProvider cacheProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyService"/> class.
         /// </summary>
-        /// <param name="currencyRepository">The currency repository.</param>
-        public CurrencyService( ICurrencyRepository currencyRepository )
+        /// <param name="currencyRepository">
+        /// The currency repository.
+        /// </param>
+        /// <param name="cacheProvider">
+        /// The cache Provider.
+        /// </param>
+        public CurrencyService( ICurrencyRepository currencyRepository, ICacheProvider cacheProvider )
         {
             this.currencyRepository = currencyRepository;
+            this.cacheProvider = cacheProvider;
         }
 
         /// <summary>
@@ -84,20 +95,20 @@ namespace Finances.Management
                 throw new Exception( "Amount must be different of Zero (0)." );
             }
 
-            var listOfCurrencies = await this.currencyRepository.List();
+            var listOfCurrencies = this.cacheProvider.Currencies;
 
-            if ( listOfCurrencies?.Data == null )
+            if ( listOfCurrencies == null )
             {
                 throw new Exception( "Cant get currencies." );
             }
 
-            var from = listOfCurrencies.Data.FirstOrDefault( i => i.Code == convert.FromCurrency.ToUpper() );
+            var from = listOfCurrencies.FirstOrDefault( i => i.Code == convert.FromCurrency.ToUpper() );
             if ( from == null )
             {
                 throw new Exception( $"Cant find { convert.FromCurrency} currency." );
             }
 
-            var to = listOfCurrencies.Data.FirstOrDefault( i => i.Code == convert.ToCurrency.ToUpper() );
+            var to = listOfCurrencies.FirstOrDefault( i => i.Code == convert.ToCurrency.ToUpper() );
             if ( to == null )
             {
                 throw new Exception( $"Cant find { convert.ToCurrency} currency." );
@@ -162,7 +173,11 @@ namespace Finances.Management
                 this.ValidateCurrency( currencyIn );
             }
 
-            return await this.currencyRepository.Update( input );
+            var output = await this.currencyRepository.Update( input );
+            this.cacheProvider.Currencies = null;
+
+            return output;
+
         }
 
         /// <summary>

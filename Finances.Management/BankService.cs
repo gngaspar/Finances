@@ -29,12 +29,23 @@ namespace Finances.Management
         private readonly IBankRepository bankRepository;
 
         /// <summary>
+        /// The cache provider.
+        /// </summary>
+        private ICacheProvider cacheProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BankService"/> class.
         /// </summary>
-        /// <param name="bankRepository">The bank repository.</param>
-        public BankService( IBankRepository bankRepository )
+        /// <param name="bankRepository">
+        /// The bank repository.
+        /// </param>
+        /// <param name="cacheProvider">
+        /// The cache Provider.
+        /// </param>
+        public BankService( IBankRepository bankRepository, ICacheProvider cacheProvider )
         {
             this.bankRepository = bankRepository;
+            this.cacheProvider = cacheProvider;
         }
 
         /// <summary>
@@ -62,6 +73,8 @@ namespace Finances.Management
             var code = Guid.NewGuid();
 
             var result = await this.bankRepository.Add( code, bank );
+
+            this.cacheProvider.Banks = null;
 
             return result != 0 ? code : Guid.Empty;
         }

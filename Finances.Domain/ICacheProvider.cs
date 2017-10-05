@@ -19,14 +19,14 @@ namespace Finances.Domain
     public interface ICacheProvider
     {
         /// <summary>
-        /// Gets the currencies.
+        /// Gets or sets the currencies.
         /// </summary>
-        List<CurrencyOut> Currencies { get; }
+        List<CurrencyOut> Currencies { get; set; }
 
         /// <summary>
-        /// Gets the banks.
+        /// Gets or sets the banks.
         /// </summary>
-        List<BankOut> Banks { get; }
+        List<BankOut> Banks { get; set; }
 
         /// <summary>
         /// Gets the object.

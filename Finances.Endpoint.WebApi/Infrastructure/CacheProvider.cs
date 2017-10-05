@@ -54,7 +54,7 @@ namespace Finances.Endpoint.WebApi.Infrastructure
         /////private static readonly object Locker = new object();
 
         /// <summary>
-        /// Gets the currencies.
+        /// Gets or sets the currencies.
         /// </summary>
         public List<CurrencyOut> Currencies
         {
@@ -71,10 +71,15 @@ namespace Finances.Endpoint.WebApi.Infrastructure
 
                 return list;
             }
+
+            set
+            {
+                this.SetObject( null, "Currencies" );
+            }
         }
 
         /// <summary>
-        /// Gets the banks.
+        /// Gets or sets the banks.
         /// </summary>
         public List<BankOut> Banks
         {
@@ -90,6 +95,11 @@ namespace Finances.Endpoint.WebApi.Infrastructure
                 }
 
                 return list;
+            }
+
+            set
+            {
+                this.SetObject( null, "Banks" );
             }
         }
 
