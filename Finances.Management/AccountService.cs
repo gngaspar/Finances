@@ -10,6 +10,7 @@
 namespace Finances.Management
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Finances.Contract.Accounting;
@@ -28,14 +29,20 @@ namespace Finances.Management
         private readonly IAccountRepository accountRepository;
 
         /// <summary>
+        /// The cache provider.
+        /// </summary>
+        private ICacheProvider cacheProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AccountService"/> class.
         /// </summary>
         /// <param name="accountRepository">
         /// The repository.
         /// </param>
-        public AccountService( IAccountRepository accountRepository )
+        public AccountService( IAccountRepository accountRepository, ICacheProvider cacheProvider )
         {
             this.accountRepository = accountRepository;
+            this.cacheProvider = cacheProvider;
         }
 
         /// <summary>
@@ -99,6 +106,16 @@ namespace Finances.Management
             }
 
             // TODO: Add validations
+            if ( !this.cacheProvider.Banks.Select( x => x.Code ).Contains( input.Bank ) )
+            {
+                throw new Exception( "The Bank " + input.Bank + " doesnt look valid." );
+            }
+
+            if ( !this.cacheProvider.Currencies.Select( x => x.Code ).Contains( input.Currency ) )
+            {
+                throw new Exception( "The currency " + input.Currency + " doesnt look valid." );
+            }
+
             var currentGuid = Guid.NewGuid();
 
             var result = await this.accountRepository.Add( owner, currentGuid, input );
@@ -121,6 +138,16 @@ namespace Finances.Management
         public async Task<Guid> AddSavingAccount( Guid owner, AccountAdd input )
         {
             var id = Guid.NewGuid();
+            if ( !this.cacheProvider.Banks.Select( x => x.Code ).Contains( input.Saving.Bank ) )
+            {
+                throw new Exception( "The Bank " + input.Saving.Bank + " doesnt look valid." );
+            }
+
+            if ( !this.cacheProvider.Currencies.Select( x => x.Code ).Contains( input.Saving.Currency ) )
+            {
+                throw new Exception( "The currency " + input.Saving.Currency + " doesnt look valid." );
+            }
+
             var done = await this.accountRepository.Add( owner, input.CurrentAccount, id, input.Saving );
             if ( done == 1 )
             {
@@ -145,6 +172,16 @@ namespace Finances.Management
         public async Task<Guid> AddLoanAccount( Guid owner, AccountAdd input )
         {
             var id = Guid.NewGuid();
+            if ( !this.cacheProvider.Banks.Select( x => x.Code ).Contains( input.Loan.Bank ) )
+            {
+                throw new Exception( "The Bank " + input.Loan.Bank + " doesnt look valid." );
+            }
+
+            if ( !this.cacheProvider.Currencies.Select( x => x.Code ).Contains( input.Loan.Currency ) )
+            {
+                throw new Exception( "The currency " + input.Loan.Currency + " doesnt look valid." );
+            }
+
             var done = await this.accountRepository.Add( owner, input.CurrentAccount, id, input.Loan );
             if ( done == 1 )
             {
