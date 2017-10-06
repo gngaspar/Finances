@@ -1,4 +1,13 @@
-﻿namespace Finances.Endpoint.WebApi.App_Start
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NinjectConfig.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The ninject config.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.App_Start
 {
     using System;
     using System.Reflection;
@@ -14,7 +23,7 @@
     using Ninject.Web.Common;
 
     /// <summary>
-    /// The ninject config.
+    /// The NINJECT config.
     /// </summary>
     public static class NinjectConfig
     {
@@ -53,9 +62,9 @@
             kernel.Bind<IHumanRepository>().To<HumanRepository>().InRequestScope();
 
             kernel.Bind<IAccountService>().To<AccountService>();
-            kernel.Bind<IAccountRepository>().To<AccountRepository>().InSingletonScope();
+            kernel.Bind<IAccountRepository>().To<AccountRepository>().InRequestScope();
 
-            kernel.Bind<ICacheProvider>().To<CacheProvider>().InRequestScope();
+            kernel.Bind<ICacheProvider>().To<CacheProvider>().InSingletonScope();
         }
     }
 }
