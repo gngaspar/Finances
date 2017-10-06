@@ -26,10 +26,5 @@ namespace Finances.NUnit.Tests.Mocks
         {
             return new ServiceProxyMock();
         }
-
-        public static CacheProvider MockICacheProvider()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -26,8 +26,6 @@ namespace Finances.NUnit.Tests
         /// </summary>
         private ServiceProxyMock serviceProxy;
 
-        private CacheProvider cacheProvider;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseTest"/> class.
         /// </summary>
@@ -41,9 +39,6 @@ namespace Finances.NUnit.Tests
         /// </summary>
         public ServiceProxyMock ServiceProxy => this.serviceProxy ?? ( this.serviceProxy = MockHelper.MockServiceProxy() );
 
-        public CacheProvider CacheProvider =>
-            this.cacheProvider ?? ( this.cacheProvider = MockHelper.MockICacheProvider() );
-
         /// <summary>
         /// The get currency service.
         /// </summary>
@@ -53,7 +48,9 @@ namespace Finances.NUnit.Tests
         public ICurrencyService GetCurrencyService()
         {
             // TODO Fix This
-            return new CurrencyService( this.ServiceProxy.GetMock<ICurrencyRepository>().Object, this.CacheProvider );
+            return new CurrencyService(
+                this.ServiceProxy.GetMock<ICurrencyRepository>().Object,
+                this.ServiceProxy.GetMock<ICacheProvider>().Object );
         }
 
         /// <summary>

@@ -87,6 +87,7 @@
     <Compile Include="Mocks\BaseMock.cs" />
     <Compile Include="Mocks\Controller\MockCurrencyController.cs" />
     <Compile Include="Mocks\IMock.cs" />
+    <Compile Include="Mocks\Infrastructure\MockCacheProvider.cs" />
     <Compile Include="Mocks\IServiceProxy.cs" />
     <Compile Include="Mocks\MockHelper.cs" />
     <Compile Include="Mocks\ServiceProxyMock.cs" />
