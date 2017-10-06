@@ -37,24 +37,22 @@ namespace Finances.DataLayer.Repository
         /// <summary>
         /// The cache provider.
         /// </summary>
-        private Domain.ICacheProvider cacheProvider;
+        private readonly Domain.ICacheProvider cacheProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
-        /// <param name="bankingDbContext">The banking database context.</param>
+        /// <param name="bankingDbContext">
+        /// The banking database context.
+        /// </param>
+        /// <param name="cacheProvider">
+        /// The cache Provider.
+        /// </param>
         public AccountRepository( BankingDbContext bankingDbContext, Domain.ICacheProvider cacheProvider )
         {
             this.context = bankingDbContext;
             this.cacheProvider = cacheProvider;
-
-            this.Banks = this.cacheProvider.Banks;
-            this.Currencies = this.cacheProvider.Currencies;
         }
-
-        public List<CurrencyOut> Currencies { get; set; }
-
-        public List<BankOut> Banks { get; set; }
 
         /// <summary>
         /// The add.
@@ -189,8 +187,8 @@ namespace Finances.DataLayer.Repository
 
                 var savingList = await listQuery.Where( i => i is SavingAccountEntity ).ToListAsync();
 
-                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
-                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
+                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => this.GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
+                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => this.GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
 
                 return new CurrentAccountOut
                 {
@@ -232,7 +230,7 @@ namespace Finances.DataLayer.Repository
                     throw new InvalidCastException( "The account " + account + " is not LoanAccount." );
                 }
 
-                return GetLoanOut( (LoanAccountEntity) accountFromDatabase );
+                return this.GetLoanOut( (LoanAccountEntity) accountFromDatabase );
             }
 
             return null;
@@ -257,7 +255,7 @@ namespace Finances.DataLayer.Repository
                     throw new InvalidCastException( "The account " + account + " is not SavingAccount." );
                 }
 
-                return GetSavingOut( (SavingAccountEntity) accountFromDatabase );
+                return this.GetSavingOut( (SavingAccountEntity) accountFromDatabase );
             }
 
             return null;
@@ -329,14 +327,6 @@ namespace Finances.DataLayer.Repository
         }
 
         /// <summary>
-        /// The dispose.
-        /// </summary>
-        public void Dispose()
-        {
-            this.context.Dispose();
-        }
-
-        /// <summary>
         /// The list.
         /// </summary>
         /// <param name="owner">The owner.</param>
@@ -394,17 +384,17 @@ namespace Finances.DataLayer.Repository
                         .Take( input.ItemsPerPage )
                         .Select( order => new
                         {
-                            Code = order.Code,
-                            StartDate = order.StartDate,
-                            Number = order.Number,
-                            Description = order.Description,
-                            Currency = order.Currency,
-                            Amount = order.Amount,
-                            Holder = order.Holder,
-                            Bank = order.Bank,
-                            ChangeAt = order.ChangeAt,
-                            CreatedAt = order.CreatedAt,
-                            IsArchived = order.IsArchived,
+                            order.Code,
+                            order.StartDate,
+                            order.Number,
+                            order.Description,
+                            order.Currency,
+                            order.Amount,
+                            order.Holder,
+                            order.Bank,
+                            order.ChangeAt,
+                            order.CreatedAt,
+                            order.IsArchived,
                             Type = order is CurrentAccountEntity ? AccountType.CurrentAccount : order is LoanAccountEntity ? AccountType.LoanAccount : AccountType.SavingAccount
                         } ).ToListAsync();
 
@@ -439,65 +429,11 @@ namespace Finances.DataLayer.Repository
         }
 
         /// <summary>
-        /// The get saving out.
+        /// The dispose.
         /// </summary>
-        /// <param name="a">
-        /// The account.
-        /// </param>
-        /// <returns>
-        /// The <see cref="SavingAccountOut"/>.
-        /// </returns>
-        private SavingAccountOut GetSavingOut( SavingAccountEntity a )
+        public void Dispose()
         {
-            return new SavingAccountOut
-            {
-                ChangeAt = a.ChangeAt,
-                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
-                StartDate = a.StartDate,
-                Amount = a.Amount,
-                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
-                Description = a.Description,
-                CreatedAt = a.CreatedAt,
-                Holder = a.Holder,
-                IsArchived = a.IsArchived,
-                Number = a.Number,
-                AutomaticRenovation = a.AutomaticRenovation,
-                InterestCapitalization = a.InterestCapitalization,
-                InterestPayment = a.InterestPayment,
-                SavingEndDate = a.SavingEndDate,
-                SavingInterestRate = a.SavingInterestRate
-            };
-        }
-
-        /// <summary>
-        /// The get loan out.
-        /// </summary>
-        /// <param name="a">
-        /// The account.
-        /// </param>
-        /// <returns>
-        /// The <see cref="LoanAccountOut"/>.
-        /// </returns>
-        private LoanAccountOut GetLoanOut( LoanAccountEntity a )
-        {
-            return new LoanAccountOut
-            {
-                ChangeAt = a.ChangeAt,
-                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
-                StartDate = a.StartDate,
-                Amount = a.Amount,
-                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
-                Description = a.Description,
-                CreatedAt = a.CreatedAt,
-                Holder = a.Holder,
-                IsArchived = a.IsArchived,
-                Number = a.Number,
-                InitialAmount = a.InitialAmount,
-                InterestNetRate = a.InterestNetRate,
-                LoanEndDate = a.LoanEndDate,
-                LoanInterestRate = a.LoanInterestRate,
-                PremiumPercentage = a.PremiumPercentage,
-            };
+            this.context.Dispose();
         }
 
         /// <summary>
@@ -592,6 +528,68 @@ namespace Finances.DataLayer.Repository
             }
 
             return output;
+        }
+
+        /// <summary>
+        /// The get saving out.
+        /// </summary>
+        /// <param name="a">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="SavingAccountOut"/>.
+        /// </returns>
+        private SavingAccountOut GetSavingOut( SavingAccountEntity a )
+        {
+            return new SavingAccountOut
+            {
+                ChangeAt = a.ChangeAt,
+                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
+                StartDate = a.StartDate,
+                Amount = a.Amount,
+                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
+                Description = a.Description,
+                CreatedAt = a.CreatedAt,
+                Holder = a.Holder,
+                IsArchived = a.IsArchived,
+                Number = a.Number,
+                AutomaticRenovation = a.AutomaticRenovation,
+                InterestCapitalization = a.InterestCapitalization,
+                InterestPayment = a.InterestPayment,
+                SavingEndDate = a.SavingEndDate,
+                SavingInterestRate = a.SavingInterestRate
+            };
+        }
+
+        /// <summary>
+        /// The get loan out.
+        /// </summary>
+        /// <param name="a">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="LoanAccountOut"/>.
+        /// </returns>
+        private LoanAccountOut GetLoanOut( LoanAccountEntity a )
+        {
+            return new LoanAccountOut
+            {
+                ChangeAt = a.ChangeAt,
+                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
+                StartDate = a.StartDate,
+                Amount = a.Amount,
+                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
+                Description = a.Description,
+                CreatedAt = a.CreatedAt,
+                Holder = a.Holder,
+                IsArchived = a.IsArchived,
+                Number = a.Number,
+                InitialAmount = a.InitialAmount,
+                InterestNetRate = a.InterestNetRate,
+                LoanEndDate = a.LoanEndDate,
+                LoanInterestRate = a.LoanInterestRate,
+                PremiumPercentage = a.PremiumPercentage,
+            };
         }
     }
 }

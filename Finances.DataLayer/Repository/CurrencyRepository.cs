@@ -32,18 +32,10 @@ namespace Finances.DataLayer.Repository
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyRepository"/> class.
         /// </summary>
-        public CurrencyRepository()
-        {
-            this.context = new BankingDbContext();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CurrencyRepository"/> class.
-        /// </summary>
         /// <param name="bankingDbContext">
         /// The banking database context.
         /// </param>
-        internal CurrencyRepository( BankingDbContext bankingDbContext )
+        public CurrencyRepository( BankingDbContext bankingDbContext )
         {
             this.context = bankingDbContext;
         }
