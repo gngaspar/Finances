@@ -18,6 +18,11 @@ namespace Finances.Contract
     public class ActionResponse<T>
     {
         /// <summary>
+        /// Gets or sets the results.
+        /// </summary>
+        public T Results { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether has error.
         /// </summary>
         public bool HasError { get; set; }
@@ -31,10 +36,5 @@ namespace Finances.Contract
         /// Gets or sets the error message.
         /// </summary>
         public string ErrorGuid { get; set; }
-
-        /// <summary>
-        /// Gets or sets the results.
-        /// </summary>
-        public T Results { get; set; }
     }
 }

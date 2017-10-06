@@ -20,14 +20,14 @@ namespace Finances.Contract.Banking
         public BankFilter Filter { get; set; }
 
         /// <summary>
-        /// Gets or sets the items per page.
-        /// </summary>
-        public int ItemsPerPage { get; set; }
-
-        /// <summary>
         /// Gets or sets the order.
         /// </summary>
         public BankOrder Order { get; set; }
+
+        /// <summary>
+        /// Gets or sets the items per page.
+        /// </summary>
+        public int ItemsPerPage { get; set; }
 
         /// <summary>
         /// Gets or sets the page.

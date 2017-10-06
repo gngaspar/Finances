@@ -17,19 +17,9 @@ namespace Finances.Contract.Accounting
     public class AccountInBase
     {
         /// <summary>
-        /// Gets or sets the amount.
+        /// Gets or sets the number.
         /// </summary>
-        public decimal Amount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the change at.
-        /// </summary>
-        public DateTime? ChangeAt { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created at.
-        /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        public string Number { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -37,9 +27,19 @@ namespace Finances.Contract.Accounting
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
+        public decimal Amount { get; set; }
+
+        /// <summary>
         /// Gets or sets the holder.
         /// </summary>
         public Guid Holder { get; set; }
+
+        /// <summary>
+        /// Gets or sets the start date.
+        /// </summary>
+        public DateTime StartDate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether is archived.
@@ -47,13 +47,13 @@ namespace Finances.Contract.Accounting
         public bool IsArchived { get; set; }
 
         /// <summary>
-        /// Gets or sets the number.
+        /// Gets or sets the created at.
         /// </summary>
-        public string Number { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the start date.
+        /// Gets or sets the change at.
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime? ChangeAt { get; set; }
     }
 }

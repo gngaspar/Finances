@@ -199,16 +199,7 @@ namespace Finances.DataLayer.Repository
                         .OrderByFieldPerson( orderType, input.Order.Field )
                         .Skip( ( input.Page - 1 ) * input.ItemsPerPage )
                         .Take( input.ItemsPerPage )
-                        .Select( personEntity => new HumanOut
-                        {
-                            Code = personEntity.Code,
-                            Name = personEntity.Name,
-                            Email = personEntity.Email,
-                            Surname = personEntity.Surname,
-                            ChangeAt = personEntity.ChangeAt,
-                            CreatedAt = personEntity.CreatedAt,
-                            IsArchived = personEntity.IsArchived
-                        } ).ToListAsync();
+                        .Select( personEntity => GetHumanOut( personEntity ) ).ToListAsync();
 
             var result = new HumanListResponse
             {
@@ -217,6 +208,20 @@ namespace Finances.DataLayer.Repository
             };
 
             return result;
+        }
+
+        private static HumanOut GetHumanOut( PersonEntity personEntity )
+        {
+            return new HumanOut
+            {
+                Code = personEntity.Code,
+                Name = personEntity.Name,
+                Email = personEntity.Email,
+                Surname = personEntity.Surname,
+                ChangeAt = personEntity.ChangeAt,
+                CreatedAt = personEntity.CreatedAt,
+                IsArchived = personEntity.IsArchived
+            };
         }
     }
 }

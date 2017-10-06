@@ -15,12 +15,6 @@ namespace Finances.Contract.Humans
     public class HumanIn
     {
         /// <summary>
-        /// Gets or sets the Email.
-        /// </summary>
-        /// <value>The email.</value>
-        public string Email { get; set; }
-
-        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
@@ -31,6 +25,12 @@ namespace Finances.Contract.Humans
         /// </summary>
         /// <value>The surname.</value>
         public string Surname { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Email.
+        /// </summary>
+        /// <value>The email.</value>
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether is archived.

@@ -17,11 +17,6 @@ namespace Finances.Contract.Banking
     public class BankOut : BankIn
     {
         /// <summary>
-        /// Gets or sets the change at.
-        /// </summary>
-        public DateTime? ChangeAt { get; set; }
-
-        /// <summary>
         /// Gets or sets the code.
         /// </summary>
         public Guid Code { get; set; }
@@ -30,5 +25,10 @@ namespace Finances.Contract.Banking
         /// Gets or sets the created at.
         /// </summary>
         public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the change at.
+        /// </summary>
+        public DateTime? ChangeAt { get; set; }
     }
 }

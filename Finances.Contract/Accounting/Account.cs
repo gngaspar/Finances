@@ -24,11 +24,6 @@ namespace Finances.Contract.Accounting
         public Guid Code { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        public AccountType Type { get; set; }
-
-        /// <summary>
         /// Gets or sets the bank.
         /// </summary>
         public BankOut Bank { get; set; }
@@ -37,5 +32,10 @@ namespace Finances.Contract.Accounting
         /// Gets or sets the currency.
         /// </summary>
         public CurrencyOut Currency { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        public AccountType Type { get; set; }
     }
 }

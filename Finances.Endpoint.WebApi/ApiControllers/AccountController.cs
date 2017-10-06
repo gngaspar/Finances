@@ -10,6 +10,7 @@
 namespace Finances.Endpoint.WebApi.ApiControllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -62,24 +63,52 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         }
 
         /// <summary>
-        /// The get current details.
+        /// The list 500.
         /// </summary>
         /// <param name="owner">
         /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B
-        /// </param>
-        /// <param name="account">
-        /// The account.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpGet]
-        [Route( "{owner:guid}/Current/{account:guid}/Details" )]
-        [ResponseType( typeof( ActionResponse<CurrentAccountOut> ) )]
-        public async Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
+        [Route( "{owner:guid}/List" )]
+        [ResponseType( typeof( ActionResponse<AccountListResponse> ) )]
+        public async Task<HttpResponseMessage> List( Guid owner )
         {
-            var input = new AccountDetails { Code = account, Owner = owner };
-            return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
+            var type = new List<AccountType>();
+            type.Add( AccountType.CurrentAccount );
+            type.Add( AccountType.LoanAccount );
+            type.Add( AccountType.SavingAccount );
+
+            var newInput = new AccountListRequest
+            {
+                Filter = new AccountListFilter
+                {
+                    Bank = Guid.Empty,
+                    BringArchived = true,
+                    BringOnlyMine = false,
+                    Currency = string.Empty,
+                    Description = string.Empty,
+                    DescriptionExact = false,
+                    FilterByBank = false,
+                    FilterByCurrency = false,
+                    FilterByHolder = false,
+                    Holder = Guid.Empty,
+                    Number = string.Empty,
+                    Types = type
+                },
+                Order = new AccountListOrder
+                {
+                    Field = AccountField.Description,
+                    IsDesc = false
+                },
+                ItemsPerPage = 500,
+                Page = 1
+            };
+
+            var request = new AccountList { Owner = owner, Request = newInput };
+            return await this.ProcessActionAsync( request, this.accountService.List );
         }
 
         /// <summary>
@@ -190,6 +219,27 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         {
             var input = new AccountAdd { CurrentAccount = account, Saving = saving };
             return await this.ProcessActionAsync( owner, input, this.accountService.AddSavingAccount );
+        }
+
+        /// <summary>
+        /// The get current details.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner for example 9B8B32D1-A950-4C11-B77D-6FEFFAA4C17B
+        /// </param>
+        /// <param name="account">
+        /// The account.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpGet]
+        [Route( "{owner:guid}/Current/{account:guid}/Details" )]
+        [ResponseType( typeof( ActionResponse<CurrentAccountOut> ) )]
+        public async Task<HttpResponseMessage> GetCurrentDetails( Guid owner, Guid account )
+        {
+            var input = new AccountDetails { Code = account, Owner = owner };
+            return await this.ProcessActionAsync( input, this.accountService.GetCurrentDetails );
         }
 
         /// <summary>
