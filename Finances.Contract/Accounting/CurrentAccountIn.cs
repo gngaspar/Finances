@@ -9,6 +9,7 @@
 
 namespace Finances.Contract.Accounting
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -16,6 +17,16 @@ namespace Finances.Contract.Accounting
     /// </summary>
     public class CurrentAccountIn : AccountInBase
     {
+        /// <summary>
+        /// Gets or sets the bank.
+        /// </summary>
+        public Guid Bank { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        public string Currency { get; set; }
+
         /// <summary>
         /// Gets or sets the IBAN.
         /// </summary>

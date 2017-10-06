@@ -17,6 +17,16 @@ namespace Finances.Contract.Accounting
     public class LoanAccountIn : AccountInBase
     {
         /// <summary>
+        /// Gets or sets the bank.
+        /// </summary>
+        public Guid Bank { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        public string Currency { get; set; }
+
+        /// <summary>
         /// Gets or sets the initial amount.
         /// </summary>
         public decimal InitialAmount { get; set; }

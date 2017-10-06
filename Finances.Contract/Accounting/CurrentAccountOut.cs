@@ -11,11 +11,23 @@ namespace Finances.Contract.Accounting
 {
     using System.Collections.Generic;
 
+    using Finances.Contract.Banking;
+
     /// <summary>
     /// The current account out.
     /// </summary>
     public class CurrentAccountOut : AccountInBase
     {
+        /// <summary>
+        /// Gets or sets the bank.
+        /// </summary>
+        public BankOut Bank { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        public CurrencyOut Currency { get; set; }
+
         /// <summary>
         /// Gets or sets the IBAN.
         /// </summary>

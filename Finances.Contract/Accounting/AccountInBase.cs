@@ -22,11 +22,6 @@ namespace Finances.Contract.Accounting
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets the bank.
-        /// </summary>
-        public Guid Bank { get; set; }
-
-        /// <summary>
         /// Gets or sets the change at.
         /// </summary>
         public DateTime? ChangeAt { get; set; }
@@ -35,11 +30,6 @@ namespace Finances.Contract.Accounting
         /// Gets or sets the created at.
         /// </summary>
         public DateTime? CreatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or sets the currency.
-        /// </summary>
-        public string Currency { get; set; }
 
         /// <summary>
         /// Gets or sets the description.

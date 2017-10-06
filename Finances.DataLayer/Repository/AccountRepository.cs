@@ -10,12 +10,16 @@
 namespace Finances.DataLayer.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using EntityFramework.Caching;
+
     using Finances.Contract.Accounting;
+    using Finances.Contract.Banking;
     using Finances.Domain.Accounting;
     using Finances.Domain.Extensions;
     using Finances.Domain.Repository;
@@ -31,21 +35,26 @@ namespace Finances.DataLayer.Repository
         private readonly BankingDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountRepository"/> class.
+        /// The cache provider.
         /// </summary>
-        public AccountRepository()
-        {
-            this.context = new BankingDbContext();
-        }
+        private Domain.ICacheProvider cacheProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
         /// <param name="bankingDbContext">The banking database context.</param>
-        internal AccountRepository( BankingDbContext bankingDbContext )
+        public AccountRepository( BankingDbContext bankingDbContext, Domain.ICacheProvider cacheProvider )
         {
             this.context = bankingDbContext;
+            this.cacheProvider = cacheProvider;
+
+            this.Banks = this.cacheProvider.Banks;
+            this.Currencies = this.cacheProvider.Currencies;
         }
+
+        public List<CurrencyOut> Currencies { get; set; }
+
+        public List<BankOut> Banks { get; set; }
 
         /// <summary>
         /// The add.
@@ -185,11 +194,11 @@ namespace Finances.DataLayer.Repository
 
                 return new CurrentAccountOut
                 {
-                    Currency = accountFromDatabase.Currency,
+                    Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == accountFromDatabase.Currency ),
                     Amount = accountFromDatabase.Amount,
                     ChangeAt = accountFromDatabase.ChangeAt,
                     StartDate = accountFromDatabase.StartDate,
-                    Bank = accountFromDatabase.Bank,
+                    Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == accountFromDatabase.Bank ),
                     CreatedAt = accountFromDatabase.CreatedAt,
                     Description = accountFromDatabase.Description,
                     Holder = accountFromDatabase.Holder,
@@ -383,7 +392,7 @@ namespace Finances.DataLayer.Repository
                         .OrderByFieldAccount( orderType, input.Order.Field )
                         .Skip( ( input.Page - 1 ) * input.ItemsPerPage )
                         .Take( input.ItemsPerPage )
-                        .Select( order => new Account
+                        .Select( order => new
                         {
                             Code = order.Code,
                             StartDate = order.StartDate,
@@ -399,10 +408,31 @@ namespace Finances.DataLayer.Repository
                             Type = order is CurrentAccountEntity ? AccountType.CurrentAccount : order is LoanAccountEntity ? AccountType.LoanAccount : AccountType.SavingAccount
                         } ).ToListAsync();
 
+            var newList = new List<Account>();
+
+            foreach ( var order in list )
+            {
+                newList.Add( new Account
+                {
+                    Code = order.Code,
+                    StartDate = order.StartDate,
+                    Number = order.Number,
+                    Description = order.Description,
+                    Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == order.Currency ),
+                    Amount = order.Amount,
+                    Holder = order.Holder,
+                    Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == order.Bank ),
+                    ChangeAt = order.ChangeAt,
+                    CreatedAt = order.CreatedAt,
+                    IsArchived = order.IsArchived,
+                    Type = order.Type
+                } );
+            }
+
             var result = new AccountListResponse
             {
                 NumberOfItems = queryResult,
-                Data = list
+                Data = newList
             };
 
             return result;
@@ -417,15 +447,15 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="SavingAccountOut"/>.
         /// </returns>
-        private static SavingAccountOut GetSavingOut( SavingAccountEntity a )
+        private SavingAccountOut GetSavingOut( SavingAccountEntity a )
         {
             return new SavingAccountOut
             {
                 ChangeAt = a.ChangeAt,
-                Currency = a.Currency,
+                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
                 StartDate = a.StartDate,
                 Amount = a.Amount,
-                Bank = a.Bank,
+                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
                 Description = a.Description,
                 CreatedAt = a.CreatedAt,
                 Holder = a.Holder,
@@ -448,15 +478,15 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="LoanAccountOut"/>.
         /// </returns>
-        private static LoanAccountOut GetLoanOut( LoanAccountEntity a )
+        private LoanAccountOut GetLoanOut( LoanAccountEntity a )
         {
             return new LoanAccountOut
             {
                 ChangeAt = a.ChangeAt,
-                Currency = a.Currency,
+                Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
                 StartDate = a.StartDate,
                 Amount = a.Amount,
-                Bank = a.Bank,
+                Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
                 Description = a.Description,
                 CreatedAt = a.CreatedAt,
                 Holder = a.Holder,

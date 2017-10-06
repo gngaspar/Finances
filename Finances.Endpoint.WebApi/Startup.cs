@@ -9,6 +9,9 @@ namespace Finances.Endpoint.WebApi
 
     using Finances.Endpoint.WebApi.App_Start;
 
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject.Web.Common;
     using Ninject.Web.Common.OwinHost;
     using Ninject.Web.WebApi.OwinHost;
 
@@ -21,6 +24,10 @@ namespace Finances.Endpoint.WebApi
             var config = new HttpConfiguration();
             WebApiConfig.Register( config );
             SwaggerConfig.Register( config );
+
+            // DynamicModuleUtility.RegisterModule( typeof( OnePerRequestHttpModule ) );
+            // DynamicModuleUtility.RegisterModule( typeof( NinjectHttpModule ) );
+
             app.UseNinjectMiddleware( () => NinjectConfig.CreateKernel.Value );
             app.UseNinjectWebApi( config );
         }

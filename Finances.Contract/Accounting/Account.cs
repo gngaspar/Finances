@@ -11,6 +11,8 @@ namespace Finances.Contract.Accounting
 {
     using System;
 
+    using Finances.Contract.Banking;
+
     /// <summary>
     /// The account.
     /// </summary>
@@ -25,5 +27,15 @@ namespace Finances.Contract.Accounting
         /// Gets or sets the type.
         /// </summary>
         public AccountType Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bank.
+        /// </summary>
+        public BankOut Bank { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        public CurrencyOut Currency { get; set; }
     }
 }

@@ -18,6 +18,16 @@ namespace Finances.Contract.Accounting
     public class SavingAccountIn : AccountInBase
     {
         /// <summary>
+        /// Gets or sets the bank.
+        /// </summary>
+        public Guid Bank { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currency.
+        /// </summary>
+        public string Currency { get; set; }
+
+        /// <summary>
         /// Gets or sets the automatic renovation.
         /// </summary>
         public AutomaticRenovation AutomaticRenovation { get; set; }
