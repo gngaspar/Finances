@@ -14,6 +14,7 @@ namespace Finances.DataLayer.Repository
     using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using EntityFramework.Caching;
@@ -194,7 +195,9 @@ namespace Finances.DataLayer.Repository
 
                 var savingList = await listQuery.Where( i => i is SavingAccountEntity ).ToListAsync();
 
-                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => this.GetLoanOut( (LoanAccountEntity) loan ) ).ToList();
+                var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
+
+                var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => this.GetLoanOut( (LoanAccountEntity) loan, holder ) ).ToList();
                 var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => this.GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
 
                 return new CurrentAccountOut
@@ -206,7 +209,7 @@ namespace Finances.DataLayer.Repository
                     Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == accountFromDatabase.Bank ),
                     CreatedAt = accountFromDatabase.CreatedAt,
                     Description = accountFromDatabase.Description,
-                    Holder = accountFromDatabase.Holder,
+                    Holder = holder,
                     Iban = castedAccount.Iban,
                     IsArchived = accountFromDatabase.IsArchived,
                     Number = accountFromDatabase.Number,
@@ -237,7 +240,9 @@ namespace Finances.DataLayer.Repository
                     throw new InvalidCastException( "The account " + account + " is not LoanAccount." );
                 }
 
-                return this.GetLoanOut( (LoanAccountEntity) accountFromDatabase );
+                var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
+
+                return this.GetLoanOut( (LoanAccountEntity) accountFromDatabase, holder );
             }
 
             return null;
@@ -574,9 +579,9 @@ namespace Finances.DataLayer.Repository
         /// <returns>
         /// The <see cref="LoanAccountOut"/>.
         /// </returns>
-        private LoanAccountOut GetLoanOut( LoanAccountEntity a )
+        private LoanAccountOut GetLoanOut( LoanAccountEntity a, HumanOut humanOut )
         {
-            return new LoanAccountOut
+            var output = new LoanAccountOut
             {
                 ChangeAt = a.ChangeAt,
                 Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == a.Currency ),
@@ -585,15 +590,18 @@ namespace Finances.DataLayer.Repository
                 Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
                 Description = a.Description,
                 CreatedAt = a.CreatedAt,
-                Holder = a.Holder,
                 IsArchived = a.IsArchived,
                 Number = a.Number,
                 InitialAmount = a.InitialAmount,
                 InterestNetRate = a.InterestNetRate,
                 LoanEndDate = a.LoanEndDate,
+                Holder = humanOut,
                 LoanInterestRate = a.LoanInterestRate,
                 PremiumPercentage = a.PremiumPercentage,
             };
+
+
+            return output;
         }
     }
 }

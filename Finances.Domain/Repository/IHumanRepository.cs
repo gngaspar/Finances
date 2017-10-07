@@ -101,6 +101,32 @@ namespace Finances.Domain.Repository
         /// </returns>
         Task<HumanListResponse> List( Guid owner, HumanListRequest input );
 
+        /// <summary>
+        /// The get list.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="holders">
+        /// The holders.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<List<HumanOut>> GetList( Guid owner, List<Guid> holders );
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="holder">
+        /// The holder.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        Task<HumanOut> Get( Guid owner, Guid holder );
     }
 }

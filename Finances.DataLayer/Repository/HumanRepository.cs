@@ -231,6 +231,25 @@ namespace Finances.DataLayer.Repository
         }
 
         /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="holder">
+        /// The holder.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<HumanOut> Get( Guid owner, Guid holder )
+        {
+            var item = await this.context.Persons.FirstOrDefaultAsync( o => o.OwnerCode == owner && holder == o.Code );
+
+            return GetHumanOut( item );
+        }
+
+        /// <summary>
         /// The get human out.
         /// </summary>
         /// <param name="personEntity">
