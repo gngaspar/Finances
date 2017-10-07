@@ -225,7 +225,9 @@ namespace Finances.DataLayer.Repository
         /// </returns>
         public async Task<List<HumanOut>> GetList( Guid owner, List<Guid> holders )
         {
-            return await this.context.Persons.Where( o => o.OwnerCode == owner && holders.Contains( o.Code ) ).Select( personEntity => GetHumanOut( personEntity ) ).ToListAsync();
+            var list = await this.context.Persons.Where( o => o.OwnerCode == owner && holders.Contains( o.Code ) ).ToListAsync();
+
+            return list.Select( GetHumanOut ).ToList();
         }
 
         /// <summary>

@@ -405,15 +405,14 @@ namespace Finances.DataLayer.Repository
                             Type = order is CurrentAccountEntity ? AccountType.CurrentAccount : order is LoanAccountEntity ? AccountType.LoanAccount : AccountType.SavingAccount
                         } ).ToListAsync();
 
-            var newList = new List<Account>();
-
             var lisOfGuids = list.GroupBy( o => o.Holder ).Select( g => g.Key ).ToList();
 
             var listOfHolders = await this.humanRepository.GetList( owner, lisOfGuids );
 
-            foreach ( var order in list )
+            var result = new AccountListResponse
             {
-                newList.Add( new Account
+                NumberOfItems = queryResult,
+                Data = list.Select( order => new Account
                 {
                     Code = order.Code,
                     StartDate = order.StartDate,
@@ -427,13 +426,7 @@ namespace Finances.DataLayer.Repository
                     CreatedAt = order.CreatedAt,
                     IsArchived = order.IsArchived,
                     Type = order.Type
-                } );
-            }
-
-            var result = new AccountListResponse
-            {
-                NumberOfItems = queryResult,
-                Data = newList
+                } ).ToList()
             };
 
             return result;
