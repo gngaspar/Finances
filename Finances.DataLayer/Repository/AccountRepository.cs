@@ -198,7 +198,7 @@ namespace Finances.DataLayer.Repository
                 var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
 
                 var listLoans = loansList.Where( u => ( (LoanAccountEntity) u ).LoanRelatedAccount == account ).Select( loan => this.GetLoanOut( (LoanAccountEntity) loan, holder ) ).ToList();
-                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => this.GetSavingOut( (SavingAccountEntity) loan ) ).ToList();
+                var listSaving = savingList.Where( u => ( (SavingAccountEntity) u ).SavingRelatedAccount == account ).Select( loan => this.GetSavingOut( (SavingAccountEntity) loan, holder ) ).ToList();
 
                 return new CurrentAccountOut
                 {
@@ -233,19 +233,19 @@ namespace Finances.DataLayer.Repository
         public async Task<LoanAccountOut> GetLoan( Guid account )
         {
             var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null )
+            if ( accountFromDatabase == null )
             {
-                if ( this.IsType( accountFromDatabase ) != AccountType.LoanAccount )
-                {
-                    throw new InvalidCastException( "The account " + account + " is not LoanAccount." );
-                }
-
-                var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
-
-                return this.GetLoanOut( (LoanAccountEntity) accountFromDatabase, holder );
+                return null;
             }
 
-            return null;
+            if ( this.IsType( accountFromDatabase ) != AccountType.LoanAccount )
+            {
+                throw new InvalidCastException( "The account " + account + " is not LoanAccount." );
+            }
+
+            var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
+
+            return this.GetLoanOut( (LoanAccountEntity) accountFromDatabase, holder );
         }
 
         /// <summary>
@@ -260,17 +260,19 @@ namespace Finances.DataLayer.Repository
         public async Task<SavingAccountOut> GetSaving( Guid account )
         {
             var accountFromDatabase = await this.context.Accounts.FirstOrDefaultAsync( i => i.Code == account );
-            if ( accountFromDatabase != null )
+            if ( accountFromDatabase == null )
             {
-                if ( this.IsType( accountFromDatabase ) != AccountType.SavingAccount )
-                {
-                    throw new InvalidCastException( "The account " + account + " is not SavingAccount." );
-                }
-
-                return this.GetSavingOut( (SavingAccountEntity) accountFromDatabase );
+                return null;
             }
 
-            return null;
+            if ( this.IsType( accountFromDatabase ) != AccountType.SavingAccount )
+            {
+                throw new InvalidCastException( "The account " + account + " is not SavingAccount." );
+            }
+
+            var holder = await this.humanRepository.Get( accountFromDatabase.Owner, accountFromDatabase.Holder );
+
+            return this.GetSavingOut( (SavingAccountEntity) accountFromDatabase, holder );
         }
 
         /// <summary>
@@ -545,10 +547,13 @@ namespace Finances.DataLayer.Repository
         /// <param name="a">
         /// The account.
         /// </param>
+        /// <param name="holder">
+        /// The holder.
+        /// </param>
         /// <returns>
         /// The <see cref="SavingAccountOut"/>.
         /// </returns>
-        private SavingAccountOut GetSavingOut( SavingAccountEntity a )
+        private SavingAccountOut GetSavingOut( SavingAccountEntity a, HumanOut holder )
         {
             return new SavingAccountOut
             {
@@ -559,7 +564,7 @@ namespace Finances.DataLayer.Repository
                 Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == a.Bank ),
                 Description = a.Description,
                 CreatedAt = a.CreatedAt,
-                Holder = a.Holder,
+                Holder = holder,
                 IsArchived = a.IsArchived,
                 Number = a.Number,
                 AutomaticRenovation = a.AutomaticRenovation,

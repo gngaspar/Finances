@@ -14,6 +14,7 @@ namespace Finances.DataLayer.Repository
     using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Finances.Contract.Humans;
@@ -227,6 +228,11 @@ namespace Finances.DataLayer.Repository
         {
             var list = await this.context.Persons.Where( o => o.OwnerCode == owner && holders.Contains( o.Code ) ).ToListAsync();
 
+            if ( list == null || list.Count != holders.Count )
+            {
+                throw new NullReferenceException( "Could find one of the holders." );
+            }
+
             return list.Select( GetHumanOut ).ToList();
         }
 
@@ -245,6 +251,10 @@ namespace Finances.DataLayer.Repository
         public async Task<HumanOut> Get( Guid owner, Guid holder )
         {
             var item = await this.context.Persons.FirstOrDefaultAsync( o => o.OwnerCode == owner && holder == o.Code );
+            if ( item == null )
+            {
+                throw new NullReferenceException( "Cant find holder for account." );
+            }
 
             return GetHumanOut( item );
         }

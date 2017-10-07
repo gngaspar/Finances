@@ -13,6 +13,7 @@ namespace Finances.Contract.Accounting
 
     using Finances.Contract.Banking;
     using Finances.Contract.Common;
+    using Finances.Contract.Humans;
 
     /// <summary>
     /// The saving account out.
@@ -32,7 +33,7 @@ namespace Finances.Contract.Accounting
         /// <summary>
         /// Gets or sets the holder.
         /// </summary>
-        public Guid Holder { get; set; }
+        public HumanOut Holder { get; set; }
 
         /// <summary>
         /// Gets or sets the automatic renovation.
