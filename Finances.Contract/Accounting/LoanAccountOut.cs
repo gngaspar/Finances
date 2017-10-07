@@ -29,6 +29,11 @@ namespace Finances.Contract.Accounting
         public CurrencyOut Currency { get; set; }
 
         /// <summary>
+        /// Gets or sets the holder.
+        /// </summary>
+        public Guid Holder { get; set; }
+
+        /// <summary>
         /// Gets or sets the initial amount.
         /// </summary>
         public decimal InitialAmount { get; set; }

@@ -10,6 +10,7 @@
 namespace Finances.Domain.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Finances.Contract.Humans;
@@ -99,5 +100,7 @@ namespace Finances.Domain.Repository
         /// The <see cref="Task"/>.
         /// </returns>
         Task<HumanListResponse> List( Guid owner, HumanListRequest input );
+
+        Task<List<HumanOut>> GetList( Guid owner, List<Guid> holders );
     }
 }

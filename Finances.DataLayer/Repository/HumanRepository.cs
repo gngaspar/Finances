@@ -10,6 +10,7 @@
 namespace Finances.DataLayer.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.SqlClient;
     using System.Linq;
@@ -210,6 +211,32 @@ namespace Finances.DataLayer.Repository
             return result;
         }
 
+        /// <summary>
+        /// The get list.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="holders">
+        /// The holders.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<List<HumanOut>> GetList( Guid owner, List<Guid> holders )
+        {
+            return await this.context.Persons.Where( o => o.OwnerCode == owner && holders.Contains( o.Code ) ).Select( personEntity => GetHumanOut( personEntity ) ).ToListAsync();
+        }
+
+        /// <summary>
+        /// The get human out.
+        /// </summary>
+        /// <param name="personEntity">
+        /// The person entity.
+        /// </param>
+        /// <returns>
+        /// The <see cref="HumanOut"/>.
+        /// </returns>
         private static HumanOut GetHumanOut( PersonEntity personEntity )
         {
             return new HumanOut

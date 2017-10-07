@@ -20,6 +20,7 @@ namespace Finances.DataLayer.Repository
 
     using Finances.Contract.Accounting;
     using Finances.Contract.Banking;
+    using Finances.Contract.Humans;
     using Finances.Domain.Accounting;
     using Finances.Domain.Extensions;
     using Finances.Domain.Repository;
@@ -34,6 +35,8 @@ namespace Finances.DataLayer.Repository
         /// </summary>
         private readonly BankingDbContext context;
 
+        private readonly IHumanRepository humanRepository;
+
         /// <summary>
         /// The cache provider.
         /// </summary>
@@ -45,12 +48,16 @@ namespace Finances.DataLayer.Repository
         /// <param name="bankingDbContext">
         /// The banking database context.
         /// </param>
+        /// <param name="humanRepository">
+        /// The human repository.
+        /// </param>
         /// <param name="cacheProvider">
         /// The cache Provider.
         /// </param>
-        public AccountRepository( BankingDbContext bankingDbContext, Domain.ICacheProvider cacheProvider )
+        public AccountRepository( BankingDbContext bankingDbContext, IHumanRepository humanRepository, Domain.ICacheProvider cacheProvider )
         {
             this.context = bankingDbContext;
+            this.humanRepository = humanRepository;
             this.cacheProvider = cacheProvider;
         }
 
@@ -400,6 +407,10 @@ namespace Finances.DataLayer.Repository
 
             var newList = new List<Account>();
 
+            var lisOfGuids = list.GroupBy( o => o.Holder ).Select( g => g.Key ).ToList();
+
+            var listOfHolders = await this.humanRepository.GetList( owner, lisOfGuids );
+
             foreach ( var order in list )
             {
                 newList.Add( new Account
@@ -410,7 +421,7 @@ namespace Finances.DataLayer.Repository
                     Description = order.Description,
                     Currency = this.cacheProvider.Currencies.FirstOrDefault( o => o.Code == order.Currency ),
                     Amount = order.Amount,
-                    Holder = order.Holder,
+                    Holder = listOfHolders.FirstOrDefault( i => i.Code == order.Holder ),
                     Bank = this.cacheProvider.Banks.FirstOrDefault( o => o.Code == order.Bank ),
                     ChangeAt = order.ChangeAt,
                     CreatedAt = order.CreatedAt,

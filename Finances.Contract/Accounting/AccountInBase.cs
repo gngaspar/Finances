@@ -32,11 +32,6 @@ namespace Finances.Contract.Accounting
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets the holder.
-        /// </summary>
-        public Guid Holder { get; set; }
-
-        /// <summary>
         /// Gets or sets the start date.
         /// </summary>
         public DateTime StartDate { get; set; }

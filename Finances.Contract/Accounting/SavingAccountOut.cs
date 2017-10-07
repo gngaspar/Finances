@@ -30,6 +30,11 @@ namespace Finances.Contract.Accounting
         public CurrencyOut Currency { get; set; }
 
         /// <summary>
+        /// Gets or sets the holder.
+        /// </summary>
+        public Guid Holder { get; set; }
+
+        /// <summary>
         /// Gets or sets the automatic renovation.
         /// </summary>
         public AutomaticRenovation AutomaticRenovation { get; set; }

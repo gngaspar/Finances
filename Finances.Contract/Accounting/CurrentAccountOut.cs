@@ -9,6 +9,7 @@
 
 namespace Finances.Contract.Accounting
 {
+    using System;
     using System.Collections.Generic;
 
     using Finances.Contract.Banking;
@@ -27,6 +28,11 @@ namespace Finances.Contract.Accounting
         /// Gets or sets the currency.
         /// </summary>
         public CurrencyOut Currency { get; set; }
+
+        /// <summary>
+        /// Gets or sets the holder.
+        /// </summary>
+        public Guid Holder { get; set; }
 
         /// <summary>
         /// Gets or sets the IBAN.
