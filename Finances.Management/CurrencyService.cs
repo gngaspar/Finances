@@ -116,20 +116,20 @@ namespace Finances.Management
 
             if ( from.ReasonToOneEuro == 0 && to.ReasonToOneEuro == 0 )
             {
-                return convert.Amount;
+                await Task.Run( () => convert.Amount );
             }
 
             if ( to.ReasonToOneEuro == 0 )
             {
-                return convert.Amount / from.ReasonToOneEuro;
+                await Task.Run( () => convert.Amount / from.ReasonToOneEuro );
             }
 
             if ( from.ReasonToOneEuro == 0 )
             {
-                return convert.Amount * to.ReasonToOneEuro;
+                return await Task.Run( () => convert.Amount * to.ReasonToOneEuro );
             }
 
-            return to.ReasonToOneEuro * ( convert.Amount / from.ReasonToOneEuro );
+            return await Task.Run( () => to.ReasonToOneEuro * ( convert.Amount / @from.ReasonToOneEuro ) );
         }
 
         /// <summary>
@@ -177,7 +177,6 @@ namespace Finances.Management
             this.cacheProvider.Currencies = null;
 
             return output;
-
         }
 
         /// <summary>

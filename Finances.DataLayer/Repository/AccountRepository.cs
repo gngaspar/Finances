@@ -36,6 +36,9 @@ namespace Finances.DataLayer.Repository
         /// </summary>
         private readonly BankingDbContext context;
 
+        /// <summary>
+        /// The human repository.
+        /// </summary>
         private readonly IHumanRepository humanRepository;
 
         /// <summary>

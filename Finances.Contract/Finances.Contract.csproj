@@ -114,6 +114,14 @@
     <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />
+    <Compile Include="Plastics\Card.cs" />
+    <Compile Include="Plastics\CardField.cs" />
+    <Compile Include="Plastics\CardListFilter.cs" />
+    <Compile Include="Plastics\CardListOrder.cs" />
+    <Compile Include="Plastics\CardListRequest.cs" />
+    <Compile Include="Plastics\CardListResponse.cs" />
+    <Compile Include="Plastics\CardType.cs" />
+    <Compile Include="Plastics\IPlasticController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionResponse.cs" />
   </ItemGroup>
@@ -121,6 +129,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

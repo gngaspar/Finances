@@ -33,7 +33,6 @@ namespace Finances.Endpoint.WebApi
             jsonSerializerSettings.Converters.Add( new Newtonsoft.Json.Converters.StringEnumConverter() );
             jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove( config.Formatters.XmlFormatter );
-
         }
     }
 }

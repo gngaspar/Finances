@@ -15,9 +15,11 @@ namespace Finances.Domain.Extensions
     using Finances.Contract.Accounting;
     using Finances.Contract.Banking;
     using Finances.Contract.Humans;
+    using Finances.Contract.Plastics;
     using Finances.Domain.Accounting;
     using Finances.Domain.Banking;
     using Finances.Domain.Human;
+    using Finances.Domain.Plastic;
 
     /// <summary>
     /// The order by field.
@@ -201,6 +203,59 @@ namespace Finances.Domain.Extensions
                     switch ( orderByProperty )
                     {
                         case AccountField.Description:
+                            entity = entity.OrderByDescending( x => x.Description );
+                            break;
+
+                        default:
+                            entity = entity.OrderByDescending( x => x.CreatedAt );
+                            break;
+                    }
+
+                    break;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// The order by field account.
+        /// </summary>
+        /// <param name="entity">
+        /// The entity.
+        /// </param>
+        /// <param name="order">
+        /// The order.
+        /// </param>
+        /// <param name="orderByProperty">
+        /// The order by property.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IQueryable"/>.
+        /// </returns>
+        public static IQueryable<CardEntity> OrderByFieldCard( this IQueryable<CardEntity> entity, SortOrder order, CardField orderByProperty )
+        {
+            switch ( order )
+            {
+                case SortOrder.Ascending:
+
+                    switch ( orderByProperty )
+                    {
+                        case CardField.Description:
+                            entity = entity.OrderBy( x => x.Description );
+                            break;
+
+                        default:
+                            entity = entity.OrderBy( x => x.CreatedAt );
+                            break;
+                    }
+
+                    break;
+
+                case SortOrder.Descending:
+
+                    switch ( orderByProperty )
+                    {
+                        case CardField.Description:
                             entity = entity.OrderByDescending( x => x.Description );
                             break;
 

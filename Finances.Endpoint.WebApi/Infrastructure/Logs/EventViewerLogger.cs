@@ -36,7 +36,7 @@ namespace Finances.Endpoint.WebApi.Infrastructure.Logs
             }
 
             var logSource = ConfigurationManager.AppSettings[ "EventViewerLogger.Source" ];
-            var logEnable = false;
+            bool logEnable;
             bool.TryParse( ConfigurationManager.AppSettings[ "EventViewerLogger.Enabled" ], out logEnable );
             if ( !logEnable )
             {
@@ -70,7 +70,7 @@ namespace Finances.Endpoint.WebApi.Infrastructure.Logs
             }
 
             var logSource = ConfigurationManager.AppSettings[ "EventViewerLogger.Source" ];
-            var logEnable = false;
+            bool logEnable;
             bool.TryParse( ConfigurationManager.AppSettings[ "EventViewerLogger.Enabled" ], out logEnable );
             if ( !logEnable )
             {

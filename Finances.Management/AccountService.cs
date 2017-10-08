@@ -39,6 +39,9 @@ namespace Finances.Management
         /// <param name="accountRepository">
         /// The repository.
         /// </param>
+        /// <param name="cacheProvider">
+        /// The cache Provider.
+        /// </param>
         public AccountService( IAccountRepository accountRepository, ICacheProvider cacheProvider )
         {
             this.accountRepository = accountRepository;

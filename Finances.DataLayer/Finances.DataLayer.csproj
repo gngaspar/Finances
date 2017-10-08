@@ -101,6 +101,7 @@
     <Compile Include="Repository\BankRepository.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\HumanRepository.cs" />
+    <Compile Include="Repository\PlasticRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">

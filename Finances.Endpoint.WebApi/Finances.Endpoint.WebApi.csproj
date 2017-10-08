@@ -178,6 +178,7 @@
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\BaseController.cs" />
     <Compile Include="ApiControllers\HumanController.cs" />
+    <Compile Include="ApiControllers\PlasticController.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

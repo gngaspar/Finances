@@ -73,6 +73,7 @@
     <Compile Include="FinancesException.cs" />
     <Compile Include="IAccountService.cs" />
     <Compile Include="ICacheProvider.cs" />
+    <Compile Include="IPlasticService.cs" />
     <Compile Include="ICurrencyService.cs" />
     <Compile Include="IHumanService.cs" />
     <Compile Include="Plastic\CardEntity.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Repository\IBankRepository.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IHumanRepository.cs" />
+    <Compile Include="Repository\IPlasticRepository.cs" />
     <Compile Include="Wrappers\AccountAdd.cs" />
     <Compile Include="Wrappers\AccountList.cs" />
     <Compile Include="Wrappers\BankEdit.cs" />

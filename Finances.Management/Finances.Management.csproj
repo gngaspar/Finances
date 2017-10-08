@@ -68,6 +68,7 @@
     <Compile Include="BankService.cs" />
     <Compile Include="CurrencyService.cs" />
     <Compile Include="HumanService.cs" />
+    <Compile Include="PlasticService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

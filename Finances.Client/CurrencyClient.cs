@@ -102,6 +102,15 @@ namespace Finances.Client
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The get history.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public Task<HttpResponseMessage> GetHistory( HistoryListRequest request )
         {
             throw new NotImplementedException();

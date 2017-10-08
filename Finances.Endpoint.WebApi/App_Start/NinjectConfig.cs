@@ -64,6 +64,9 @@ namespace Finances.Endpoint.WebApi.App_Start
             kernel.Bind<IAccountService>().To<AccountService>();
             kernel.Bind<IAccountRepository>().To<AccountRepository>().InRequestScope();
 
+            kernel.Bind<IPlasticService>().To<PlasticService>();
+            kernel.Bind<IPlasticRepository>().To<PlasticRepository>().InRequestScope();
+
             kernel.Bind<ICacheProvider>().To<CacheProvider>().InSingletonScope();
         }
     }

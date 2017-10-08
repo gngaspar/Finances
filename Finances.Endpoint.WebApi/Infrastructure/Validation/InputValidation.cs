@@ -1,9 +1,17 @@
-﻿namespace Finances.Endpoint.WebApi.Infrastructure.Validation
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InputValidation.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The input validation.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Finances.Endpoint.WebApi.Infrastructure.Validation
 {
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
-    using System.Web.Script.Serialization;
 
     using Finances.Contract;
 

@@ -110,6 +110,12 @@ namespace Finances.DataLayer.Repository
             return result;
         }
 
+        /// <summary>
+        /// The all.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
         public List<CurrencyOut> All()
         {
             return this.context.Currencies.OrderBy( o => o.Order )

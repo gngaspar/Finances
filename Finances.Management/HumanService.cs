@@ -23,7 +23,7 @@ namespace Finances.Management
     public class HumanService : IHumanService
     {
         /// <summary>
-        /// The currency repository
+        /// The human repository
         /// </summary>
         private readonly IHumanRepository humanRepository;
 

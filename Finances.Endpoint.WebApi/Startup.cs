@@ -1,7 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Startup.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   Defines the Startup type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.Endpoint.WebApi
 {
@@ -9,16 +13,20 @@ namespace Finances.Endpoint.WebApi
 
     using Finances.Endpoint.WebApi.App_Start;
 
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject.Web.Common;
     using Ninject.Web.Common.OwinHost;
     using Ninject.Web.WebApi.OwinHost;
 
     using Owin;
 
+    /// <summary>
+    /// The startup.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// The start of Configuration.
+        /// </summary>
+        /// <param name="app">The IAppBuilder.</param>
         public void Configuration( IAppBuilder app )
         {
             var config = new HttpConfiguration();
@@ -27,7 +35,6 @@ namespace Finances.Endpoint.WebApi
 
             // DynamicModuleUtility.RegisterModule( typeof( OnePerRequestHttpModule ) );
             // DynamicModuleUtility.RegisterModule( typeof( NinjectHttpModule ) );
-
             app.UseNinjectMiddleware( () => NinjectConfig.CreateKernel.Value );
             app.UseNinjectWebApi( config );
         }

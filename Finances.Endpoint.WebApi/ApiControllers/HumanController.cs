@@ -36,7 +36,9 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <summary>
         /// Initializes a new instance of the <see cref="HumanController"/> class.
         /// </summary>
-        /// <param name="service">The service.</param>
+        /// <param name="humanService">
+        /// The human Service.
+        /// </param>
         public HumanController( IHumanService humanService )
         {
             this.humanService = humanService;
