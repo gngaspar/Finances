@@ -159,13 +159,14 @@ namespace Finances.DataLayer.Repository
                             order.CardProviderString,
                             order.CardNumber,
                             order.Expire,
+                            order.Account,
                             Type = order is CreditCardEntity ? CardType.CreditCard : order is DebitCardEntity ? CardType.DebitCard : CardType.PrePaidCard
                         } ).ToListAsync();
 
             var listOfHolderGuids = list.GroupBy( o => o.Holder ).Select( g => g.Key ).ToList();
             var listOfHolders = await this.humanRepository.GetList( owner, listOfHolderGuids );
 
-            var listOfAccountsGuids = list.GroupBy( o => o.Code ).Select( g => g.Key ).ToList();
+            var listOfAccountsGuids = list.GroupBy( o => o.Account ).Select( g => g.Key ).ToList();
             var listOfAccounts = await this.accountRepository.List( owner, listOfAccountsGuids );
             var result = new CardListResponse
             {
