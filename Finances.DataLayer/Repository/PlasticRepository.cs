@@ -185,7 +185,7 @@ namespace Finances.DataLayer.Repository
                     CardProvider = (CardProvider) Enum.Parse( typeof( CardProvider ), order.CardProviderString ),
                     CardNumber = order.CardNumber,
                     Expire = order.Expire,
-                    Account = listOfAccounts.FirstOrDefault( i => i.Code == order.Code )
+                    Account = listOfAccounts.FirstOrDefault( i => i.Code == order.Account )
                 } ).ToList()
             };
 
