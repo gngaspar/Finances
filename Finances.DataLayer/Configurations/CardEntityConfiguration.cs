@@ -34,6 +34,7 @@ namespace Finances.DataLayer.Configurations
             this.Property( p => p.Bank ).IsRequired().HasColumnOrder( 7 );
             this.Property( p => p.Account ).IsRequired().HasColumnOrder( 8 );
             this.Property( p => p.Owner ).IsRequired().HasColumnOrder( 9 );
+            this.Property( p => p.CardProviderString ).IsRequired().HasMaxLength( 100 ).HasColumnOrder( 10 );
             this.Ignore( p => p.IsMine );
         }
     }

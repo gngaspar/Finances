@@ -10,6 +10,7 @@
 namespace Finances.Domain.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Finances.Contract.Accounting;
@@ -33,6 +34,8 @@ namespace Finances.Domain.Repository
         /// The <see cref="Task"/>.
         /// </returns>
         Task<AccountListResponse> List( Guid owner, AccountListRequest input );
+
+        Task<List<SimpleAccount>> List( Guid owner, List<Guid> accounts );
 
         /// <summary>
         /// The add.

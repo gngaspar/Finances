@@ -27,6 +27,11 @@ namespace Finances.Domain.Plastic
         private string currency;
 
         /// <summary>
+        /// The card provider.
+        /// </summary>
+        private string cardProvider;
+
+        /// <summary>
         /// Gets or sets the account.
         /// </summary>
         [Required]
@@ -52,7 +57,19 @@ namespace Finances.Domain.Plastic
         [Required]
         [MaxLength( 100 )]
         [Column( "CardProvider" )]
-        public string CardProviderString => this.CardProvider.ToString();
+        public string CardProviderString
+        {
+            get
+            {
+                return this.CardProvider.ToString();
+            }
+
+            set
+            {
+                this.CardProvider = (CardProvider) Enum.Parse( typeof( CardProvider ), value );
+                this.cardProvider = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the code of the currency.

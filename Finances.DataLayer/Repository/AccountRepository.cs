@@ -66,6 +66,38 @@ namespace Finances.DataLayer.Repository
         }
 
         /// <summary>
+        /// The list.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <param name="accounts">
+        /// The accounts.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<List<SimpleAccount>> List( Guid owner, List<Guid> accounts )
+        {
+            var listQuery = await this.context.Accounts.Where( o => o.Owner == owner && accounts.Contains( o.Code ) ).ToListAsync();
+            var list = new List<SimpleAccount>();
+
+            foreach ( var accountEntity in listQuery )
+            {
+                list.Add( new SimpleAccount
+                {
+                    Code = accountEntity.Code,
+                    Type = this.IsType( accountEntity ),
+                    Description = accountEntity.Description,
+                    Number = accountEntity.Number,
+                    Amount = accountEntity.Amount
+                } );
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// The add.
         /// </summary>
         /// <param name="owner">

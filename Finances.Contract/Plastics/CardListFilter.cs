@@ -63,6 +63,16 @@ namespace Finances.Contract.Plastics
         public bool FilterByHolder { get; set; }
 
         /// <summary>
+        /// Gets or sets the Account.
+        /// </summary>
+        public Guid Account { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to filter by Account.
+        /// </summary>
+        public bool FilterByAccount { get; set; }
+
+        /// <summary>
         /// Gets or sets the currency.
         /// </summary>
         public string Currency { get; set; }

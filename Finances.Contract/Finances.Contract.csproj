@@ -82,6 +82,7 @@
     <Compile Include="Accounting\LoanAccountOut.cs" />
     <Compile Include="Accounting\SavingAccountIn.cs" />
     <Compile Include="Accounting\SavingAccountOut.cs" />
+    <Compile Include="Accounting\SimpleAccount.cs" />
     <Compile Include="Banking\BankField.cs" />
     <Compile Include="Banking\BankFilter.cs" />
     <Compile Include="Banking\BankIn.cs" />

@@ -16,9 +16,9 @@ namespace Finances.DataLayer.Repository
     using System.Threading.Tasks;
 
     using Finances.Contract.Accounting;
+    using Finances.Contract.Common;
     using Finances.Contract.Plastics;
     using Finances.Domain;
-    using Finances.Domain.Accounting;
     using Finances.Domain.Extensions;
     using Finances.Domain.Plastic;
     using Finances.Domain.Repository;
@@ -44,6 +44,11 @@ namespace Finances.DataLayer.Repository
         private IHumanRepository humanRepository;
 
         /// <summary>
+        /// The account repository.
+        /// </summary>
+        private IAccountRepository accountRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlasticRepository"/> class.
         /// </summary>
         /// <param name="bankingDbContext">
@@ -52,16 +57,19 @@ namespace Finances.DataLayer.Repository
         /// <param name="humanRepository">
         /// The human Repository.
         /// </param>
+        /// <param name="accountRepository">
+        /// The account Repository.
+        /// </param>
         /// <param name="cacheProvider">
         /// The cache Provider.
         /// </param>
-        public PlasticRepository( BankingDbContext bankingDbContext, IHumanRepository humanRepository, Domain.ICacheProvider cacheProvider )
+        public PlasticRepository( BankingDbContext bankingDbContext, IHumanRepository humanRepository, IAccountRepository accountRepository, Domain.ICacheProvider cacheProvider )
         {
             this.context = bankingDbContext;
             this.humanRepository = humanRepository;
             this.cacheProvider = cacheProvider;
+            this.accountRepository = accountRepository;
         }
-
 
         /// <summary>
         /// The dispose.
@@ -74,6 +82,9 @@ namespace Finances.DataLayer.Repository
         /// <summary>
         /// The list.
         /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
         /// <param name="input">
         /// The input.
         /// </param>
@@ -90,6 +101,11 @@ namespace Finances.DataLayer.Repository
                 listQuery = input.Filter.DescriptionExact ?
                         listQuery.Where( x => x.Description == input.Filter.Description ) :
                         listQuery.Where( x => x.Description.Contains( input.Filter.Description ) );
+            }
+
+            if ( input.Filter.FilterByAccount )
+            {
+                listQuery = listQuery.Where( x => x.Account == input.Filter.Account );
             }
 
             if ( input.Filter.FilterByBank )
@@ -140,13 +156,17 @@ namespace Finances.DataLayer.Repository
                             order.ChangeAt,
                             order.CreatedAt,
                             order.IsArchived,
+                            order.CardProviderString,
+                            order.CardNumber,
+                            order.Expire,
                             Type = order is CreditCardEntity ? CardType.CreditCard : order is DebitCardEntity ? CardType.DebitCard : CardType.PrePaidCard
                         } ).ToListAsync();
 
-            var lisOfGuids = list.GroupBy( o => o.Holder ).Select( g => g.Key ).ToList();
+            var listOfHolderGuids = list.GroupBy( o => o.Holder ).Select( g => g.Key ).ToList();
+            var listOfHolders = await this.humanRepository.GetList( owner, listOfHolderGuids );
 
-            var listOfHolders = await this.humanRepository.GetList( owner, lisOfGuids );
-
+            var listOfAccountsGuids = list.GroupBy( o => o.Code ).Select( g => g.Key ).ToList();
+            var listOfAccounts = await this.accountRepository.List( owner, listOfAccountsGuids );
             var result = new CardListResponse
             {
                 NumberOfItems = queryResult,
@@ -160,7 +180,11 @@ namespace Finances.DataLayer.Repository
                     ChangeAt = order.ChangeAt,
                     CreatedAt = order.CreatedAt,
                     IsArchived = order.IsArchived,
-                    Type = order.Type
+                    Type = order.Type,
+                    CardProvider = (CardProvider) Enum.Parse( typeof( CardProvider ), order.CardProviderString ),
+                    CardNumber = order.CardNumber,
+                    Expire = order.Expire,
+                    Account = listOfAccounts.FirstOrDefault( i => i.Code == order.Code )
                 } ).ToList()
             };
 

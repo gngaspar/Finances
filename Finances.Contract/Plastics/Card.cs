@@ -29,7 +29,7 @@ namespace Finances.Contract.Plastics
         /// <summary>
         /// Gets or sets the account.
         /// </summary>
-        public Account Account { get; set; }
+        public SimpleAccount Account { get; set; }
 
         /// <summary>
         /// Gets or sets the card number.
