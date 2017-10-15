@@ -115,6 +115,7 @@
     <Compile Include="IListOrder.cs" />
     <Compile Include="IListRequest.cs" />
     <Compile Include="IListResponse.cs" />
+    <Compile Include="Parameterizations\IParameterizationsController.cs" />
     <Compile Include="Plastics\Card.cs" />
     <Compile Include="Plastics\CardField.cs" />
     <Compile Include="Plastics\CardListFilter.cs" />

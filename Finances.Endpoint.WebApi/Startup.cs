@@ -11,8 +11,6 @@ namespace Finances.Endpoint.WebApi
 {
     using System.Web.Http;
 
-    using Finances.Endpoint.WebApi.App_Start;
-
     using Ninject.Web.Common.OwinHost;
     using Ninject.Web.WebApi.OwinHost;
 
