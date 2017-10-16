@@ -48,7 +48,7 @@ namespace Finances.Contract.Accounting
         /// <summary>
         /// Gets or sets the interest payment.
         /// </summary>
-        public InterestPayment InterestPayment { get; set; }
+        public Cadence InterestPayment { get; set; }
 
         /// <summary>
         /// Gets or sets the saving end date.

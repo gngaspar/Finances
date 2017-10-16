@@ -102,7 +102,7 @@
     <Compile Include="Banking\ICurrencyController.cs" />
     <Compile Include="Common\AutomaticRenovation.cs" />
     <Compile Include="Common\CardProvider.cs" />
-    <Compile Include="Common\InterestPayment.cs" />
+    <Compile Include="Common\Cadence.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Humans\HumanField.cs" />
     <Compile Include="Humans\HumanFilter.cs" />

@@ -23,6 +23,16 @@ namespace Finances.Domain.Accounting
     public class SavingAccountEntity : AccountEntity
     {
         /// <summary>
+        /// The interest payment.
+        /// </summary>
+        private string interestPayment;
+
+        /// <summary>
+        /// The automatic renovation.
+        /// </summary>
+        private string automaticRenovation;
+
+        /// <summary>
         /// Gets or sets the automatic renovation.
         /// </summary>
         /// <value>The automatic renovation.</value>
@@ -36,7 +46,19 @@ namespace Finances.Domain.Accounting
         [Required]
         [MaxLength( 100 )]
         [Column( "AutomaticRenovation" )]
-        public string AutomaticRenovationString => this.AutomaticRenovation.ToString();
+        public string AutomaticRenovationString
+        {
+            get
+            {
+                return this.AutomaticRenovation.ToString();
+            }
+
+            set
+            {
+                this.AutomaticRenovation = (AutomaticRenovation) Enum.Parse( typeof( AutomaticRenovation ), value );
+                this.automaticRenovation = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether [interest capitalization].
@@ -50,7 +72,7 @@ namespace Finances.Domain.Accounting
         /// </summary>
         /// <value>The interest payment.</value>
         [NotMapped]
-        public InterestPayment InterestPayment { get; set; }
+        public Cadence InterestPayment { get; set; }
 
         /// <summary>
         /// Gets the interest payment string.
@@ -59,7 +81,19 @@ namespace Finances.Domain.Accounting
         [Required]
         [MaxLength( 100 )]
         [Column( "InterestPayment" )]
-        public string InterestPaymentString => this.InterestPayment.ToString();
+        public string InterestPaymentString
+        {
+            get
+            {
+                return this.InterestPayment.ToString();
+            }
+
+            set
+            {
+                this.InterestPayment = (Cadence) Enum.Parse( typeof( Cadence ), value );
+                this.interestPayment = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the saving end date.

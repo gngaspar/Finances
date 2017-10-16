@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201710091121338_AddCardProvider.Designer.cs">
       <DependentUpon>201710091121338_AddCardProvider.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710161900569_MissingFields.cs" />
+    <Compile Include="Migrations\201710161900569_MissingFields.Designer.cs">
+      <DependentUpon>201710161900569_MissingFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\CustomSqlServerMigrationSqlGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710091121338_AddCardProvider.resx">
       <DependentUpon>201710091121338_AddCardProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710161900569_MissingFields.resx">
+      <DependentUpon>201710161900569_MissingFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

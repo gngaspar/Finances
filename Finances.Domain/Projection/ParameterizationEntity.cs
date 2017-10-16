@@ -10,6 +10,10 @@
 namespace Finances.Domain.Projection
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using Finances.Contract.Common;
 
     /// <summary>
     /// The parameterization entity.
@@ -21,6 +25,11 @@ namespace Finances.Domain.Projection
         /// The currency.
         /// </summary>
         private string currency;
+
+        /// <summary>
+        /// The cadence.
+        /// </summary>
+        private string cadence;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="ParameterizationEntity"/> is active.
@@ -79,6 +88,32 @@ namespace Finances.Domain.Projection
         /// </summary>
         /// <value>The specific day.</value>
         public DateTime? SpecificDay { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cadence.
+        /// </summary>
+        [NotMapped]
+        public Cadence Cadence { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cadence string.
+        /// </summary>
+        [Required]
+        [MaxLength( 100 )]
+        [Column( "Cadence" )]
+        public string CadenceString
+        {
+            get
+            {
+                return this.Cadence.ToString();
+            }
+
+            set
+            {
+                this.Cadence = (Cadence) Enum.Parse( typeof( Cadence ), value );
+                this.cadence = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets to account.
