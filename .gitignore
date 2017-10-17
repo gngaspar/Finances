@@ -76,3 +76,4 @@ bin
 /.vs
 /Finances.sln.DotSettings.user
 /Finances.Endpoint.WebApi/aspnet_client
+*.user

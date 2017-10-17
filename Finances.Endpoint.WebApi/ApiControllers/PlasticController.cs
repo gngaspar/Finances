@@ -31,6 +31,12 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// </summary>
         private readonly IPlasticService plasticService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlasticController"/> class. 
+        /// </summary>
+        /// <param name="plasticService">
+        /// The plastic Service.
+        /// </param>
         public PlasticController( IPlasticService plasticService )
         {
             this.plasticService = plasticService;
