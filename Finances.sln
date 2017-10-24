@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.NUnit.Tests", "Fin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.NUnit.Regression", "Finances.NUnit.Regression\Finances.NUnit.Regression.csproj", "{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend", "Finances.Endpoint.Frontend\Finances.Endpoint.Frontend.csproj", "{5018674D-5AA8-4941-B125-FA1B92747857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3279DFE7-83EC-45C7-AD82-DA2DDFF90723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5018674D-5AA8-4941-B125-FA1B92747857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5018674D-5AA8-4941-B125-FA1B92747857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5018674D-5AA8-4941-B125-FA1B92747857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5018674D-5AA8-4941-B125-FA1B92747857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +100,6 @@ Global
 		{00F42703-B46D-40F9-9B69-7A7CEB2BB66F} = {2E190949-3343-4D98-9FB0-4873BD0119E1}
 		{8EDF4429-251A-416D-BB68-93F227191BCF} = {BFFDB773-FB9B-47D7-A25C-BFF29069AC78}
 		{3279DFE7-83EC-45C7-AD82-DA2DDFF90723} = {BFFDB773-FB9B-47D7-A25C-BFF29069AC78}
+		{5018674D-5AA8-4941-B125-FA1B92747857} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
 	EndGlobalSection
 EndGlobal
