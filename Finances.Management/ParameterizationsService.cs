@@ -76,7 +76,7 @@ namespace Finances.Management
                 throw new Exception( "The currency " + input.Currency + " doesnt look valid." );
             }
 
-            if ( ( input.FromAccount == null || input.FromAccount == Guid.Empty ) && ( input.Children != null || input.Children.Count >= 1 ) )
+            if ( ( input.FromAccount == null || input.FromAccount == Guid.Empty ) && ( input.Children != null && input.Children.Count >= 1 ) )
             {
                 throw new Exception( "If FromAccount is null, no Children are allowed." );
             }

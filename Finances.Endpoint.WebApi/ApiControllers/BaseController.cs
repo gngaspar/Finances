@@ -124,9 +124,6 @@ namespace Finances.Endpoint.WebApi.ApiControllers
         /// <param name="method">
         /// The method.
         /// </param>
-        /// <typeparam name="Guid">
-        /// The guid.
-        /// </typeparam>
         /// <typeparam name="TReq">
         /// The type of request.
         /// </typeparam>
