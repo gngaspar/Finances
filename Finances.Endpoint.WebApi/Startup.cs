@@ -29,8 +29,9 @@ namespace Finances.Endpoint.WebApi
         {
             var config = new HttpConfiguration();
             WebApiConfig.Register( config );
+#if DEBUG
             SwaggerConfig.Register( config );
-
+#endif
             // DynamicModuleUtility.RegisterModule( typeof( OnePerRequestHttpModule ) );
             // DynamicModuleUtility.RegisterModule( typeof( NinjectHttpModule ) );
             app.UseNinjectMiddleware( () => NinjectConfig.CreateKernel.Value );
