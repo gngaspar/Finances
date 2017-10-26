@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvcModules", "MvcModules", "{F9867C17-CBAF-43BB-8A89-DDB4996BBDF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.Accounts", "Finances.Endpoint.Frontend\MvcModules\Finances.Endpoint.Frontend.Accounts\Finances.Endpoint.Frontend.Accounts.csproj", "{FFFCEEAE-30A8-4222-A156-F353D28999AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{5018674D-5AA8-4941-B125-FA1B92747857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5018674D-5AA8-4941-B125-FA1B92747857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5018674D-5AA8-4941-B125-FA1B92747857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +110,6 @@ Global
 		{3279DFE7-83EC-45C7-AD82-DA2DDFF90723} = {BFFDB773-FB9B-47D7-A25C-BFF29069AC78}
 		{5018674D-5AA8-4941-B125-FA1B92747857} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
 		{F9867C17-CBAF-43BB-8A89-DDB4996BBDF7} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
+		{FFFCEEAE-30A8-4222-A156-F353D28999AE} = {F9867C17-CBAF-43BB-8A89-DDB4996BBDF7}
 	EndGlobalSection
 EndGlobal
