@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="GNG">
+// <copyright file="LoginController.cs" company="GNG">
 //   GNG
 // </copyright>
 // <summary>
-//   Defines the HomeController type.
+//   Defines the LoginController type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -12,9 +12,9 @@ namespace Finances.Endpoint.Frontend.Controllers
     using System.Web.Mvc;
 
     /// <summary>
-    /// The home controller.
+    /// The login controller.
     /// </summary>
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
         /// <summary>
         /// The index.
