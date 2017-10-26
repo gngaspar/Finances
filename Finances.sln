@@ -37,7 +37,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvcModules", "MvcModules", "{F9867C17-CBAF-43BB-8A89-DDB4996BBDF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.Accounts", "Finances.Endpoint.Frontend\MvcModules\Finances.Endpoint.Frontend.Accounts\Finances.Endpoint.Frontend.Accounts.csproj", "{FFFCEEAE-30A8-4222-A156-F353D28999AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.Accounts", "Finances.Endpoint.Frontend.Accounts\Finances.Endpoint.Frontend.Accounts.csproj", "{FFFCEEAE-30A8-4222-A156-F353D28999AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.Common", "Finances.Endpoint.Frontend.Common\Finances.Endpoint.Frontend.Common.csproj", "{F208C0C2-5229-4D9E-B444-15C2773A9C4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFFCEEAE-30A8-4222-A156-F353D28999AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F208C0C2-5229-4D9E-B444-15C2773A9C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F208C0C2-5229-4D9E-B444-15C2773A9C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F208C0C2-5229-4D9E-B444-15C2773A9C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F208C0C2-5229-4D9E-B444-15C2773A9C4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,5 +117,6 @@ Global
 		{5018674D-5AA8-4941-B125-FA1B92747857} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
 		{F9867C17-CBAF-43BB-8A89-DDB4996BBDF7} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
 		{FFFCEEAE-30A8-4222-A156-F353D28999AE} = {F9867C17-CBAF-43BB-8A89-DDB4996BBDF7}
+		{F208C0C2-5229-4D9E-B444-15C2773A9C4E} = {5F46FE21-67E7-428A-B42E-D707B5D5E6FB}
 	EndGlobalSection
 EndGlobal

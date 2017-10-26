@@ -13,5 +13,10 @@ namespace Finances.Endpoint.Frontend.Accounts.Controllers
         {
             return View();
         }
+
+        public string List()
+        {
+            return "asasasasa a sas a sas asa a s";
+        }
     }
 }

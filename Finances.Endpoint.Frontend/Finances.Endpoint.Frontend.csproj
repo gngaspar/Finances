@@ -126,9 +126,13 @@
       <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
       <Name>Finances.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="MvcModules\Finances.Endpoint.Frontend.Accounts\Finances.Endpoint.Frontend.Accounts.csproj">
+    <ProjectReference Include="..\Finances.Endpoint.Frontend.Accounts\Finances.Endpoint.Frontend.Accounts.csproj">
       <Project>{fffceeae-30a8-4222-a156-f353d28999ae}</Project>
       <Name>Finances.Endpoint.Frontend.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Finances.Endpoint.Frontend.Common\Finances.Endpoint.Frontend.Common.csproj">
+      <Project>{f208c0c2-5229-4d9e-b444-15c2773a9c4e}</Project>
+      <Name>Finances.Endpoint.Frontend.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
