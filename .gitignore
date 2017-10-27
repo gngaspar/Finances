@@ -53,3 +53,7 @@ obj
 /Finances.Endpoint.WebApi/aspnet_client
 *.user
 
+/Finances.Endpoint.Frontend/Areas
+/Finances.Endpoint.Frontend/js
+/Finances.Endpoint.Frontend/plugins
+/Finances.Endpoint.Frontend/css
