@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>@ViewBag.Title - My Finances</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
-    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
-    @Styles.Render( "~/Content/css" )
+    @Styles.Render( "~/Css/main" )
+    @Styles.Render( "~/Css/waves" )
+    @Styles.Render( "~/Css/animate-css" )
+    @Scripts.Render( "~/bundles/modernizr" )
 </head>
 <body class="login-page">
     <div class="login-box">
@@ -25,11 +25,11 @@
             </div>
         </div>
     </div>
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="plugins/node-waves/waves.js"></script>
-    <script src="plugins/jquery-validation/jquery.validate.js"></script>
-    <script src="js/admin.js"></script>
+    @Scripts.Render( "~/Scripts/jquery" )
+    @Scripts.Render( "~/Scripts/bootstrap" )
+    @Scripts.Render( "~/Scripts/waves" )
+    @Scripts.Render( "~/Scripts/site" )
+    @RenderSection( "scripts", required: false )
     <script src="js/pages/examples/sign-in.js"></script>
 </body>
 </html>

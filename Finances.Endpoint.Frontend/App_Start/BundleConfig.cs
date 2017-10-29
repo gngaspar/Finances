@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Finances.Endpoint.Frontend.App_Start
+namespace Finances.Endpoint.Frontend
 {
     using System.Web.Optimization;
 

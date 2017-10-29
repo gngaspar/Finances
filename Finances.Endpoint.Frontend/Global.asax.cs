@@ -13,8 +13,6 @@ namespace Finances.Endpoint.Frontend
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using Finances.Endpoint.Frontend.App_Start;
-
     /// <summary>
     /// The MVC application.
     /// </summary>
