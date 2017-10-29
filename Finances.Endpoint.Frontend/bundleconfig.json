@@ -1,0 +1,440 @@
+[
+  {
+    "outputFileName": "Scripts/jquery-3.2.1.min.js",
+    "inputFiles": [
+      "Scripts/jquery-3.2.1.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery-3.2.1.slim.min.js",
+    "inputFiles": [
+      "Scripts/jquery-3.2.1.slim.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/bootstrap.min.js",
+    "inputFiles": [
+      "Scripts/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "Css/bootstrap.min.css",
+    "inputFiles": [
+      "Css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/materialize.min.css",
+    "inputFiles": [
+      "Css/materialize.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/style.min.css",
+    "inputFiles": [
+      "Css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/all-themes.min.css",
+    "inputFiles": [
+      "Css/themes/all-themes.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-amber.min.css",
+    "inputFiles": [
+      "Css/themes/theme-amber.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-black.min.css",
+    "inputFiles": [
+      "Css/themes/theme-black.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-blue-grey.min.css",
+    "inputFiles": [
+      "Css/themes/theme-blue-grey.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-blue.min.css",
+    "inputFiles": [
+      "Css/themes/theme-blue.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-brown.min.css",
+    "inputFiles": [
+      "Css/themes/theme-brown.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-cyan.min.css",
+    "inputFiles": [
+      "Css/themes/theme-cyan.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-deep-orange.min.css",
+    "inputFiles": [
+      "Css/themes/theme-deep-orange.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-deep-purple.min.css",
+    "inputFiles": [
+      "Css/themes/theme-deep-purple.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-green.min.css",
+    "inputFiles": [
+      "Css/themes/theme-green.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-grey.min.css",
+    "inputFiles": [
+      "Css/themes/theme-grey.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-indigo.min.css",
+    "inputFiles": [
+      "Css/themes/theme-indigo.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-light-blue.min.css",
+    "inputFiles": [
+      "Css/themes/theme-light-blue.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-lime.min.css",
+    "inputFiles": [
+      "Css/themes/theme-lime.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-orange.min.css",
+    "inputFiles": [
+      "Css/themes/theme-orange.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-pink.min.css",
+    "inputFiles": [
+      "Css/themes/theme-pink.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-purple.min.css",
+    "inputFiles": [
+      "Css/themes/theme-purple.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-red.min.css",
+    "inputFiles": [
+      "Css/themes/theme-red.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-teal.min.css",
+    "inputFiles": [
+      "Css/themes/theme-teal.css"
+    ]
+  },
+  {
+    "outputFileName": "Css/themes/theme-yellow.min.css",
+    "inputFiles": [
+      "Css/themes/theme-yellow.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/modernizr-2.8.3.min.js",
+    "inputFiles": [
+      "Scripts/modernizr-2.8.3.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/respond.min.js",
+    "inputFiles": [
+      "Scripts/respond.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/respond.matchmedia.addListener.min.js",
+    "inputFiles": [
+      "Scripts/respond.matchmedia.addListener.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.slimscroll.min.js",
+    "inputFiles": [
+      "Scripts/jquery.slimscroll.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-tr_TR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-tr_TR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ua_UA.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ua_UA.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-vi_VN.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-vi_VN.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-zh_CN.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-zh_CN.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-zh_TW.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-zh_TW.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-sv_SE.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-sv_SE.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-sl_SI.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-sl_SI.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-sk_SK.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-sk_SK.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ru_RU.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ru_RU.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ro_RO.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ro_RO.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-pt_PT.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-pt_PT.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-pt_BR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-pt_BR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-pl_PL.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-pl_PL.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-nl_NL.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-nl_NL.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-nb_NO.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-nb_NO.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-lt_LT.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-lt_LT.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ko_KR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ko_KR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-kh_KM.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-kh_KM.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ja_JP.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ja_JP.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-it_IT.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-it_IT.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-id_ID.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-id_ID.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-hu_HU.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-hu_HU.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-fr_FR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-fr_FR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-fi_FI.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-fi_FI.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-fa_IR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-fa_IR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-eu.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-eu.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-et_EE.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-et_EE.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-es_ES.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-es_ES.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-es_CL.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-es_CL.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-en_US.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-en_US.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-de_DE.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-de_DE.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-da_DK.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-da_DK.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-cs_CZ.min.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-cs_CZ.min.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-cs_CZ.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-cs_CZ.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-cro_CRO.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-cro_CRO.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-bg_BG.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-bg_BG.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/i18n/defaults-ar_AR.min.js",
+    "inputFiles": [
+      "Scripts/i18n/defaults-ar_AR.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/bootstrap-select.min.js",
+    "inputFiles": [
+      "Scripts/bootstrap-select.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/jquery.validate.min.js",
+    "inputFiles": [
+      "Scripts/jquery.validate.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Plugins/animate-css/animate.min.css",
+    "inputFiles": [
+      "Scripts/Plugins/animate-css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Plugins/node-waves/waves.min.css",
+    "inputFiles": [
+      "Scripts/Plugins/node-waves/waves.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/Plugins/node-waves/waves.min.js",
+    "inputFiles": [
+      "Scripts/Plugins/node-waves/waves.js"
+    ]
+  },
+  {
+    "outputFileName": "Css/bootstrap-select.min.css",
+    "inputFiles": [
+      "Css/bootstrap-select.css"
+    ]
+  }
+]

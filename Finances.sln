@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finances.Endpoint.Frontend.Common", "Finances.Endpoint.Frontend.Common\Finances.Endpoint.Frontend.Common.csproj", "{F208C0C2-5229-4D9E-B444-15C2773A9C4E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDDAA0B4-471C-4D8D-A60A-2E4F32ADCCD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

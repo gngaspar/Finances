@@ -43,13 +43,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http" />
@@ -74,6 +78,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -81,6 +89,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -106,10 +118,192 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\bootstrap-select.css" />
+    <Content Include="Css\bootstrap-select.min.css">
+      <DependentUpon>bootstrap-select.css</DependentUpon>
+    </Content>
+    <Content Include="Css\bootstrap.css" />
+    <Content Include="Css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Css\materialize.css" />
+    <Content Include="Css\materialize.min.css">
+      <DependentUpon>materialize.css</DependentUpon>
+    </Content>
+    <Content Include="Css\style.css" />
+    <Content Include="Css\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\all-themes.css" />
+    <Content Include="Css\themes\all-themes.min.css">
+      <DependentUpon>all-themes.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-amber.css" />
+    <Content Include="Css\themes\theme-amber.min.css">
+      <DependentUpon>theme-amber.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-black.css" />
+    <Content Include="Css\themes\theme-black.min.css">
+      <DependentUpon>theme-black.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-blue-grey.css" />
+    <Content Include="Css\themes\theme-blue-grey.min.css">
+      <DependentUpon>theme-blue-grey.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-blue.css" />
+    <Content Include="Css\themes\theme-blue.min.css">
+      <DependentUpon>theme-blue.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-brown.css" />
+    <Content Include="Css\themes\theme-brown.min.css">
+      <DependentUpon>theme-brown.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-cyan.css" />
+    <Content Include="Css\themes\theme-cyan.min.css">
+      <DependentUpon>theme-cyan.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-deep-orange.css" />
+    <Content Include="Css\themes\theme-deep-orange.min.css">
+      <DependentUpon>theme-deep-orange.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-deep-purple.css" />
+    <Content Include="Css\themes\theme-deep-purple.min.css">
+      <DependentUpon>theme-deep-purple.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-green.css" />
+    <Content Include="Css\themes\theme-green.min.css">
+      <DependentUpon>theme-green.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-grey.css" />
+    <Content Include="Css\themes\theme-grey.min.css">
+      <DependentUpon>theme-grey.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-indigo.css" />
+    <Content Include="Css\themes\theme-indigo.min.css">
+      <DependentUpon>theme-indigo.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-light-blue.css" />
+    <Content Include="Css\themes\theme-light-blue.min.css">
+      <DependentUpon>theme-light-blue.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-lime.css" />
+    <Content Include="Css\themes\theme-lime.min.css">
+      <DependentUpon>theme-lime.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-orange.css" />
+    <Content Include="Css\themes\theme-orange.min.css">
+      <DependentUpon>theme-orange.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-pink.css" />
+    <Content Include="Css\themes\theme-pink.min.css">
+      <DependentUpon>theme-pink.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-purple.css" />
+    <Content Include="Css\themes\theme-purple.min.css">
+      <DependentUpon>theme-purple.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-red.css" />
+    <Content Include="Css\themes\theme-red.min.css">
+      <DependentUpon>theme-red.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-teal.css" />
+    <Content Include="Css\themes\theme-teal.min.css">
+      <DependentUpon>theme-teal.css</DependentUpon>
+    </Content>
+    <Content Include="Css\themes\theme-yellow.css" />
+    <Content Include="Css\themes\theme-yellow.min.css">
+      <DependentUpon>theme-yellow.css</DependentUpon>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="bundleconfig.json" />
+    <Content Include="Js\admin.js" />
+    <Content Include="Js\demo.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap-select.js.map" />
+    <Content Include="Css\bootstrap-select.css.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap-select.min.js">
+      <DependentUpon>bootstrap-select.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\i18n\defaults-de_DE.min.js">
+      <DependentUpon>defaults-de_DE.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\i18n\defaults-en_US.min.js">
+      <DependentUpon>defaults-en_US.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-es_ES.js" />
+    <Content Include="Scripts\i18n\defaults-es_ES.min.js">
+      <DependentUpon>defaults-es_ES.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\i18n\defaults-fr_FR.min.js">
+      <DependentUpon>defaults-fr_FR.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\i18n\defaults-pl_PL.min.js">
+      <DependentUpon>defaults-pl_PL.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\i18n\defaults-pt_PT.js" />
+    <Content Include="Scripts\i18n\defaults-pt_PT.min.js">
+      <DependentUpon>defaults-pt_PT.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js">
+      <DependentUpon>jquery-3.2.1.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js">
+      <DependentUpon>jquery-3.2.1.slim.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js">
+      <DependentUpon>jquery.slimscroll.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\modernizr-2.8.3.min.js">
+      <DependentUpon>modernizr-2.8.3.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Plugins\animate-css\animate.min.css">
+      <DependentUpon>animate.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Plugins\node-waves\waves.min.css">
+      <DependentUpon>waves.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Plugins\node-waves\waves.min.js">
+      <DependentUpon>waves.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js">
+      <DependentUpon>respond.matchmedia.addListener.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.min.js">
+      <DependentUpon>respond.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Plugins\animate-css\animate.css" />
+    <Content Include="Scripts\Plugins\node-waves\waves.css" />
+    <Content Include="Scripts\Plugins\node-waves\waves.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FaqController.cs" />
@@ -138,6 +332,9 @@
     <Content Include="Views\Shared\_Tasks.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\ForgotPassword\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\Plugins\node-waves\waves.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,10 +342,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
@@ -198,9 +392,8 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>rmdir /S /Q "$(SolutionDir)Finances.Endpoint.Frontend\Areas"
-xcopy /C /E /F /R /Y /I "$(SolutionDir)Finances.Endpoint.Frontend.Accounts\Views" "$(SolutionDir)Finances.Endpoint.Frontend\Areas\Accounts\Views"
-</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

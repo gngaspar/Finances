@@ -10,7 +10,10 @@
 namespace Finances.Endpoint.Frontend
 {
     using System.Web.Mvc;
+    using System.Web.Optimization;
     using System.Web.Routing;
+
+    using Finances.Endpoint.Frontend.App_Start;
 
     /// <summary>
     /// The MVC application.
@@ -24,6 +27,7 @@ namespace Finances.Endpoint.Frontend
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes( RouteTable.Routes );
+            BundleConfig.RegisterBundles( BundleTable.Bundles );
         }
     }
 }
