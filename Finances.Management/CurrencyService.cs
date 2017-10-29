@@ -116,12 +116,12 @@ namespace Finances.Management
 
             if ( from.ReasonToOneEuro == 0 && to.ReasonToOneEuro == 0 )
             {
-                await Task.Run( () => convert.Amount );
+                return await Task.Run( () => convert.Amount );
             }
 
             if ( to.ReasonToOneEuro == 0 )
             {
-                await Task.Run( () => convert.Amount / from.ReasonToOneEuro );
+                return await Task.Run( () => convert.Amount / from.ReasonToOneEuro );
             }
 
             if ( from.ReasonToOneEuro == 0 )
