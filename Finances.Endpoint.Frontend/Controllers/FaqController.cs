@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FaqController.cs" company="GNG">
+//   GNG
+// </copyright>
+// <summary>
+//   The faq controller.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Finances.Endpoint.Frontend.Controllers
 {
@@ -12,6 +14,9 @@ namespace Finances.Endpoint.Frontend.Controllers
     using Finances.Endpoint.Frontend.Common;
     using Finances.Endpoint.Frontend.Infrastructure;
 
+    /// <summary>
+    /// The faq controller.
+    /// </summary>
     [Localization( "en" )]
     public class FaqController : BaseController
     {

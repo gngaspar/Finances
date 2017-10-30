@@ -9,6 +9,7 @@
 
 namespace Finances.Endpoint.Frontend
 {
+    using System.Configuration;
     using System.Web.Mvc;
     using System.Web.Routing;
 
@@ -30,8 +31,8 @@ namespace Finances.Endpoint.Frontend
             routes.MapRoute(
                 name: "Language",
                 url: "{lang}/{controller}/{action}/{id}",
-                defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
-                constraints: new { lang = @"en|pt|pl" },
+                defaults: new { lang = ConfigurationManager.AppSettings[ "DefaultLanguage" ], controller = "Home", action = "Index", id = UrlParameter.Optional },
+                constraints: new { lang = ConfigurationManager.AppSettings[ "PossibleLanguages" ] },
                 namespaces: new[] { "Finances.Endpoint.Frontend.Controllers" }
             );
 

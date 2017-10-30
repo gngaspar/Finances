@@ -19,12 +19,12 @@ namespace Finances.Endpoint.Frontend.Common
         {
             if ( requestContext.RouteData.Values[ "lang" ] != null && requestContext.RouteData.Values[ "lang" ] as string != "null" )
             {
-                CurrentLanguageCode = (string) requestContext.RouteData.Values[ "lang" ];
-                if ( CurrentLanguageCode != null )
+                this.CurrentLanguageCode = (string) requestContext.RouteData.Values[ "lang" ];
+                if ( this.CurrentLanguageCode != null )
                 {
                     try
                     {
-                        Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo( CurrentLanguageCode );
+                        Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo( this.CurrentLanguageCode );
                     }
                     catch ( Exception )
                     {

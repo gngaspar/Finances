@@ -11,9 +11,12 @@ namespace Finances.Endpoint.Frontend.Controllers
 {
     using System.Web.Mvc;
 
+    using Finances.Endpoint.Frontend.Infrastructure;
+
     /// <summary>
     /// The login controller.
     /// </summary>
+    [Localization( "en" )]
     public class LoginController : Controller
     {
         /// <summary>

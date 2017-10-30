@@ -11,6 +11,7 @@
 namespace Finances.Endpoint.Frontend.Common
 {
     using System;
+    using System.Configuration;
     using System.Web.Mvc;
 
     /// <summary>
@@ -36,8 +37,8 @@ namespace Finances.Endpoint.Frontend.Common
             context.MapRoute(
                 name: string.Concat( this.AreaName, "_Default" ),
                 url: string.Concat( "{lang}/", this.AreaName, "/{controller}/{action}/{id}" ),
-                defaults: new { lang = "en", action = "Index", id = UrlParameter.Optional },
-                constraints: new { lang = @"en|pt|pl" },
+                defaults: new { lang = ConfigurationManager.AppSettings[ "DefaultLanguage" ], action = "Index", id = UrlParameter.Optional },
+                constraints: new { lang = ConfigurationManager.AppSettings[ "PossibleLanguages" ] },
                 namespaces: new[] { string.Concat( "Finances.Endpoint.Frontend.", this.AreaName, ".Controllers" ) } );
         }
     }
