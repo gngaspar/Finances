@@ -1,22 +1,23 @@
-﻿<div class="menu">
+﻿@using Finances.Endpoint.Frontend.Common
+<div class="menu">
     <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-            <a href="@Url.Action("Index", "Home")">
+            <a href="@Url.Content( CommonExtensions.RedirectToProcessUrl( KnownPages.Home , ViewContext.RouteData) )">
                 <i class="material-icons">home</i>
                 <span>Home</span>
             </a>
         </li>
         <li>
-            <a href="@Url.Action("Index", "Login")">
-                <i class="material-icons">text_fields</i>
-                <span>Typography</span>
+            <a href="@Url.Content( CommonExtensions.RedirectToProcessUrl( KnownPages.Faq , ViewContext.RouteData) )">
+                <i class="material-icons">layers</i>
+                <span>Helper Classes</span>
             </a>
         </li>
         <li>
-            <a href="@Url.Action("Index", "Faq")">
-                <i class="material-icons">layers</i>
-                <span>Helper Classes</span>
+            <a href="@Url.Content( CommonExtensions.RedirectToProcessUrl( KnownPages.AccountsList , ViewContext.RouteData) )">
+                <i class="material-icons">text_fields</i>
+                <span>Typography</span>
             </a>
         </li>
         <li class="header">LABELS</li>

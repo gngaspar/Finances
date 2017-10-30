@@ -1,34 +1,32 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="GNG">
+// <copyright file="FilterConfig.cs" company="GNG">
 //   GNG
 // </copyright>
 // <summary>
-//   Defines the HomeController type.
+//   Defines the FilterConfig type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Finances.Endpoint.Frontend.Controllers
+namespace Finances.Endpoint.Frontend
 {
     using System.Web.Mvc;
 
-    using Finances.Endpoint.Frontend.Common;
     using Finances.Endpoint.Frontend.Infrastructure;
 
     /// <summary>
-    /// The home controller.
+    /// The filter config.
     /// </summary>
-    [Localization( "en" )]
-    public class HomeController : BaseController
+    public class FilterConfig
     {
         /// <summary>
-        /// The index.
+        /// The register global filters.
         /// </summary>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
-        public ActionResult Index()
+        /// <param name="filters">
+        /// The filters.
+        /// </param>
+        public static void RegisterGlobalFilters( GlobalFilterCollection filters )
         {
-            return View();
+            filters.Add( new LocalizationAttribute( "en" ), 0 );
         }
     }
 }

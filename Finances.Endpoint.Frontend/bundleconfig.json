@@ -436,5 +436,35 @@
     "inputFiles": [
       "Css/bootstrap-select.css"
     ]
+  },
+  {
+    "outputFileName": "Js/admin.min.js",
+    "inputFiles": [
+      "Js/admin.js"
+    ]
+  },
+  {
+    "outputFileName": "Js/demo.min.js",
+    "inputFiles": [
+      "Js/demo.js"
+    ]
+  },
+  {
+    "outputFileName": "Js/forgot-password.min.js",
+    "inputFiles": [
+      "Js/forgot-password.js"
+    ]
+  },
+  {
+    "outputFileName": "Js/sign-in.min.js",
+    "inputFiles": [
+      "Js/sign-in.js"
+    ]
+  },
+  {
+    "outputFileName": "Js/sign-up.min.js",
+    "inputFiles": [
+      "Js/sign-up.js"
+    ]
   }
 ]

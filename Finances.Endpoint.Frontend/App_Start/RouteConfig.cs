@@ -28,10 +28,18 @@ namespace Finances.Endpoint.Frontend
             routes.IgnoreRoute( "{resource}.axd/{*pathInfo}" );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "Finances.Endpoint.Frontend.Controllers" } );
+                name: "Language",
+                url: "{lang}/{controller}/{action}/{id}",
+                defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
+                constraints: new { lang = @"en|pt|pl" },
+                namespaces: new[] { "Finances.Endpoint.Frontend.Controllers" }
+            );
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    namespaces: new[] { "Finances.Endpoint.Frontend.Controllers" } );
         }
     }
 }

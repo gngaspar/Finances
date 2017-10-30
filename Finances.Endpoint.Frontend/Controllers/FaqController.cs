@@ -9,7 +9,11 @@ namespace Finances.Endpoint.Frontend.Controllers
 {
     using System.Web.Mvc;
 
-    public class FaqController : Controller
+    using Finances.Endpoint.Frontend.Common;
+    using Finances.Endpoint.Frontend.Infrastructure;
+
+    [Localization( "en" )]
+    public class FaqController : BaseController
     {
         /// <summary>
         /// The index.

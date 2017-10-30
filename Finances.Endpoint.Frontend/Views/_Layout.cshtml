@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using Finances.Endpoint.Frontend.Infrastructure
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,10 +52,16 @@
                 <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul>
+                    @Url.LangSwitcher( "English", ViewContext.RouteData, "en" )
+                    @Url.LangSwitcher( "Portuguese", ViewContext.RouteData, "pt" )
+                    @Url.LangSwitcher( "Polish", ViewContext.RouteData, "pl" )
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
                     <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
                     <!-- #END# Call Search -->
+
                     @if ( false )
                     {
                         @Html.Partial( "_Notifications" )

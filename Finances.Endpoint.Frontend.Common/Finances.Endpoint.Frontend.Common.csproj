@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseAreaRegistration.cs" />
+    <Compile Include="BaseController.cs" />
+    <Compile Include="CommonExtensions.cs" />
+    <Compile Include="KnownPages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

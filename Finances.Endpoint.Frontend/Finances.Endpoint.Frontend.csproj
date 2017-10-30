@@ -221,9 +221,37 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <EmbeddedResource Include="App_LocalResources\Translations.pl.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Translations.pt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.pt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="bundleconfig.json" />
     <Content Include="Js\admin.js" />
+    <Content Include="Js\admin.min.js">
+      <DependentUpon>admin.js</DependentUpon>
+    </Content>
     <Content Include="Js\demo.js" />
+    <Content Include="Js\demo.min.js">
+      <DependentUpon>demo.js</DependentUpon>
+    </Content>
+    <Content Include="Js\forgot-password.js" />
+    <Content Include="Js\forgot-password.min.js">
+      <DependentUpon>forgot-password.js</DependentUpon>
+    </Content>
+    <Content Include="Js\sign-in.js" />
+    <Content Include="Js\sign-in.min.js">
+      <DependentUpon>sign-in.js</DependentUpon>
+    </Content>
+    <Content Include="Js\sign-up.js" />
+    <Content Include="Js\sign-up.min.js">
+      <DependentUpon>sign-up.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Css\bootstrap-select.css.map" />
@@ -303,7 +331,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_LocalResources\Translations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Translations.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Translations.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Translations.pl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Translations.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Translations.pt.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Infrastructure\LanguageHelper.cs" />
+    <Compile Include="Infrastructure\LocalizationAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FaqController.cs" />
@@ -346,7 +392,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Finances.Contract\Finances.Contract.csproj">
       <Project>{044d3449-fee1-4bb0-8644-265c6e837046}</Project>
@@ -360,6 +405,13 @@
       <Project>{f208c0c2-5229-4d9e-b444-15c2773a9c4e}</Project>
       <Name>Finances.Endpoint.Frontend.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\Translations.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
