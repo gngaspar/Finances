@@ -221,16 +221,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <EmbeddedResource Include="App_LocalResources\Translations.pl.resx">
-      <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.pl.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_LocalResources\Translations.pt.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.pt.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="bundleconfig.json" />
     <Content Include="Js\admin.js" />
     <Content Include="Js\admin.min.js">
@@ -331,21 +321,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_LocalResources\Translations.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Translations.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_LocalResources\Translations.pl.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Translations.pl.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_LocalResources\Translations.pt.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Translations.pt.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Infrastructure\LanguageHelper.cs" />
@@ -407,12 +382,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="App_LocalResources\Translations.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

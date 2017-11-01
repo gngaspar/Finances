@@ -70,6 +70,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_LocalResources\Translations.Designer.cs">
+      <DependentUpon>Translations.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\Translations.pl.Designer.cs">
+      <DependentUpon>Translations.pl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\Translations.pt.Designer.cs">
+      <DependentUpon>Translations.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BaseAreaRegistration.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="CommonExtensions.cs" />
@@ -80,6 +95,22 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\Translations.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.pl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Translations.pt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.pt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Translations.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

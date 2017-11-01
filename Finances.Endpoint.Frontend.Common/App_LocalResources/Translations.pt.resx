@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Accounts" xml:space="preserve">
+    <value>Contas</value>
+  </data>
   <data name="Hello" xml:space="preserve">
-    <value>Cześć</value>
+    <value>Olá</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Casa</value>
   </data>
 </root>

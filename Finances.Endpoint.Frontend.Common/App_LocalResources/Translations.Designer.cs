@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Finances.Endpoint.Frontend.Accounts.App_LocalResources {
+namespace Finances.Endpoint.Frontend.Common.App_LocalResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Finances.Endpoint.Frontend.Accounts.App_LocalResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Translation {
+    public class Translations {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Translation() {
+        internal Translations() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Finances.Endpoint.Frontend.Accounts.App_LocalResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Finances.Endpoint.Frontend.Accounts.App_LocalResources.Translation", typeof(Translation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Finances.Endpoint.Frontend.Common.App_LocalResources.Translations", typeof(Translations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,24 @@ namespace Finances.Endpoint.Frontend.Accounts.App_LocalResources {
         public static string Accounts {
             get {
                 return ResourceManager.GetString("Accounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
     }
