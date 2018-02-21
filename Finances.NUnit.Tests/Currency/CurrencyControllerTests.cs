@@ -9,6 +9,9 @@
 
 namespace Finances.NUnit.Tests.Currency
 {
+    using System.Net.Http;
+    using System.Web.Http;
+
     using global::NUnit.Framework;
 
     /// <summary>
@@ -25,6 +28,10 @@ namespace Finances.NUnit.Tests.Currency
         {
             var controller = this.GetCurrencyController();
             //// var result = await controller.ConvertString("EUR", "PLN", 10);
+
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
+
 
             Assert.IsTrue( true );
         }
